@@ -1,0 +1,21 @@
+
+
+[ 외부 사이트들 ]
+
+. 주민등록등본 출력 : http://www.minwon.go.kr/main?a=AA020InfoCappViewApp&HighCtgCD=A01010&CappBizCD=13100000015
+
+. 가족관계 증명서 : http://efamily.scourt.go.kr/
+
+                         http://www.minwon.go.kr/main?a=AA020InfoCappViewApp&HighCtgCD=A01008&CappBizCD=97400000004
+
+. 연말 정산 관련 : www.hometax.go.kr
+
+. 자동차세 납부 (1월 납부시 10% 할인) : https://www.wetax.go.kr/
+
+. jpg -> pdf 로 변환하는 툴 : http://software.naver.com/software/summary.nhn?softwareId=MFS_104545
+
+. jpg -> pdf 로 변환 웹사이트 : https://smallpdf.com/
+
+. starUML : http://staruml.io/download 
+
+. 국제 우편 조회 : https://service.epost.go.kr/iservice/usr/trace/usrtrc004k01.jsp#

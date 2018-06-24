@@ -1,0 +1,605 @@
+
+----------------------------------------------------------------
+
+* Git 설명 책 내용들
+
+https://git-scm.com/book/ko/v2/%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0-%EB%B2%84%EC%A0%84-%EA%B4%80%EB%A6%AC%EB%9E%80%3F
+
+----------------------------------------------------------------
+
+git, gerrit, github
+
+$ git config --global user.name superman
+$ git config --global user.email superman@gmail.com
+$ git config --global core.editor notepad
+$ git config --global -l
+$ git config --list
+
+
+----------------
+
+[ git허브에서 최초 "beyond_eng.git"만들고 README.md 화일 등록하는 방법 ]
+echo "# beyond_eng" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/sbchang93/beyond_eng.git
+git push -u origin master
+
+----------------
+
+* key gen
+ssh-keygen -t rsa
+( sudo ssh-keygen -t rsa -f /etc/ssh/ssh-host_dsa_key
+  sudo ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key )
+
+
+* git hub
+git clone https://github.com/sbchang93/beyondme
+git clone https://github.com/tonychacon/blink
+
+$ git remote -v
+origin  https://github.com/sbchang93/beyondme_eng.git (fetch)
+origin  https://github.com/sbchang93/beyondme_eng.git (push)
+
+. git 서버의 "3f69743"번 내용까지 로컬 소스를 강제로 일치시킴. 
+$ git checkout 3f69743  
+
+
+* git pull
+
+* push
+git push origin master
+git remote show origin
+git push origin HEAD:refs/for/master ( 동작 안됨 )
+
+* git reset
+  ( https://git-scm.com/book/ko/v2/Git-도구-Reset-명확히-알고-가기  )
+  
+-------------------------------------------------------
+
+* git 명령어 예제
+
+$ git pull  : 소스 받기
+$ git branch : 현재 브랜치 보여주기
+$ git log : local 저장소에 머지되었거나 머지될 내용들을 보여주기
+
+$ git push origin master : romote의 git 서버에 local 저장소의 수정 사항을 머지하는 명령어 
+
+
+[수정 내용 반영]
+$ git add .
+$ git status
+$ git add README
+$ git commit
+
+$ git push origin master  : 서버 반영
+
+
+[예제 (수정 및 commit) ]
+$ touch Readme.txt
+$ git status
+$ git add Readme.txt
+$ git commit -m “Add Readme.txt”
+
+$ git push origin master  : 서버 반영
+
+
+
+-----------
+
+$ git log
+$ git log -p
+$ git log --stat
+
+
+
+
+* HEAD 위치로 이동하고 다시 화일 받기 ( 좀 더 강력하게 받는 방법이 있는데... )
+$ git reset --hard HEAD
+$ git pull
+
+
+* 주의 요망 : $ git clean -fdx
+=> tracking 되지 않는 모든 파일을 삭제해 버림 
+
+----------------
+
+git add <파일>
+
+git commit -m “<메시지>”
+=> 파일의 일부를 스테이징하기
+
+git add -p [<파일> [<파일> [기타 파일들…]]]
+=> add 명령에서 Git 대화 모드를 사용하여 파일 추가하기
+
+git add -i
+=> 수정되고 추적되는 파일의 변경 사항 스테이징하기
+
+git add -u [<경로> [<경로>]]
+=> 수정되고 추적되는 모든 파일의 변경 사항 커밋하기
+
+
+-------------------------------------------------------
+
+* 참조 사이트 : http://hochulshin.com/git-revert-changes/
+
+$ git reset --hard HEAD^
+=> commit 내용을 없애고 이전 상태로 원복
+   ( master 브랜치의 마지막 커밋을 가리키던 HEAD를 그 이전으로 이동시켜서 commit 내용을 없앰 )
+   
+$ git reset HEAD^
+=> commit은 취소하고 commit 했던 내용은 남기고 unstaged 상태로 만들기
+
+$ git reset --soft HEAD^
+=> commit은 취소하고 commit 했던 내용은 남기고 staged 상태로 만들기
+
+$ git clean -fdx
+=> 모든 untracked 파일들을 지우기  ( 주의 요망 )
+
+
+* git push를 한 경우 remote repository도 이전으로 되돌리기
+$ git reset HEAD^           => #local repository에서 commit을 하나 되돌림
+$ git commit -m "..."       => #되돌린 것으로 commit
+$ git push origin +master   => #remote repository를 강제로 revert
+
+
+-------------------------------------------------------
+
+. 참조 사이트 : http://webclub.tistory.com/317
+
+-------------------------------------------------------
+
+. 참조 사이트 : https://medium.com/@joongwon/git-git-명령어-정리-c25b421ecdbd
+
+
+
+
+1. 설정과 초기화
+
+전역 사용자명/이메일 구성하기
+
+git config - -global user.name “Your name”
+
+git config - -global user.email “Your email address”
+
+저장소별 사용자명/이메일 구성하기 (해당 저장소 디렉터리로 이동후)
+
+git config user.name “Your name”
+
+git config user.email “Your email address”
+
+참고로 user 설정이 되어 있지 않으면 Github에 있는 repository에 변경사항을 푸시 한다고 해도 commit count 집계도 안되고 
+해당 커밋의 작성자 프로필 아이콘도 ? 로 표시되기 때문에 웬만하면 name과 email 주소를 설정하길 추천한다.
+
+전역 설정 정보 조회
+
+git config - -global - -list
+
+저장소별 설정 정보 조회
+
+git config - -list
+
+Git의 출력결과 색상 활성화하기
+
+git config - -global color.ui “auto”
+
+새로운 저장소 초기화하기
+
+mkdir /path/newDir
+
+cd /path/newDir
+
+git init
+
+저장소 복제하기
+
+git clone <저장소 url>
+
+새로운 원격 저장소 추가하기
+
+git remote add <원격 저장소> <저장소 url>
+
+
+
+...
+
+
+
+2. 기본적인 사용법
+
+아래 명령어에서 [ ]는 선택적인 매개변수를 의미한다.
+
+새로운 파일을 추가하거나 존재하는 파일 스테이징하고 커밋하기
+
+git add <파일>
+
+git commit -m “<메시지>”
+
+파일의 일부를 스테이징하기
+
+git add -p [<파일> [<파일> [기타 파일들…]]]
+
+add 명령에서 Git 대화 모드를 사용하여 파일 추가하기
+
+git add -i
+
+수정되고 추적되는 파일의 변경 사항 스테이징하기
+
+git add -u [<경로> [<경로>]]
+
+수정되고 추적되는 모든 파일의 변경 사항 커밋하기
+
+git commit -m “<메시지>” -a
+
+작업 트리의 변경 사항 돌려놓기
+
+git checkout HEAD <파일> [<파일>]
+
+커밋되지 않고 스테이징된 변경 사항 재설정하기
+
+git reset HEAD <파일> [<파일>]
+
+마지막 커밋 고치기
+
+git commit -m “<메시지>” - -amend
+
+이전 커밋을 수정하고 커밋 메시지를 재사용하기
+
+git commit -C HEAD - -amend
+
+
+
+...
+
+
+
+3. 브랜치
+
+지역 브랜치 목록 보기
+
+git branch
+
+원격 브랜치 목록 보기
+
+git branch -r
+
+지역과 원격을 포함한 모든 브랜치 목록 보기
+
+git branch -a
+
+현재 브랜치에서 새로운 브랜치 생성하기
+
+git branch <새로운 브랜치>
+
+다른 브랜치 체크아웃하기
+
+git checkout <브랜치>
+
+현재 브랜치에서 새로운 브랜치 생성하고 체크아웃하기
+
+git checkout -b <새로운 브랜치>
+
+다른 시작 지점에서 브랜치 생성하기
+
+git branch <새로운 브랜치> <브랜치를 생성할 위치>
+
+기존의 브랜치를 새로운 브랜치로 덮어쓰기
+
+git branch -f <기존 브랜치> [<브랜치를 생성할 위치>]
+
+브랜치를 옮기거나 브랜치명 변경하기
+
+git checkout -m <기존 브랜치> <새로운 브랜치>
+•<새로운 브랜치>가 존재하지 않을 경우
+
+git checkout -M <기존 브랜치> <새로운 브랜치>
+•무조건 덮어쓰기
+
+다른 브랜치를 현재 브랜치로 합치기
+
+git merge <브랜치>
+
+커밋하지 않고 합치기
+
+git merge - -no-commit <브랜치>
+
+선택하여 합치기
+
+git cherry-pick <커밋명>
+
+커밋하지 않고 선택하여 합치기
+
+git cherry-pick -n <커밋명>
+
+브랜치의 이력을 다른 브랜치에 합치기
+
+git merge - -squash <브랜치>
+
+브랜치 삭제하기
+
+git branch -d <삭제할 브랜치>
+•삭제할 브랜치가 현재 브랜치에 합쳐졌을 경우에만
+
+git branch -D <삭제할 브랜치>
+•삭제할 브랜치가 현재 브랜치에 합쳐지지 않았어도
+
+
+
+...
+
+
+
+4. Git 이력
+
+모든 이력 보기
+
+git log
+
+변경 사항을 보여주는 패치와 함께 로그 표시하기
+
+git log -p
+
+1개의 항목만 보이도록 로그 개수 제한하기
+
+git log -1
+
+20개의 항목과 패치만 보이도록 로그 제한하기
+
+git log -20 -p
+
+6개월 동안의 커밋 로그 보기
+
+git log - -since=”6 hours”
+
+이틀 전까지의 커밋 로그 보기
+
+git log - -before=”2 days”
+
+HEAD보다 세 개 이전의 커밋 로그 보기
+
+git log -1 HEAD-3
+
+git log -1 HEAD^^^
+
+git log -1 HEAD~1^^
+
+두 지점 사이의 커밋 로그 보기
+
+git log <시작 지점>…<끝 지점>
+•시작 지점이나 끝 지점은 커밋명, 브랜치명, 혹은 태그명이 될 수 있고 조합하여 사용 가능하다.
+
+각 항목의 로그 이력 한 줄씩 보기
+
+git log - -pretty=oneline
+
+각 항목마다 영향 받은 줄의 통계 보기
+
+git log - -stat
+
+커밋할 시점의 파일 상태 보기
+
+git log - -name-status
+
+현재 작업 트리와 인덱스의 차이점 보기
+
+git diff
+
+인덱스와 저장소의 차이점 보기
+
+git diff - -cached
+
+작업 트리와 저장소의 차이점 보기
+
+git diff HEAD
+
+작업 트리와 특정 위치 간의 차이점 보기
+
+git diff <시작 지점>
+•시작 지점은 커밋명 or 브랜치명 or 태그명이다.
+
+저장소의 두 지점 사이의 차이점 보기
+
+git diff <시작 지점> <끝 지점>
+
+차이점의 통계 보기
+
+git diff - -stat <시작 지점> [<끝 지점>]
+
+파일의 커밋 정보 줄 단위로 보기
+
+git blame <파일>
+
+파일의 줄 단위의 복사, 붙여 넣기, 이동 정보 보기
+
+git blame -M <파일>
+
+파일의 줄 단위의 이동과 원본 파일 정보 보기
+
+git blame -C -C <파일>
+
+로그에서 복사와 붙여 넣은 정보 보기
+
+git log -C -C -p -1 <특정 지점>
+
+
+
+...
+
+
+
+5. 원격 저장소
+
+저장소 복제하기
+
+git clone <저장소>
+
+마지막 200개의 커밋만 포함하여 저장소 복제하기
+
+git clone - -depth 200 <저장소>
+
+새로운 원격 저장소 추가하기
+
+git remote add <원격 저장소> <저장소 url>
+
+모든 원격 브랜치 목록 보기
+
+git branch -r
+
+원격 브랜치에서 지역 브랜치 생성하기
+
+git branch <새로운 브랜치> <원격 브랜치>
+
+원격 태그에서 지역 브랜치 생성하기
+
+git branch <새로운 브랜치> <원격 태그>
+
+origin 저장소에서 합치지 않고 지역 브랜치로 변경 사항 가져오기
+
+git fetch
+
+원격 저장소에서 합치지 않고 지역 브랜치로 변경 사항 가져오기
+
+git fetch <원격 저장소>
+
+원격 저장소에서 변경 사항을 가져와 현재 브랜치에 합치기
+
+git pull <원격 저장소>
+
+origin 저장소에서 변경 사항을 가져와 현재 브랜치에 합치기
+
+git pull
+
+지역 브랜치를 원격 브랜치에 푸싱하기
+
+git push <원격 저장소> <지역 브랜치>:<원격 브랜치>
+
+지역 브랜치를 동일한 이름의 원격 브랜치에 푸싱하기
+
+git push <원격 저장소> <지역 브랜치>
+
+새로운 로컬 브랜치를 원격 저장소에 푸싱하기
+
+git push <원격 저장소> <지역 브랜치>
+
+원격 저장소에서 쓸모가 없어진 원격 브랜치 제거하기
+
+git remote prune <원격 저장소>
+
+원격 저장소를 제거하고 관련된 브랜치도 제거하기
+
+git remote rm <원격 저장소>
+
+위에 작성된 명령어들은 주로 사용될만한 명령어들이고 이외에도 git 의 명령어는 상당히 많다. 더 다양한 사용법들을 알아보고자 한다면 아래 링크에서 확인하면 된다.
+
+
+-------------------------------------------------------
+
+. 참조 사이트 : https://blog.outsider.ne.kr/572
+
+git log
+커밋로그들을 볼 수 있으면 -1나 -2같은 옵션을 주어 출력할 커밋로그의 갯수를 지정할 수 있습니다. 
+--pretty=oneline 옵션을 주면 한줄로 간단히 보여주고 --pretty=format:"%h %s"처럼 형식을 정해줄 수 있습니다. 
+-p 옵션을 사용하면 변경된 내용을 같이 보여줍니다. --since="5 hours" 이나 --before="5 hours"같은 옵션도 사용가능합니다.
+--graph 옵션을 주면 브랜치 트리를 볼 수 있습니다.
+
+git log 커밋명
+해당 커밋명의 로그를 볼 수 있습니다. 커밋명A..커밋명B (마침표2개)와 같이 입력하면 커밋명A이후부터 커밋명B까지의 로그를 볼 수 있습니다. 
+^은 -1과 동일해서 HEAD^라고 하면 최신바로 이전 커밋이고 HEAD^^^와 같이 쓸 수 있으며 HEAD~3을 하면 HEAD의 3개 이전의 커밋을 뜻합니다.
+
+git blame 파일명
+갈 줄 앞에 커밋명과 커밋한 사람등의 정보를 볼 수 있습니다.
+
+git blame -L 10,15 파일명
+-L 옵션을 사용하면 10줄부터 15줄로 범위를 지정해서 볼수 있고 15대신 +5와 같이 사용할 수 있습니다. 
+숫자의 범위 대신 정규식도 사용이 가능합니다.
+
+git blame -M 파일명
+-M 옵션을 사용하면 반복되는 패턴을 찾아서 복사하거나 이동된 내용을 찾아줍니다.  
+-C -C 옵션을 사용하면 파일간의 복사한 경우를 찾아줍니다. 
+-C -C는 git log에서도 사용가능하며 내용의 복사를 찾을때는 git log에서 -p옵션을 사용합니다.
+
+git revert 커밋명
+기존의 커밋에서 변경한 내용을 취소해서 새로운 커밋을 만듭니다. 
+-n옵션을 사용하면 바로 커밋하지 않기 때문에 revert를 여러번한 다음에 커밋할 수 있습니다.
+(항상 최신의 커밋부터 revert해야 합니다.)
+
+git reset 커밋명
+이전 커밋을 수정하기 위해서 사용합니다. --soft 옵션을 사용하면 이전 커밋을 스테이징하고 커밋은 하지 않으며 
+--hard옵션은 저장소와 작업트리에서 커밋을 제거합니다. git reset HEAD^와 같이 입력하면 최근 1개의 커밋을 취소할 수 있습니다.
+
+git rebase -i 커밋범위
+-i옵션으로 대화형모드로 커밋 순서를 변경하거나 합치는 등의 작업을 할 수 있습니다.
+
+
+
+
+원격저장소
+git clone 저장소주소 폴더명
+원격저장소를 복제하여 저장소를 생성합니다. 폴더명을 생략가능합니다.
+
+git fetch
+원격저장소의 변경사항 가져와서 원격브랜치를 갱신합니다.
+ 
+git pull
+git fetch에서 하는 원격저장소의 변경사항을 가져와서 지역브랙치에 합치는 작업을 한꺼번에 합니다. 파라미터로 풀링할 원격저장소와 반영할 지역브랜치를 줄 수 있습니다.
+
+git push
+파라미터를 주지 않으면 origin 저장소에 푸싱하며 현재 지역브랜치와 같은 이름의 브랜치에 푸싱합니다. 
+--dry-run 옵션을 사용하면 푸싱된 변경사항을 확인할 수 있습니다. 
+로컬에서 tag를 달았을 경우에 기본적으로 푸싱하지 않기 때문에 git push origin 태그명이나 모든 태그를 올리기 위해서 git push origin --tags를 사용해야 합니다.
+
+git remote add 이름 저장소주소
+새로운 원격 저장소를 추가합니다.
+
+git remote
+추가한 원격저장소의 목록을 확인할 수 있습니다.
+
+git remote show 이름
+해당 원격저장소의 정보를 볼 수 있습니다.
+
+git remote rm 이름
+원격저장소를 제거합니다.
+
+
+
+
+서브모듈
+git submodule
+연관된 하위모듈을 확인할 수 있습니다.
+
+git submodule add 저장소주소 서브모듈경로
+새로운 하위모듈을 해당경로에 추가합니다. 추가만하고 초기화 하지는 않으며 커밋해쉬앞에 마이나스(-) 표시가 나타납니다.
+
+git submodule init 서브모듈경로
+서브모듈을 초기화 합니다.
+
+git submodule update 서브모듈경로
+서브모듈의 변경사항을 적용합니다.(저장소의 최신커밋을 추적하지 않습니다.)
+
+
+
+
+기타 명령어
+git archive --format=tar --prefix=폴더명/ 브랜치혹은태그 | gzip > 파일명.tar.gz
+git archive --format=zip --prefix=폴더명/ 브랜치혹은태그 > 파일명.zip
+해당 브랜치나 태그를 압축파일로 만듭니다. --prefix를 주면 압축하일이 해당폴더 안에 생성되도록 할 수 있습니다.
+
+git mergetool
+설정에 merge.tool의 값에 있는 머지툴을 찾아서 실행합니다.
+
+git gc
+저장소의 로그를 최적화 합니다. 로그가 변경되지는 않고 저장하는 방식만 최적화 합니다. 
+--aggressive 옵션을 주면 더 자세하게 최적화합니다.
+
+git rev-parse --show-toplevel
+git 저장소내에서 입력하면 루트디렉토리를 알려줍니다.
+
+
+-------------------------------------------------------
+
+
+
+-------------------------------------------------------
+
+

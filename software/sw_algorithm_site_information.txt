@@ -1,0 +1,11 @@
+
+* 알고리즘 코드들 예제 
+: http://www.geeksforgeeks.org/
+
+* Prototype 패턴 
+: www.javahelps.com/2015/11/prototype-design-pattern.html
+
+
+
+
+

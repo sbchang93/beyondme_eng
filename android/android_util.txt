@@ -1,0 +1,273 @@
+Android
+
+
+[ 유용한 Key들 ] 
+Ctrl+'/' : 주석처리
+Ctrl+shift+'/' : /* */주석처리
+shift - shift 연속 누르기 : 화일 찾을 때, Search Everywhere
+
+. Ctrl + F12 ( 클래스 연관도 보여줌 )
+. Alt + F7 ( 함수 호출한 곳 )
+. Clt + N ( Class 이름으로 위치 찾기 )
+. Ctrl + H (상속 관계)
+. Ctrl + Shift + F ( 전체 텍스트 찾기, 시간이 많이 걸림 )
+. Double Shift : Search Everywhere : 
+. Alt+1 : Project View 
+. Ctrl+Shift+N : Go to File 
+. Ctrl+E : Recent Files 
+. Alt+Home : Navigation Bar 
+. Drop files here to open
+
+[ android studio 다운로드 ]
+https://developer.android.com/studio/index.html
+android-studio-ide-145.3330264-linux.zip (내꺼)
+
+[ 속도 느릴때 - Android Studio ]
+cd /usr/local/share/android-studio/bin/
+sudo gedit studio64.vmoptions
+sudo gedit /usr/local/share/android-studio/bin/studio64.vmoptions
+sudo vi /usr/local/share/android-studio/bin/studio64.vmoptions
+-Xms2048m
+-Xmx5120m
+-XX:MaxPermSize=512m
+
+* gradle.properties
+org.gradle.jvmargs=-Xmx1024m
+( http://fishpoint.tistory.com/1671 )
+
+
+. /home/sbchang/Android-SDK
+. /usr/local/share/android-studio/bin/
+C:\Users\Administrator\.AndroidStudio2.1\config
+studio64.exe.vmoptions
+-Xms2048m
+-Xmx4096m
+-XX:MaxPermSize=512m
+
+[ 최초 컴파일 시 ]
+. P4에서 받은 폴더명을 다른 이름으로 변경
+. Debug : fullUsEng 확인
+. 특정 모듈 : jcenter 주석처리
+. 안드로이 실행하고 맨 처음에 바로 full build 시킴
+  ( 때로는 재 부팅 필요함. )
+. appt.exe 복사 안 될 때는 재부팅해야 하는 것 같음
+
+
+[ 응급 조치 방법 ]
+com.android.ide.common.process.ProcessException: org.gradle.process.internal.ExecException: Process 'command 'C:\Users\Administrator\AppData\Local\Android\sdk\build-tools\23.0.1\aapt.exe'' finished with non-zero exit value 1
+  => Build -> Clean Project
+  => Build -> Rebuild Project
+
+[ ubuntu 설치 ]
+. 장치 -> 게스트 확장 CD 이미지 삽입 클릭 -> 시스템 Shut down.
+
+[ Linux 디렉토리 ] 
+. /home/sbchang/Android-SDK
+. /usr/local/share/android-studio/bin/
+. studio.sh &
+
+[ Linux ]
+. sudo gedit /etc/profile
+. sudo apt-get install unzip
+. sudo apt-get install paint
+. source .bashrc 혹은 source /etc/profile
+. mv : 파일 이름 변경 및 위치 변경
+. rm -rf abc : abc 이하 디렉토리 모두 삭제.
+. history : 최근 사용한 명령어 보여줌
+. export : Path 변수 보여줌
+. studio.sh &  : & 백그라운드로 실행함.
+. sudo service smbd restart
+. sudo apt-get install gnome-commander
+. gnome-commander &
+. sudo mkdir /mnt/share
+. sudo mount -t vboxsf virtualbox_share /mnt/share
+. pwd : Current Directory 보여줌
+. 
+. sqlite database browser (설치)
+. Tools -> android -> adb 실행 
+  ( file explorer -> data\data\ com.samsung.android.settings \ database 찾음 )
+
+sudo mv jdk-8u112-linux-x64.tar.gz /usr/local/share/
+sudo tar -xzvf ./jdk-8u112-linux-x64.tar.gz
+sudo tar -xzvf p4v.tgz
+sudo unzip android-studio-ide-145.3360264-linux.zip
+
+
+sudo gedit /etc/profile
+
+[ 환경 변수 ]
+export JAVA_HOME=/usr/local/share/jdk1.8.0_112
+export ANDROID_HOME=/home/myhome2/Android-SDK
+export ANDROID_JAVA_HOME=${JAVA_HOME}
+export GRADLE_HOME=/usr/local/share/gradle-2.2.1
+export GRADLE_USER_HOME=$HOME/.gradle
+export GRADLE_OPTS="-Dfile.encoding=UTF-8 -Xms2g -Xmx4g"
+export SVACE_HOME=/home/myhome2/save_analyzer/svace
+export PATH=${GRADLE_HOME}/bin:/usr/local/share/p4v/bin:/usr/local/share/android-studio/bin:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/tools:${JAVA_HOME}/bin:$SVACE_HOME/bin:$PATH
+
+
+
+-----------------------------------------------------------------------------
+* Gradle 
+- UX30의 Dev 브랜치 : 2.14.1
+
+gradle/wrapper/gradle-wrapper.properties
+https://services.gradle.org/distributions/gradle-2.2.1-all.zip
+sudo unzip gradle-2.2.1-all.zip
+
+- 빌드 Gradle 변경
+/home/sbchang/Perforce/DEV/gradle/wrapper/gradle-wrapper.properties
+distributionUrl=https\://services.gradle.org/distributions/gradle-2.14.1-
+all.zip
+distributionUrl=https\://services.gradle.org/distributions/gradle-2.2.1-all.zip
+
+
+Unsupported method: AndroidProject.getPluginGeneration().
+=> File -> Settings -> Build, Execution, Deployment -> Instant Run. ( Disable 시킴 )
+
+-----------------------------------------------------------------------------
+
+[ sudo gedit /etc/profile ]
+
+# /etc/profile: system-wide .profile file for the Bourne shell (sh(1))
+# and Bourne compatible shells (bash(1), ksh(1), ash(1), ...).
+
+if [ "$PS1" ]; then
+  if [ "$BASH" ] && [ "$BASH" != "/bin/sh" ]; then
+    # The file bash.bashrc already sets the default PS1.
+    # PS1='\h:\w\$ '
+    if [ -f /etc/bash.bashrc ]; then
+      . /etc/bash.bashrc
+    fi
+  else
+    if [ "`id -u`" -eq 0 ]; then
+      PS1='# '
+    else
+      PS1='$ '
+    fi
+  fi
+fi
+
+# The default umask is now handled by pam_umask.
+# See pam_umask(8) and /etc/login.defs.
+
+if [ -d /etc/profile.d ]; then
+  for i in /etc/profile.d/*.sh; do
+    if [ -r $i ]; then
+      . $i
+    fi
+  done
+  unset i
+fi
+
+export JAVA_HOME=/usr/local/share/jdk1.8.0_112
+export ANDROID_HOME=/home/myhome2/Android-SDK
+export ANDROID_JAVA_HOME=${JAVA_HOME}
+export GRADLE_HOME=/usr/local/share/gradle-2.2.1
+export GRADLE_USER_HOME=$HOME/.gradle
+export GRADLE_OPTS="-Dfile.encoding=UTF-8 -Xms2g -Xmx4g"
+export SVACE_HOME=/home/myhome2/save_analyzer/svace
+export PATH=${GRADLE_HOME}/bin:/usr/local/share/p4v/bin:/usr/local/share/android-studio/bin:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/tools:${JAVA_HOME}/bin:$SVACE_HOME/bin:$PATH
+
+-----------------------------------------------------------------------------
+
+sudo ssh-keygen -t rsa -f /etc/ssh/ssh-host_dsa_key
+
+sudo ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key
+
+
+-----------------------------------------------------------------------------
+
+
+1. 장치 -> 게스트 확장 CD 이미지 삽입 ... 클릭
+
+2. ubuntu 시스템을 종료함
+   ( 그러면 Virtual Box에서 가상 CD가 삽입되는 것을 볼 수 있음. )
+
+3. 다시 ubuntu 실행해서 login을 해서 아래의 디렉토리로 이동해서 실행함.
+   cd /media/myhome02/VBOXADDITIONS_5.1.6_110634
+   => sudo ./VBoxLinuxAdditions.run  실행해서 설치함
+
+
+-----------------------------------------------------------------------------
+
+VirtualBox 공유 디렉토리 관련 링크
+
+
+http://noota.tistory.com/entry/%EB%B2%84%EC%B6%94%EC%96%BC%EB%B0%95%EC%8A%A4VirtualBox-%EA%B3%B5%EC%9C%A0%ED%8F%B4%EB%8D%94-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0-HostWindows-GuestUbuntuLinux
+
+http://kalkins.blog.me/80208578043
+
+-----------------------------------------------------------------------------
+
+-v : 압축 또는 해제 시에 과정을 출력 (정확히 확인하기 위해 찍는게 좋음)
+-f : 파일 이름을 지정
+-c : 파일을 tar로 묶음
+-z : gzip 으로 압축하거나 해제함.
+-x : tar 압축을 품
+
+-----------------------------------------------------------------------------
+
+* 집에서는 gradle.init을 만들어서 넣지 않아도 됨.
+  ( firewall 있는 회사 등에서 추가 필요해 보임. )
+
+. gradle.init 생성
+. Gradle 다운로드 설정
+
+- /home/userid/.gradle/ 폴더에 init.gradle 생성
+- sudo gedit /home/myhome2/.gradle/init.gradle
+
+all projects {
+    buildscript.repositories {
+	    jcenter({ url "http://jcenter.bintray.com"})
+		maven{ url "http://10.252.250.53:8081/lm/content/groups/public/"}
+	}
+	buildscript.configurations.all {
+	    resolutionStrategy.cacheDynamicVersionsFor 0, 'seconds'
+		resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+	}
+    repositories {
+	    jcenter({ url "http://jcenter.bintray.com"})
+		maven{ url "http://10.252.250.53:8081/lm/content/groups/public/"}
+	}
+	configurations.all {
+	    resolutionStrategy.cacheDynamicVersionsFor 0, 'seconds'
+		resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+	}	
+}
+
+
+-----------------------------------------------------------------------------
+
+. gradle-2.2.1-all.zip 을 /usr/local/share/ 복사하고 압축풀기
+sudo unzip gradle-2.2.1-all.zip
+
+
+-----------------------------------------------------------------------------
+
+. Android Studio
+  . File -> settings -> Gradle
+    : Dev 선택 ( Hello 선택 )
+    : Use default gradle wrapper (recommended)
+
+  . File -> settings  -> Project Structure
+    - Android SDK location : /home/myhome2/Android-SDK
+    - JDK location : /usr/local/share/jdk1.8.0_112
+    - Android NDK location : 비워둠
+
+-----------------------------------------------------------------------------
+
+Error:Execution failed for task ':app:mergeDebugResources'.
+> Crunching Cruncher abc_list_selector_disabled_holo_light.9.png failed, see logs
+
+sudo apt-get install lib32stdc++6 lib32z1 lib32z1-dev
+Restart android studio after installation
+( http://stackoverflow.com/questions/22583418/execution-failed-for-task-appmergedebugresources-android-studio/36276670#36276670 )
+
+
+-----------------------------------------------------------------------------
+
+
+
+
+

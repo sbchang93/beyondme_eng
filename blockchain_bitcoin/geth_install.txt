@@ -1,0 +1,314 @@
+-------------------------------------------------------------------------------------------------------------------------------------
+
+* geth 설치            
+https://gethstore.blob.core.windows.net/builds/geth-windows-amd64-1.8.11-dea1ce05.exe
+ 
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+* 미스트 설치 (mist) : 이더리움 월릿을 포함한 브라우저
+: https://github.com/ethereum/mist/releases
+   => Mist-installer-0-10-0.exe
+       ( 설치만 하면 "C:\Program Files\Mist" 가 생성됨. )  
+
+   
+-------------------------------------------------------------------------------------------------------------------------------------
+
+* 블록체인 네트웍 구동시키는 예제 홈페이지들
+
+   - https://crosswave.net/?p=1063
+
+   - http://softwaree.tistory.com/18
+
+   - http://js94.tistory.com/entry/%EC%9C%88%EB%8F%84%EC%9A%B010%EC%97%90-Geth%EB%A5%BC-%EC%84%A4%EC%B9%98%ED%95%B4%EB%B3%B4%EC%9E%90
+
+   - https://m.blog.naver.com/PostView.nhn?blogId=yoo37450&logNo=221196503550&proxyReferer=http%3A%2F%2Fwww.google.com%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D10%26cad%3Drja%26uact%3D8%26ved%3D2ahUKEwjZl-jysN_bAhUIAogKHfpBC8MQFjAJegQIARBh%26url%3Dhttp%253A%252F%252Fm.blog.naver.com%252Fyoo37450%252F221196503550%26usg%3DAOvVaw0B8WNyvg_AVLrp_jQgKFHL
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+[ geth 이용해서 블록체인 네트웍 구동 시키기 ] 
+
+-----------------------------------------------------
+
+* 참조 홈페이지
+  : https://crosswave.net/?p=1063
+
+ -----------------------------------------------------
+
+* genesis_2.json
+ {
+ "config":{
+ "chainId":4224,
+ "homesteadBlock":0,
+ "eip155Block":0,
+ "eip158Block":0
+ },
+ "nonce":"0x0000000000000042",
+ "mixhash":"0x0000000000000000000000000000000000000000000000000000000000000000",
+ "difficulty":"0x400",
+ "alloc":{},
+ "coinbase":"0x0000000000000000000000000000000000000000",
+ "timestamp":"0x0",
+ "parentHash":"0x0000000000000000000000000000000000000000000000000000000000000000",
+ "extraData":"0x",
+ "gasLimit":"0xffffffff"
+ }
+
+* genesis_3.json
+ {
+ "config":{
+ "chainId":4224,
+ "homesteadBlock":0,
+ "eip155Block":0,
+ "eip158Block":0
+ },
+ "nonce":"0x0000000000000042",
+ "mixhash":"0x0000000000000000000000000000000000000000000000000000000000000000",
+ "difficulty":"0x400",
+ "alloc":{
+ "0x5236dbd81aa373dbd99e0ae79c2a8d0e56b06a54":{"balance":"300000000000000000000"},
+ "0xecf2b2a54350b211b39aa3d3bf0c873fffb54caa":{"balance":"400000000000000000000"},
+ "0xc24e7fb8a73dba2ddfe8fea5f3cece8bd651e4cb":{"balance":"500000000000000000000"}
+ },
+ "coinbase":"0x0000000000000000000000000000000000000000",
+ "timestamp":"0x0",
+ "parentHash":"0x0000000000000000000000000000000000000000000000000000000000000000",
+ "extraData":"0x",
+ "gasLimit":"0xffffffff"
+ }
+
+
+
+
+* 임시 기재용
+"0x":{"balance":"500000000000000000000"}
+
+-----------------------------------------------------
+
+* genesis 블록 생성
+geth -datadir f:\geth\private-data init f:\geth\genesis_2.json
+geth -datadir f:\geth\private-data init f:\geth\genesis_3.json
+
+-----------------------------------------------------
+
+* Private 네트워크 접속
+md private-data
+ geth -datadir f:\geth\private-data init f:\geth\genesis_2.json
+geth -datadir f:\geth\private-data --networkid 1185 -nodiscover -maxpeers 0  console
+
+
+- networkid 1185 : 네트워크를 식별할 수 있는 id의 생성으로, 0~3을 제외한 임의의 정수를 사용한다. 
+                    여기서는 1185라는 숫자를 썼다. 각자 다른 숫자를 이용해 테스트를 해보자.
+- nodiscover : 생성자의 노드를 다른 노드에서 검색할 수 없게 하는 옵션이다.
+- maxpeers 0 : 생성자의 노드에 연결할 수 있는 노드의 수다. 0을 지정하면 다른 노드와 연결하지 않는다.
+- datadir f:\geth\private-data : 데이터 폴더를 지정하는 것으로, 지정하지 않으면 기본 폴더를 사용한다.
+- console : 실행 후 자바스크립트 콘솔을 기동한다.
+
+-----------------------------------------------------
+
+* 계정에는 EOA(Externally Owned Account)와 Contract 두가지 종류가 존재한다. 
+   EOA는 일반 계정으로 Ether를 송금하거나 계약을 실행할 수 있다. 
+   Contract 계정은 계약을 블록체인에 배포할 때 만들어지는 계정으로 블록체인에 존재하며, 
+  다른 계정으로 메시지를 수신해 코드를 실행할 수 있다.
+
+* EOA 계정을 만들 때는 personal.newAccount(“비밀번호”) 명령어 
+> personal.newAccount("pw0001")
+ > personal.newAccount("pw0002")
+> personal.newAccount("pw0003")
+
+
+ personal.newAccount()
+=> a0001
+
+personal.newAccount()
+=> a0002
+
+
+[ keystore 내용 ] - personal.newAccount 함수 실행 후에 생성된 keystore 내용
+
+{
+  "address": "5236dbd81aa373dbd99e0ae79c2a8d0e56b06a54",
+  "crypto": {
+   "cipher": "aes-128-ctr",
+   "ciphertext": "73907b26a5460553e53daa238adbc42c36c18710af26fbf26b3d5da041053067",
+   "cipherparams": {
+    "iv": "09adeeec3c79aa262bcdebf498684934"
+   },
+   "kdf": "scrypt",
+   "kdfparams": {
+    "dklen": 32,
+    "n": 262144,
+    "p": 1,
+    "r": 8,
+    "salt": "bdbd5e1b7eedd846d752d0f062ad7e59cf7dc4150f9fe54b4f9178946c618b1b"
+   },
+   "mac": "9099edff2102368a96de64866c282db42fb41542bb82b262a525ed23d0d116f1"
+  },
+  "id": "c2e8a4ac-ba94-4778-a0b7-aa92fa873dec",
+  "version": 3
+ }
+
+-----------------------------------------------------
+
+* 계정 확인 명령어
+
+> eth.accounts
+ > eth.accounts[0] 
+ > eth.accounts[1] 
+> eth.accounts[2] 
+
+* 계좌 잔고 확인
+> web3.fromWei(eth.getBalance(eth.accounts[0]), "ether");
+ > web3.fromWei(eth.getBalance(eth.accounts[1]), "ether");
+> web3.fromWei(eth.getBalance(eth.accounts[2]), "ether");
+
+
+ -----------------------------------------------------
+
+* genesis.json
+
+{
+ "config": {
+ "chainId": 15,
+ "homesteadBlock": 0,
+ "eip155Block": 0,
+ "eip158Blodk": 0
+ },
+ "difficulty": "200000000",
+ "gasLimit": "3100000",
+ "alloc": {
+ }
+ }
+ -----------------------------------------------------
+
+* genesis 블록 생성
+geth -datadir f:\geth\private-data init f:\geth\genesis.json
+geth -datadir f:\geth\private-data init f:\geth\genesis_2.json
+
+-----------------------------------------------------
+
+* Private 네트워크 접속
+md private-data
+ geth -datadir f:\geth\private-data init f:\geth\genesis.json
+geth -datadir f:\geth\private-data --networkid 1185 -nodiscover -maxpeers 0  console
+
+
+ -----------------------------------------------------
+
+* Private 네트워크 접속
+md private-data
+ geth -datadir f:\geth\private-data init f:\geth\genesis.json
+geth -datadir f:\geth\private-data --networkid 15 console
+
+personal.newAccount()
+=> a0001
+
+personal.newAccount()
+=> a0002
+
+
+ -----------------------------------------------------
+
+* 유철호님 테스트 블록체인 네트웍 정보.
+
+geth --networkid 40039298 --datadir C:\gethdata --rpc --rpcaddr "0.0.0.0" --rpcport 8545 --rpccorsdomain "*" --rpcapi "admin, db, eth, debug, miner, net, shh, txpool, personal, web3" console
+
+--networkid : 40039298 번으로 네트웍 이름 정의 ( 나의 private 네트워크의 id )
+ --datadir   : 블록체인 정보를 C:\gethdata 에 저장
+--rpc : rpc 사용하겠다는 의미
+--rpcaddr :  rpc 주소는 "0.0.0.0" 이다.
+--rpcport : rpc 포트는 8545 사용
+--rpccorsdomain : "*" => 누구나 접속할 수 있다는 의미
+--rpcapi : 오른쪽과 같은 api를 사용할 수 있는 것을 정의 -> "admin, db, eth, debug, miner, net, shh, txpool, personal, web3"
+console : 콘솔 명령어 입력할 수 있도록 콘솔을 띄워줌
+
+
+ 위커맨드대로하시면 private rpc접근가능한 private network 구동이됩니다. 
+networkid는 genesis block의 것과 동일해야합니다
+
+
+-----------------------------------------------------
+
+* dev 옵션
+
+> geth --dev console
+
+-----------------------------------------------------
+
+* 노드 설명 관련 명령어 ( P 157 페이지 참조 )
+   - eth.accounts[0] => 0x5236dbd81aa373dbd99e0ae79c2a8d0e56b06a54   - personal.newAccount("pw0001")
+   - eth.accounts[1] => 0xecf2b2a54350b211b39aa3d3bf0c873fffb54caa   - personal.newAccount("pw0002")
+  - eth.accounts[2] => 0xc24e7fb8a73dba2ddfe8fea5f3cece8bd651e4cb   - personal.newAccount("pw0003")
+  
+> admin.nodeInfo.enode
+
+> admin.addPeer (" ... @172.31.7.182:30303")
+
+> miner.setEtherbase(eth.accounts[0])
+
+> eth.coinbase
+
+> miner.start(1);
+
+> miner.stop();
+
+> net.peerCount
+
+> admin.peers
+
+
+ ### 계좌 이체 방법
+    1. 계좌 이체시에는 패스워드를 넣어서 계좌를 unlock 해줌
+    2. 계좌 이체를 함.
+ 3. 마이닝을 시켜서 블록을 생성해줘야 transaction이 완료됨.
+
+> eth.sendTransaction({from:eth.coinbase, to:"0xecf2b2a54350b211b39aa3d3bf0c873fffb54caa", value:web3.toWei(5, "ether")})
+  => 패스워드가 필요하다고 Error 발생함
+
+> personal.listWallets[0].status
+
+> web3.personal.unlockAccount(eth.coinbase) 
+  // 계정 락 해제
+
+> web3.personal.unlockAccount(eth.coinbase, "pw0001")
+   // 계정 락 해제
+ 
+> eth.sendTransaction({from:eth.coinbase, to:"0xecf2b2a54350b211b39aa3d3bf0c873fffb54caa", value:web3.toWei(5, "ether")})
+   
+> miner.start(1);
+
+> miner.stop();
+   
+> eth.blockNumber
+
+
+
+ * 계정 확인 명령어
+> eth.accounts
+> eth.accounts[0] 
+
+
+* 계좌 잔고 확인
+> web3.fromWei(eth.getBalance(eth.accounts[0]), "ether");
+
+
+ -----------------------------------------------------
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+[ 리눅스 용 ] 
+* 코어 이더리움 프로그래밍 ( core ethereum programming ) - p145
+. 우분투에 Geth를 설히하는 경우
+
+$ sudo apt-get install software-properites-common
+$ sudo add-apt-repository -y ppa:ethereum/ethereum
+$ sudo apt-get update
+# sudo apt-get install ethereum
+-------------------------------------------------------------------------------------------------------------------------------------
+

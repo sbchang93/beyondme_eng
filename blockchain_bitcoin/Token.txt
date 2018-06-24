@@ -1,0 +1,62 @@
+-------------------------------------------------------------------------------------------------------------------------------------
+
+* 참조 홈페이지들 
+
+. https://steemit.com/ethereum/@yackjun/ethereum-token-create-your-own-crypto-currency-with-ethereum-1
+
+. https://steemit.com/kr/@yackjun/ethereum-token-create-your-own-crypto-currency-with-ethereum-2
+
+. https://ethereum.org/token
+
+. https://blog.naver.com/byunjs00/221295161615
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+https://medium.com/dnext-post/토큰-핸드북-pt-1-85a05faa86e9
+
+* 토큰이란 무엇인가?
+
+근본적으로, 토큰은 IOU입니다. 계약이죠. 토큰은 권리와 의무를 나타냅니다. 계약이 아닌 유일한 토큰은 “아무도 원하지 않는” 발행되지 않은 토큰입니다. 
+
+토큰이 한번 발행되면, 가치를 나타내게 됩니다. 토큰의 예로는: 포커칩, 콘서트 티켓, 주권, 채권, 의류보관 토큰, 저녁식사 예약, 운전 면허증, 여권, 비행기 티켓 등이 있습니다. 
+
+1달러 계산서는 토큰이지만 1달러는 토큰이 아닙니다. 디지털 토큰은 아래와 같이 생겼습니다
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+https://ethereum.org/token
+
+
+The Coin
+ 
+We are going to create a digital token. Tokens in the Ethereum ecosystem can represent any fungible tradable good: coins, loyalty points, gold certificates, IOUs, in-game items, etc. Since all tokens implement some basic features in a standard way, this also means that your token will be instantly compatible with the Ethereum wallet and any other client or contract that uses the same standards.
+
+Minimum Viable Token
+
+The standard token contract can be quite complex. But in essence a very basic token boils down to this:
+pragma solidity ^0.4.20;
+
+contract MyToken {
+    /* This creates an array with all balances */
+    mapping (address => uint256) public balanceOf;
+
+    /* Initializes contract with initial supply tokens to the creator of the contract */
+    function MyToken( uint256 initialSupply ) public {
+        balanceOf[msg.sender] = initialSupply;              // Give the creator all initial tokens
+    }
+
+    /* Send coins */
+    function transfer(address _to, uint256 _value) public {
+        require(balanceOf[msg.sender] >= _value);           // Check if the sender has enough
+        require(balanceOf[_to] + _value >= balanceOf[_to]); // Check for overflows
+        balanceOf[msg.sender] -= _value;                    // Subtract from the sender
+        balanceOf[_to] += _value;                           // Add the same to the recipient
+    }
+}
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+

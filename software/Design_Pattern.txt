@@ -1,0 +1,17 @@
+----------------------------------------------------------------
+
+* eclips 툴 사용
+
+* 화일 Import 
+File -> Import -> General -> Existing Projects into Workspace 선택-> Select root directory 에 root 위치 설정
+
+Project -> Properties -> java Compiler -> Enable project specific settings-> Compiler compliance level : 1.7 로 선택
+
+----------------------------------------------------------------
+
+
+* Prototype 패턴 
+www.javahelps.com/2015/11/prototype-design-pattern.html
+
+----------------------------------------------------------------
+

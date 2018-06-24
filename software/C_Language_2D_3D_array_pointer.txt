@@ -1,0 +1,356 @@
+
+
+--------------------------------------------------------------------------------------------------------------------------
+
+ 
+
+. 디버깅 - 명령인수 : < input.txt
+. 속성 - 구성요소 - 매니페스트 도구 - 입력 및 출력 -> 매니페스트 포함 : 아니요
+. 프로그램의 소스 코드가 있는 폴더에 input.txt을 생성해야함.
+
+ 
+
+--------------------------------------------------------------------------------------------------------------------------
+
+ 
+
+[문제점] 아래와 같은 에러 발생
+
+오류 C4996 'scanf': This function or variable may be unsafe. 
+                
+Consider using scanf_s instead. 
+     To disable deprecation, use _CRT_SECURE_NO_WARNINGS. 
+     See online help for details. 
+     
+
+--------------------------------------------------------------------------------------------------------------------------
+
+ 
+
+* "scanf 빌드 에러 발생시" 환경 설정
+  . 프로젝트 -> 속성 -> C/C++ -> 전처리기 -> 전처리기 정의 의 맨 끝에 아래 내용 추가
+    => _CRT_SECURE_NO_WARNINGS
+
+ 
+
+--------------------------------------------------------------------------------------------------------------------------
+
+ 
+
+* "scanf 빌드 에러 발생시" 코드에 추가
+
+#pragma
+warning(disable: 4996) 
+
+ 
+
+--------------------------------------------------------------------------------------------------------------------------
+
+ 
+
+* test 샘플
+
+#include
+"stdafx.h"
+#include <stdio.h>
+
+//#pragma
+warning(disable: 4996) 
+
+
+#define SIZE 100
+int gMap[SIZE][SIZE];
+
+void
+displayMap(int vMap[SIZE][SIZE], int vN) {
+ int x = 0, y = 0;
+
+ for (y =
+0; y < vN; y++) {
+  printf("\n");
+  for (x = 0; x < vN; x++) {
+   printf("%d ", vMap[y][x]);
+  }
+ }
+}
+
+
+int main()
+{
+ int V = 0, loop = 0;
+ int answer = 0;
+ int N = 0;
+ int x = 0, y = 0;
+
+ //fopen("input.txt",
+"r", stdin);
+
+ scanf("%d",
+&V);
+ V = 1;
+
+ for (loop
+= 0; loop < V; loop++) {
+  printf("\n");
+  scanf("%d", &N);
+
+  for
+(y = 0; y < N; y++) {
+   for (x = 0; x < N; x++) {
+    gMap[y][x] = 0;
+   }
+  }
+
+  for
+(y = 0; y < N; y++) {
+   for (x = 0; x < N; x++) {
+    scanf("%d ", &gMap[y][x]);
+   }
+  }
+
+  displayMap(gMap,
+N);
+
+ }
+
+   
+return 0;
+}
+
+ 
+
+--------------------------------------------------------------------------------------------------------------------------
+
+ 
+
+* input.txt
+
+1
+5
+1 2 3 4 5
+1 2 3 4 5
+1 2 3 4 5
+1 2 3 4 5
+1 2 3 4 5
+
+ 
+
+--------------------------------------------------------------------------------------------------------------------------
+
+ 
+
+--------------------------------------------------------------------------------------------------------------------------
+
+ 
+
+
+#include "stdafx.h"
+#include <stdio.h>
+
+#pragma
+warning(disable: 4996) 
+
+
+#define SIZE 100
+int g3DMap[SIZE][SIZE][SIZE];
+
+void
+displayMap(int* pPointer, int vLoop, int vN) {
+ int x = 0, y = 0;
+ for (y = 0; y < vN; y++) {
+  printf("\n");
+  for (x = 0; x < vN; x++) {
+   printf("%d ", *(pPointer + vLoop*SIZE*SIZE + y*SIZE
++ x));
+  }
+ }
+}
+
+ 
+
+int main()
+{
+ int V = 0, loop = 0;
+ int answer = 0;
+ int N = 0;
+ int x = 0, y = 0;
+
+ //fopen("input.txt",
+"r", stdin);
+
+ scanf("%d",
+&V);
+ //V = 1;
+
+ for (loop
+= 0; loop < V; loop++) {
+  printf("\n");
+  scanf("%d", &N);
+
+  for
+(y = 0; y < N; y++) {
+   for (x = 0; x < N; x++) {
+    g3DMap[loop][y][x] = 0;
+   }
+  }
+
+  for
+(y = 0; y < N; y++) {
+   for (x = 0; x < N; x++) {
+    scanf("%d ", &g3DMap[loop][y][x]);
+   }
+  }
+
+  displayMap((int*)g3DMap,
+loop, N);
+ }
+ 
+
+ return 0;
+}
+
+ 
+
+--------------------------------------------------------------------------------------------------------------------------
+
+ 
+
+3
+5
+0 1 2 3 4
+5 6 7 8 9
+3 3 3 3 3
+4 4 4 4 4
+5 5 5 5 5
+5
+2 2 2 2 2
+2 2 2 2 2
+2 2 2 2 2
+2 2 2 2 2
+2 2 2 2 2
+5
+9 9 9 9 9
+9 9 9 9 9
+9 9 9 9 9
+9 9 9 9 9
+9 9 9 9 9
+
+ 
+
+--------------------------------------------------------------------------------------------------------------------------
+
+ 
+
+--------------------------------------------------------------------------------------------------------------------------
+
+ 
+
+https://m.blog.naver.com/PostView.nhn?blogId=ruvendix&logNo=220850411566&proxyReferer=https%3A%2F%2Fwww.google.co.kr%2F
+
+(3차원 배열을 가리키는 배열 포인터(2차원 배열) )
+
+--------------------------------------------------------------------------------------------------------------------------
+
+#include
+"stdafx.h"
+#include <stdio.h>
+
+#pragma
+warning(disable: 4996) 
+
+
+#define SIZE 100
+int g3DMap[SIZE][SIZE][SIZE];
+int(*g2DMap)[SIZE][SIZE];
+
+void
+displayMap(int (*p2DMap)[SIZE][SIZE], int vLoop, int vN) {
+ int x = 0, y = 0;
+ for (y = 0; y < vN; y++) {
+  printf("\n");
+  for (x = 0; x < vN; x++) {
+   printf("%d ", p2DMap[0][y][x]); // 2-dimensional
+array (2차원 배열의 맨 앞을 가르킴)
+  }
+ }
+}
+
+ 
+
+int main()
+{
+ int V = 0, loop = 0;
+ int answer = 0;
+ int N = 0;
+ int x = 0, y = 0;
+
+ //fopen("input.txt",
+"r", stdin);
+
+ scanf("%d",
+&V);
+ //V = 1;
+
+ for (loop
+= 0; loop < V; loop++) {
+  printf("\n");
+  scanf("%d", &N);
+
+  for
+(y = 0; y < N; y++) {
+   for (x = 0; x < N; x++) {
+    g3DMap[loop][y][x] = 0;
+   }
+  }
+
+  for
+(y = 0; y < N; y++) {
+   for (x = 0; x < N; x++) {
+    scanf("%d ", &g3DMap[loop][y][x]);
+   }
+  }
+
+  //int
+g3DMap[SIZE][SIZE][SIZE];
+  //int(*g2DMap)[SIZE][SIZE];
+
+  g2DMap
+= (int(*)[SIZE][SIZE]) &g3DMap[loop][0][0]; // hand over 2-dimentional
+array from 3-array (2차원 배열 넘겨줌)
+  displayMap(g2DMap, loop, N);
+  //displayMap((int(*)[SIZE][SIZE]) &g3DMap[loop][0][0], loop,
+N);
+ }
+
+
+ return 0;
+}
+
+--------------------------------------------------------------------------------------------------------------------------
+
+ 
+
+3
+5
+0 1 2 3 4
+5 6 7 8 9
+3 3 3 3 3
+4 4 4 4 4
+5 5 5 5 5
+5
+2 2 2 2 2
+2 2 2 2 2
+2 2 2 2 2
+2 2 2 2 2
+2 2 2 2 2
+5
+9 9 9 9 9
+9 9 9 9 9
+9 9 9 9 9
+9 9 9 9 9
+9 9 9 9 9
+
+ 
+
+--------------------------------------------------------------------------------------------------------------------------
+

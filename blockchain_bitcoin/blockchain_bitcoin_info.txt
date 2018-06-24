@@ -1,0 +1,21 @@
+[ 블럭체인, 비트코인 ]
+
+* 블럭체인 정보  
+  : https://blockchain.info/
+  
+* Naver D2   
+  : http://d2.naver.com/helloworld/8237898
+  
+* 원리부터 파악하는 비트코인
+  : https://blog.iwanhae.ga/introduction_of_bitcoin/
+
+
+* 64개 x 4 = 256
+0000000000
+00000002CC
+4700000000
+0000000000
+0000000000
+0000000000
+0000
+
