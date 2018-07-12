@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 
+// https://developer.android.com/studio/write/java8-support?hl=ko
 // Lamda 표현시 지원을 위해서는 Java 8 추가되어야 함.
 //compileOptions {
 //    sourceCompatibility JavaVersion.VERSION_1_8
