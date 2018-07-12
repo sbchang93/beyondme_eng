@@ -1,3 +1,31 @@
+-------------------------------------------------------
+[유용한 명령어들]
+
+- Commit 취소
+   git reset --hard origin/master  서버의 master 버전을 기준으로 돌림
+   git reset --hard HEAD  모든 변경 무시 현재 버전으로 정리
+   git reset --hard HEAD^  현재 버전 하나 앞으로 정리 - 최종 Commit 하나 취소
+   git reset --hard HEAD~2  최종 Commit 2개(또는 N개) 취소
+   git reset --hard 84cf88  특정 Commit 버전으로 돌림
+   
+- fetch 한 내용 pull/merge 전에 확인 및 비교
+   git checkout FETCH_HEAD
+   git diff master
+
+- 가져온 패치셋과 현재(로컬) master 비교
+   git diff master
+
+
+- 특정 Commit ID로 브랜치 만들기
+   git checkout 84cf88  임시 브랜치 생성(브랜치를 떠나면 지워짐)
+   git checkout -b temp  위에서 만들어진 임시 브랜치의 내용을 temp라는 브랜치로 생성
+
+----------------------------------------------------------------
+----------------------------------------------------------------
+
+
+
+
 
 ----------------------------------------------------------------
 
@@ -121,29 +149,6 @@ git add -u [<경로> [<경로>]]
 
 
 
-
--------------------------------------------------------
-
-[유용한 명령어들]
-
-- Commit 취소
-   git reset --hard origin/master  서버의 master 버전을 기준으로 돌림
-   git reset --hard HEAD  모든 변경 무시 현재 버전으로 정리
-   git reset --hard HEAD^  현재 버전 하나 앞으로 정리 - 최종 Commit 하나 취소
-   git reset --hard HEAD~2  최종 Commit 2개(또는 N개) 취소
-   git reset --hard 84cf88  특정 Commit 버전으로 돌림
-   
-- fetch 한 내용 pull/merge 전에 확인 및 비교
-   git checkout FETCH_HEAD
-   git diff master
-
-- 가져온 패치셋과 현재(로컬) master 비교
-   git diff master
-
-
-- 특정 Commit ID로 브랜치 만들기
-   git checkout 84cf88  임시 브랜치 생성(브랜치를 떠나면 지워짐)
-   git checkout -b temp  위에서 만들어진 임시 브랜치의 내용을 temp라는 브랜치로 생성
 
 
 
