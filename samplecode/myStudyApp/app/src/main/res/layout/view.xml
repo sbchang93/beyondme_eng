@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.ViewActivity">
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(View) Hello World" />
+
+    <Button
+        android:id="@+id/text_edit_bt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="글 변경" />
+
+    <Button
+        android:id="@+id/color_edit_bt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="글씨 색 변경" />
+
+    <Button
+        android:id="@+id/size_edit_bt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="글씨 크기 변경" />
+
+</LinearLayout>
