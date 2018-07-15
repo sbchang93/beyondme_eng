@@ -1,3 +1,67 @@
 <resources>
     <string name="app_name">My Study App</string>
+
+    <string name="hello">Hello World, TextView!</string>
+    <string name="insa">Hello</string>
+    <string name="anyoung">안녕. ^^</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+
+    <string name="todo">TODO</string>
+
+    <string-array name="menuStuff">
+        <item>Milk</item>
+        <item>Eggs</item>
+        <item>Flour</item>
+    </string-array>
+
+
+    <style name="padded_small">
+        <item name="android:padding">2dp</item>
+        <item name="android:textSize">20dp</item>
+    </style>
+
+
+    <style name="padded_xlarge">
+        <item name="android:padding">10dp</item>
+        <item name="android:textSize">50dp</item>
+    </style>
+
+
+    <style name="red_padded">
+        <item name="android:padding">10dp</item>
+        <item name="android:textColor">#F00</item>
+    </style>
+
+    <style name="padded_normal" parent="red_padded">
+        <item name="android:textSize">30dp</item>
+    </style>
+
+    <style name="padded_italics" parent="red_padded">
+        <item name="android:textSize">30dp</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="glow" parent="padded_xlarge">
+        <item name="android:shadowColor">#0F0</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">0</item>
+        <item name="android:shadowRadius">10</item>
+    </style>
+
+
+    <style name="ThemeGlow" parent="padded_small">
+        <item name="android:shadowColor">#0F0</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">0</item>
+        <item name="android:shadowRadius">2</item>
+    </style>
+
+    <style name="right">
+        <item name="android:gravity">right</item>
+    </style>
+
+    <string name="appwidget_text">my_EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 </resources>

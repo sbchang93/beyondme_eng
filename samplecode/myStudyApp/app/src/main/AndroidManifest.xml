@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.toronto.mystudyapp">
 
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+
     <permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -28,7 +31,13 @@
         <activity android:name=".view.ViewActivity" />
         <activity android:name=".view.HandlerActivity" />
         <activity android:name=".view.LocationManagerActivity" />
-        <activity android:name=".view.ListViewActivity"></activity>
+        <activity android:name=".view.ListViewActivity" />
+        <activity android:name=".view.ListView3Activity" />
+        <activity android:name=".view.TextViewActivity" />
+        <activity android:name=".view.DrawActivity" />
+        <activity android:name=".view.AudioActivity" />
+        <activity android:name=".view.ImageActivity" />
+        <activity android:name=".view.VideoActivity"></activity>
     </application>
 
 </manifest>
