@@ -8,6 +8,15 @@ https://github.com/songmho/Moa/tree/master/app/src/main
 ---------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------
 
+* 디자인 패턴(Design Pattern), 안드로이드, MVP, MVVM 등
+
+https://code.tutsplus.com/ko/tutorials/introduction-to-android-architecture--cms-28749
+
+https://github.com/ZeroBrain/Android-MVP-AdapterRoleSample/tree/master/app/src/main/java/com/nobrain/samples/adapterrolesample/main/adapter
+
+
+---------------------------------------------------------------------------------------
+
 * Adpater 관련
 
 (Adapter, 누구냐 넌)
