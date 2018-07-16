@@ -43,5 +43,6 @@ https://medium.com/android-develop-android/android개발-5-listview를-이용한
 http://biig.tistory.com/74?category=562387
 http://limkydev.tistory.com/65
 (권한 설정 관련 ) https://code.i-harness.com/ko/q/208eba8
+(권한 설정 관련 ) http://limkydev.tistory.com/65
 
 ---------------------------------------------------------------------------------------
