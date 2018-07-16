@@ -46,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
                     //startActivity(new Intent(this, DrawActivity.class));
                     //startActivity(new Intent(this, AudioActivity.class));
                     //startActivity(new Intent(this, ImageActivity.class));
-                    startActivity(new Intent(this, VideoActivity.class));
+                    //startActivity(new Intent(this, VideoActivity.class));
+                    startActivity(new Intent(this, LiveDataActivity.class));
 
 
                     finish();
