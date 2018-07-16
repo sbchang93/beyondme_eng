@@ -42,5 +42,6 @@ https://medium.com/android-develop-android/android개발-5-listview를-이용한
 * 위치 정보 (Location, GPS 관련)
 http://biig.tistory.com/74?category=562387
 http://limkydev.tistory.com/65
+(권한 설정 관련 ) https://code.i-harness.com/ko/q/208eba8
 
 ---------------------------------------------------------------------------------------
