@@ -2,12 +2,14 @@ package com.example.toronto.mystudyapp.view;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.toronto.mystudyapp.R;
+import com.example.toronto.mystudyapp.common.CommonUtils;
 
 import org.reactivestreams.Publisher;
 import org.reactivestreams.Subscriber;
@@ -27,8 +29,15 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
+import io.reactivex.schedulers.Schedulers;
+
+import static com.example.toronto.mystudyapp.common.Shape.BLUE;
+import static com.example.toronto.mystudyapp.common.Shape.GREEN;
+import static com.example.toronto.mystudyapp.common.Shape.RED;
 
 public class ObserverActivity extends Activity {
+
+    private final String TAG = this.getClass().getSimpleName();
 
     @BindView(R.id.text01)    TextView text01;
     @BindView(R.id.text02)    TextView text02;
@@ -62,7 +71,9 @@ public class ObserverActivity extends Activity {
             s.onNext("(With Lambda) Observable.fromPublisher()");
             s.onComplete();
         };
-        Observable<String> source = Observable.fromPublisher(publisher);
+        Observable<String> source = Observable.fromPublisher(publisher)
+                                    .subscribeOn(Schedulers.io())
+                                    .observeOn(AndroidSchedulers.mainThread());
         source.subscribe(s ->{
             text01.setText(s);
             Toast.makeText(ObserverActivity.this, s , Toast.LENGTH_SHORT).show();
@@ -77,7 +88,9 @@ public class ObserverActivity extends Activity {
                 s.onComplete();
             }
         };
-        source = Observable.fromPublisher(publisher);
+        source = Observable.fromPublisher(publisher)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
         source.subscribe(s ->{
             text02.setText(s);
             Toast.makeText(ObserverActivity.this, s , Toast.LENGTH_SHORT).show();
@@ -106,7 +119,10 @@ public class ObserverActivity extends Activity {
                 e.onNext("Hello world!");
                 e.onComplete();
             }
-        }).subscribeWith(observer);
+        })
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribeWith(observer);
 
 
 
@@ -117,7 +133,10 @@ public class ObserverActivity extends Activity {
                 e.onNext("[CompositeDisposable] hello world!");
                 e.onComplete();
             }
-        }).subscribe( textView::setText );  // => textView::setText 은 입력변수가 1개인 setText( string ) 함수 호출하라는 의미
+        })
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe( textView::setText );  // => textView::setText 은 입력변수가 1개인 setText( string ) 함수 호출하라는 의미
 
         mCompositeDisposable.add(disposable);
 
@@ -128,7 +147,10 @@ public class ObserverActivity extends Activity {
                 e.onNext("hello world!");
                 e.onComplete();
             }
-        }).subscribe( s -> {
+        })
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe( s -> {
             textView.setText("Second : " + s );  // textView.setText : textView에 직접 string을 넣을 때는 textView.setText 표기법 사용
             Toast.makeText(ObserverActivity.this, "Second : " + s , Toast.LENGTH_SHORT).show();
         });
@@ -139,22 +161,66 @@ public class ObserverActivity extends Activity {
         // -----------------------------------------------------------
 
         mDisposable = Observable.create(e ->  button1.setOnClickListener(e::onNext))
-                .debounce(1000, TimeUnit.MILLISECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(s -> {
-                    SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss", Locale.KOREA);
-                    String time = sdf.format(Calendar.getInstance().getTime());
-                    textView2.setText("Clicked : " + time.toString());
-                });
+                                    .debounce(1000, TimeUnit.MILLISECONDS)
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribe(s -> {
+                                        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss", Locale.KOREA);
+                                        String time = sdf.format(Calendar.getInstance().getTime());
+                                        textView2.setText("Clicked : " + time.toString());
+                                    });
 
         mDisposable = getObservable()
-                .debounce(1000, TimeUnit.MILLISECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(s -> {
-                    SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss", Locale.KOREA);
-                    String time = sdf.format(Calendar.getInstance().getTime());
-                    textView2.setText("Clicked : " + time.toString());
-                });
+                        .debounce(1000, TimeUnit.MILLISECONDS)
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(s -> {
+                            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss", Locale.KOREA);
+                            String time = sdf.format(Calendar.getInstance().getTime());
+                            textView2.setText("Clicked : " + time.toString());
+                        });
+
+
+        //-----------------------------------------------------------
+        CommonUtils.exampleStart();
+        String[] balls = {RED, GREEN, BLUE}; //1, 3, 5
+        source = Observable.interval(100L, TimeUnit.MILLISECONDS)
+                .map(Long::intValue)
+                .map(idx -> balls[idx])
+                .take(balls.length)
+                .concatMap(
+                        ball -> Observable.interval(200L, TimeUnit.MILLISECONDS)
+                                .map(notUsed -> ball + "<>")
+                                .take(2))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+
+        source.subscribe(s -> {
+            Log.d("test",s);
+            Toast.makeText(ObserverActivity.this, s, Toast.LENGTH_SHORT).show();
+        });
+        CommonUtils.sleep(2000);
+        CommonUtils.exampleComplete();
+
+
+        //-----------------------------------------------------------
+        CommonUtils.exampleStart();
+        source = Observable.interval(100L, TimeUnit.MILLISECONDS)
+                .map(Long::intValue)
+                .map(idx -> balls[idx])
+                .take(3)
+                .flatMap(
+                        ball -> Observable.interval(200L, TimeUnit.MILLISECONDS)
+                                .map(notUsed -> ball + "<>")
+                                .take(2))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+
+        source.subscribe(s -> {
+            Log.d("test",s);
+            Toast.makeText(ObserverActivity.this, s, Toast.LENGTH_SHORT).show();
+        });
+        CommonUtils.sleep(2000);
+        CommonUtils.exampleComplete();
+
 
     }
 
