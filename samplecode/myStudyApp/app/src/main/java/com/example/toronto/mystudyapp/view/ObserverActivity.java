@@ -9,6 +9,9 @@ import android.widget.Toast;
 
 import com.example.toronto.mystudyapp.R;
 
+import org.reactivestreams.Publisher;
+import org.reactivestreams.Subscriber;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -27,6 +30,8 @@ import io.reactivex.observers.DisposableObserver;
 
 public class ObserverActivity extends Activity {
 
+    @BindView(R.id.text01)    TextView text01;
+    @BindView(R.id.text02)    TextView text02;
     @BindView(R.id.textView)    TextView textView;
     @BindView(R.id.textView2)    TextView textView2;
     @BindView(R.id.button1)    Button button1;
@@ -49,6 +54,34 @@ public class ObserverActivity extends Activity {
         setContentView(R.layout.observer);
 
         mUnbinder = ButterKnife.bind(this);
+
+
+        // -----------------------------------------------------------
+        // basic
+        Publisher<String> publisher = (Subscriber<? super String> s) -> {
+            s.onNext("(With Lambda) Observable.fromPublisher()");
+            s.onComplete();
+        };
+        Observable<String> source = Observable.fromPublisher(publisher);
+        source.subscribe(s ->{
+            text01.setText(s);
+            Toast.makeText(ObserverActivity.this, s , Toast.LENGTH_SHORT).show();
+        });
+
+
+        //without Lambda
+        publisher = new Publisher<String>() {
+            @Override
+            public void subscribe(Subscriber<? super String> s) {
+                s.onNext("(Without Lambda) Observable.fromPublisher");
+                s.onComplete();
+            }
+        };
+        source = Observable.fromPublisher(publisher);
+        source.subscribe(s ->{
+            text02.setText(s);
+            Toast.makeText(ObserverActivity.this, s , Toast.LENGTH_SHORT).show();
+        });
 
 
         // -----------------------------------------------------------
