@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 // https://developer.android.com/studio/write/java8-support?hl=ko
-// Lamda 표현시 지원을 위해서는 Java 8 추가되어야 함.
+// Lamda ?�현??지?�을 ?�해?�는 Java 8 추�??�어????
 //compileOptions {
 //    sourceCompatibility JavaVersion.VERSION_1_8
 //    targetCompatibility JavaVersion.VERSION_1_8
@@ -13,7 +13,7 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+//        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -46,6 +46,7 @@ dependencies {
     implementation 'com.android.support:design:27.1.1'
     implementation 'com.android.support:cardview-v7:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+
     // android architecture
     def lifecycle_version = "1.1.1"
     implementation "android.arch.lifecycle:extensions:$lifecycle_version"
@@ -56,6 +57,7 @@ dependencies {
     implementation "android.arch.lifecycle:common-java8:$lifecycle_version"
     implementation "android.arch.lifecycle:reactivestreams:$lifecycle_version"
     testImplementation "android.arch.core:core-testing:$lifecycle_version"
+
     def room_version = "1.1.1"
     implementation "android.arch.persistence.room:runtime:$room_version"
     annotationProcessor "android.arch.persistence.room:compiler:$room_version"
@@ -76,26 +78,26 @@ dependencies {
     // ----------------------------------
     //  Utils dependencies
     // rxJava 2.x
-    compile 'io.reactivex.rxjava2:rxjava:2.1.13'
-    compile 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.13'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
     // rxJava 1.x -> 2.x
-    compile 'com.github.akarnokd:rxjava2-interop:0.9.1'
+    implementation 'com.github.akarnokd:rxjava2-interop:0.9.1'
     // rxlifecycle 2.x
-    compile 'com.trello.rxlifecycle2:rxlifecycle:2.1.0'
-    compile 'com.trello.rxlifecycle2:rxlifecycle-android:2.1.0'
-    compile 'com.trello.rxlifecycle2:rxlifecycle-components:2.1.0'
+    implementation 'com.trello.rxlifecycle2:rxlifecycle:2.1.0'
+    implementation 'com.trello.rxlifecycle2:rxlifecycle-android:2.1.0'
+    implementation 'com.trello.rxlifecycle2:rxlifecycle-components:2.1.0'
     // Utils
     //compile 'com.jakewharton.rxbinding:rxbinding:1.0.0'
-    compile 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
-    compile 'com.jakewharton.timber:timber:4.4.0'
+    implementation 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
+    implementation 'com.jakewharton.timber:timber:4.4.0'
     // butterknife
-    compile 'com.jakewharton:butterknife:8.8.1'
+    implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     // volley
-    compile 'com.android.volley:volley:1.0.0'
+    implementation 'com.android.volley:volley:1.0.0'
     // okhttp
-    compile 'com.squareup.okhttp3:okhttp:3.6.0'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.6.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.6.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.6.0'
     // retrofit
     //compile 'com.squareup.retrofit2:retrofit:2.2.0'
     //compile 'com.squareup.retrofit2:converter-gson:2.2.0'
@@ -103,11 +105,11 @@ dependencies {
     // retrofit2
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
-    compile 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
     // test
-    testCompile 'junit:junit:4.12'
-    testCompile 'org.mockito:mockito-core:1.10.19'
-    testCompile 'org.robolectric:robolectric:3.4.2'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    //testCompile 'junit:junit:4.12'
+    //testCompile 'org.mockito:mockito-core:1.10.19'
+//    testCompile 'org.robolectric:robolectric:3.4.2'
+//    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+//    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
