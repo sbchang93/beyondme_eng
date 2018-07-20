@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.toronto.mystudyapp.view.AudioActivity;
+import com.example.toronto.mystudyapp.view.DialogActivity;
 import com.example.toronto.mystudyapp.view.DrawActivity;
 import com.example.toronto.mystudyapp.view.HandlerActivity;
 import com.example.toronto.mystudyapp.view.HashMapActivity;
@@ -14,7 +15,9 @@ import com.example.toronto.mystudyapp.view.ImageActivity;
 import com.example.toronto.mystudyapp.view.ListView2Activity;
 import com.example.toronto.mystudyapp.view.ListView3Activity;
 import com.example.toronto.mystudyapp.view.ListViewActivity;
+import com.example.toronto.mystudyapp.view.LiveDataActivity;
 import com.example.toronto.mystudyapp.view.LocationManagerActivity;
+import com.example.toronto.mystudyapp.view.ObserverActivity;
 import com.example.toronto.mystudyapp.view.RecyclerViewActivity;
 import com.example.toronto.mystudyapp.view.TextViewActivity;
 import com.example.toronto.mystudyapp.view.VideoActivity;
@@ -48,8 +51,8 @@ public class MainActivity extends AppCompatActivity {
                     //startActivity(new Intent(this, ImageActivity.class));
                     //startActivity(new Intent(this, VideoActivity.class));
                     //startActivity(new Intent(this, LiveDataActivity.class));
-                    startActivity(new Intent(this, ObserverActivity.class));
-
+                    //startActivity(new Intent(this, ObserverActivity.class));
+                    startActivity(new Intent(this, DialogActivity.class));
 
                     finish();
                 });
@@ -58,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         Runnable callback = new Runnable() {
             public void run() {
                 //startActivity(new Intent(MainActivity.this, ListViewActivity.class));
-                Toast.makeText(MainActivity.this, "handler in MainActivity" , Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this, "handler in MainActivity" , Toast.LENGTH_SHORT).show();
             }
         };
 
