@@ -38,6 +38,9 @@
         <activity android:name=".view.AudioActivity" />
         <activity android:name=".view.ImageActivity" />
         <activity android:name=".view.VideoActivity"></activity>
+        <activity android:name=".view.LiveDataActivity"></activity>
+        <activity android:name=".view.ObserverActivity"></activity>
+        <activity android:name=".view.DialogActivity"></activity>
     </application>
 
 </manifest>
