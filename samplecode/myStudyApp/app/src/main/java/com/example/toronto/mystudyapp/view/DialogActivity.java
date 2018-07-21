@@ -91,13 +91,13 @@ public class DialogActivity extends Activity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("AlertDialog Title (제목)");
         builder.setMessage("Content (표시하고 싶은 내용들!!!)");
-        builder.setPositiveButton("예",
+        builder.setPositiveButton("Yes(예)",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         Toast.makeText(getApplicationContext(),"예를 선택했습니다.",Toast.LENGTH_LONG).show();
                     }
                 });
-        builder.setNegativeButton("아니오",
+        builder.setNegativeButton("No(아니오)",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         Toast.makeText(getApplicationContext(),"아니오를 선택했습니다.",Toast.LENGTH_LONG).show();

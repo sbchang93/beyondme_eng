@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.toronto.mystudyapp.view.AudioActivity;
+import com.example.toronto.mystudyapp.view.Dialog2Activity;
 import com.example.toronto.mystudyapp.view.DialogActivity;
 import com.example.toronto.mystudyapp.view.DrawActivity;
 import com.example.toronto.mystudyapp.view.HandlerActivity;
@@ -52,7 +53,9 @@ public class MainActivity extends AppCompatActivity {
                     //startActivity(new Intent(this, VideoActivity.class));
                     //startActivity(new Intent(this, LiveDataActivity.class));
                     //startActivity(new Intent(this, ObserverActivity.class));
-                    startActivity(new Intent(this, DialogActivity.class));
+                    //startActivity(new Intent(this, DialogActivity.class));
+                    startActivity(new Intent(this, Dialog2Activity.class));
+
 
                     finish();
                 });

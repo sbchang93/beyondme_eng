@@ -37,10 +37,11 @@
         <activity android:name=".view.DrawActivity" />
         <activity android:name=".view.AudioActivity" />
         <activity android:name=".view.ImageActivity" />
-        <activity android:name=".view.VideoActivity"></activity>
-        <activity android:name=".view.LiveDataActivity"></activity>
-        <activity android:name=".view.ObserverActivity"></activity>
-        <activity android:name=".view.DialogActivity"></activity>
+        <activity android:name=".view.VideoActivity" />
+        <activity android:name=".view.LiveDataActivity" />
+        <activity android:name=".view.ObserverActivity" />
+        <activity android:name=".view.DialogActivity" />
+        <activity android:name=".view.Dialog2Activity"></activity>
     </application>
 
 </manifest>
