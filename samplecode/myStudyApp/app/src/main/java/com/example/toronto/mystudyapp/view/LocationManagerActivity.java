@@ -1,6 +1,6 @@
 package com.example.toronto.mystudyapp.view;
 
-// 참조 URL
+// Reference Homepage URL (참조 홈페이지 링크)
 // http://biig.tistory.com/74?category=562387
 // http://limkydev.tistory.com/65
 // <permission android:name="android.permission.ACCESS_FINE_LOCATION" />

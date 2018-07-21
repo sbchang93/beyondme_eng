@@ -1,6 +1,6 @@
 package com.example.toronto.mystudyapp.view;
 
-// 참조 링크
+// Reference Homepage URL (참조 홈페이지 링크)
 // http://webnautes.tistory.com/1094
 
 import android.annotation.SuppressLint;

@@ -1,6 +1,6 @@
 package com.example.toronto.mystudyapp.view;
 
-// 참조 홈페이지
+// Reference Homepage URL (참조 홈페이지 링크)
 // https://medium.com/android-develop-android/android-%EA%B0%9C%EB%B0%9C-11-recyclerview%EC%99%80-cardview-fce1f4fc6c23
 
 import android.support.v7.app.AppCompatActivity;

@@ -1,6 +1,6 @@
 package com.example.toronto.mystudyapp.view;
 
-// 참조 링크
+// Reference Homepage URL (참조 홈페이지 링크)
 // http://biig.tistory.com/64?category=562387
 
 import android.os.Handler;

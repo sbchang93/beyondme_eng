@@ -1,6 +1,6 @@
 package com.example.toronto.mystudyapp.view;
 
-// 참조사이트
+// Reference Homepage URL (참조 홈페이지 링크)
 // http://www.vogella.com/tutorials/AndroidListView/article.html
 
 import android.content.Context;
