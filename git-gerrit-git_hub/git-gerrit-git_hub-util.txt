@@ -21,6 +21,24 @@
    git checkout -b temp  위에서 만들어진 임시 브랜치의 내용을 temp라는 브랜치로 생성
 
 ----------------------------------------------------------------
+[수정 내용 반영]
+$ git add .
+$ git status
+$ git add README
+$ git commit
+
+$ git push origin master  : 서버 반영
+
+
+[예제 (수정 및 commit) ]
+$ touch Readme.txt
+$ git status
+$ git add Readme.txt
+$ git commit -m “Add Readme.txt”
+
+$ git push origin master  : 서버 반영
+
+
 ----------------------------------------------------------------
 
 
