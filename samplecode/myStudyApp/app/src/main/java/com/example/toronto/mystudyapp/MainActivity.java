@@ -8,6 +8,9 @@ import android.widget.Toast;
 
 import com.example.toronto.mystudyapp.view.AudioActivity;
 import com.example.toronto.mystudyapp.view.Dialog2Activity;
+import com.example.toronto.mystudyapp.view.Dialog3Activity;
+import com.example.toronto.mystudyapp.view.Dialog4Activity;
+import com.example.toronto.mystudyapp.view.Dialog5Activity;
 import com.example.toronto.mystudyapp.view.DialogActivity;
 import com.example.toronto.mystudyapp.view.DrawActivity;
 import com.example.toronto.mystudyapp.view.HandlerActivity;
@@ -54,7 +57,12 @@ public class MainActivity extends AppCompatActivity {
                     //startActivity(new Intent(this, LiveDataActivity.class));
                     //startActivity(new Intent(this, ObserverActivity.class));
                     //startActivity(new Intent(this, DialogActivity.class));
-                    startActivity(new Intent(this, Dialog2Activity.class));
+                    //startActivity(new Intent(this, Dialog2Activity.class));
+                    //startActivity(new Intent(this, Dialog3Activity.class));
+                    //startActivity(new Intent(this, Dialog4Activity.class));
+                    startActivity(new Intent(this, Dialog5Activity.class));
+
+
 
 
                     finish();

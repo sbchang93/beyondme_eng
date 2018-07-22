@@ -41,7 +41,10 @@
         <activity android:name=".view.LiveDataActivity" />
         <activity android:name=".view.ObserverActivity" />
         <activity android:name=".view.DialogActivity" />
-        <activity android:name=".view.Dialog2Activity"></activity>
+        <activity android:name=".view.Dialog2Activity" />
+        <activity android:name=".view.Dialog3Activity" />
+        <activity android:name=".view.Dialog4Activity" />
+        <activity android:name=".view.Dialog5Activity"></activity>
     </application>
 
 </manifest>
