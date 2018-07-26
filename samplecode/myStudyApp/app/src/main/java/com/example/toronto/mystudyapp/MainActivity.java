@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 .delay(1, TimeUnit.SECONDS)
                 .subscribe(s -> {
                     //startActivity(new Intent(this, RecyclerViewActivity.class));
-                    //startActivity(new Intent(this, ListViewActivity.class));
+                    startActivity(new Intent(this, ListViewActivity.class));
                     //startActivity(new Intent(this, ListView2Activity.class));
                     //startActivity(new Intent(this, HashMapActivity.class));
                     //startActivity(new Intent(this, ViewActivity.class));
