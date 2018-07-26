@@ -3,8 +3,11 @@ package com.example.toronto.mystudyapp.view;
 // Reference Homepage URL (참조 홈페이지 링크)
 //https://medium.com/android-develop-android/android개발-5-listview를-이용한-리스트만들기-215b9693d33b
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ListView;
 
 import com.example.toronto.mystudyapp.R;
@@ -34,4 +37,27 @@ public class ListViewActivity extends AppCompatActivity {
         ListViewAdapter adapter = new ListViewAdapter(this,R.layout.listviewitem,data);
         listView.setAdapter(adapter);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_home, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_menu1:
+                startActivity(new Intent(this, ObserverActivity.class));
+                break;
+            case R.id.action_menu2:
+                startActivity(new Intent(this, ImageActivity.class));
+                break;
+            case R.id.action_settings:
+                startActivity(new Intent(this, DialogActivity.class));
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }
