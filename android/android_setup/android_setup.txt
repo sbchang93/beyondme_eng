@@ -1,0 +1,97 @@
+[빠른 설치 방법] Quick Setup for Android Studio 
+
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+. 기존의 SDK를 우선 Backup 해 둔다.  ( 혹시 삭제했다면 옆에 컴퓨터에서 복사해 온다.  SDK 복사해두면 1 ~ 2시간은 설치 절약되는 것 같음. )
+  : C:\Users\Administrator\AppData\Local\Android\sdk
+
+
+. 설치 위치
+   - SDK 위치 : C:\Users\Administrator\AppData\Local\Android\sdk
+   - JDK 위치 : C:\Program Files\Java\jdk1.8.0_144
+   - NDK 위치 : C:\Users\Administrator\AppData\Local\Android\sdk\ndk-bundle
+ 
+
+[ Windows 환경 설정 ]
+
+1. ANDROID_HOME 
+    ->  C:\Users\Administrator\AppData\Local\Android\sdk\
+
+2. JAVA_HOME 
+    ->  C:\Program Files\Java\jdk1.8.0_144
+
+3. Path 추가
+   %ANDROID_HOME%\platform-tools;
+   %JAVA_HOME%\bin;
+   %ANDROID_HOME%\tools;
+
+
+* HTTP Proxy 설정 
+   : File -> Settings -> http 검색 
+        HTTP Proxby Server : 30.244.254.254
+        HTTP Proxy Port : 8080     
+
+
+* SDK 설치 
+   : File -> Settings -> Appearance & Behavior -> System Settings -> Android SDK 
+       : Android 8.0 (O) 설치
+
+
+* NDK 설치    
+   : File -> Project Structure -> SDK Location 
+   : NDK 다운로드 링크 클릭해서 설치.
+ 
+
+* Instant Run을 Disble 함
+   : File -> Settings -> Instant Run   -> Disable 함
+
+* Gerrit, Git 설치 
+     . File → Settings → Appearance & Behavior → System Settings → HTTP Proxy
+     . File → Settings → Plugins → Browse Repositories... → "Gerrit"
+     . File → Settings → Version Control → Gerrit (  http://65.77.222.10 /package )
+
+	 
+* Android SDK Manager 에서 Proxy 설정 필요함 ( Android 2.3.3 에서는 이 부분이 없어진 것 같음. )
+   -> Android SDK Manager 창 띄움 -> Tools -> Options 클릭
+           HTTP Proxby Server : 30.244.254.254
+           HTTP Proxy Port : 8080
+           No proxy for : 65.77.222.10   ( gerrit 사용을 위해 설정 )
+
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+[ 기타 등등]
+
+* Gradle 버전 변경 ( OS 버전 또는 환경에 따라 최신 Gradle 버전으로 변경됨. )
+   -> File -> Project Structure -> Project -> Gradle version
+   -> Gradle version 3.3 로 변경  ( Anroid SDK 26, O OS 관련) 
+   
+
+* 인증서 복사 및 등록 ( certi_key.crt ) - 아래의 화면 및 명령어 참조
+   C:\Program Files\Java\jdk1.8.0_144\jre\lib\security :  "certi_key.crt"  화일 복사
+  실행 명령어 : keytool  -import -alias mykeystore -file certi_key.crt -keystore cacerts -storepass changeit
+  [리눅스 폴더] /usr/local/share/jdk1.8.0_144/jre/lib/security
+
+ 
+* Intstant Run 설정 끄기
+   File -> Settings -> Build, Execution, Deployment -> Instant Run -> off
+
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+[ Setup 확인용 컴파일 명령어 ] 
+* gradlew 실행   ( -rwxr-xr-x 1 Administrator 197121 4971 6월   6 17:10 gradlew*  ) 
+   => $ chmod 777 gradlew
+ 
+---------------------------------------------------------------------------------------------------------------------------------------
+ 
+[ Gradle 수동 작업 ] - 리눅스 설명 (Windows도 비슷하게 하면 됨.)
+* gradle 3.4.1 다운로드 받아서 수동으로 설치  (  https://services.gradle.org/distributions/ )
+$ cp /home/사용자_id/Downloads/gradle-3.4.1-all.zip /home/사용자_id/android-studio/gradle/
+$ cd /home/사용자_id/android-studio/gradle/
+$ unzip gradle-3.4.1-all.zip
+
+
+---------------------------------------------------------------------------------------------------------------------------------------
+ 
