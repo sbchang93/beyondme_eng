@@ -3,6 +3,7 @@
 
 - Commit 취소
    git reset --hard origin/master  서버의 master 버전을 기준으로 돌림
+   git reset --hard origin/feature/new_branch
    git reset --hard HEAD  모든 변경 무시 현재 버전으로 정리
    git reset --hard HEAD^  현재 버전 하나 앞으로 정리 - 최종 Commit 하나 취소
    git reset --hard HEAD~2  최종 Commit 2개(또는 N개) 취소
@@ -40,7 +41,36 @@ $ git push origin master  : 서버 반영
 
 
 ----------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
+* 새로운 temp.txt 화일을 신규로 추가한 경우에 untracked 보낼려면 
+  => git add temp.txt
+   => git reset HEAD temp.txt
+  => rm temp.txt
 
+> git reset HEAD *
+> git rest HEAD app/*
+
+-----------------------------------------------------------------------------------------------------------------
+# Unstaged  상태 ( staged 상태가 아닌 파일을 비교 )
+$ git diff
+
+# Staging Area 의 파일들 비교
+$ git diff --cached
+
+$ git commit
+$ git commit -m "add something."
+$ git commit --amend   ( 해쉬값이 변경됨.  git checkout "해쉬값" 해서 불러들일 수 있음 ) 
+
+* commit 정보와 diff를 보여줌
+$ git log -p
+
+* commit 2개만 보여줌. diff와 함께
+$ git log -p -2
+
+* 단어 단위로 dffi를 보여줌
+$ git log -U1 --word-diff
+
+-------------------------------------------------------------------------
 
 
 
