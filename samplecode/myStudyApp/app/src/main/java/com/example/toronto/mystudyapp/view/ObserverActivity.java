@@ -1,6 +1,6 @@
 package com.example.toronto.mystudyapp.view;
 
-// Reference Homepage URL (참조 홈페이지 링크)
+// Reference Homepage URL 
 // https://github.com/yudong80/reactivejava.git
 import android.app.Activity;
 import android.os.Bundle;
@@ -47,10 +47,10 @@ public class ObserverActivity extends Activity {
     @BindView(R.id.textView2)    TextView textView2;
     @BindView(R.id.button1)    Button button1;
     @BindView(R.id.button2)    Button button2;
-
-    //BindView 설명 참조 링크 ( https://medium.com/@Rhee_JH/안드로이드-라이브러리-써보기-1-butterknife-4bcf1ba68424 )
+    
+    //BindView( https://medium.com/@Rhee_JH/...1-butterknife-4bcf1ba68424 )
     //@BindView(R.id.user) EditText username;
-    // => EditText username = (EditText) findViewById(R.id.user); 의미
+    // => EditText username = (EditText) findViewById(R.id.user);
 
     //@BindView(R.id.pass) EditText password;
 
@@ -138,7 +138,7 @@ public class ObserverActivity extends Activity {
 //        })
 //        .subscribeOn(Schedulers.io())
 //        .observeOn(AndroidSchedulers.mainThread())
-//        .subscribe( textView::setText );  // => textView::setText 은 입력변수가 1개인 setText( string ) 함수 호출하라는 의미
+//        .subscribe( textView::setText );  // => textView::setText 
 //
 //        mCompositeDisposable.add(disposable);
 //
@@ -153,7 +153,7 @@ public class ObserverActivity extends Activity {
 //        .subscribeOn(Schedulers.io())
 //        .observeOn(AndroidSchedulers.mainThread())
 //        .subscribe( s -> {
-//            textView.setText("Second : " + s );  // textView.setText : textView에 직접 string을 넣을 때는 textView.setText 표기법 사용
+//            textView.setText("Second : " + s );  // textView.setText : 
 //            Toast.makeText(ObserverActivity.this, "Second : " + s , Toast.LENGTH_SHORT).show();
 //        });
 //
@@ -226,9 +226,9 @@ public class ObserverActivity extends Activity {
         //참조 링크 : http://developer88.tistory.com/68
         //-----------------------------------------------------------
         // Map
-        String[] name = new String[] {"재경", "희성", "라성"};
+        String[] name = new String[] {"John", "Hong", "Yong"};
         Observable.fromArray(name)
-                .map(s -> "김" + s)
+                .map(s -> "Kim" + s)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(s -> {
@@ -236,9 +236,9 @@ public class ObserverActivity extends Activity {
                     Toast.makeText(ObserverActivity.this, s, Toast.LENGTH_SHORT).show();
                 });
 
-        String[] name2 = new String[] {"소연", "성", "유성"};
+        String[] name2 = new String[] {"Soo", "Min", "You"};
         Observable.fromArray(name2)
-                .map(ObserverActivity::attachFirstName)  // ObserverActivity 키워드 사용하면 attachFirstName를 static 함수로 선언해야 error가 발생하지 않음.
+                .map(ObserverActivity::attachFirstName)  // ObserverActivity 
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(s -> {
@@ -249,9 +249,9 @@ public class ObserverActivity extends Activity {
 
         //-----------------------------------------------------------
         // flatmap
-        String[] name3 = new String[] {"재경", "희성", "라성"};
+        String[] name3 = new String[] {"John", "Hong", "Yong"};
         Observable.fromArray(name3)
-                .flatMap(s -> Observable.just("박"+ s +"<>"))
+                .flatMap(s -> Observable.just("Park"+ s +"<>"))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                  .subscribe(s -> {
@@ -259,7 +259,7 @@ public class ObserverActivity extends Activity {
                     Toast.makeText(ObserverActivity.this, s, Toast.LENGTH_SHORT).show();
                 });
 
-        String[] name4 = new String[] {"길동", "철수", "묵향"};
+        String[] name4 = new String[] {"Dong", "Soo", "Muk"};
         Observable.fromArray(name4)
                 .flatMap(this::attachPostfix)
                 .subscribeOn(Schedulers.io())
@@ -269,9 +269,9 @@ public class ObserverActivity extends Activity {
                     Toast.makeText(ObserverActivity.this, s, Toast.LENGTH_SHORT).show();
                 });
 
-        // Subscribe 호출이 없어서 실행이 안 됨.
-        // => subscribe (...) 호출 안 했음.
-        String[] name5 = new String[] {"NoSubcribe-재경", "NoSubcribe-희성", "NoSubcribe-라성"};
+        // Subscribe
+        // => subscribe (...) 
+        String[] name5 = new String[] {"NoSubcribe-Soo", "NoSubcribe-Sung", "NoSubcribe-Min"};
         Observable.fromArray(name5)
                 .map(ObserverActivity::noSubscribeFunc)
                 .subscribeOn(Schedulers.io())
@@ -282,11 +282,11 @@ public class ObserverActivity extends Activity {
     }
 
     public static String attachFirstName (String obj) {
-        return "함" + obj;
+        return "Kim" + obj;
     }
 
     private Observable<String> attachPostfix(String obj) {
-        return Observable.just(obj+"님");
+        return Observable.just(obj+" Sir");
     }
 
     public static String noSubscribeFunc (String obj) {
