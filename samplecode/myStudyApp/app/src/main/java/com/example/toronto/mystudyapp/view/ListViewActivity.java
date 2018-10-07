@@ -1,7 +1,7 @@
 package com.example.toronto.mystudyapp.view;
 
-// Reference Homepage URL (참조 홈페이지 링크)
-//https://medium.com/android-develop-android/android개발-5-listview를-이용한-리스트만들기-215b9693d33b
+// Reference Homepage URL
+// https://medium.com/android-develop-android/android...-215b9693d33b
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
