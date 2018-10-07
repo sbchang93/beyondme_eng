@@ -145,10 +145,6 @@ public class MainActivity extends AppCompatActivity {
         <activity android:name=".TransparentMain_Activity" />
         <!--
 <activity android:name=".TransparentMain_Activity"/>
-?곗? 媛숈씠 ?대젃寃??ъ슜?섏? ?딄퀬
-?꾨옒? 媛숈씠 ?ъ슜?섎㈃ Main Menu???꾩씠肄섏씠 ?섎굹 ???앷릿??
-(  <category android:name="android.intent.category.LAUNCHER" /> ?ㅼ뼱媛硫??꾩씠肄섏씠 ?섎굹 ???앷? )
-
         <activity
             android:label="@string/app_name"
             android:name=".TransparentMain_Activity" >
@@ -212,9 +208,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        <!-- AppWidget ?좎뼵, AppWidget? ?쇱쥌??釉뚮줈?쒖틦?ㅽ듃由ъ떆踰꾩엫 -->
-        <!-- android:name : AppWidget???대떦(AppWidgetProvider瑜??곸냽)?섎뒗 ?대옒?ㅻ챸 紐낆떆 -->
-        <!-- android:lable : ?꾩젽???덉씠釉? 硫붾돱->?꾩젽 ?붾㈃???쒖떆???꾩젽???대쫫 -->
         <receiver
             android:name=".MainWidget"
             android:label="setOnClickEventWidget">
@@ -227,8 +220,6 @@ public class MainActivity extends AppCompatActivity {
                 <action android:name="android.appwidget.action.APPWIDGET_DELETED" />
             </intent-filter>
 
-            <!-- ??釉뚮줈?쒖틦?ㅽ듃由ъ떆踰꾧? AppWidget?꾩쓣 紐낆떆 -->
-            <!-- ??AppWidget?????紐낆꽭?뚯씪???꾩튂 紐낆떆 -->
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_info" />
