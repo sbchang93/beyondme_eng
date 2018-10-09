@@ -1,0 +1,8 @@
+http://simsi6.tistory.com/9
+( git-hub : https://github.com/zodani/android-aidl-example )
+
+https://developer.android.com/guide/components/aidl?hl=ko
+
+https://m.blog.naver.com/netrance/110160267464
+
+https://m.blog.naver.com/PostView.nhn?blogId=netrance&logNo=110158421415&proxyReferer=https%3A%2F%2Fwww.google.co.kr%2F
