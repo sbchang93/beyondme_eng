@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 // https://developer.android.com/studio/write/java8-support?hl=ko
-// Lamda ??현??지??을 ??해??는 Java 8 추????어????
+// Lamda ?�현??지?�을 ?�해?�는 Java 8 추�??�어????
 //compileOptions {
 //    sourceCompatibility JavaVersion.VERSION_1_8
 //    targetCompatibility JavaVersion.VERSION_1_8
