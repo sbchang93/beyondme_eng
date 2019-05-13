@@ -8,6 +8,8 @@
     <permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -44,7 +46,31 @@
         <activity android:name=".view.Dialog2Activity" />
         <activity android:name=".view.Dialog3Activity" />
         <activity android:name=".view.Dialog4Activity" />
-        <activity android:name=".view.Dialog5Activity"></activity>
+        <activity android:name=".view.Dialog5Activity" />
+        <activity android:name=".view.Test01Activity" />
+        <activity android:name=".view.Test02_MyViewActivity" />
+        <activity android:name=".view.SaveState03Activity" />
+        <activity android:name=".view.SaveState02Activity" />
+        <activity android:name=".view.CallOtherActivity" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.example.toronto.mystudyapp.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
+
+        <activity android:name=".view.DrawTestActivity" />
+        <activity android:name=".view.ReflectionActivity" />
+        <activity android:name=".view.DialogTest01Activity" />
+        <activity android:name=".view.DialogTest02Activity" />
+        <activity android:name=".view.DialogTest03Activity" />
+        <activity android:name=".view.DialogTest04Activity" />
+        <activity android:name=".view.DataBindingTest01Activity" />
+        <activity android:name=".view.NameActivityForViewModel"></activity>
     </application>
 
 </manifest>
