@@ -7,12 +7,19 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.toronto.mystudyapp.view.AudioActivity;
+import com.example.toronto.mystudyapp.view.CallOtherActivity;
+import com.example.toronto.mystudyapp.view.DataBindingTest01Activity;
 import com.example.toronto.mystudyapp.view.Dialog2Activity;
 import com.example.toronto.mystudyapp.view.Dialog3Activity;
 import com.example.toronto.mystudyapp.view.Dialog4Activity;
 import com.example.toronto.mystudyapp.view.Dialog5Activity;
 import com.example.toronto.mystudyapp.view.DialogActivity;
+import com.example.toronto.mystudyapp.view.DialogTest01Activity;
+import com.example.toronto.mystudyapp.view.DialogTest02Activity;
+import com.example.toronto.mystudyapp.view.DialogTest03Activity;
+import com.example.toronto.mystudyapp.view.DialogTest04Activity;
 import com.example.toronto.mystudyapp.view.DrawActivity;
+import com.example.toronto.mystudyapp.view.DrawTestActivity;
 import com.example.toronto.mystudyapp.view.HandlerActivity;
 import com.example.toronto.mystudyapp.view.HashMapActivity;
 import com.example.toronto.mystudyapp.view.ImageActivity;
@@ -21,8 +28,14 @@ import com.example.toronto.mystudyapp.view.ListView3Activity;
 import com.example.toronto.mystudyapp.view.ListViewActivity;
 import com.example.toronto.mystudyapp.view.LiveDataActivity;
 import com.example.toronto.mystudyapp.view.LocationManagerActivity;
+import com.example.toronto.mystudyapp.view.NameActivityForViewModel;
 import com.example.toronto.mystudyapp.view.ObserverActivity;
 import com.example.toronto.mystudyapp.view.RecyclerViewActivity;
+import com.example.toronto.mystudyapp.view.ReflectionActivity;
+import com.example.toronto.mystudyapp.view.SaveState02Activity;
+import com.example.toronto.mystudyapp.view.SaveState03Activity;
+import com.example.toronto.mystudyapp.view.Test01Activity;
+import com.example.toronto.mystudyapp.view.Test02_MyViewActivity;
 import com.example.toronto.mystudyapp.view.TextViewActivity;
 import com.example.toronto.mystudyapp.view.VideoActivity;
 import com.example.toronto.mystudyapp.view.ViewActivity;
@@ -41,29 +54,40 @@ public class MainActivity extends AppCompatActivity {
         Observable.just("")
                 .delay(1, TimeUnit.SECONDS)
                 .subscribe(s -> {
-                    //startActivity(new Intent(this, RecyclerViewActivity.class));
+//                    //startActivity(new Intent(this, LiveDataActivity.class));
+//                    //startActivity(new Intent(this, ObserverActivity.class));
+
+                    startActivity(new Intent(this, RecyclerViewActivity.class));
                     startActivity(new Intent(this, ListViewActivity.class));
-                    //startActivity(new Intent(this, ListView2Activity.class));
-                    //startActivity(new Intent(this, HashMapActivity.class));
-                    //startActivity(new Intent(this, ViewActivity.class));
-                    //startActivity(new Intent(this, HandlerActivity.class));
-                    //startActivity(new Intent(this, LocationManagerActivity.class));
-                    //startActivity(new Intent(this, ListView3Activity.class));
-                    //startActivity(new Intent(this, TextViewActivity.class));
-                    //startActivity(new Intent(this, DrawActivity.class));
-                    //startActivity(new Intent(this, AudioActivity.class));
-                    //startActivity(new Intent(this, ImageActivity.class));
-                    //startActivity(new Intent(this, VideoActivity.class));
-                    //startActivity(new Intent(this, LiveDataActivity.class));
-                    //startActivity(new Intent(this, ObserverActivity.class));
-                    //startActivity(new Intent(this, DialogActivity.class));
-                    //startActivity(new Intent(this, Dialog2Activity.class));
-                    //startActivity(new Intent(this, Dialog3Activity.class));
-                    //startActivity(new Intent(this, Dialog4Activity.class));
+                    startActivity(new Intent(this, ListView2Activity.class));
+                    startActivity(new Intent(this, HashMapActivity.class));
+                    startActivity(new Intent(this, ViewActivity.class));
+                    startActivity(new Intent(this, HandlerActivity.class));
+                    startActivity(new Intent(this, LocationManagerActivity.class));
+                    startActivity(new Intent(this, ListView3Activity.class));
+                    startActivity(new Intent(this, TextViewActivity.class));
+                    startActivity(new Intent(this, DrawActivity.class));
+                    startActivity(new Intent(this, AudioActivity.class));
+                    startActivity(new Intent(this, ImageActivity.class));
+                    startActivity(new Intent(this, VideoActivity.class));
+                    startActivity(new Intent(this, DialogActivity.class));
+                    startActivity(new Intent(this, Dialog2Activity.class));
+                    startActivity(new Intent(this, Dialog3Activity.class));
+                    startActivity(new Intent(this, Dialog4Activity.class));
                     startActivity(new Intent(this, Dialog5Activity.class));
-
-
-
+                    startActivity(new Intent(this, Test01Activity.class));
+                    startActivity(new Intent(this, Test02_MyViewActivity.class));
+                    startActivity(new Intent(this, SaveState02Activity.class));
+                    startActivity(new Intent(this, SaveState03Activity.class));
+                    startActivity(new Intent(this, CallOtherActivity.class));
+                    startActivity(new Intent(this, DrawTestActivity.class));
+                    startActivity(new Intent(this, ReflectionActivity.class));
+                    startActivity(new Intent(this, DialogTest01Activity.class));
+                    startActivity(new Intent(this, DialogTest02Activity.class));
+                    startActivity(new Intent(this, DialogTest03Activity.class));
+                    startActivity(new Intent(this, DialogTest04Activity.class));
+                    startActivity(new Intent(this, DataBindingTest01Activity.class));
+                    startActivity(new Intent(this, NameActivityForViewModel.class));
 
                     finish();
                 });
