@@ -5,9 +5,15 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/tv"
+        android:id="@+id/text01"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="(Handler) Hello World!" />
+        android:textSize="25pt"
+        android:text="Display SampleName"/>
 
+    <Button
+        android:id="@+id/button01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button01"/>
 </LinearLayout>

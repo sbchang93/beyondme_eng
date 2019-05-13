@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="android.view.View" />
+
+        <variable name="user" type="com.example.toronto.mystudyapp.model.data.local.User"/>
+        <variable name="handlers" type="com.example.toronto.mystudyapp.view.handler.MyHandlers"/>
+
+        <variable name="task" type="com.example.toronto.mystudyapp.model.data.local.Task"/>
+        <variable name="presenter" type="com.example.toronto.mystudyapp.view.presenter.Presenter"/>
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/textFirstName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25pt"
+            android:text="@{user.mFirstName}"
+            android:onClick="@{handlers::onClickFriend}"
+            android:visibility= "@{user.mIsAdult? View.VISIBLE : View.GONE}"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25pt"
+            android:text="@{user.mLastName}"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25pt"
+            android:text="Click : onTest"
+            android:onClick="onTest"/>
+
+        <!--
+            <data>
+                <import type="com.example.toronto.mystudyapp.model.data.local.User" />
+                <variable name="user" type="com.example.toronto.mystudyapp.model.data.local.User"/>
+            </data>
+        -->
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20pt"
+            android:text="Button - Presenter"
+            android:onClick="@{() -> presenter.onSaveClick(task)}"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15pt"
+            android:text="Button - view, task"
+            android:onClick="@{(View) -> presenter.onSaveClick(task)}"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15pt"
+            android:text="Button - theView, task"
+            android:onClick="@{(theView) -> presenter.onSaveClick(theView, task)}"/>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15pt"
+            android:text="CheckBox - cb, isChecked"
+            android:onCheckedChanged="@{(cb, isChecked) -> presenter.onCompletedChanged(task, isChecked)}"/>
+
+    </LinearLayout>
+
+</layout>
+
