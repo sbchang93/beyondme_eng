@@ -70,7 +70,8 @@
         <activity android:name=".view.DialogTest03Activity" />
         <activity android:name=".view.DialogTest04Activity" />
         <activity android:name=".view.DataBindingTest01Activity" />
-        <activity android:name=".view.NameActivityForViewModel"></activity>
+        <activity android:name=".view.NameActivityForViewModel" />
+        <activity android:name=".view.UserActivity"></activity>
     </application>
 
 </manifest>
