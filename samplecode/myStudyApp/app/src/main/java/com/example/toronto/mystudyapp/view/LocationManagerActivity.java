@@ -24,8 +24,7 @@ import com.example.toronto.mystudyapp.R;
 import com.example.toronto.mystudyapp.constants.LocationConstants;
 
 public class LocationManagerActivity extends AppCompatActivity {
-
-    private static final String TAG = "LocationManagerActivity";
+    private final String TAG = this.getClass().getSimpleName();
 
     LocationManager mLM;
 

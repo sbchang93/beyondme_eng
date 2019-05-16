@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.example.toronto.mystudyapp.R;
 
 public class TextViewActivity extends Activity {
+    private final String TAG = this.getClass().getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

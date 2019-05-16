@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import com.example.toronto.mystudyapp.R;
 
 public class ImageActivity extends Activity {
+    private final String TAG = this.getClass().getSimpleName();
 
     private ImageView mPicture;
 

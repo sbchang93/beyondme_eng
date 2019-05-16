@@ -36,6 +36,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class DialogActivity extends Activity {
+    private final String TAG = this.getClass().getSimpleName();
 
     protected ProgressDialog mDialog;
 

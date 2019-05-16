@@ -12,7 +12,7 @@ import android.widget.Button;
 import com.example.toronto.mystudyapp.R;
 
 public class DialogTest02Activity extends Activity {
-
+    private final String TAG = this.getClass().getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

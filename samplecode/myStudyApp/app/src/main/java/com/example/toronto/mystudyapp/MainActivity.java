@@ -37,6 +37,7 @@ import com.example.toronto.mystudyapp.view.SaveState03Activity;
 import com.example.toronto.mystudyapp.view.Test01Activity;
 import com.example.toronto.mystudyapp.view.Test02_MyViewActivity;
 import com.example.toronto.mystudyapp.view.TextViewActivity;
+import com.example.toronto.mystudyapp.view.UserActivity;
 import com.example.toronto.mystudyapp.view.VideoActivity;
 import com.example.toronto.mystudyapp.view.ViewActivity;
 
@@ -88,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(new Intent(this, DialogTest04Activity.class));
                     startActivity(new Intent(this, DataBindingTest01Activity.class));
                     startActivity(new Intent(this, NameActivityForViewModel.class));
+                    startActivity(new Intent(this, UserActivity.class));
 
                     finish();
                 });

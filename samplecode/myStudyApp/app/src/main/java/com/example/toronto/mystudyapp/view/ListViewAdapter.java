@@ -13,6 +13,7 @@ import com.example.toronto.mystudyapp.R;
 import java.util.ArrayList;
 
 public class ListViewAdapter extends BaseAdapter {
+    private final String TAG = this.getClass().getSimpleName();
 
     private LayoutInflater inflater;
     private ArrayList<Listviewitem> data;

@@ -20,6 +20,7 @@ import com.example.toronto.mystudyapp.R;
  * A simple {@link Fragment} subclass.
  */
 public class MainFragment extends Fragment {
+    private final String TAG = this.getClass().getSimpleName();
 
     private static final int DIALOG_REQUEST_CODE = 1234;
 

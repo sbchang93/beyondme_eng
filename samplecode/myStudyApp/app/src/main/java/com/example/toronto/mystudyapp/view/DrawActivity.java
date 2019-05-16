@@ -18,6 +18,7 @@ import com.example.toronto.mystudyapp.R;
 import java.util.ArrayList;
 
 public class DrawActivity extends Activity {
+    private final String TAG = this.getClass().getSimpleName();
 
     private MyView view;
     private ArrayList<Point> pList;

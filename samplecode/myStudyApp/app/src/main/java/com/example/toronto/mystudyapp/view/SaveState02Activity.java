@@ -18,6 +18,8 @@ import android.view.MotionEvent;
 import android.view.View;
 
 public class SaveState02Activity extends Activity {
+    private final String TAG = this.getClass().getSimpleName();
+
     private MyView02 vw;
     int x;
     int y;

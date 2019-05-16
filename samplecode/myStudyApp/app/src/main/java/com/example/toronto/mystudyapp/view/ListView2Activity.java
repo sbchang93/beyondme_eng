@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ListView2Activity extends AppCompatActivity {
-
+    private final String TAG = this.getClass().getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

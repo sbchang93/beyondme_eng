@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.toronto.mystudyapp.R;
 
 public class Dialog4Activity  extends AppCompatActivity implements DialogFragmentExample.OnCompleteListener {
+    private final String TAG = this.getClass().getSimpleName();
 
     @Override
     public void onInputedData(String id, String pass) {

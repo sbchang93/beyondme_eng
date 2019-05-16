@@ -38,7 +38,6 @@ import static com.example.toronto.mystudyapp.common.Shape.GREEN;
 import static com.example.toronto.mystudyapp.common.Shape.RED;
 
 public class ObserverActivity extends Activity {
-
     private final String TAG = this.getClass().getSimpleName();
 
     @BindView(R.id.text01)    TextView text01;

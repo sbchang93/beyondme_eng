@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.example.toronto.mystudyapp.R;
 
 public class HandlerActivity extends AppCompatActivity {
+    private final String TAG = this.getClass().getSimpleName();
 
     int index=1;
 

@@ -18,6 +18,7 @@ import com.example.toronto.mystudyapp.R;
 import java.util.List;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
+    private final String TAG = this.getClass().getSimpleName();
 
     Context context;
     List<Recycler_item> items;

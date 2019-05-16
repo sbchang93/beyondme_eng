@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 public class HashMapActivity extends AppCompatActivity {
+    private final String TAG = this.getClass().getSimpleName();
 
     Button btn;
     int index=1;

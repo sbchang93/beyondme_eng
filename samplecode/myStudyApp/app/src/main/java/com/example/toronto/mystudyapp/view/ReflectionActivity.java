@@ -74,6 +74,7 @@ class Ball {
 }
 
 public class ReflectionActivity extends Activity {
+    private final String TAG = this.getClass().getSimpleName();
 
     private MyView08 view;
 

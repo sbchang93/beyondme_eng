@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.example.toronto.mystudyapp.R;
 
 public class DialogTest04Activity extends Activity {
+    private final String TAG = this.getClass().getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

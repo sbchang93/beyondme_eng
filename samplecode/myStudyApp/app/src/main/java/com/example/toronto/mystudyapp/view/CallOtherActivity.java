@@ -15,6 +15,7 @@ import com.example.toronto.mystudyapp.R;
 import java.io.File;
 
 public class CallOtherActivity extends Activity {
+    private final String TAG = this.getClass().getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

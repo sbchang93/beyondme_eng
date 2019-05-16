@@ -10,6 +10,8 @@ import android.view.MotionEvent;
 import android.view.View;
 
 public class Test02_MyViewActivity extends Activity {
+    private final String TAG = this.getClass().getSimpleName();
+
     private MyView03 vw;
     int x;
     int y;

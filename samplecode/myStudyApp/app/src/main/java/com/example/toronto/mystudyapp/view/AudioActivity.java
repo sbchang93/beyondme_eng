@@ -8,6 +8,7 @@ import android.view.View;
 import com.example.toronto.mystudyapp.R;
 
 public class AudioActivity extends Activity {
+    private final String TAG = this.getClass().getSimpleName();
 
     MediaPlayer mPlayer = null;
 

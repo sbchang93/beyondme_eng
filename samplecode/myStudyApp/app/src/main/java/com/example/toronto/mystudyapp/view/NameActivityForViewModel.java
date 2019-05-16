@@ -16,6 +16,7 @@ import com.example.toronto.mystudyapp.viewmodel.NameViewModel;
 // Reference Link : https://developer.android.com/topic/libraries/architecture/livedata?hl=ko#java
 
 public class NameActivityForViewModel extends AppCompatActivity {
+    private final String TAG = this.getClass().getSimpleName();
 
     private NameViewModel mModel;
     TextView mNameTextView;

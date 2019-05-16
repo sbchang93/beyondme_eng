@@ -10,6 +10,7 @@ import com.example.toronto.mystudyapp.R;
 import java.util.ArrayList;
 
 public class ListView3Activity extends Activity {
+    private final String TAG = this.getClass().getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.example.toronto.mystudyapp.R;
 
 public class AdapterActivity extends AppCompatActivity {
+    private final String TAG = this.getClass().getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

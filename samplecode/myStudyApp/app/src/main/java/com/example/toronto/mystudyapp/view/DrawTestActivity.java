@@ -18,6 +18,8 @@ import com.example.toronto.mystudyapp.R;
 import java.util.ArrayList;
 
 public class DrawTestActivity extends Activity {
+    private final String TAG = this.getClass().getSimpleName();
+
     private MyView07 view;
 
     @Override

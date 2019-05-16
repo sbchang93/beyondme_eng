@@ -9,6 +9,7 @@ import android.widget.VideoView;
 import com.example.toronto.mystudyapp.R;
 
 public class VideoActivity extends Activity {
+    private final String TAG = this.getClass().getSimpleName();
 
     private VideoView video;
 

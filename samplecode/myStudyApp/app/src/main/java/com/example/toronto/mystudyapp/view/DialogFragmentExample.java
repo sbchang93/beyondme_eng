@@ -22,7 +22,7 @@ import com.example.toronto.mystudyapp.R;
 /**
  */
 public class DialogFragmentExample extends DialogFragment {
-
+    private final String TAG = this.getClass().getSimpleName();
 
     public interface OnCompleteListener{
         void onInputedData(String id, String pass);

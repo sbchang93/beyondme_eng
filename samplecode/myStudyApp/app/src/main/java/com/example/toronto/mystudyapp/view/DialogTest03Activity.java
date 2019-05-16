@@ -13,6 +13,8 @@ import com.example.toronto.mystudyapp.R;
 import java.util.Calendar;
 
 public class DialogTest03Activity extends Activity {
+    private final String TAG = this.getClass().getSimpleName();
+
     final static int SampleDialog = 0;
     final static int QuestionDialog = 1;
 

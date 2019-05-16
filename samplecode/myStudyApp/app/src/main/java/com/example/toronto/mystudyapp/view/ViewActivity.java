@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.toronto.mystudyapp.R;
 
 public class ViewActivity extends AppCompatActivity implements View.OnClickListener {
+    private final String TAG = this.getClass().getSimpleName();
 
     private Button text_edit_bt;
     private Button color_edit_bt;

@@ -20,7 +20,7 @@ import android.widget.TextView;
 import com.example.toronto.mystudyapp.R;
 
 public class DialogFragmentExample5 extends DialogFragment {
-
+    private final String TAG = this.getClass().getSimpleName();
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {

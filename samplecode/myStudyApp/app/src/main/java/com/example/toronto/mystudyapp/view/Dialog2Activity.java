@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Dialog2Activity extends Activity {
+    private final String TAG = this.getClass().getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
