@@ -3,10 +3,10 @@
     <data>
         <import type="android.view.View" />
 
-        <variable name="user" type="com.example.toronto.mystudyapp.model.data.local.User"/>
+        <variable name="user" type="com.example.toronto.mystudyapp.model.data.local.User01"/>
         <variable name="handlers" type="com.example.toronto.mystudyapp.view.handler.MyHandlers"/>
 
-        <variable name="task" type="com.example.toronto.mystudyapp.model.data.local.Task"/>
+        <variable name="task" type="com.example.toronto.mystudyapp.model.data.local.Task01"/>
         <variable name="presenter" type="com.example.toronto.mystudyapp.view.presenter.Presenter"/>
     </data>
     <LinearLayout
