@@ -44,7 +44,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
 //		});
     }
 
-    //온클릭을 오버라이드 하기 위해서는 클래스에 OnClickListener를 implements해야합니다. 11번째줄 참조.
+    //온클릭을 오버라이드 하기 위해서는 클래스에 OnClickListener를 implements해야합니다. ( View.OnClickListener 인터페이스 상속받음 )
 
     @Override
 

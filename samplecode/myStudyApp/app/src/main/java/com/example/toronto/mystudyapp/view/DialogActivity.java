@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.example.toronto.mystudyapp.R;
 import com.example.toronto.mystudyapp.common.WeakReferenceHandler;
+import com.example.toronto.mystudyapp.util.Logger;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -168,7 +169,7 @@ public class DialogActivity extends Activity {
 
     private void showDialogOnUi(String dialogTitle, String dialogMsg, String dialogButton, boolean backToMain) {
         if (TextUtils.isEmpty(dialogMsg)) {
-            Log.d("test", "showDialogOnUi - empty msg");
+            Logger.d(TAG, "showDialogOnUi - empty msg");
             return;
         }
 

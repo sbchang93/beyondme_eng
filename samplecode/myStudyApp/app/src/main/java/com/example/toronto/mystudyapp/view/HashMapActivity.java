@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.toronto.mystudyapp.R;
+import com.example.toronto.mystudyapp.util.Logger;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -38,14 +39,14 @@ public class HashMapActivity extends AppCompatActivity {
         while(iter.hasNext()) { // iter 안에 "내용"이 있는가 체크
             int key = iter.next(); // key id를 알아오기
             String value = map.get(key);
-            Log.d("test", "Key: " + key  + ", value: " + value);
+            Logger.d(TAG, "Key: " + key  + ", value: " + value);
 
             if(key == 1) { // 테스트용으로 첫번째 하나만 띄움
                 Toast.makeText(this, "Key: " + key + ", value: " + value, Toast.LENGTH_SHORT).show();
             }
 
             if(map.containsKey(key)) {
-                Log.d("test", ""+ key + " key exists. -  ");
+                Logger.d(TAG, ""+ key + " key exists. -  ");
             }
         }
 

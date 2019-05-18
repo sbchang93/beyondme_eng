@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.toronto.mystudyapp.R;
 import com.example.toronto.mystudyapp.common.CommonUtils;
+import com.example.toronto.mystudyapp.util.Logger;
 
 import org.reactivestreams.Publisher;
 import org.reactivestreams.Subscriber;
@@ -40,12 +41,12 @@ import static com.example.toronto.mystudyapp.common.Shape.RED;
 public class ObserverActivity extends Activity {
     private final String TAG = this.getClass().getSimpleName();
 
-    @BindView(R.id.text01)    TextView text01;
-    @BindView(R.id.text02)    TextView text02;
-    @BindView(R.id.textView)    TextView textView;
-    @BindView(R.id.textView2)    TextView textView2;
-    @BindView(R.id.button1)    Button button1;
-    @BindView(R.id.button2)    Button button2;
+    @BindView(R.id.text01_Obsrv)    TextView text01;
+    @BindView(R.id.text02_Obsrv)    TextView text02;
+    @BindView(R.id.textView_Obsrv)    TextView textView;
+    @BindView(R.id.textView2_Obsrv)    TextView textView2;
+    @BindView(R.id.button1_Obsrv)    Button button1;
+    @BindView(R.id.button2_Obsrv)    Button button2;
     
     //BindView( https://medium.com/@Rhee_JH/...1-butterknife-4bcf1ba68424 )
     //@BindView(R.id.user) EditText username;
@@ -65,6 +66,57 @@ public class ObserverActivity extends Activity {
 
         mUnbinder = ButterKnife.bind(this);
 
+//        public interface Subscription {
+//            public void request(long n);
+//            public void cancel();
+//        }
+
+//        public interface Subscriber<T> {
+//            public void onSubscribe(Subscription s);   // <=== Subscription 인터페이스
+//            public void onNext(T t);
+//            public void onError(Throwable t);
+//            public void onComplete();
+//        }
+
+//        public interface Publisher<T> {
+//            public void subscribe(Subscriber<? super T> s);    // <=== Subscriber 인터페이스
+//        }
+
+        Publisher<String> publisher2 = new Publisher<String>() {
+            public void subscribe(Subscriber<? super String> s)
+            {}
+        };
+
+        // 위의 publicsher2를 축약하면 아래의 publisher2_ 형태가 된다.
+        Publisher<String> publisher2_ = (Subscriber<? super String> s) -> {
+        };
+
+        //--------
+        Publisher<String> publisher3 = new Publisher<String>() {
+            public void subscribe(Subscriber<? super String> s)
+            {
+                s.onNext("(Without Lambda) Observable.fromPublisher()");
+                s.onComplete();
+            }
+        };
+
+        // 상동 ( publisher3과 publisher4는 동일)
+        Publisher<String> publisher4 = (Subscriber<? super String> s) -> {
+            s.onNext("(With Lambda) Observable.fromPublisher()");
+            s.onComplete();
+        };
+
+//     public abstract class Observable<T> implements ObservableSource<T> {
+//...
+//        public final Disposable subscribe() {...   }
+//        public final Disposable subscribe(Consumer<? super T> onNext) {...   }
+//        public final Disposable subscribe(Consumer<? super T> onNext, Consumer<? super Throwable> onError) {...   }
+//        public final Disposable subscribe(Consumer<? super T> onNext, Consumer<? super Throwable> onError, Action onComplete) {...}
+//        public final Disposable subscribe(Consumer<? super T> onNext, Consumer<? super Throwable> onError, Action onComplete, Consumer<? super Disposable> onSubscribe) {...    }
+//        public final void subscribe(Observer<? super T> observer) {...    }
+//...
+//        }
+
 
         // -----------------------------------------------------------
         // basic
@@ -73,7 +125,7 @@ public class ObserverActivity extends Activity {
             s.onComplete();
         };
         Observable<String> source = Observable.fromPublisher(publisher)
-                                    .subscribeOn(Schedulers.io())
+                .subscribeOn(Schedulers.io())
                                     .observeOn(AndroidSchedulers.mainThread());
         source.subscribe(s ->{
             text01.setText(s);
@@ -194,7 +246,7 @@ public class ObserverActivity extends Activity {
 //                .observeOn(AndroidSchedulers.mainThread());
 //
 //        source.subscribe(s -> {
-//            Log.d("test",s);
+//            Logger.d(TAG,s);
 //            Toast.makeText(ObserverActivity.this, s, Toast.LENGTH_SHORT).show();
 //        });
 //        CommonUtils.sleep(2000);
@@ -215,7 +267,7 @@ public class ObserverActivity extends Activity {
 //                .observeOn(AndroidSchedulers.mainThread());
 //
 //        source.subscribe(s -> {
-//            Log.d("test",s);
+//            Logger.d(TAG,s);
 //            Toast.makeText(ObserverActivity.this, s, Toast.LENGTH_SHORT).show();
 //        });
 //        CommonUtils.sleep(2000);
@@ -231,7 +283,7 @@ public class ObserverActivity extends Activity {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(s -> {
-                    Log.d("test",s);
+                    Logger.d(TAG,s);
                     Toast.makeText(ObserverActivity.this, s, Toast.LENGTH_SHORT).show();
                 });
 
@@ -241,7 +293,7 @@ public class ObserverActivity extends Activity {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(s -> {
-                    Log.d("test",s);
+                    Logger.d(TAG,s);
                     Toast.makeText(ObserverActivity.this, s, Toast.LENGTH_SHORT).show();
                 });
 
@@ -254,7 +306,7 @@ public class ObserverActivity extends Activity {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                  .subscribe(s -> {
-                    Log.d("test",s);
+                    Logger.d(TAG,s);
                     Toast.makeText(ObserverActivity.this, s, Toast.LENGTH_SHORT).show();
                 });
 
@@ -264,7 +316,7 @@ public class ObserverActivity extends Activity {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(s -> {
-                    Log.d("test",s);
+                    Logger.d(TAG,s);
                     Toast.makeText(ObserverActivity.this, s, Toast.LENGTH_SHORT).show();
                 });
 

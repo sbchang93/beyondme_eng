@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.toronto.mystudyapp.R;
+import com.example.toronto.mystudyapp.util.Logger;
 
 /**
  */
@@ -38,7 +39,7 @@ public class DialogFragmentExample extends DialogFragment {
             mCallback = (OnCompleteListener) activity;
         }
         catch (ClassCastException e) {
-            Log.d("DialogFragmentExample", "Activity doesn't implement the OnCompleteListener interface");
+            Logger.d(TAG, "Activity doesn't implement the OnCompleteListener interface");
         }
     }
 

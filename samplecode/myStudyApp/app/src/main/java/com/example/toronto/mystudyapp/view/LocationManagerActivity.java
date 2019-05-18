@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.example.toronto.mystudyapp.R;
 import com.example.toronto.mystudyapp.constants.LocationConstants;
+import com.example.toronto.mystudyapp.util.Logger;
 
 public class LocationManagerActivity extends AppCompatActivity {
     private final String TAG = this.getClass().getSimpleName();
@@ -89,7 +90,7 @@ public class LocationManagerActivity extends AppCompatActivity {
         public void handleMessage(Message msg) {
 
             int control = msg.what;
-            Log.d(TAG, "process " + Control.toString(control));
+            Logger.d(TAG, "process " + Control.toString(control));
 
             if (control == Control.RESP_GPS_NETWORK_CHANGED) {
                 Toast.makeText(LocationManagerActivity.this, "control == Control.RESP_GPS_NETWORK_CHANGED", Toast.LENGTH_LONG).show();
@@ -103,7 +104,7 @@ public class LocationManagerActivity extends AppCompatActivity {
             //여기서 위치값이 갱신되면 이벤트가 발생한다.
             //값은 Location 형태로 리턴되며 좌표 출력 방법은 다음과 같다.
 
-            Log.d(TAG, "onLocationChanged : " + location.getProvider());
+            Logger.d(TAG, "onLocationChanged : " + location.getProvider());
             Toast.makeText(LocationManagerActivity.this, "onLocationChanged : " + location.getProvider(), Toast.LENGTH_SHORT).show();
 
             if (location.getProvider().equals(LocationManager.GPS_PROVIDER)) {
@@ -113,7 +114,7 @@ public class LocationManagerActivity extends AppCompatActivity {
                 double latitude = location.getLatitude();      //위도
                 float accuracy = location.getAccuracy();       //신뢰도
 
-                Log.d(TAG, "GPS Network onLocationChanged, lon=" + longitude + " lat=" + latitude + " acc=" + accuracy);
+                Logger.d(TAG, "GPS Network onLocationChanged, lon=" + longitude + " lat=" + latitude + " acc=" + accuracy);
 
                 Message msg = locationHandler.obtainMessage(Control.RESP_GPS_NETWORK_CHANGED);
                 Bundle data = msg.getData();
@@ -135,17 +136,17 @@ public class LocationManagerActivity extends AppCompatActivity {
         }
 
         public void onStatusChanged(String provider, int status, Bundle extras) {
-            Log.d(TAG, "GPS Network onStatusChanged");
+            Logger.d(TAG, "GPS Network onStatusChanged");
             Toast.makeText(LocationManagerActivity.this, "GPS Network onStatusChanged", Toast.LENGTH_SHORT).show();
         }
 
         public void onProviderEnabled(String provider) {
-            Log.d(TAG, "GPS Network onProviderEnabled");
+            Logger.d(TAG, "GPS Network onProviderEnabled");
             Toast.makeText(LocationManagerActivity.this, "GPS Network onStatusChanged", Toast.LENGTH_SHORT).show();
         }
 
         public void onProviderDisabled(String provider) {
-            Log.d(TAG, "GPS Network onProviderDisabled");
+            Logger.d(TAG, "GPS Network onProviderDisabled");
             Toast.makeText(LocationManagerActivity.this, "GPS Network onStatusChanged", Toast.LENGTH_SHORT).show();
         }
     };
