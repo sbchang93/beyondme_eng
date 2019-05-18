@@ -1,5 +1,11 @@
 package com.example.toronto.mystudyapp.common;
 
+// reference link : https://github.com/yudong80/reactivejava
+// reactivejava-master/src/main/java/com/yudong80/reactivejava/common/shape.java
+// RxJava 프로그래밍 - 유동환, 박정준 지음
+
+// 참고로 함수들의 모두 static 함수임.
+// static 변수는 App이 실행되면 메모리에 항상 상주를 함. ( 1개 클래스가 상주하여서, 다른 클래스들이 같이 공용으로 이용할 수 있음. )
 
 public class Shape {
     public static final String HEXAGON = "HEXAGON";
@@ -48,9 +54,11 @@ public class Shape {
     public static String getShape(String obj) {
         if (obj == null || obj.equals("")) return NO_SHAPE;
         if (obj.endsWith("-H")) return HEXAGON;
-        if (obj.endsWith("-O")) return OCTAGON;
+        if (obj.endsWith("-O"))
+            return OCTAGON;
         if (obj.endsWith("-R")) return RECTANGLE;
-        if (obj.endsWith("-T")) return TRIANGLE;
+        if (obj.endsWith("-T"))
+            return TRIANGLE;
         if (obj.endsWith("<>")) return DIAMOND;
         if (obj.endsWith("-P")) return PENTAGON;
         if (obj.endsWith("-S")) return STAR;

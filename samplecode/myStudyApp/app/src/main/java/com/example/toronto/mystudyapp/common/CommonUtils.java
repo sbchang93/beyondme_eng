@@ -3,6 +3,8 @@ package com.example.toronto.mystudyapp.common;
 
 import android.util.Log;
 
+import com.example.toronto.mystudyapp.util.Logger;
+
 import java.io.IOException;
 import java.net.InetAddress;
 import java.util.Random;
@@ -27,7 +29,7 @@ public class CommonUtils {
 
     public static void exampleStart(Object obj) {
         startTime = System.currentTimeMillis();
-        Log.d("CommonUtils", "" + startTime);
+        Logger.d("CommonUtils", "" + startTime);
     }
 
     public static void exampleComplete() {
@@ -60,7 +62,7 @@ public class CommonUtils {
         try {
             return InetAddress.getByName("www.google.com").isReachable(1000);
         } catch (IOException e) {
-            Log.d("CommonUtils", "Network is not available");
+            Logger.d("CommonUtils", "Network is not available");
         }
         return false;
     }
