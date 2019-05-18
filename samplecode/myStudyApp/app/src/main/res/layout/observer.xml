@@ -5,13 +5,13 @@ android:layout_height="match_parent"
 android:orientation="vertical">
 
 <TextView
-    android:id="@+id/tv"
+    android:id="@+id/tv_Obsrv"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="(Observer) Observer !" />
 
     <TextView
-        android:id="@+id/text01"
+        android:id="@+id/text01_Obsrv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
@@ -19,7 +19,7 @@ android:orientation="vertical">
         android:text="text01"/>
 
     <TextView
-        android:id="@+id/text02"
+        android:id="@+id/text02_Obsrv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
@@ -27,7 +27,7 @@ android:orientation="vertical">
         android:text="text02"/>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView_Obsrv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
@@ -35,7 +35,7 @@ android:orientation="vertical">
         android:text="Text 1"/>
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textView2_Obsrv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
@@ -43,7 +43,7 @@ android:orientation="vertical">
         android:text="Text 2"/>
 
     <Button
-    android:id="@+id/button1"
+    android:id="@+id/button1_Obsrv"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:textAlignment="center"
@@ -51,7 +51,7 @@ android:orientation="vertical">
     android:text="Button1"/>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/button2_Obsrv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"

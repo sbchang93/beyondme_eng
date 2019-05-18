@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Be yourself!, Make yourself for you!, \n   For the Nice World!"/>
+
+
+    <Button
+        android:id="@+id/btn01_Obsrv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="button 01"/>
+    o
+    <Button
+        android:id="@+id/btn02_Obsrv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="button 02"/>
+
+    <Button
+        android:id="@+id/btn03_Obsrv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="button 03"/>
+
+    <Button
+        android:id="@+id/btn04_Obsrv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="button 04"/>
+
+    <Button
+        android:id="@+id/btn05_Obsrv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="button 05"/>
+
+    <Button
+        android:id="@+id/btn06_Obsrv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="button 06"/>
+
+    <Button
+        android:id="@+id/btn07_Obsrv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="button 07"/>
+
+    <Button
+        android:id="@+id/btn08_Obsrv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="button 08"/>
+
+    <Button
+        android:id="@+id/btn09_Obsrv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="button 09"/>
+
+    <Button
+        android:id="@+id/btn10_Obsrv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="button 10"/>
+
+    <Button
+        android:id="@+id/btn11_Obsrv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="button 11"/>
+
+    <Button
+        android:id="@+id/btn12_Obsrv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="button 12"/>
+
+    <Button
+        android:id="@+id/btn13_Obsrv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="button 13"/>
+
+    <Button
+        android:id="@+id/btn14_Obsrv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="button 14"/>
+
+    <Button
+        android:id="@+id/btn15_Obsrv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="button 15"/>
+
+    <Button
+        android:id="@+id/btn16_Obsrv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="button 16"/>
+
+    <Button
+        android:id="@+id/btn17_Obsrv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="button 17"/>
+
+    <Button
+        android:id="@+id/btn18_Obsrv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="button 18"/>
+
+    <Button
+        android:id="@+id/btn19_Obsrv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="button 19"/>
+</LinearLayout>

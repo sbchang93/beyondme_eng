@@ -8,31 +8,31 @@
         android:id="@+id/web"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="web"/>
+        android:text="web" />
 
     <Button
         android:id="@+id/dial"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="dial"/>
+        android:text="dial" />
 
     <Button
         android:id="@+id/picture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="picture"/>
+        android:text="picture" />
 
     <Button
         android:id="@+id/other"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="other"/>
+        android:text="other" />
 
     <Button
         android:id="@+id/other_listview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="other_listview"/>
+        android:text="other_listview" />
 
 
 </LinearLayout>

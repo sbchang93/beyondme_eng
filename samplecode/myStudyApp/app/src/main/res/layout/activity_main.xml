@@ -7,6 +7,36 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"/>
+        android:text="Be yourself!, Make yourself for you!, \n   For the Nice World!"/>
 
+
+    <Button
+        android:id="@+id/normalSamples"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Normal Samples"/>
+o
+    <Button
+        android:id="@+id/dbSamples"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Room, DB"/>
+
+    <Button
+        android:id="@+id/observalbeSamples"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Observable"/>
+
+    <Button
+        android:id="@+id/listMenuSamples"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="List Menus"/>
+
+    <Button
+        android:id="@+id/drawSamples"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Draw Samples, Image Samples"/>
 </LinearLayout>
