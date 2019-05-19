@@ -25,6 +25,7 @@ import com.example.toronto.mystudyapp.view.DrawTestActivity;
 import com.example.toronto.mystudyapp.view.HandlerActivity;
 import com.example.toronto.mystudyapp.view.HashMapActivity;
 import com.example.toronto.mystudyapp.view.ImageActivity;
+import com.example.toronto.mystudyapp.view.ListView01Activity;
 import com.example.toronto.mystudyapp.view.ListView2Activity;
 import com.example.toronto.mystudyapp.view.ListView3Activity;
 import com.example.toronto.mystudyapp.view.ListViewActivity;
@@ -96,6 +97,41 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+
+    private void launchSampleActivities() {
+        Observable.just("")
+                .delay(1, TimeUnit.MILLISECONDS)
+                .subscribe(s -> {
+                    //startActivity(new Intent(this, LiveDataActivity.class));
+                    //startActivity(new Intent(this, ObserverActivity.class));
+
+                    startActivity(new Intent(this, CallOtherActivity.class));
+                    startActivity(new Intent(this, HashMapActivity.class));
+                    startActivity(new Intent(this, ViewActivity.class));
+                    startActivity(new Intent(this, HandlerActivity.class));
+                    startActivity(new Intent(this, LocationManagerActivity.class));
+                    startActivity(new Intent(this, TextViewActivity.class));
+                    startActivity(new Intent(this, AudioActivity.class));
+                    startActivity(new Intent(this, DialogActivity.class));
+                    startActivity(new Intent(this, Dialog2Activity.class));
+                    startActivity(new Intent(this, Dialog3Activity.class));
+                    startActivity(new Intent(this, Dialog4Activity.class));
+                    startActivity(new Intent(this, Dialog5Activity.class));
+                    startActivity(new Intent(this, Test01Activity.class));
+                    startActivity(new Intent(this, Test02_MyViewActivity.class));
+                    startActivity(new Intent(this, SaveState02Activity.class));
+                    startActivity(new Intent(this, SaveState03Activity.class));
+                    startActivity(new Intent(this, DialogTest01Activity.class));
+                    startActivity(new Intent(this, DialogTest02Activity.class));
+                    startActivity(new Intent(this, DialogTest03Activity.class));
+                    startActivity(new Intent(this, DialogTest04Activity.class));
+                    startActivity(new Intent(this, DataBindingTest01Activity.class));
+                    startActivity(new Intent(this, NameActivityForViewModel.class));
+                    finish();
+                });
+    }
+
+
     private void launchRoomDBSamples() {
         Observable.just("Room DB")
                 .delay(1, TimeUnit.MILLISECONDS)
@@ -132,6 +168,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(new Intent(this, RecyclerViewActivity.class));
                     startActivity(new Intent(this, ListViewActivity.class));
                     startActivity(new Intent(this, ListView2Activity.class));
+                    startActivity(new Intent(this, ListView01Activity.class));
 
                     finish();
                 });
@@ -151,40 +188,6 @@ public class MainActivity extends AppCompatActivity {
                     finish();
                 });
     }
-
-    private void launchSampleActivities() {
-        Observable.just("")
-                .delay(1, TimeUnit.MILLISECONDS)
-                .subscribe(s -> {
-                    //startActivity(new Intent(this, LiveDataActivity.class));
-                    //startActivity(new Intent(this, ObserverActivity.class));
-
-                    startActivity(new Intent(this, CallOtherActivity.class));
-                    startActivity(new Intent(this, HashMapActivity.class));
-                    startActivity(new Intent(this, ViewActivity.class));
-                    startActivity(new Intent(this, HandlerActivity.class));
-                    startActivity(new Intent(this, LocationManagerActivity.class));
-                    startActivity(new Intent(this, TextViewActivity.class));
-                    startActivity(new Intent(this, AudioActivity.class));
-                    startActivity(new Intent(this, DialogActivity.class));
-                    startActivity(new Intent(this, Dialog2Activity.class));
-                    startActivity(new Intent(this, Dialog3Activity.class));
-                    startActivity(new Intent(this, Dialog4Activity.class));
-                    startActivity(new Intent(this, Dialog5Activity.class));
-                    startActivity(new Intent(this, Test01Activity.class));
-                    startActivity(new Intent(this, Test02_MyViewActivity.class));
-                    startActivity(new Intent(this, SaveState02Activity.class));
-                    startActivity(new Intent(this, SaveState03Activity.class));
-                    startActivity(new Intent(this, DialogTest01Activity.class));
-                    startActivity(new Intent(this, DialogTest02Activity.class));
-                    startActivity(new Intent(this, DialogTest03Activity.class));
-                    startActivity(new Intent(this, DialogTest04Activity.class));
-                    startActivity(new Intent(this, DataBindingTest01Activity.class));
-                    startActivity(new Intent(this, NameActivityForViewModel.class));
-                    finish();
-                });
-    }
-
 
 
 }
