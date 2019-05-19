@@ -26,6 +26,7 @@ import com.example.toronto.mystudyapp.view.HandlerActivity;
 import com.example.toronto.mystudyapp.view.HashMapActivity;
 import com.example.toronto.mystudyapp.view.ImageActivity;
 import com.example.toronto.mystudyapp.view.ListView01Activity;
+import com.example.toronto.mystudyapp.view.ListView02CustomActivity;
 import com.example.toronto.mystudyapp.view.ListView2Activity;
 import com.example.toronto.mystudyapp.view.ListView3Activity;
 import com.example.toronto.mystudyapp.view.ListViewActivity;
@@ -168,6 +169,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(new Intent(this, RecyclerViewActivity.class));
                     startActivity(new Intent(this, ListViewActivity.class));
                     startActivity(new Intent(this, ListView2Activity.class));
+                    startActivity(new Intent(this, ListView02CustomActivity.class));
                     startActivity(new Intent(this, ListView01Activity.class));
 
                     finish();
