@@ -146,7 +146,7 @@ public class ObserverMainActivity extends Activity {
 
         String[] objs_2 = {"6", "4", "2-T", "2", "6-T", "4-T"};
         Observable<GroupedObservable<String, String>> source_2 =
-                Observable.fromArray(objs_2).groupBy(Shape::getShape);
+                Observable.fromArray(objs_2).groupBy(Shape::getShape);    // <--- groupBy(함수)에서 Observable객체가 넘어옴 ( GroupedObservable<String, String> )
         source_2.subscribe(obj_2 -> {
             obj_2.filter(val -> obj_2.getKey().equals(Shape.BALL))
                     .subscribe(
