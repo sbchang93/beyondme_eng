@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:background="#eeeeee"
+    android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/image_listview02"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="start"
+        android:layout_marginEnd="8dp"/>
+
+    <TextView
+        android:id="@+id/title_listview02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/image_listview02"
+        android:layout_toEndOf="@+id/image_listview02"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:text="title"/>
+
+    <TextView
+        android:id="@+id/rating_listview02"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title_listview02"
+        android:layout_marginTop="1dp"
+        android:layout_toEndOf="@+id/image_listview02"
+        android:textSize="15sp"
+        android:text="rating"/>
+
+    <TextView
+        android:id="@+id/genre_listview02"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rating_listview02"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/image_listview02"
+        android:textColor="#666666"
+        android:textSize="13sp"
+        android:text="genre"/>
+
+    <TextView
+        android:id="@+id/year_listview02"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/image_listview02"
+        android:textColor="#888888"
+        android:textSize="12sp"
+        android:text="year"/>
+
+</RelativeLayout>
+
+<!--
+    android:layout_alignParentEnd ="true"
+    android:layout_gravity="start"
+    android:layout_gravity="end"
+-->
