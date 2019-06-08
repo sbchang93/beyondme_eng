@@ -1,0 +1,10 @@
+
+https://www.tutorialspoint.com/
+https://www.tutorialspoint.com/testng/testng_pdf_version.htm
+
+https://www.toolsqa.com/mobile-automation/appium/download-and-install-nodejs/
+
+https://nodejs.org/en/
+
+
+https://mvnrepository.com/artifact/io.appium/java-client
