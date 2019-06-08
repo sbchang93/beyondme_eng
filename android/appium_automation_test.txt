@@ -8,3 +8,18 @@ https://nodejs.org/en/
 
 
 https://mvnrepository.com/artifact/io.appium/java-client
+
+
+* Eclips
+https://www.eclipse.org/downloads/packages/release
+https://www.eclipse.org/downloads/packages/release/2018-09
+
+
+* TestNG - eclipse-2018-09까지만 지원함
+https://marketplace.eclipse.org/comment/6251#comment-6251
+
+-----------
+
+http://www.testng.org
+http://marketplace.eclipse.org/content/testng-eclipse
+https://github.com/cbeust/testng-eclipse/releases/tag/6.14.3.201902250526
