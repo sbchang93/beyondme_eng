@@ -1,6 +1,8 @@
 
 D:\Util_Android\appium_automation_test
 
+https://github.com/sbchang93/beyondme_eng/blob/master/android/appium_automation_test.txt
+
 https://www.toolsqa.com/mobile-automation/appium/download-and-install-nodejs/
 
 
