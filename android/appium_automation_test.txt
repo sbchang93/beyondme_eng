@@ -1,3 +1,5 @@
+https://github.com/sbchang93/Beyondme_Samplecode/blob/master/Utils/Appium_utils/appium_automation_test.txt
+
 
 ------------------------------------------
 
@@ -8,6 +10,11 @@
   
 * 현재 화면 가져 오기
 C:\Users\Administrator\AppData\Local\Android\sdk\tools\bin\uiautomatorviewer.bat
+
+------------------------------------------
+* Eclipe 위치
+C:\eclipse-2018-09\eclipse.exe
+C:\eclipse-2019-03\eclipse.exe
 
 ------------------------------------------
 
@@ -62,7 +69,10 @@ https://mvnrepository.com/artifact/io.appium/java-client
 http://www.java2s.com/Code/Jar/t/Downloadtestng68sourcesjar.htm
 
 --- 
+* commons-lang3-3.1.jar 추가
+http://www.java2s.com/Code/Jar/c/Downloadcommonslang331jar.htm
 
+--- 
 
 -----------
 
@@ -184,21 +194,29 @@ C:\Users\Administrator\AppData\Local\Android\sdk\tools\bin\uiautomatorviewer.bat
 
 ------------------------------------------
 
-### Appium과 Amazon 앱 연동해서 테스트 하는 방법 관련
+### Appium과 Helloworld 앱 연동해서 테스트 하는 방법 관련
 
 https://www.toolsqa.com/mobile-automation/appium/locate-element-using-uiautomatorviewer/
 
 [ 현재 화면 가져 오기 ] 
 C:\Users\Administrator\AppData\Local\Android\sdk\tools\bin\uiautomatorviewer.bat
 
- capabilities.setCapability("appPackage", "com.amazon.mShop");
- capabilities.setCapability("appActivity", "com.amazon.mShop.home.HomeActivity");
- //capabilities.setCapability("appActivity", "com.amazon.mShop.splashscreen.StartupActivity");
- 
+	driver.findElementById("com.example.sbchang.helloworld:id/btn_01").click();
+	Thread.sleep(2000);
 
+	driver.findElementById("com.example.sbchang.helloworld:id/btn_02").click();
+	Thread.sleep(1000);		
 
+// Not support : " driver.findElementByName "	
+//	driver.findElementByName("Button 01").click();
+//	Thread.sleep(1000);	
+
+	
 ------------------------------------------
 
+* TestRail 연동
+
+TestRail™– Free 30-Day Trial | Test Case Management Software‎
 
 
 ------------------------------------------
