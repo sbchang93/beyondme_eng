@@ -1,29 +1,102 @@
 
-D:\Util_Android\appium_automation_test
+------------------------------------------
+------------------------------------------
+* 내 컴퓨터 디렉토리 
+D:\Util_Android\Appium_utils
 
-https://github.com/sbchang93/beyondme_eng/blob/master/android/appium_automation_test.txt
+------------------------------------------
 
+
+------------------------------------------
+
+* eclips에서 Sample Code 
+  1. File > New > Project 
+     -> AppiumTestProject
+  2. ‘src‘ 폴더에서 마우스 오른쪽 클릭 
+      -> select New -> Package -> amazon 팩키지 추가 
+  3. Package ‘amazon‘에서 마우스 오른쪽 클릭
+      -> select New -> Class -> StartApplication 클래스 추가
+	 	 
+------------------------------------------
+
+* Add External JARs 추가 ( Lib 추가 )
+  : 나의 'AppiumTestProject‘ 프로젝트에서 마우스 오른쪽 클릭 -> Properties -> Java build path. 
+      -> Libraries tab -> Add External JARs. 선택
+	  . gson 추가
+	  . java-client 추가
+	  . selenium 추가
+	  . 기타 등등
+
+------------------------------------------
+* eclips에서 testNG관련 설정 관련
+
+. Window -> Eclipse Marketplace -> testNG 검색 및 설치
+
+. TestNG 창 열기 
+  Window -> Show View -> Other ... 
+   -> java -> TestNG 선택
+  
+. TestNG 클래스 추가
+  Package ‘amazon‘에서 마우스 오른쪽 클릭
+    -> New -> other ...
+	   -> TestNG -> TestNG class 선택
+          ( @BeforeMethod 하나 체크 
+		    => 매번 내가 만든 테스트용 Method 수행되기 전에 먼저 수행되는 함수임. )
+   * 아마, 소스코드에 Error 표시의 줄무늬가 나오면 'x'표를 누르면 Add "TestNG" 할까요 나오는데 클릭해서 추가해 주면 됨.
+
+			
+			
+
+------------------------------------------
+[ 최초 설치 관련 내용 ]
+
+* Appium 설치 가이드 (잘 설명되어 있음. )
 https://www.toolsqa.com/mobile-automation/appium/download-and-install-nodejs/
 
+-------
+[ nodejs 설치 ]
+https://nodejs.org/en/
+
+-------
+[ eclips설치 ]
+* Eclips ( eclipse-2018-09까지만 지원함 )
+https://www.eclipse.org/downloads/packages/release/2018-09
+https://www.eclipse.org/downloads/packages/release
+
+* TestNG - eclipse-2018-09까지만 지원함
+https://marketplace.eclipse.org/comment/6251#comment-6251
+
+-------
+[ testNG 설명 (Test Next Generation) ]
+
+https://www.tutorialspoint.com/testng/testng_pdf_version.htm
+=> testng_tutorial.pdf
+
+-----------
+* testng 설명서
+https://testng.org/doc/documentation-main.html#introduction
+
+
+-------
 
 https://www.tutorialspoint.com/
 https://www.tutorialspoint.com/testng/testng_pdf_version.htm
 
 
+-----------
 
-https://nodejs.org/en/
+[ 각종 jar 화일들 ] 
 
-
+* java-client jar 위치
 https://mvnrepository.com/artifact/io.appium/java-client
 
+--- 
 
-* Eclips
-https://www.eclipse.org/downloads/packages/release
-https://www.eclipse.org/downloads/packages/release/2018-09
+* testng-6.8.jar 화일 ( C:\TestNG )
+http://www.java2s.com/Code/Jar/t/Downloadtestng68sourcesjar.htm
 
+--- 
 
-* TestNG - eclipse-2018-09까지만 지원함
-https://marketplace.eclipse.org/comment/6251#comment-6251
 
 -----------
 
@@ -37,13 +110,6 @@ https://testng.org/doc/eclipse.html
 
 * testng_tutorial.pdf 설명 화일
 
------------
-* testng-6.8.jar 화일 ( C:\TestNG )
-http://www.java2s.com/Code/Jar/t/Downloadtestng68sourcesjar.htm
-
------------
-* testng 설명서
-https://testng.org/doc/documentation-main.html#introduction
 
 -----------
 
