@@ -1,58 +1,24 @@
 
 ------------------------------------------
-------------------------------------------
-* 내 컴퓨터 디렉토리 
-D:\Util_Android\Appium_utils
 
-------------------------------------------
-
-
-------------------------------------------
-
-* eclips에서 Sample Code 
-  1. File > New > Project 
-     -> AppiumTestProject
-  2. ‘src‘ 폴더에서 마우스 오른쪽 클릭 
-      -> select New -> Package -> amazon 팩키지 추가 
-  3. Package ‘amazon‘에서 마우스 오른쪽 클릭
-      -> select New -> Class -> StartApplication 클래스 추가
-	 	 
-------------------------------------------
-
-* Add External JARs 추가 ( Lib 추가 )
-  : 나의 'AppiumTestProject‘ 프로젝트에서 마우스 오른쪽 클릭 -> Properties -> Java build path. 
-      -> Libraries tab -> Add External JARs. 선택
-	  . gson 추가
-	  . java-client 추가
-	  . selenium 추가
-	  . 기타 등등
-
-------------------------------------------
-* eclips에서 testNG관련 설정 관련
-
-. Window -> Eclipse Marketplace -> testNG 검색 및 설치
-
-. TestNG 창 열기 
-  Window -> Show View -> Other ... 
-   -> java -> TestNG 선택
+* 설치된 이후에 
+  Appium을 관리자 모드로 실행함.
+  - ip : 127.0.0.1
+  - port : 4723
   
-. TestNG 클래스 추가
-  Package ‘amazon‘에서 마우스 오른쪽 클릭
-    -> New -> other ...
-	   -> TestNG -> TestNG class 선택
-          ( @BeforeMethod 하나 체크 
-		    => 매번 내가 만든 테스트용 Method 수행되기 전에 먼저 수행되는 함수임. )
-   * 아마, 소스코드에 Error 표시의 줄무늬가 나오면 'x'표를 누르면 Add "TestNG" 할까요 나오는데 클릭해서 추가해 주면 됨.
-
-			
-			
+* 현재 화면 가져 오기
+C:\Users\Administrator\AppData\Local\Android\sdk\tools\bin\uiautomatorviewer.bat
 
 ------------------------------------------
+
+###### 맨 처음에 최초 설치시 참조 하기 ######
+
 [ 최초 설치 관련 내용 ]
 
 * Appium 설치 가이드 (잘 설명되어 있음. )
 https://www.toolsqa.com/mobile-automation/appium/download-and-install-nodejs/
-
+ 
+ 
 -------
 [ nodejs 설치 ]
 https://nodejs.org/en/
@@ -114,5 +80,129 @@ https://testng.org/doc/eclipse.html
 -----------
 
 
+------------------------------------------
+
+[ eclips 환경 설정 관련 도우미 내용들 ] 
+
+* eclips에서 Sample Code 
+  1. File > New > Project 
+     -> AppiumTestProject
+  2. ‘src‘ 폴더에서 마우스 오른쪽 클릭 
+      -> select New -> Package -> amazon 팩키지 추가 
+  3. Package ‘amazon‘에서 마우스 오른쪽 클릭
+      -> select New -> Class -> StartApplication 클래스 추가
+	 	 
+------------------------------------------
+
+* Add External JARs 추가 ( Lib 추가 )
+  : 나의 'AppiumTestProject‘ 프로젝트에서 마우스 오른쪽 클릭 -> Properties -> Java build path. 
+      -> Libraries tab -> Add External JARs. 선택
+	  . gson 추가
+	  . java-client 추가
+	  . selenium 추가
+	  . 기타 등등
+
+------------------------------------------
+* eclips에서 testNG관련 설정 관련
+
+. Window -> Eclipse Marketplace -> testNG 검색 및 설치
+
+. TestNG 창 열기 
+  Window -> Show View -> Other ... 
+   -> java -> TestNG 선택
+  
+. TestNG 클래스 추가
+  Package ‘amazon‘에서 마우스 오른쪽 클릭
+    -> New -> other ...
+	   -> TestNG -> TestNG class 선택
+          ( @BeforeMethod 하나 체크 
+		    => 매번 내가 만든 테스트용 Method 수행되기 전에 먼저 수행되는 함수임. )
+   * 아마, 소스코드에 Error 표시의 줄무늬가 나오면 'x'표를 누르면 Add "TestNG" 할까요 나오는데 클릭해서 추가해 주면 됨.
+
+   
+. windonw -> Preferences
+   -> TestNG 클릭 
+      ( TestNG, Maven, Run/Debug 나옴 )   
+
+. 나의 프로젝트 "AppiumTestProject"에서 마우스 오른쪽으로 클릭
+   -> Properties -> TestNG 클릭 
+      ( 정보가 조금만 나옴. )
+			
+			
+------------------------------------------
+
+------------------------------------------
+* 내 컴퓨터 디렉토리 
+D:\Util_Android\Appium_utils
+
+------------------------------------------
+[ android 관련 ]
+C:\Users\Administrator\AppData\Local\Android\sdk
+C:\Users\Administrator\AppData\Local\Android\sdk\tools\bin\uiautomatorviewer.bat
+
+[ 현재 화면 가져 오기 ] 
+C:\Users\Administrator\AppData\Local\Android\sdk\tools\bin\uiautomatorviewer.bat
 
 
+[ 자주 사용하는 명령어 ]
+
+> adb devices
+> adb shell dumpsys activity  > Log_0001.txt
+    => Running activities 찾기 
+	
+------------------------------------------
+[ android 관련 ]
+C:\Users\Administrator\AppData\Local\Android\sdk
+C:\Users\Administrator\AppData\Local\Android\sdk\tools\bin\uiautomatorviewer.bat
+
+[ 현재 화면 가져 오기 ] 
+C:\Users\Administrator\AppData\Local\Android\sdk\tools\bin\uiautomatorviewer.bat
+
+[ 자주 사용하는 명령어 ]
+
+> adb devices
+
+
+
+* appium에서 보내는 adb 명령어들 예제
+> adb.exe -P 5037 -s R38KB06BLQM shell pm install /data/local/tmp/appium_cache/77841dfedce37855a73e461f62ea7662841930a3.apk
+> adb.exe -P 5037 -s R38KB06BLQM shell rm -rf /data/local/tmp/strings.json
+> adb.exe -P 5037 -s R38KB06BLQM shell mkdir -p /data/local
+> adb.exe -P 5037 -s R38KB06BLQM push C\:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\com.amazon.mShop\\strings.json /data/local/tmp
+
+> adb.exe -P 5037 -s R38KB06BLQM forward tcp\:4724 tcp\:4724
+> adb -P 5037 -s R38KB06BLQM shell am force-stop com.amazon.mShop
+> adb -P 5037 -s R38KB06BLQM shell pgrep -f uiautomator
+
+[UiAutomator] Starting UIAutomator
+[ADB] Creating ADB subprocess with args: 
+["-P",5037,"-s","R38KB06BLQM","shell","uiautomator","runtest","AppiumBootstrap.jar",
+"-c","io.appium.android.bootstrap.Bootstrap","-e","pkg","com.amazon.mShop",
+"-e","disableAndroidWatchers",false,"-e","acceptSslCerts",false]
+
+------------------------------------------
+
+------------------------------------------
+
+### Appium과 Amazon 앱 연동해서 테스트 하는 방법 관련
+
+https://www.toolsqa.com/mobile-automation/appium/locate-element-using-uiautomatorviewer/
+
+[ 현재 화면 가져 오기 ] 
+C:\Users\Administrator\AppData\Local\Android\sdk\tools\bin\uiautomatorviewer.bat
+
+ capabilities.setCapability("appPackage", "com.amazon.mShop");
+ capabilities.setCapability("appActivity", "com.amazon.mShop.home.HomeActivity");
+ //capabilities.setCapability("appActivity", "com.amazon.mShop.splashscreen.StartupActivity");
+ 
+
+
+------------------------------------------
+
+
+
+------------------------------------------
+
+
+------------------------------------------
+ 
