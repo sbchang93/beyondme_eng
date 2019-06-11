@@ -1,0 +1,18 @@
+package : com.amazon.mShop.android.shopping;
+Activity : com.amazon.mShop.home.HomeActivity
+
+
+//com.amazon.mShop.android.shopping/com.amazon.mShop.home.HomeActivity
+//com.amazon.mShop.android.shopping/com.amazon.mShop.startup.StartupLocalizationSelectionActivity 
+//com.amazon.mShop.home.HomeActivity
+//com.amazon.mShop.startup.StartupLocalizationSelectionActivity
+//com.amazon.mShop.splashscreen.StartupActivity
+//com.amazon.mShop.home.web.MShopWebGatewayActivity
+
+-----------------------------
+
+
+* Android SDK를 이용한 현재 화면 가져 오기
+C:\Users\Administrator\AppData\Local\Android\sdk\tools\bin\uiautomatorviewer.bat
+C:\Users\HOME\AppData\Local\Android\sdk\tools\bin\uiautomatorviewer.bat
+
