@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/tv_01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView 01" />
+
+    <Button
+        android:id="@+id/btn_01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button 01"/>
+
+    <EditText
+        android:id="@+id/et_01"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Edit text 01"/>
+
+    <TextView
+        android:id="@+id/tv_02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView 02" />
+
+    <Button
+        android:id="@+id/btn_02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button 02"/>
+
+    <EditText
+        android:id="@+id/et_02"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Edit text 02"/>
+
+
+</LinearLayout>

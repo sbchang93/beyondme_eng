@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv_00"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView 00" />
+
+        <ImageView
+            android:id="@+id/image_listview01"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:visibility="visible"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView 01" />
+
+        <Button
+            android:id="@+id/btn_01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button 01"/>
+
+        <EditText
+            android:id="@+id/et_01"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Edit text 01"/>
+
+        <TextView
+            android:id="@+id/tv_02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView 02" />
+
+        <Button
+            android:id="@+id/btn_02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button 02"/>
+
+        <EditText
+            android:id="@+id/et_02"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Edit text 02"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/linear01_button01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="linear01 button01" />
+
+            <Button
+                android:id="@+id/linear01_button02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="linear01 button02" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/linear02_textview01"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="32sp"
+                android:text="linear02 textview01"/>
+
+            <EditText
+                android:id="@+id/linear02_edittext01"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="linear02 edit text01"/>
+
+            <Button
+                android:id="@+id/linear02_button01"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="linear02 button01"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

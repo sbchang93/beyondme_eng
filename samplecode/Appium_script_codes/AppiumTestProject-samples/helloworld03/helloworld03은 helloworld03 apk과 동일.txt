@@ -1,0 +1,11 @@
+package : com.example.toronto.helloworld02;
+Activity : com.example.toronto.helloworld02.MainActivity
+
+
+-----------------------------
+
+
+* Android SDK를 이용한 현재 화면 가져 오기
+C:\Users\Administrator\AppData\Local\Android\sdk\tools\bin\uiautomatorviewer.bat
+C:\Users\HOME\AppData\Local\Android\sdk\tools\bin\uiautomatorviewer.bat
+
