@@ -8,8 +8,9 @@ https://github.com/sbchang93/Beyondme_Samplecode/blob/master/Utils/Appium_utils/
   - ip : 127.0.0.1
   - port : 4723
   
-* 현재 화면 가져 오기
+* Android SDK를 이용한 현재 화면 가져 오기
 C:\Users\Administrator\AppData\Local\Android\sdk\tools\bin\uiautomatorviewer.bat
+C:\Users\HOME\AppData\Local\Android\sdk\tools\bin\uiautomatorviewer.bat
 
 ------------------------------------------
 * Eclipe 위치
@@ -152,14 +153,37 @@ C:\Users\Administrator\AppData\Local\Android\sdk\tools\bin\uiautomatorviewer.bat
 
 [ 현재 화면 가져 오기 ] 
 C:\Users\Administrator\AppData\Local\Android\sdk\tools\bin\uiautomatorviewer.bat
-
+C:\Users\home\AppData\Local\Android\sdk\tools\bin\uiautomatorviewer.bat
 
 [ 자주 사용하는 명령어 ]
 
+* Activity 찾는 방법 00
+  : Apk Info 앱을 설치한다. (구글 Play Store)
+
+  
+* Activity 찾는 방법 01
 > adb devices
 > adb shell dumpsys activity  > Log_0001.txt
     => Running activities 찾기 
+
 	
+* Activity 찾는 방법 02
+> adb shell
+> dumpsys window windows | grep -E 'mCurrentFocus|mFocusedApp'
+=> 결과 : 
+  mCurrentFocus=Window{c0c024d0 u0 com.amazon.mShop.android.shopping/com.amazon.mShop.sso.SigninPromptActivity}
+  mFocusedApp=AppWindowToken{722bb5d token=Token{b5ef134 
+      ActivityRecord{6eb8c07d0 u0 com.amazon.mShop.android.shopping/com.amazon.mShop.sso.SigninPromptActivity t166}}}
+
+* Phone에서 컴퓨터로 앱을 복사해 주는 앱
+  => Easy Backup & Restore 설치
+
+  
+* adb 명령어드 모음들
+  => https://www.toolsqa.com/mobile-automation/appium/adb-commands/
+  
+  
+	  
 ------------------------------------------
 [ android 관련 ]
 C:\Users\Administrator\AppData\Local\Android\sdk
@@ -220,6 +244,10 @@ TestRail™– Free 30-Day Trial | Test Case Management Software‎
 
 
 ------------------------------------------
+
+* 크롬 명령어
+
+chrome://inspect/#devices
 
 
 ------------------------------------------
