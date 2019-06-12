@@ -102,6 +102,7 @@ https://testng.org/doc/eclipse.html
       -> select New -> Package -> amazon 팩키지 추가 
   3. Package ‘amazon‘에서 마우스 오른쪽 클릭
       -> select New -> Class -> StartApplication 클래스 추가
+         : public static void main(String[] args) 를 체크함
 	 	 
 ------------------------------------------
 
