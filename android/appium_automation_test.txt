@@ -96,7 +96,7 @@ https://testng.org/doc/eclipse.html
 [ eclips 환경 설정 관련 도우미 내용들 ] 
 
 * eclips에서 Sample Code 
-  1. File > New > Project 
+  1. File > New > Java Project 
      -> AppiumTestProject
   2. ‘src‘ 폴더에서 마우스 오른쪽 클릭 
       -> select New -> Package -> amazon 팩키지 추가 
