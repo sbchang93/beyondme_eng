@@ -1,6 +1,5 @@
 https://github.com/sbchang93/Beyondme_Samplecode/blob/master/Utils/Appium_utils/appium_automation_test.txt
 
-
 ------------------------------------------
 
 * 설치된 이후에 
@@ -11,12 +10,27 @@ https://github.com/sbchang93/Beyondme_Samplecode/blob/master/Utils/Appium_utils/
 * Android SDK를 이용한 현재 화면 가져 오기
 C:\Users\Administrator\AppData\Local\Android\sdk\tools\bin\uiautomatorviewer.bat
 C:\Users\HOME\AppData\Local\Android\sdk\tools\bin\uiautomatorviewer.bat
+C:\android\sdk\tools\bin\uiautomatorviewer.bat
 
 ------------------------------------------
 * Eclipe 위치
 C:\eclipse-2018-09\eclipse.exe
 C:\eclipse-2019-03\eclipse.exe
 
+
+----------
+* eclipse에서 사용하고 있던 project들을 제거
+  : 설치 eclipse 폴더의 configuration\.settings 폴더에 
+     org.eclipse.ui.ide.prefs 화일에서 RECENT_WORKSPACES=C\:\\eclipse_workspace-2018-09 내용 삭제.
+  
+  
+* eclips에서 testNG관련 설정 관련
+  . Window -> Eclipse Marketplace -> testNG 검색 및 설치
+
+. TestNG 창 열기 
+  Window -> Show View -> Other ... 
+   -> java -> TestNG 선택
+   
 ------------------------------------------
 
 ###### 맨 처음에 최초 설치시 참조 하기 ######
@@ -39,6 +53,20 @@ https://www.eclipse.org/downloads/packages/release
 
 * TestNG - eclipse-2018-09까지만 지원함
 https://marketplace.eclipse.org/comment/6251#comment-6251
+
+
+-------
+
+[ testNG 설치 ]
+
+  : 참고로  testNG는 eclipse-2018-09까지만 지원함 
+
+* eclips에서 testNG관련 설정 관련
+  . Window -> Eclipse Marketplace -> testNG 검색 및 설치
+
+. TestNG 창 열기 
+  Window -> Show View -> Other ... 
+   -> java -> TestNG 선택
 
 -------
 [ testNG 설명 (Test Next Generation) ]
@@ -102,7 +130,7 @@ https://testng.org/doc/eclipse.html
       -> select New -> Package -> amazon 팩키지 추가 
   3. Package ‘amazon‘에서 마우스 오른쪽 클릭
       -> select New -> Class -> StartApplication 클래스 추가
-         : public static void main(String[] args) 를 체크함
+	     public static void main(String[] args) 를 체크함
 	 	 
 ------------------------------------------
 
@@ -243,6 +271,12 @@ C:\Users\Administrator\AppData\Local\Android\sdk\tools\bin\uiautomatorviewer.bat
 
 TestRail™– Free 30-Day Trial | Test Case Management Software‎
 
+TestRail Exceptions
+Get exception of the following IPs
+IP: 105.**.**.** Ports: 80, 8080, 443
+
+1. Proxy 예외 처리 
+2. credential 계정의 Id / Passwd 필요
 
 ------------------------------------------
 
