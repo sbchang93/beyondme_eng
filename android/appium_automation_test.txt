@@ -1,5 +1,8 @@
 https://github.com/sbchang93/Beyondme_Samplecode/blob/master/Utils/Appium_utils/appium_automation_test.txt
 
+* Appium 환경 설치 설명이 잘 되어있는 홈페이지 주소 (Appium, nodejs, PdaNet, eclipse, TestNG, 쉽고 간단한 예제들 등 )
+  : https://www.toolsqa.com/mobile-automation/appium/download-and-install-nodejs/
+
 ------------------------------------------
 
 * 설치된 이후에 
