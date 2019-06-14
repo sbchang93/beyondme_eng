@@ -288,5 +288,8 @@ IP: 105.**.**.** Ports: 80, 8080, 443
 chrome://inspect/#devices
 
 
+> npm install -g appium  : 실행하면 아래의 폴더에 appium node가 설치됨.
+C:\Users\HOME\AppData\Roaming\npm\node_modules
+
 ------------------------------------------
  
