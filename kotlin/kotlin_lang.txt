@@ -20,13 +20,50 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 
+// reference link : https://kotlinlang.org/docs/reference/control-flow.html#when-expression
+
 class MainActivity : AppCompatActivity() {
     private final var TAG = "test_Kotlin";
+
+    fun hasPrefix(x: Any) = when(x) {
+        is String -> x.startsWith("prefix")
+        else -> false
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+            // ======================================
+            var a = 1
+            var b = 2
+
+            // Traditional usage
+            var max = a
+            if (a < b) max = b
+
+            // ======================================
+            // With else
+            if (a > b) {
+                max = a
+            } else {
+                max = b
+            }
+
+            // ======================================
+            // As expression
+            max = if (a > b) a else b
+
+            // ======================================
+            max = if (a > b) {
+            print("Choose a")
+            a
+        } else {
+            print("Choose b")
+            b
+        }
+
+        // ======================================
         var x = 1
 
         when (x) {
@@ -37,13 +74,38 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        // ======================================
         x = 2
         when (x) {
             0, 1 -> Log.d(TAG,"x == 0 or x == 1")
             else -> Log.d(TAG,"otherwise")
         }
+
+        when( hasPrefix("prefix-test") ) {
+            true -> Log.d(TAG,"start with prefix")
+            false -> Log.d(TAG,"other strings")
+        }
     }
 }
 
+
+-----------------------------
+
+
+https://www.codingfactory.net/10903
+
+'abcde'.startsWith( 'a' )
+===> abcde가 a로 시작하는지 검사합니다. a로 시작하므로 true를 반환합니다.
+
+'abcde'.startsWith( 'a', 1 )
+===> bcde가 a로 시작하는지 검사합니다. a로 시작하지 않으므로 false를 반환합니다.
+
+'abcde'.startsWith( 'A' )
+===> abcde가 A로 시작하는지 검사합니다. 대소문자를 구분하므로 false를 반환합니다.
+
+
+JavaScript / 문자열(String) / .endsWith() – 특정 문자열로 끝나는지 확인하는 메서드
+
+JavaScript / 문자열(String) / .includes() – 특정 문자열을 포함하는지 확인하는 메서드
 
 -----------------------------
