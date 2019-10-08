@@ -1,0 +1,49 @@
+
+-----------------------------
+
+http://try.kotl.in
+
+
+-----------------------------
+
+* Kotlin 문법
+
+https://kotlinlang.org/docs/reference/control-flow.html#when-expression
+
+
+
+-----------------------------
+
+package com.example.toronto.hellokotlin
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.util.Log
+
+class MainActivity : AppCompatActivity() {
+    private final var TAG = "test_Kotlin";
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        var x = 1
+
+        when (x) {
+            1 -> Log.d(TAG,"x == 1")
+            2 -> Log.d(TAG,"x == 2")
+            else -> { // Note the block
+                Log.d(TAG,"x is neither 1 nor 2")
+            }
+        }
+
+        x = 2
+        when (x) {
+            0, 1 -> Log.d(TAG,"x == 0 or x == 1")
+            else -> Log.d(TAG,"otherwise")
+        }
+    }
+}
+
+
+-----------------------------
