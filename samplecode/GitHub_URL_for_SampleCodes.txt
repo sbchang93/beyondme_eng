@@ -1,5 +1,13 @@
 [git 명령어] > git reset --hard origin/master
 
+
+----------------------------------------------------------------
+
+* navigation 소스 
+  ( navigation_google_io-master.zip <--- 구글에서 받아서 홈페잊 설명처럼 주석 모두 제거하고 빌드해서 실행완료한 압축 소스 )
+설명 홈페이지 : https://codelabs.developers.google.com/codelabs/android-navigation/#1
+구글 샘플 소스 : https://github.com/googlecodelabs/android-navigation/archive/master.zip
+
 ----------------------------------------------------------------
 
 * web3j-Android-example
