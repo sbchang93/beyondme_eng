@@ -1,22 +1,31 @@
----------------------------------------------------------------------------------------
 
-* 참조용 소스 코드 
-https://github.com/songmho/Moa/tree/master/app/src/main 
+
 
 ---------------------------------------------------------------------------------------
+
+* Kotil 문법
+
+http://try.kotl.in
+
+https://kotlinlang.org/docs/reference/control-flow.html#when-expression
+
+
+* Kotlin 물음표(?) 설명
+https://thdev.tech/kotlin/2016/08/02/Basic-Kotlin-01/
+nullable : ?
+nullable 이면 오류 발생 : !!
+
+// ABC 객체의 .a를 return 하지만 abc가 null이면 null을 리턴합니다.
+fun abc(abc: ABC?): Int? {
+  // ...
+  return abc?.a
+}
+
+
 * Kotlin 기본 문법
 https://thdev.tech/kotlin/2016/08/02/Basic-Kotlin-01.html
 
----------------------------------------------------------------------------------------
 
-* 기초 다지기 ( 참조용 홈페이지 )
-https://docs.microsoft.com/ko-kr/xamarin/android/user-interface/layouts/list-view/customizing-appearance
-
----------------------------------------------------------------------------------------
-
-
-
----------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------
 
 * 디자인 패턴(Design Pattern), 안드로이드, MVP, MVVM 등
@@ -25,6 +34,114 @@ https://code.tutsplus.com/ko/tutorials/introduction-to-android-architecture--cms
 
 https://github.com/ZeroBrain/Android-MVP-AdapterRoleSample/tree/master/app/src/main/java/com/nobrain/samples/adapterrolesample/main/adapter
 
+---------------------------------------------------------------------------------------
+
+* navigaton - Jetpack
+https://developer.android.com/guide/navigation/
+https://codelabs.developers.google.com/codelabs/android-navigation/#0
+
+
+https://medium.com/@maryangmin/navigation-components-in-android-jetpack-1-introduction-e38442f70f
+https://medium.com/@maryangmin/navigation-components-in-android-jetpack-2-safeargs-deeplinking-473ef1d424d1
+
+
+https://www.charlezz.com/?p=354
+https://trend21c.tistory.com/2077
+
+
+* adb 명령어 ( https://codelabs.developers.google.com/codelabs/android-navigation/#10 )
+adb shell am start -a android.intent.action.VIEW -d "http://www.example.com/urlTest" 
+
+* 그 다음으로 추가로 공부할 수 있는 모듈들 (아래의 링크 클릭)
+  -> https://codelabs.developers.google.com/codelabs/android-navigation/#12 
+For more about the Navigation Component check out the documentation. If you're interested in learning about other Architecture Components, try the following codelabs:
+. Room with a View Codelab (LiveData, ViewModel and Room)
+. Android WorkManager Codelab
+. Android Paging Codelab
+. Android Lifecycle-aware components Codelab (LiveData and ViewModel)
+. Android Persistence Codelab (Room)
+
+---------------------------------------------------------------------------------------
+
+APK Analyzer ( 안드로이드 스튜디오에서 "Build -> Analyzer APK" 선택 )
+
+https://developer.android.com/studio/build/apk-analyzer
+
+
+---------------------------------------------------------------------------------------
+
+* Database 관련 ( DB 예제 소스 ) - 나중에 봐 보기 ...
+https://github.com/amitshekhariitbhu/Android-Debug-Database
+
+---------------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------------
+
+
+
+
+... 아래 내용은 괜찮은 링크인지 다시 한번 보자.
+
+--> 여기
+
+---------------------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+* Observe 관련 링크들
+
+   . https://brunch.co.kr/@lonnie/18
+
+   . https://blog.danlew.net/2014/09/15/grokking-rxjava-part-1/ (크롬 브로우저에서 보임 )
+
+   . https://academy.realm.io/kr/posts/mobilization-hugo-visser-rxjava-for-rest-of-us/
+
+   . https://medium.com/@nyjsarang/android-architecture-2-mvp-rxjava-f0204b342160
+
+
+* 함수들
+   . https://www.grokkingandroid.com/rxjavas-side-effect-methods/
+   
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+* Map과 Flatmap 설명 
+
+http://developer88.tistory.com/68
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+* RxJava
+
+https://blog.danlew.net/2014/09/15/grokking-rxjava-part-1/
+
+https://medium.com/nspoons/rxjava-part-2-operator-operator-7cc8b9bcfe05
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+* RxJava, Observable 생성하기
+
+  - https://brunch.co.kr/@lonnie/18
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+---------------------------------------------------------------------------------------
+
+* 참조용 소스 코드 
+https://github.com/songmho/Moa/tree/master/app/src/main 
+
+---------------------------------------------------------------------------------------
+
+* 기초 다지기 ( 참조용 홈페이지 )
+https://docs.microsoft.com/ko-kr/xamarin/android/user-interface/layouts/list-view/customizing-appearance
+
+---------------------------------------------------------------------------------------
 
 ---------------------------------------------------------------------------------------
 
@@ -49,11 +166,6 @@ http://biig.tistory.com/74?category=562387
 http://limkydev.tistory.com/65
 (권한 설정 관련 ) https://code.i-harness.com/ko/q/208eba8
 (권한 설정 관련 ) http://limkydev.tistory.com/65
-
----------------------------------------------------------------------------------------
-
-* Database 관련
-https://github.com/amitshekhariitbhu/Android-Debug-Database
 
 ---------------------------------------------------------------------------------------
 
