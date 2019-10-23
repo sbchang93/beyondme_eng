@@ -3,6 +3,17 @@
 
 ----------------------------------------------------------------
 
+FragmentExample 폴더의 코드 참조 (2019.10.23 빌드 및 실행 성공)
+ - androidx.fragment.app.Fragment 등의 androidx 이용
+ - SdkVersion 29 버전에서 빌드
+   
+*  FragmentLayout.java 예제 설명 자료 ( 아래의 코드들은 오래되어서 Lib도 안 맞고 잘 동작 안 함. )
+  (0) https://github.com/aosp-mirror/platform_development/blob/master/samples/ApiDemos/src/com/example/android/apis/app/FragmentLayout.java
+  (1) http://wawoops67.blogspot.com/2013/02/android-fragment-example.html 
+  (2) https://unikys.tistory.com/318
+
+----------------------------------------------------------------
+
 * navigation 소스 
   ( navigation_google_io-master.zip <--- 구글에서 받아서 홈페잊 설명처럼 주석 모두 제거하고 빌드해서 실행완료한 압축 소스 )
 설명 홈페이지 : https://codelabs.developers.google.com/codelabs/android-navigation/#1
