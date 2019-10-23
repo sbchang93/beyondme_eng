@@ -15,7 +15,8 @@ FragmentExample 폴더의 코드 참조 (2019.10.23 빌드 및 실행 성공)
 ----------------------------------------------------------------
 
 * navigation 소스 
-  ( navigation_google_io-master.zip <--- 구글에서 받아서 홈페잊 설명처럼 주석 모두 제거하고 빌드해서 실행완료한 압축 소스 )
+  : navigation_google_io-master-running-kotlin 폴더의 소스 참조 ( 홈페이지에 얘기한 것처럼 주석 모두 제거함. )
+  
 설명 홈페이지 : https://codelabs.developers.google.com/codelabs/android-navigation/#1
 구글 샘플 소스 : https://github.com/googlecodelabs/android-navigation/archive/master.zip
 
