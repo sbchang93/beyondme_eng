@@ -14,11 +14,14 @@ FragmentExample 폴더의 코드 참조 (2019.10.23 빌드 및 실행 성공)
 
 ----------------------------------------------------------------
 
-* navigation 소스 
-  : navigation_google_io-master-running-kotlin 폴더의 소스 참조 ( 홈페이지에 얘기한 것처럼 주석 모두 제거함. )
+* navigation 소스 (코틀린 소스)
+  -> navigation_google_io-master-running-kotlin 폴더의 소스 참조 ( 홈페이지에 얘기한 것처럼 주석 모두 제거함. )
   
 설명 홈페이지 : https://codelabs.developers.google.com/codelabs/android-navigation/#1
 구글 샘플 소스 : https://github.com/googlecodelabs/android-navigation/archive/master.zip
+
+* Navigation UI ( 자보 소스 )
+  -> navigation_ui_java 폴더 
 
 ----------------------------------------------------------------
 
