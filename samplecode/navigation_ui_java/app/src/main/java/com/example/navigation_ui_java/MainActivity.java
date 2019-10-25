@@ -43,12 +43,13 @@ public class MainActivity extends AppCompatActivity {
         navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.my_nav_host_fragment);
         assert navHostFragment != null;
         navController = navHostFragment.getNavController();
-        //--------------------------------------------------------------------------------------------------------------
 
+        //--------------------------------------------------------------------------------------------------------------
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        NavigationUI.setupWithNavController(toolbar, NavHostFragment.findNavController(navHostFragment));
+        //NavigationUI.setupWithNavController(toolbar, NavHostFragment.findNavController(navHostFragment));
 
+        //--------------------------------------------------------------------------------------------------------------
 //        ActionBar actionBar = getSupportActionBar();
 //        assert actionBar != null;
 //        actionBar.setDisplayHomeAsUpEnabled(true);
@@ -69,8 +70,6 @@ public class MainActivity extends AppCompatActivity {
 
         //--------------------------------------------------------------------------------------------------------------
         // Set up Action Bar
-        //mAppBarConfiguration = new AppBarConfiguration(navController.getGraph());
-
         Set<Integer> topLevelDests = new HashSet<>();
         topLevelDests.add(R.id.home_dest);
         topLevelDests.add(R.id.deeplink_dest);
@@ -79,7 +78,11 @@ public class MainActivity extends AppCompatActivity {
         mAppBarConfiguration = new AppBarConfiguration.Builder(topLevelDests)
                 .setDrawerLayout(mDrawerLayout)
                 .build();
-        NavigationUI.setupActionBarWithNavController(this, navController, mDrawerLayout);
+
+        //NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+
+        NavigationUI.setupWithNavController(toolbar,navController,mAppBarConfiguration);
+
         //--------------------------------------------------------------------------------------------------------------
 
         //--------------------------------------------------------------------------------------------------------------
@@ -97,13 +100,15 @@ public class MainActivity extends AppCompatActivity {
     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        Boolean retValue = super.onCreateOptionsMenu(menu);
+
         NavigationView navigationView = (NavigationView)findViewById(R.id.nav_view);
 
         if (navigationView == null) {
             getMenuInflater().inflate(R.menu.overflow_menu, menu);
             return true;
         }
-        return super.onCreateOptionsMenu(menu);
+        return retValue;
     }
 
     @Override
@@ -120,8 +125,13 @@ public class MainActivity extends AppCompatActivity {
 
         if (item.getItemId() == R.id.home_dest) {
             navController.navigate(R.id.home_dest, null, options);
+            return true;
         } else if (item.getItemId() == R.id.deeplink_dest) {
             navController.navigate(R.id.deeplink_dest, null, options);
+            return true;
+        } else if (item.getItemId() == R.id.settings_dest) {
+            navController.navigate(R.id.settings_dest, null, options);
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
