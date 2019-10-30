@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--https://itpangpang.xyz/39?category=555744-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:drawable="@drawable/tv_off"
+        android:state_pressed="false"
+        />
+    <item
+        android:drawable="@drawable/tv_on"
+        android:state_pressed="true"
+        />
+</selector>
