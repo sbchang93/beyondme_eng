@@ -75,6 +75,11 @@
         <activity android:name=".view.DataBindingTest01Activity" />
         <activity android:name=".view.NameActivityForViewModel" />
         <activity android:name=".view.UserActivity" />
+        <activity android:name=".view.ViewPagerActivity" />
+        <activity android:name=".view.ViewPagerCustomActivity" />
+        <activity android:name=".view.RecyclerView2Activity" />
+        <activity android:name=".view.RecyclerView3Activity" />
+
     </application>
 
 </manifest>
