@@ -11,32 +11,38 @@
 
 
     <Button
-        android:id="@+id/normalSamples"
+        android:id="@+id/normal_samples"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Normal Samples"/>
 o
     <Button
-        android:id="@+id/dbSamples"
+        android:id="@+id/db_samples"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Room, DB"/>
 
     <Button
-        android:id="@+id/observalbeSamples"
+        android:id="@+id/observalbe_samples"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Observable"/>
 
     <Button
-        android:id="@+id/listMenuSamples"
+        android:id="@+id/list_menu_samples"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="List Menus"/>
 
     <Button
-        android:id="@+id/drawSamples"
+        android:id="@+id/draw_samples"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Draw Samples, Image Samples"/>
+
+    <Button
+        android:id="@+id/recycler_view_samples"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Recycler View and View Samples"/>
 </LinearLayout>
