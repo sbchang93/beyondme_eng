@@ -8,6 +8,8 @@ import android.os.Bundle;
 import com.example.fragmentexample.R;
 import com.rd.PageIndicatorView;
 
+// Reference Homepage Link : https://codeday.me/ko/qa/20190517/568589.html
+
 public class ViewPager13Activity extends AppCompatActivity {
 
     private ViewPager viewPager ;
