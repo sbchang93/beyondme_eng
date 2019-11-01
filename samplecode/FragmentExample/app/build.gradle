@@ -90,4 +90,5 @@ dependencies {
     //View Pager (Custom)
     implementation 'com.asksira.android:loopingviewpager:1.1.2'
     implementation 'com.romandanylyk:pageindicatorview:1.0.3'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
 }

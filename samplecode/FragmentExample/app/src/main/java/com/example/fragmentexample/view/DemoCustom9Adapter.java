@@ -6,36 +6,36 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+
 import com.example.fragmentexample.R;
 
 import java.util.ArrayList;
 
-import com.asksira.loopingviewpager.LoopingPagerAdapter;
-
-public class DemoInfiniteAdapter extends LoopingPagerAdapter<Integer> {
+public class DemoCustom9Adapter extends Custom9PagerAdapter<Fragment> {
 
     private static final int VIEW_TYPE_NORMAL = 100;
-    private static final int VIEW_TYPE_SPECIAL = 101;
+    //private static final int VIEW_TYPE_SPECIAL = 101;
 
-    public DemoInfiniteAdapter(Context context, ArrayList<Integer> itemList, boolean isInfinite) {
+    public DemoCustom9Adapter(Context context, ArrayList<Fragment> itemList, boolean isInfinite) {
         super(context, itemList, isInfinite);
     }
 
     @Override
     protected int getItemViewType(int listPosition) {
-        if (itemList.get(listPosition) == 0) return VIEW_TYPE_SPECIAL;
+        //if (itemList.get(listPosition) == 0) return VIEW_TYPE_SPECIAL;
         return VIEW_TYPE_NORMAL;
     }
 
     @Override
     protected View inflateView(int viewType, ViewGroup container, int listPosition) {
-        if (viewType == VIEW_TYPE_SPECIAL) return LayoutInflater.from(context).inflate(R.layout.item_special, container, false);
+        //if (viewType == VIEW_TYPE_SPECIAL) return LayoutInflater.from(context).inflate(R.layout.item_special, container, false);
         return LayoutInflater.from(context).inflate(R.layout.item_pager, container, false);
     }
 
     @Override
     protected void bindView(View convertView, int listPosition, int viewType) {
-        if (viewType == VIEW_TYPE_SPECIAL) return;
+        //if (viewType == VIEW_TYPE_SPECIAL) return;
         convertView.findViewById(R.id.image).setBackgroundColor(context.getResources().getColor(getBackgroundColor(listPosition)));
         TextView description = convertView.findViewById(R.id.description);
         description.setText(String.valueOf(itemList.get(listPosition)) + " : View Pager");

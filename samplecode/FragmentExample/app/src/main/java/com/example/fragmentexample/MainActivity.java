@@ -11,6 +11,9 @@ import android.widget.Toast;
 
 import com.example.fragmentexample.util.Logger;
 import com.example.fragmentexample.view.FragmentLayout;
+import com.example.fragmentexample.view.RecyclerView71Activity;
+import com.example.fragmentexample.view.RecyclerView72Activity;
+import com.example.fragmentexample.view.ViewPager31Activity;
 import com.example.fragmentexample.view.ViewPagerActivity;
 
 import java.util.HashMap;
@@ -110,105 +113,13 @@ public class MainActivity extends AppCompatActivity {
     };
 
 
-    private void launchSampleActivities() {
-        Observable.just("")
-                .delay(1, TimeUnit.MILLISECONDS)
-                .subscribe(s -> {
-                    //startActivity(new Intent(this, LiveDataActivity.class));
-                    //startActivity(new Intent(this, ObserverActivity.class));
-
-//                    startActivity(new Intent(this, CallOtherActivity.class));
-//                    startActivity(new Intent(this, HashMapActivity.class));
-//                    startActivity(new Intent(this, ViewActivity.class));
-//                    startActivity(new Intent(this, HandlerActivity.class));
-//                    startActivity(new Intent(this, LocationManagerActivity.class));
-//                    startActivity(new Intent(this, TextViewActivity.class));
-//                    startActivity(new Intent(this, AudioActivity.class));
-//                    startActivity(new Intent(this, DialogActivity.class));
-//                    startActivity(new Intent(this, Dialog2Activity.class));
-//                    startActivity(new Intent(this, Dialog3Activity.class));
-//                    startActivity(new Intent(this, Dialog4Activity.class));
-//                    startActivity(new Intent(this, Dialog5Activity.class));
-//                    startActivity(new Intent(this, Test01Activity.class));
-//                    startActivity(new Intent(this, Test02_MyViewActivity.class));
-//                    startActivity(new Intent(this, SaveState02Activity.class));
-//                    startActivity(new Intent(this, SaveState03Activity.class));
-//                    startActivity(new Intent(this, DialogTest01Activity.class));
-//                    startActivity(new Intent(this, DialogTest02Activity.class));
-//                    startActivity(new Intent(this, DialogTest03Activity.class));
-//                    startActivity(new Intent(this, DialogTest04Activity.class));
-//                    startActivity(new Intent(this, DataBindingTest01Activity.class));
-//                    startActivity(new Intent(this, NameActivityForViewModel.class));
-                    //finish();
-                });
-    }
-
-
-    private void launchRoomDBSamples() {
-        Observable.just("Room DB")
-                .delay(1, TimeUnit.MILLISECONDS)
-                .subscribe(s -> {
-//                    startActivity(new Intent(this, UserActivity.class));
-                    //finish();
-                });
-    }
-
-    private void launchObservableSamples() {
-        Observable.just("")
-                .delay(1, TimeUnit.MILLISECONDS)
-                //.delay(1, TimeUnit.MILLISECONDS)
-                .subscribe(s -> {
-                    if (true) {
-//                        startActivity(new Intent(this, RecyclerViewActivity.class));
-                    } else {
-//                        startActivity(new Intent(this, ReflectionActivity.class));
-                    }
-//                    startActivity(new Intent(this, ObserverMainActivity.class));
-
-//                    startActivity(new Intent(this, LiveDataActivity.class));
-//                    startActivity(new Intent(this, ObserverActivity.class));
-                    //finish();
-                });
-    }
-
-    private void listMenusSamples() {
-        Observable.just("")
-                .delay(1, TimeUnit.MILLISECONDS)
-                //.delay(1, TimeUnit.MILLISECONDS)
-                .subscribe(s -> {
-//                    startActivity(new Intent(this, ListView3Activity.class));
-//                    startActivity(new Intent(this, RecyclerViewActivity.class));
-//                    startActivity(new Intent(this, ListViewActivity.class));
-//                    startActivity(new Intent(this, ListView2Activity.class));
-//                    startActivity(new Intent(this, ListView02CustomActivity.class));
-//                    startActivity(new Intent(this, ListView01Activity.class));
-
-                    //finish();
-                });
-    }
-
-    private void drawSamplesSamples() {
-        Observable.just("")
-                .delay(1, TimeUnit.MILLISECONDS)
-                //.delay(1, TimeUnit.MILLISECONDS)
-                .subscribe(s -> {
-//                    startActivity(new Intent(this, DrawActivity.class));
-//                    startActivity(new Intent(this, ImageActivity.class));
-//                    startActivity(new Intent(this, VideoActivity.class));
-//                    startActivity(new Intent(this, DrawTestActivity.class));
-//                    startActivity(new Intent(this, ReflectionActivity.class));
-
-                    //finish();
-                });
-    }
-
     private void fragmentSamples() {
         Observable.just("")
                 .delay(1, TimeUnit.MILLISECONDS)
                 //.delay(1, TimeUnit.MILLISECONDS)
                 .subscribe(s -> {
-                    startActivity(new Intent(this, FragmentLayout.class));
-                    //finish();
+                    //startActivity(new Intent(this, FragmentLayout.class));
+                    startActivity(new Intent(this, RecyclerView71Activity.class));
                 });
     }
 
@@ -217,9 +128,52 @@ public class MainActivity extends AppCompatActivity {
                 .delay(1, TimeUnit.MILLISECONDS)
                 //.delay(1, TimeUnit.MILLISECONDS)
                 .subscribe(s -> {
-                    startActivity(new Intent(this, ViewPagerActivity.class));
-                    //finish();
+                    //startActivity(new Intent(this, ViewPagerActivity.class));
+                    //startActivity(new Intent(this, ViewPager31Activity.class));
+                    startActivity(new Intent(this, RecyclerView72Activity.class));
+
                 });
     }
+
+    private void launchSampleActivities() {
+        Observable.just("")
+                .delay(1, TimeUnit.MILLISECONDS)
+                .subscribe(s -> {
+                });
+    }
+
+
+    private void launchRoomDBSamples() {
+        Observable.just("Room DB")
+                .delay(1, TimeUnit.MILLISECONDS)
+                .subscribe(s -> {
+                });
+    }
+
+    private void launchObservableSamples() {
+        Observable.just("")
+                .delay(1, TimeUnit.MILLISECONDS)
+                //.delay(1, TimeUnit.MILLISECONDS)
+                .subscribe(s -> {
+                });
+    }
+
+    private void listMenusSamples() {
+        Observable.just("")
+                .delay(1, TimeUnit.MILLISECONDS)
+                //.delay(1, TimeUnit.MILLISECONDS)
+                .subscribe(s -> {
+
+                });
+    }
+
+    private void drawSamplesSamples() {
+        Observable.just("")
+                .delay(1, TimeUnit.MILLISECONDS)
+                //.delay(1, TimeUnit.MILLISECONDS)
+                .subscribe(s -> {
+                });
+    }
+
     
 }
