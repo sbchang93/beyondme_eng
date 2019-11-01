@@ -1,6 +1,18 @@
 Android
 
 
+---------------------------------------
+
+* install_down_all_options.cmd 화일
+
+@echo start install
+SET HC_SOURCE_FILE=%1
+adb install -r -d -f -t "%HC_SOURCE_FILE%"
+SET HC_SOURCE_FILE=
+pause
+
+---------------------------------------
+
 [ 유용한 Key들 ] 
 Ctrl+'/' : 주석처리
 Ctrl+shift+'/' : /* */주석처리
