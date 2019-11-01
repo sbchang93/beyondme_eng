@@ -36,28 +36,32 @@ public class RecyclerView72Activity extends AppCompatActivity {
     private void createActivityName () {
         int position = 0;
 
-        activityName.add(position, "ViewPagerActivity");
-        activityNameClassMap.put("ViewPagerActivity", ViewPagerActivity.class);
+        activityName.add(position, "ViewPagerActivity - Library ViewPager");
+        activityNameClassMap.put("ViewPagerActivity - Library ViewPager", ViewPagerActivity.class);
 
         position++;
-        activityName.add(position, "ViewPager31Activity");
-        activityNameClassMap.put("ViewPager31Activity", ViewPager31Activity.class);
+        activityName.add(position, "ViewPager31Activity - Lib Modification ViewPager");
+        activityNameClassMap.put("ViewPager31Activity - Lib Modification ViewPager", ViewPager31Activity.class);
 
         position++;
-        activityName.add(position, "ViewPager21Activity");
-        activityNameClassMap.put("ViewPager21Activity", ViewPager21Activity.class);
+        activityName.add(position, "ViewPager21Activity - Tab ViewPager");
+        activityNameClassMap.put("ViewPager21Activity - Tab ViewPager", ViewPager21Activity.class);
 
         position++;
         activityName.add(position, "ViewPager22Activity");
         activityNameClassMap.put("ViewPager22Activity", ViewPager22Activity.class);
 
         position++;
-        activityName.add(position, "ViewPager11Activity");
-        activityNameClassMap.put("ViewPager11Activity", ViewPager11Activity.class);
+        activityName.add(position, "ViewPager11Activity - Simple Text ViewPager");
+        activityNameClassMap.put("ViewPager11Activity - Simple Text ViewPager", ViewPager11Activity.class);
 
         position++;
-        activityName.add(position, "ViewPager12Activity");
-        activityNameClassMap.put("ViewPager12Activity", ViewPager12Activity.class);
+        activityName.add(position, "ViewPager12Activity - Image ViewPager");
+        activityNameClassMap.put("ViewPager12Activity - Image ViewPager", ViewPager12Activity.class);
+
+        position++;
+        activityName.add(position, "ViewPager13Activity - Circular ViewPapger");
+        activityNameClassMap.put("ViewPager13Activity - Circular ViewPapger", ViewPager13Activity.class);
 
 
     }

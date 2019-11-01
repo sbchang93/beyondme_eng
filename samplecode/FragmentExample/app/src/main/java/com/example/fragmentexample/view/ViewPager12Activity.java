@@ -23,24 +23,26 @@ public class ViewPager12Activity extends AppCompatActivity {
         pagerAdapter = new PagerAdapterImage12(this) ;
         viewPager.setAdapter(pagerAdapter) ;
 
-        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrollStateChanged(int state) {
-                // TODO Auto-generated method stub
-            }
-            @Override
-            public void onPageScrolled(int position, float positionOffest, int positionOffsetPixels) {
-                // TODO Auto-generated method stub
-                if(position == 0)
-                    viewPager.setCurrentItem(20); // Not working correctly
+        viewPager.setOnPageChangeListener(new ViewPagerCircularHandler12(viewPager));
 
-                if(position == 39)
-                    viewPager.setCurrentItem(20); // Not working correctly
-            }
-            @Override
-            public void onPageSelected(int position) {
-            // TODO Auto-generated method stub
-            }
-        });
+//        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+//            @Override
+//            public void onPageScrollStateChanged(int state) {
+//                // TODO Auto-generated method stub
+//            }
+//            @Override
+//            public void onPageScrolled(int position, float positionOffest, int positionOffsetPixels) {
+//                // TODO Auto-generated method stub
+//                if(position == 0)
+//                    viewPager.setCurrentItem(20); // Not working correctly
+//
+//                if(position == 39)
+//                    viewPager.setCurrentItem(20); // Not working correctly
+//            }
+//            @Override
+//            public void onPageSelected(int position) {
+//            // TODO Auto-generated method stub
+//            }
+//        });
     }
 }

@@ -37,7 +37,7 @@ public class PagerAdapterImage12  extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return mImages.length*20;  // Show many images in ViewPager
+        return 10; //mImages.length*20;  // Show many images in ViewPager
     }
 
     @Override
