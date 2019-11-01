@@ -4,6 +4,8 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.rd.PageIndicatorView;
 
+// Reference Homepage Link : https://codeday.me/ko/qa/20190517/568589.html
+
 public class ViewPagerCircularHandler13 implements ViewPager.OnPageChangeListener {
     private ViewPager   mViewPager;
     private int         mCurrentPosition;
