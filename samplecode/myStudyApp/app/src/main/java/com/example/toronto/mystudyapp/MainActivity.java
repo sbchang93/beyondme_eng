@@ -38,6 +38,14 @@ import com.example.toronto.mystudyapp.view.ObserverActivity;
 import com.example.toronto.mystudyapp.view.ObserverMainActivity;
 import com.example.toronto.mystudyapp.view.RecyclerView2Activity;
 import com.example.toronto.mystudyapp.view.RecyclerView3Activity;
+import com.example.toronto.mystudyapp.view.RecyclerView4Activity;
+import com.example.toronto.mystudyapp.view.RecyclerView71Activity;
+import com.example.toronto.mystudyapp.view.RecyclerView72Activity;
+import com.example.toronto.mystudyapp.view.RecyclerView73Activity;
+import com.example.toronto.mystudyapp.view.RecyclerView74Activity;
+import com.example.toronto.mystudyapp.view.RecyclerView75Activity;
+import com.example.toronto.mystudyapp.view.RecyclerView76Activity;
+import com.example.toronto.mystudyapp.view.RecyclerView77Activity;
 import com.example.toronto.mystudyapp.view.RecyclerViewActivity;
 import com.example.toronto.mystudyapp.view.ReflectionActivity;
 import com.example.toronto.mystudyapp.view.SaveState02Activity;
@@ -48,6 +56,10 @@ import com.example.toronto.mystudyapp.view.TextViewActivity;
 import com.example.toronto.mystudyapp.view.UserActivity;
 import com.example.toronto.mystudyapp.view.VideoActivity;
 import com.example.toronto.mystudyapp.view.ViewActivity;
+import com.example.toronto.mystudyapp.view.ViewPager2Activity;
+import com.example.toronto.mystudyapp.view.ViewPager3Activity;
+import com.example.toronto.mystudyapp.view.ViewPager4Activity;
+import com.example.toronto.mystudyapp.view.ViewPager5Activity;
 import com.example.toronto.mystudyapp.view.ViewPagerActivity;
 import com.example.toronto.mystudyapp.view.ViewPagerCustomActivity;
 
@@ -93,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.observalbe_samples).setOnClickListener(mClickListener);
         findViewById(R.id.list_menu_samples).setOnClickListener(mClickListener);
         findViewById(R.id.draw_samples).setOnClickListener(mClickListener);
+        findViewById(R.id.view_pager_samples).setOnClickListener(mClickListener);
         findViewById(R.id.recycler_view_samples).setOnClickListener(mClickListener);
 
         // ------------------------------------------------------------------------------------------------
@@ -102,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
         sampleNameMap.put(R.id.observalbe_samples, "R.id.observalbe_samples");
         sampleNameMap.put(R.id.list_menu_samples, "R.id.list_menu_samples");
         sampleNameMap.put(R.id.draw_samples, "R.id.draw_samples");
+        sampleNameMap.put(R.id.view_pager_samples, "R.id.view_pager_samples");
         sampleNameMap.put(R.id.recycler_view_samples, "R.id.recycler_view_samples");
 
     }
@@ -126,17 +140,100 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.draw_samples:
                     drawSamplesSamples();
                     break;
-
+                case R.id.view_pager_samples:
+                    viewPagerSamples();
+                    break;
                 case R.id.recycler_view_samples:
                     recyclerViewSamples();
                     break;
-
-
 
                  // Remember ===> findViewById(R.id.normalSamples).setOnClickListener(mClickListener);
             }
         }
     };
+
+    private void viewPagerSamples() {
+        Observable.just("")
+                .delay(1, TimeUnit.MILLISECONDS)
+                .subscribe(s -> {
+                    //startActivity(new Intent(this, ViewPagerActivity.class));
+                    //startActivity(new Intent(this, ViewPagerCustomActivity.class));
+                    //startActivity(new Intent(this, ViewPager2Activity.class));
+                    //startActivity(new Intent(this, ViewPager3Activity.class));
+                    //startActivity(new Intent(this, ViewPager4Activity.class));
+                    //startActivity(new Intent(this, ViewPager5Activity.class));
+
+                    startActivity(new Intent(this, RecyclerView71Activity.class));
+                });
+    }
+
+    private void recyclerViewSamples() {
+        Observable.just("")
+                .delay(1, TimeUnit.MILLISECONDS)
+                .subscribe(s -> {
+                    //startActivity(new Intent(this, RecyclerView2Activity.class));
+                    //startActivity(new Intent(this, RecyclerView3Activity.class));
+                    //startActivity(new Intent(this, RecyclerView4Activity.class));
+                    startActivity(new Intent(this, RecyclerView72Activity.class));
+                });
+    }
+
+    private void launchRoomDBSamples() {
+        Observable.just("Room DB")
+                .delay(1, TimeUnit.MILLISECONDS)
+                .subscribe(s -> {
+                    //startActivity(new Intent(this, UserActivity.class));
+                    startActivity(new Intent(this, RecyclerView76Activity.class));
+                });
+    }
+
+    private void launchObservableSamples() {
+                Observable.just("")
+                .delay(1, TimeUnit.MILLISECONDS)
+                //.delay(1, TimeUnit.MILLISECONDS)
+                .subscribe(s -> {
+//                    if (true) {
+//                        startActivity(new Intent(this, RecyclerViewActivity.class));
+//                    } else {
+//                        startActivity(new Intent(this, ReflectionActivity.class));
+//                    }
+//                    startActivity(new Intent(this, ObserverMainActivity.class));
+//                    startActivity(new Intent(this, LiveDataActivity.class));
+//                    startActivity(new Intent(this, ObserverActivity.class));
+                    startActivity(new Intent(this, RecyclerView77Activity.class));
+                });
+    }
+
+    private void listMenusSamples() {
+        Observable.just("")
+                .delay(1, TimeUnit.MILLISECONDS)
+                //.delay(1, TimeUnit.MILLISECONDS)
+                .subscribe(s -> {
+//                    startActivity(new Intent(this, ListView3Activity.class));
+//                    startActivity(new Intent(this, RecyclerViewActivity.class));
+//                    startActivity(new Intent(this, ListViewActivity.class));
+//                    startActivity(new Intent(this, ListView2Activity.class));
+//                    startActivity(new Intent(this, ListView02CustomActivity.class));
+//                    startActivity(new Intent(this, ListView01Activity.class));
+                    startActivity(new Intent(this, RecyclerView75Activity.class));
+                });
+    }
+
+    private void drawSamplesSamples() {
+        Observable.just("")
+                .delay(1, TimeUnit.MILLISECONDS)
+                //.delay(1, TimeUnit.MILLISECONDS)
+                .subscribe(s -> {
+//                    startActivity(new Intent(this, DrawActivity.class));
+//                    startActivity(new Intent(this, ImageActivity.class));
+//                    startActivity(new Intent(this, VideoActivity.class));
+//                    startActivity(new Intent(this, DrawTestActivity.class));
+//                    startActivity(new Intent(this, ReflectionActivity.class));
+                    startActivity(new Intent(this, RecyclerView74Activity.class));
+                });
+    }
+
+
 
 
     private void launchSampleActivities() {
@@ -169,80 +266,7 @@ public class MainActivity extends AppCompatActivity {
 //                    startActivity(new Intent(this, DataBindingTest01Activity.class));
 //                    startActivity(new Intent(this, NameActivityForViewModel.class));
 
-                    startActivity(new Intent(this, ViewPagerActivity.class));
-                    //startActivity(new Intent(this, ViewPagerCustomActivity.class));
-
-//                    finish();
-
-
-                });
-    }
-
-
-    private void launchRoomDBSamples() {
-        Observable.just("Room DB")
-                .delay(1, TimeUnit.MILLISECONDS)
-                .subscribe(s -> {
-                    startActivity(new Intent(this, UserActivity.class));
-//                    finish();
-                });
-    }
-
-    private void launchObservableSamples() {
-                Observable.just("")
-                .delay(1, TimeUnit.MILLISECONDS)
-                //.delay(1, TimeUnit.MILLISECONDS)
-                .subscribe(s -> {
-                    if (true) {
-                        startActivity(new Intent(this, RecyclerViewActivity.class));
-                    } else {
-                        startActivity(new Intent(this, ReflectionActivity.class));
-                    }
-                    startActivity(new Intent(this, ObserverMainActivity.class));
-
-//                    startActivity(new Intent(this, LiveDataActivity.class));
-//                    startActivity(new Intent(this, ObserverActivity.class));
-//                    finish();
-                });
-    }
-
-    private void listMenusSamples() {
-        Observable.just("")
-                .delay(1, TimeUnit.MILLISECONDS)
-                //.delay(1, TimeUnit.MILLISECONDS)
-                .subscribe(s -> {
-                    startActivity(new Intent(this, ListView3Activity.class));
-                    startActivity(new Intent(this, RecyclerViewActivity.class));
-                    startActivity(new Intent(this, ListViewActivity.class));
-                    startActivity(new Intent(this, ListView2Activity.class));
-                    startActivity(new Intent(this, ListView02CustomActivity.class));
-                    startActivity(new Intent(this, ListView01Activity.class));
-//                    finish();
-                });
-    }
-
-    private void drawSamplesSamples() {
-        Observable.just("")
-                .delay(1, TimeUnit.MILLISECONDS)
-                //.delay(1, TimeUnit.MILLISECONDS)
-                .subscribe(s -> {
-                    startActivity(new Intent(this, DrawActivity.class));
-                    startActivity(new Intent(this, ImageActivity.class));
-                    startActivity(new Intent(this, VideoActivity.class));
-                    startActivity(new Intent(this, DrawTestActivity.class));
-                    startActivity(new Intent(this, ReflectionActivity.class));
-//                    finish();
-                });
-    }
-
-    private void recyclerViewSamples() {
-        Observable.just("")
-                .delay(1, TimeUnit.MILLISECONDS)
-                .subscribe(s -> {
-                    //startActivity(new Intent(this, RecyclerView2Activity.class));
-                    startActivity(new Intent(this, RecyclerView3Activity.class));
-
-//                    finish();
+                    startActivity(new Intent(this, RecyclerView73Activity.class));
                 });
     }
 

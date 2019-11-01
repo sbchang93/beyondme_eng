@@ -1,14 +1,14 @@
 package com.example.toronto.mystudyapp.view;
 
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+        import android.support.v4.view.ViewPager;
+        import android.support.v7.app.AppCompatActivity;
+        import android.os.Bundle;
+        import android.view.View;
+        import android.widget.Button;
 
-import com.example.toronto.mystudyapp.R;
-import com.example.toronto.mystudyapp.util.Logger;
+        import com.example.toronto.mystudyapp.R;
+        import com.example.toronto.mystudyapp.util.Logger;
 
 // Reference Link Page : https://itpangpang.xyz/m/284
 

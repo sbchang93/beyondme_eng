@@ -28,6 +28,8 @@ public class RecyclerView3Activity extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        Logger.d(TAG, "onCreate ... ");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler_view3);
 
