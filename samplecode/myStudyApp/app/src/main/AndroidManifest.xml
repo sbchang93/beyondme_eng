@@ -2,15 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.toronto.mystudyapp">
 
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
-
-    <permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,7 +9,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.ListView02CustomActivity"></activity>
+        <activity android:name=".view.RecyclerView77Activity"></activity>
+        <activity android:name=".view.RecyclerView76Activity" />
+        <activity android:name=".view.RecyclerView75Activity" />
+        <activity android:name=".view.RecyclerView74Activity" />
+        <activity android:name=".view.RecyclerView73Activity" />
+        <activity android:name=".view.RecyclerView71Activity" />
+        <activity android:name=".view.RecyclerView72Activity" />
+        <activity android:name=".view.ViewPager5Activity" />
+        <activity android:name=".view.ViewPager3Activity" />
+        <activity android:name=".view.ViewPager2Activity" />
+        <activity android:name=".view.ViewPager4Activity" />
+        <activity android:name=".view.RecyclerView4Activity" />
+        <activity android:name=".view.RecyclerView3Activity" />
+        <activity android:name=".view.RecyclerView2Activity" />
+        <activity android:name=".view.ViewPagerCustomActivity" />
+        <activity android:name=".view.ViewPagerActivity" />
+        <activity android:name=".view.ListView02CustomActivity" />
         <activity android:name=".view.ListView01Activity" />
         <activity android:name=".view.ObserverMainActivity" />
         <activity android:name=".MainActivity">
@@ -55,6 +62,15 @@
         <activity android:name=".view.SaveState03Activity" />
         <activity android:name=".view.SaveState02Activity" />
         <activity android:name=".view.CallOtherActivity" />
+        <activity android:name=".view.DrawTestActivity" />
+        <activity android:name=".view.ReflectionActivity" />
+        <activity android:name=".view.DialogTest01Activity" />
+        <activity android:name=".view.DialogTest02Activity" />
+        <activity android:name=".view.DialogTest03Activity" />
+        <activity android:name=".view.DialogTest04Activity" />
+        <activity android:name=".view.DataBindingTest01Activity" />
+        <activity android:name=".view.NameActivityForViewModel" />
+        <activity android:name=".view.UserActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -65,21 +81,14 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/filepaths" />
         </provider>
-
-        <activity android:name=".view.DrawTestActivity" />
-        <activity android:name=".view.ReflectionActivity" />
-        <activity android:name=".view.DialogTest01Activity" />
-        <activity android:name=".view.DialogTest02Activity" />
-        <activity android:name=".view.DialogTest03Activity" />
-        <activity android:name=".view.DialogTest04Activity" />
-        <activity android:name=".view.DataBindingTest01Activity" />
-        <activity android:name=".view.NameActivityForViewModel" />
-        <activity android:name=".view.UserActivity" />
-        <activity android:name=".view.ViewPagerActivity" />
-        <activity android:name=".view.ViewPagerCustomActivity" />
-        <activity android:name=".view.RecyclerView2Activity" />
-        <activity android:name=".view.RecyclerView3Activity" />
-
     </application>
+
+    <permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
 
 </manifest>
