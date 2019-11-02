@@ -16,10 +16,16 @@
         android:text="View Page Example"/>
 
     <Button
-        android:id="@+id/book_fragment_samples"
+    android:id="@+id/book_fragment_samples"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Book Fragment Example"/>
+
+    <Button
+        android:id="@+id/layout_view_samples"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Book Fragment Example"/>
+        android:text="layout and view Example"/>
 
     <Button
         android:id="@+id/normal_samples"
