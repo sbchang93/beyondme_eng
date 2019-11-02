@@ -1,0 +1,18 @@
+
+* ImageView 관련 설명
+https://recipes4dev.tistory.com/136
+
+* Android Code 샘플들 보여줌
+https://www.codota.com/code/java/methods/android.view.View/setPadding
+
+
+
+* adapter 관련 설명
+http://www.gisdeveloper.co.kr/?p=1268
+
+
+
+
+
+
+
