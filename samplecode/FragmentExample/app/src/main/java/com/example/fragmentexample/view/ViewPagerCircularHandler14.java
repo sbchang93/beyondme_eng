@@ -6,18 +6,18 @@ import com.rd.PageIndicatorView;
 
 // Reference Homepage Link : https://codeday.me/ko/qa/20190517/568589.html
 
-public class ViewPagerCircularHandler13 implements ViewPager.OnPageChangeListener {
+public class ViewPagerCircularHandler14 implements ViewPager.OnPageChangeListener {
     private ViewPager   mViewPager;
     private int         mCurrentPosition;
     private int         mScrollState;
-    PageIndicatorView mIndicatorView;
+    ViewPagerCircleIndicator14 mIndicatorView;
 
-//    public ViewPagerCircularHandler13(final ViewPager viewPager) {
+//    public ViewPagerCircularHandler14(final ViewPager viewPager) {
 //        mViewPager = viewPager;
 //        mIndicatorView = null;
 //    }
 
-    public ViewPagerCircularHandler13(final ViewPager viewPager, PageIndicatorView indicatorView) {
+    public ViewPagerCircularHandler14(final ViewPager viewPager, ViewPagerCircleIndicator14 indicatorView) {
         mViewPager = viewPager;
         mIndicatorView = indicatorView;
     }
@@ -28,7 +28,8 @@ public class ViewPagerCircularHandler13 implements ViewPager.OnPageChangeListene
 
         // Set ViewPager Indicator
         if(mIndicatorView != null)
-            mIndicatorView.setProgress(mCurrentPosition, 1 /*progress*/);
+            mIndicatorView.selectDot(position);
+            //mIndicatorView.setProgress(mCurrentPosition, 1 /*progress*/);
     }
 
     @Override

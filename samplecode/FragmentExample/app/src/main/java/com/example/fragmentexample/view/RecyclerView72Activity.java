@@ -63,6 +63,11 @@ public class RecyclerView72Activity extends AppCompatActivity {
         activityName.add(position, "ViewPager13Activity - Circular ViewPapger");
         activityNameClassMap.put("ViewPager13Activity - Circular ViewPapger", ViewPager13Activity.class);
 
+        position++;
+        activityName.add(position, "ViewPager14Activity - ViewPapger Indicator");
+        activityNameClassMap.put("ViewPager14Activity - ViewPapger Indicator", ViewPager14Activity.class);
+
+
 
     }
 

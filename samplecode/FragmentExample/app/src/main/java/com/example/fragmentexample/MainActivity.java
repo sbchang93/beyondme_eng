@@ -13,6 +13,7 @@ import com.example.fragmentexample.util.Logger;
 import com.example.fragmentexample.view.FragmentLayout;
 import com.example.fragmentexample.view.RecyclerView71Activity;
 import com.example.fragmentexample.view.RecyclerView72Activity;
+import com.example.fragmentexample.view.RecyclerView81Activity;
 import com.example.fragmentexample.view.ViewPager31Activity;
 import com.example.fragmentexample.view.ViewPagerActivity;
 
@@ -66,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.draw_samples).setOnClickListener(mClickListener);
         findViewById(R.id.book_fragment_samples).setOnClickListener(mClickListener);
         findViewById(R.id.view_page_samples).setOnClickListener(mClickListener);
+        findViewById(R.id.layout_view_samples).setOnClickListener(mClickListener);
+
 
 
         // ------------------------------------------------------------------------------------------------
@@ -77,6 +80,8 @@ public class MainActivity extends AppCompatActivity {
         sampleNameMap.put(R.id.draw_samples, "R.id.draw_samples");
         sampleNameMap.put(R.id.book_fragment_samples, "R.id.book_fragment_samples");
         sampleNameMap.put(R.id.view_page_samples, "R.id.view_page_samples");
+        sampleNameMap.put(R.id.layout_view_samples, "R.id.layout_view_samples");
+
         //sampleNameMap.put(, "");
     }
 
@@ -106,11 +111,15 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.view_page_samples:
                     viewPageSamples();
                     break;
-
+                case R.id.layout_view_samples:
+                    layoutAndViewSamples();
+                    break;
                 // Remember ===> findViewById(R.id.normalSamples).setOnClickListener(mClickListener);
             }
         }
     };
+
+
 
 
     private void fragmentSamples() {
@@ -128,12 +137,24 @@ public class MainActivity extends AppCompatActivity {
                 .delay(1, TimeUnit.MILLISECONDS)
                 //.delay(1, TimeUnit.MILLISECONDS)
                 .subscribe(s -> {
+                    //startActivity(new Intent(this, FragmentLayout.class));
+                    startActivity(new Intent(this, RecyclerView72Activity.class));
+                });
+    }
+
+    private void layoutAndViewSamples() {
+        Observable.just("")
+                .delay(1, TimeUnit.MILLISECONDS)
+                //.delay(1, TimeUnit.MILLISECONDS)
+                .subscribe(s -> {
                     //startActivity(new Intent(this, ViewPagerActivity.class));
                     //startActivity(new Intent(this, ViewPager31Activity.class));
-                    startActivity(new Intent(this, RecyclerView72Activity.class));
+                    startActivity(new Intent(this, RecyclerView81Activity.class));
 
                 });
     }
+
+
 
     private void launchSampleActivities() {
         Observable.just("")
@@ -177,3 +198,15 @@ public class MainActivity extends AppCompatActivity {
 
     
 }
+
+
+/*
+* ImageView 관련 설명
+* https://recipes4dev.tistory.com/136
+*
+* Android Code 샘플들 보여줌
+* https://www.codota.com/code/java/methods/android.view.View/setPadding
+*
+*
+*
+ */

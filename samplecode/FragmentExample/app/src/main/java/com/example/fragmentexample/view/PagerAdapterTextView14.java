@@ -12,15 +12,18 @@ import androidx.viewpager.widget.PagerAdapter;
 import com.example.fragmentexample.R;
 
 //Reference Homepage Link : https://recipes4dev.tistory.com/m/148
-public class PagerAdapterTextView13 extends PagerAdapter {
+
+public class PagerAdapterTextView14 extends PagerAdapter {
 
     private Context mContext = null ; // LayoutInflater 서비스 사용을 위한 Context 참조 저장.
+    private int mItemListSize = 0;
 
-    public PagerAdapterTextView13() {
+    public PagerAdapterTextView14() {
     }
 
-    public PagerAdapterTextView13(Context context) { // Context를 전달받아 mContext에 저장하는 생성자 추가.
+    public PagerAdapterTextView14(Context context, int itemListSize) { // Context를 전달받아 mContext에 저장하는 생성자 추가.
         mContext = context ;
+        mItemListSize = itemListSize;
     }
 
     @Override
@@ -29,7 +32,7 @@ public class PagerAdapterTextView13 extends PagerAdapter {
         if (mContext != null) {
             // LayoutInflater를 통해 "/res/layout/page.xml"을 뷰로 생성.
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.page_item11, container, false);
+            view = inflater.inflate(R.layout.page_item14, container, false);
 
             TextView textView = (TextView) view.findViewById(R.id.tv_title) ;
             textView.setText("TEXT " + position) ;
@@ -45,7 +48,7 @@ public class PagerAdapterTextView13 extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return 8; // 전체 페이지 수는 8개로 고정.
+        return mItemListSize;
     }
 
     @Override

@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.ViewPager13Activity"></activity>
+        <activity android:name=".view.RecyclerView81Activity"></activity>
+        <activity android:name=".view.LayoutCustomLinearLayout01Activity" />
+        <activity android:name=".view.ViewPager14Activity" />
+        <activity android:name=".view.ViewPager13Activity" />
         <activity android:name=".view.ViewPager12Activity" />
         <activity android:name=".view.ViewPager11Activity" />
         <activity android:name=".view.ViewPager22Activity" />
