@@ -99,28 +99,28 @@ public class FirstExampleFragment extends Fragment {
     }
 
     private void refreshTheList() {
-        getApps().toSortedList().subscribe(new Observer<List<AppInfo>>() {
-            @Override public void onComplete() {
-                Toast.makeText(getActivity(), "Here is the list!", Toast.LENGTH_LONG).show();
-            }
-
-            @Override public void onError(Throwable e) {
-                Toast.makeText(getActivity(), "Something went wrong!", Toast.LENGTH_SHORT).show();
-                //mSwipeRefreshLayout.setRefreshing(false);
-            }
-
-            @Override
-            public void onSubscribe(Disposable d) {
-
-            }
-
-            @Override public void onNext(List<AppInfo> appInfos) {
-                mRecyclerView.setVisibility(View.VISIBLE);
-                mAdapter.addApplications(appInfos);
-                //mSwipeRefreshLayout.setRefreshing(false);
-                storeList(appInfos);
-            }
-        });
+//        getApps().toSortedList().subscribe(new Observer<List<AppInfo>>() {
+//            @Override public void onComplete() {
+//                Toast.makeText(getActivity(), "Here is the list!", Toast.LENGTH_LONG).show();
+//            }
+//
+//            @Override public void onError(Throwable e) {
+//                Toast.makeText(getActivity(), "Something went wrong!", Toast.LENGTH_SHORT).show();
+//                //mSwipeRefreshLayout.setRefreshing(false);
+//            }
+//
+//            @Override
+//            public void onSubscribe(Disposable d) {
+//
+//            }
+//
+//            @Override public void onNext(List<AppInfo> appInfos) {
+//                mRecyclerView.setVisibility(View.VISIBLE);
+//                mAdapter.addApplications(appInfos);
+//                //mSwipeRefreshLayout.setRefreshing(false);
+//                storeList(appInfos);
+//            }
+//        });
     }
 
     private void storeList(List<AppInfo> appInfos) {
