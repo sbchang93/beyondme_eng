@@ -31,7 +31,6 @@ public class RecyclerView71Activity extends AppCompatActivity {
 
         createActivityName ();
         recyclerView.setAdapter(new RecyclerViewItemListAdapter71(getApplicationContext(), activityName, activityNameClassMap, activityName.size()));
-        //recyclerView.setAdapter(new RecyclerViewItemListAdapter71(getApplication(), activityName, activityNameClassMap, activityName.size()));
     }
 
     private void createActivityName () {
@@ -39,6 +38,14 @@ public class RecyclerView71Activity extends AppCompatActivity {
 
         activityName.add(position, "FragmentLayout");
         activityNameClassMap.put("FragmentLayout", FragmentLayout.class);
+
+        position++;
+        activityName.add(position, "FragmentMain01Activity");
+        activityNameClassMap.put("FragmentMain01Activity", FragmentMain01Activity.class);
+
+        position++;
+        activityName.add(position, "FragmentMain02Activity");
+        activityNameClassMap.put("FragmentMain02Activity", FragmentMain02Activity.class);
 
         position++;
 

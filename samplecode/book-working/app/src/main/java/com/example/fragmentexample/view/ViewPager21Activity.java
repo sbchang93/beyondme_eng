@@ -54,32 +54,32 @@ public class ViewPager21Activity extends AppCompatActivity
         }
     };
 
-    private class pagerAdapter extends FragmentStatePagerAdapter
-    {
-        public pagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-        @Override
-        public Fragment getItem(int position) {
-            switch(position) {
-                case 0:
-                    return new ViewPagerFirstFragment();
-                case 1:
-                    return new ViewPagerSecondFragment();
-                case 2:
-                    return new ViewPagerThirdFragment();
-                default:
-                    return null;
-            }
-        }
-        @Override
-        public int getCount()
-        {
-            return 3;
-        }
-
-
+private class pagerAdapter extends FragmentStatePagerAdapter
+{
+    public pagerAdapter(FragmentManager fm) {
+        super(fm);
     }
+    @Override
+    public Fragment getItem(int position) {
+        switch(position) {
+            case 0:
+                return new ViewPagerFirstFragment();
+            case 1:
+                return new ViewPagerSecondFragment();
+            case 2:
+                return new ViewPagerThirdFragment();
+            default:
+                return null;
+        }
+    }
+    @Override
+    public int getCount()
+    {
+        return 3;
+    }
+
+
+}
 
 
 }
