@@ -1,4 +1,24 @@
 
+
+-----------------------------------------------------
+
+안드로이드 프로젝트 일반 내용 (배경지식 차원에서 시간날 때 한번 훓어봐두면 좋음)
+https://developer.android.com/studio/projects/add-app-module?hl=ko
+https://developer.android.com/guide/topics/manifest/manifest-intro?hl=ko ( 안드로이드 mainfest 설명 내용 )
+https://developer.android.com/studio/projects/android-library?hl=ko (안드로이드 Library 생성 관련 설명 )
+https://developer.android.com/studio/build/gradle-plugin-3-0-0-migration?hl=ko#variant_aware (flaver)
+
+
+. 구글 지원 모듈들 
+  - Google AdMob: Google의 Google AdMob 구성요소를 사용 설정할 수 있습니다. 이 구성요소는 사용자를 파악하여 사용자에게 맞춤 광고를 표시하는 데 도움이 됩니다.
+  - Analytics: Google 애널리틱스를 사용 설정할 수 있습니다. 이는 다양한 기기와 환경에서 사용자의 앱 상호작용을 측정하는 데 도움이 됩니다.
+  - Authentication: 사용자가 Google 로그인을 사용하여 Google 계정으로 앱에 로그인할 수 있습니다.
+  - Cloud: 앱에 사용하도록 Firebase 클라우드 기반 서비스를 사용 설정할 수 있습니다.
+  - Notifications: Google 클라우드 메시징을 사용하여 앱과 서버 간에 통신할 수 있습니다.
+
+
+-----------------------------------------------------
+
 * ImageView 관련 설명
 https://recipes4dev.tistory.com/136
 
