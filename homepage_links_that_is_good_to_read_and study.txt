@@ -7,6 +7,12 @@ https://developer.android.com/studio/projects/add-app-module?hl=ko
 https://developer.android.com/guide/topics/manifest/manifest-intro?hl=ko ( 안드로이드 mainfest 설명 내용 )
 https://developer.android.com/studio/projects/android-library?hl=ko (안드로이드 Library 생성 관련 설명 )
 https://developer.android.com/studio/build/gradle-plugin-3-0-0-migration?hl=ko#variant_aware (flaver)
+https://developer.android.com/guide/components/intents-filters?hl=ko (intent 및 filters)   ...................
+https://developer.android.com/training/basics/intents/filters?hl=ko (다른 앱이 내 활동을 시작하도록 허용)
+https://developer.android.com/guide/topics/permissions/overview?hl=ko (permission, 권한)
+https://developer.android.com/studio/build?hl=ko (빌드 구성)
+https://developer.android.com/guide/topics/resources/providing-resources?hl=ko (앱 리소스 개요)
+
 
 
 . 구글 지원 모듈들 
@@ -31,6 +37,38 @@ https://www.codota.com/code/java/methods/android.view.View/setPadding
 http://www.gisdeveloper.co.kr/?p=1268
 
 
+-----------------------------------------------------
+
+. Activity Alias 사용 방법 관련
+
+http://blog.daum.net/kinpmanse/45 (activity-alias)
+https://pyeongho.github.io/change-icon (activity-alias, 정상동작됨)
+
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.happybom.uiplatformflower001">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+        </activity>
+
+        <activity-alias
+            android:targetActivity=".MainActivity"
+            android:name=".firstRunActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+    </application>
+
+</manifest>
 
 
 
