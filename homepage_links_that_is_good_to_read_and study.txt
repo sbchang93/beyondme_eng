@@ -12,6 +12,7 @@ https://developer.android.com/training/basics/intents/filters?hl=ko (다른 앱�
 https://developer.android.com/guide/topics/permissions/overview?hl=ko (permission, 권한)
 https://developer.android.com/studio/build?hl=ko (빌드 구성)
 https://developer.android.com/guide/topics/resources/providing-resources?hl=ko (앱 리소스 개요)
+https://developer.android.com/jetpack/androidx/releases/lifecycle?hl=ko (lifecycle 버전 확인)
 
 
 
@@ -21,6 +22,28 @@ https://developer.android.com/guide/topics/resources/providing-resources?hl=ko (
   - Authentication: 사용자가 Google 로그인을 사용하여 Google 계정으로 앱에 로그인할 수 있습니다.
   - Cloud: 앱에 사용하도록 Firebase 클라우드 기반 서비스를 사용 설정할 수 있습니다.
   - Notifications: Google 클라우드 메시징을 사용하여 앱과 서버 간에 통신할 수 있습니다.
+
+
+  
+
+-----------------------------------------------------
+  
+* 다양한 인터넷 블러그 내용들
+
+. 안드로이드 라이브러리 모듈 관련
+https://today-shot.tistory.com/entry/Gradle-%EB%B9%8C%EB%93%9C-%EA%B0%80%EB%8A%A5%ED%95%9C-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-%EB%AA%A8%EB%93%88-%EC%83%9D%EC%84%B1
+
+
+
+-----------------------------------------------------
+
+
+
+-----------------------------------------------------
+
+
+* 맥 OS 툴 관련
+https://macnews.tistory.com/2734  (맥 파인더)
 
 
 -----------------------------------------------------
