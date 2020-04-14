@@ -88,7 +88,7 @@ git, gerrit, github
 $ git config --global user.name superman
 $ git config --global user.email superman@gmail.com
 $ git config --global core.editor notepad
-$ git config --global diff.tool bc2
+$ git config --global diff.external bc2
 $ git config --global -l
 $ git config --list
 
@@ -99,7 +99,8 @@ $ git config --list
 [core]
 	editor = notepad
 [diff]
-	tool = bc2
+	external = bc2
+
 
 ----------------
 
