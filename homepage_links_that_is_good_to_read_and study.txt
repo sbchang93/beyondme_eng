@@ -26,9 +26,15 @@ https://developer.android.com/jetpack/androidx/releases/lifecycle?hl=ko (lifecyc
 
   
 
+  
 -----------------------------------------------------
   
 * 다양한 인터넷 블러그 내용들
+
+. common Library 추가
+https://kokohapps.tistory.com/entry/Android-Module-%EC%9D%B4%EC%9A%A9%ED%95%98%EC%97%AC-%EB%B9%84%EC%8A%B7%ED%95%9C-%EC%95%B1-%EC%97%AC%EB%9F%AC%EA%B0%9C-%EC%B0%8D%EC%96%B4%EB%82%B4%EA%B8%B0
+
+
 
 . 안드로이드 라이브러리 모듈 관련
 https://flowarc.tistory.com/entry/Android-Studio%EC%97%90%EC%84%9C-%EB%82%98%EB%A7%8C%EC%9D%98-Library-%EB%A7%8C%EB%93%A4%EC%96%B4%EB%B3%B4%EA%B8%B0
@@ -72,6 +78,14 @@ compile project(':TestModule001')
 
 * 맥 OS 툴 관련
 https://macnews.tistory.com/2734  (맥 파인더)
+
+
+-----------------------------------------------------
+
+* Layout 관련
+
+. Relative Layout
+https://kairo96.gitbooks.io/android/content/ch3.33.html
 
 
 -----------------------------------------------------
