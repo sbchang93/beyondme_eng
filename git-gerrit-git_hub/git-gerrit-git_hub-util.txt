@@ -88,9 +88,18 @@ git, gerrit, github
 $ git config --global user.name superman
 $ git config --global user.email superman@gmail.com
 $ git config --global core.editor notepad
+$ git config --global diff.tool bc2
 $ git config --global -l
 $ git config --list
 
+.gitconfig ( C:\Users\HOME )
+[user]
+	name = superman
+	email = superman@gmail.com
+[core]
+	editor = notepad
+[diff]
+	tool = bc2
 
 ----------------
 
@@ -467,7 +476,7 @@ git diff
 
 인덱스와 저장소의 차이점 보기
 
-git diff - -cached
+git diff --cached
 
 작업 트리와 저장소의 차이점 보기
 
