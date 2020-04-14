@@ -86,4 +86,6 @@ dependencies {
 
     //debugImplementation 'com.happybom.testmodule003:app-debug@aar'
     releaseImplementation 'com.happybom.testmodule003:app-release@aar'
+
+    implementation project(':commonlibrary')
 }

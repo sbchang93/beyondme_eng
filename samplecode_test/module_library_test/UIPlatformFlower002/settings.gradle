@@ -1,2 +1,3 @@
 rootProject.name='UI Platform Flower 002'
 include ':app'
+include ':commonlibrary'
