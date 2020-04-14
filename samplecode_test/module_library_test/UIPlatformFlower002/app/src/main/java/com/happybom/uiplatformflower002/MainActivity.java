@@ -31,6 +31,6 @@ public class MainActivity extends AppCompatActivity {
 //                });
 
         MyTest str = new MyTest();
-        str.showMyToast(this, getResources());
+        str.showMyToast(getApplicationContext(), getResources());
     }
 }
