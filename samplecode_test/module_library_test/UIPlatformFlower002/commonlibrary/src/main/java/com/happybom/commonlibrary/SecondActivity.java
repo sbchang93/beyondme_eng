@@ -20,10 +20,18 @@ public class SecondActivity extends AppCompatActivity {
         setContentView(R.layout.activity_base_main);
 
         TextView textView = (TextView) findViewById(R.id.textView);
-        textView.setText("세컨드 액티버티입니다.");
-
         Button button = (Button) findViewById(R.id.button);
-        button.setText("닫기");
+
+        textView.setTextColor(AppManager.themeColor);
+        button.setTextColor(AppManager.themeColor);
+
+        if(AppManager.appType == AppManager.AppType.RedApp) {
+            textView.setText("This is second Activity \nthat is run by Red Apk");
+        } else if(AppManager.appType == AppManager.AppType.BlueApp) {
+            textView.setText("This is second Activity \nthat is run by Blue Apk");
+        }
+
+        button.setText("Close");
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -3,7 +3,6 @@
     package="com.happybom.commonlibrary">
 
     <application>
-        <activity android:name=".SecondActivity"></activity>
         <activity android:name=".BaseMainActivity" />
     </application>
 
