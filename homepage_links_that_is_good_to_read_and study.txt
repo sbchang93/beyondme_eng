@@ -23,9 +23,11 @@ https://developer.android.com/jetpack/androidx/releases/lifecycle?hl=ko (lifecyc
   - Cloud: 앱에 사용하도록 Firebase 클라우드 기반 서비스를 사용 설정할 수 있습니다.
   - Notifications: Google 클라우드 메시징을 사용하여 앱과 서버 간에 통신할 수 있습니다.
 
-
   
+-----------------------------------------------------
 
+. wikihow (다양한 자료들을 같이 정리하는 사이트)  
+https://ko.wikihow.com/%EB%8C%80%EB%AC%B8
   
 -----------------------------------------------------
   
@@ -34,6 +36,16 @@ https://developer.android.com/jetpack/androidx/releases/lifecycle?hl=ko (lifecyc
 . common Library 추가
 https://kokohapps.tistory.com/entry/Android-Module-%EC%9D%B4%EC%9A%A9%ED%95%98%EC%97%AC-%EB%B9%84%EC%8A%B7%ED%95%9C-%EC%95%B1-%EC%97%AC%EB%9F%AC%EA%B0%9C-%EC%B0%8D%EC%96%B4%EB%82%B4%EA%B8%B0
 
+. 라이브러리 추가 ( Android Studio, 외부 java library (.JAR, .AAR) 추가 )
+https://technote.kr/212
+
+. jar 화일 생성 (gradle에서 빌드하나 만들고 실행해서 jar 화일 생성함.)
+https://eunplay.tistory.com/54
+
+
+. 멀티 모듈 관리 (Gradle 이용)
+https://jojoldu.tistory.com/123
+https://github.com/jojoldu/blog-code/tree/master/gradle-multi-modules
 
 
 . 안드로이드 라이브러리 모듈 관련
@@ -47,37 +59,54 @@ https://androidhuman.tistory.com/530
 https://github.com/kunny/blog_samples/tree/master/Android
 
 
+-----------------------------------------------------
 
-. picasso 모듈 추가 (github에 소스만 있음.)
-https://dwfox.tistory.com/31
-https://github.com/square/picasso
+.build.gradle for Library 등록
+( 참조 홈페이지 링크 : https://flowarc.tistory.com/entry/Android-Studio%EC%97%90%EC%84%9C-%EB%82%98%EB%A7%8C%EC%9D%98-Library-%EB%A7%8C%EB%93%A4%EC%96%B4%EB%B3%B4%EA%B8%B0 )
+( compile '[package name]:[file name]:[version code]@aar' )
+( releaseImplementation '[package name]:[file name]@aar' 사용함. )
 
-build.gradle 수정
-dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    compile files('libs/picasso-2.5.2.jar')
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
 }
 
-. 코드 사용법
-Picasso.with(this)
-        .load("http://square.github.io/picasso/static/sample.png")
-        .into((ImageView)findViewById(R.id.img_picasso));
 
-
------------------------------------------------------
-
-project(':TestModule001').projectDir = new File('TestModule001')
-
-
-compile project(':TestModule001')
+//debugImplementation 'com.happybom.testmodule003:app-debug@aar'
+releaseImplementation 'com.happybom.testmodule003:app-release@aar'
+	
 
 -----------------------------------------------------
 
+. 예전에 만들어진 블러그 내용이지만, 전체적인 흐름만 보는 용도로 읽기. ( 최신 안드로이드 스튜디오 사용법 및 최신 라이브러리 화인 요망)
 
-* 맥 OS 툴 관련
-https://macnews.tistory.com/2734  (맥 파인더)
+https://github.com/jojoldu/blog-code/tree/master/gradle-multi-modules
+	
+project(':module-api') {
+    dependencies {
+        compile project(':module-common')
+    }
+}
+
+project(':module-web') {
+    dependencies {
+        compile project(':module-common')
+    }
+}
+
+
+. module-common:bootRepackage FAILED 에러 발생하는 경우
+(  gradle 빌드시에는 각 프로젝트를 실행가능한 jar형태로 만들게 되는데, module-common 프로젝트의 경우 main메소드가 없기 때문. )
+bootRepackage {
+	enabled = false;
+}
+
+-----------------------------------------------------
+
+. Gradle 관련 설명
+https://kwonnam.pe.kr/wiki/gradle/multiproject
+https://docs.gradle.org/current/userguide/multi_project_builds.html
 
 
 -----------------------------------------------------
@@ -103,56 +132,39 @@ http://www.gisdeveloper.co.kr/?p=1268
 
 -----------------------------------------------------
 
-.build.gradle for Library 등록
-( 참조 홈페이지 링크 : https://flowarc.tistory.com/entry/Android-Studio%EC%97%90%EC%84%9C-%EB%82%98%EB%A7%8C%EC%9D%98-Library-%EB%A7%8C%EB%93%A4%EC%96%B4%EB%B3%B4%EA%B8%B0 )
-( compile '[package name]:[file name]:[version code]@aar' )
-( releaseImplementation '[package name]:[file name]@aar' 사용함. )
-
-repositories {
-    flatDir {
-        dirs 'libs'
-    }
-}
-
-
-//debugImplementation 'com.happybom.testmodule003:app-debug@aar'
-releaseImplementation 'com.happybom.testmodule003:app-release@aar'
-	
-
------------------------------------------------------
-
-. Activity Alias 사용 방법 관련
+. Activity Alias 사용 방법 관련 ( 정상동작되는지, 그리고 동작 방법을 잘 모르겠음. )
 
 http://blog.daum.net/kinpmanse/45 (activity-alias)
 https://pyeongho.github.io/change-icon (activity-alias, 정상동작됨)
 
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.happybom.uiplatformflower001">
 
-    <application
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
-        </activity>
+-----------------------------------------------------
 
-        <activity-alias
-            android:targetActivity=".MainActivity"
-            android:name=".firstRunActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity-alias>
-    </application>
+. picasso 모듈 추가 (github에 소스만 있음.)
+https://dwfox.tistory.com/31
+https://github.com/square/picasso
 
-</manifest>
+build.gradle 수정
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile files('libs/picasso-2.5.2.jar')
+}
+
+. 코드 사용법
+Picasso.with(this)
+        .load("http://square.github.io/picasso/static/sample.png")
+        .into((ImageView)findViewById(R.id.img_picasso));
 
 
+-----------------------------------------------------
 
+
+* 맥 OS 툴 관련
+https://macnews.tistory.com/2734  (맥 파인더)
+
+
+-----------------------------------------------------
 
 
