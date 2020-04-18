@@ -64,6 +64,10 @@ https://www.codota.com/code/java/methods/android.view.View/setPadding
 
 
 * adapter 관련 설명
+https://medium.com/@jsuch2362/adapter-%EB%88%84%EA%B5%AC%EB%83%90-%EB%84%8C-data-view-2db7eff11c20#.klca01cu9 (어댑터, 누구냐 넌?)
+( Git Hub : https://gist.github.com/ZeroBrain/b0d9bd0e33b962ef3796#file-sample-adapterview-java )
+( MVP 예제 : https://github.com/ZeroBrain/Android-MVP-AdapterRoleSample/blob/master/app/src/main/java/com/nobrain/samples/adapterrolesample/main/view/MainActivity.java )
+
 http://www.gisdeveloper.co.kr/?p=1268
 
 -----------------------------------------------------
@@ -152,6 +156,35 @@ bootRepackage {
 . Gradle 관련 설명
 https://kwonnam.pe.kr/wiki/gradle/multiproject
 https://docs.gradle.org/current/userguide/multi_project_builds.html
+
+
+-----------------------------------------------------
+
+. MVP 모델 관련
+https://thdev.tech/androiddev/2016/12/27/Android-MVP-Four-Two/
+
+. MVVM
+
+
+
+-----------------------------------------------------
+
+. interface 
+
+
+. reflection
+https://www.charlezz.com/?p=756
+
+
+-----------------------------------------------------
+
+. 안드로이드 plugin architecture 관련
+https://academy.realm.io/kr/posts/android-studio-plugin-development/
+( 무슨 얘기인지 잘 모르겠음. 하지만 여기 사이트에 영어로 발표하는 비디오 세미나들이 있는데, 영어 공부하기 좋을 것 같음. )
+
+https://jhedde.tistory.com/entry/Unity-Android-Java-%ED%94%8C%EB%9F%AC%EA%B7%B8%EC%9D%B8-%EB%B6%99%EC%9D%B4%EA%B8%B0-1
+
+
 
 
 -----------------------------------------------------
