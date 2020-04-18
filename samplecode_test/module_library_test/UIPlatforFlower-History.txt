@@ -8,7 +8,10 @@ UIPlatformFlower001 (2020.04.15)
 : Add Common Library Module
 
 --------------------------------------------
-
+UIPlatformFlower002-001 (2020.04.18)
+: change Red App and Blue App to library 
+  and then add them into Main Application Module 
+  and run it together
 
 --------------------------------------------
 
