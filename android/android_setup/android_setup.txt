@@ -23,19 +23,19 @@ https://developer.android.com/studio?hl=ko
 ---------------------------------------------------------------------------------------------------------------------------------------
 
 . SDK 설치되는 위치
-  : C:\Users\Administrator\AppData\Local\Android\sdk
+  : C:\Users\[사용자계정]\AppData\Local\Android\sdk
   
   
 . 설치 위치
-   - SDK 위치 : C:\Users\Administrator\AppData\Local\Android\sdk
+   - SDK 위치 : C:\Users\[사용자계정]\AppData\Local\Android\sdk
    - JDK 위치 : C:\Program Files\Java\jdk1.8.0_144  ( 최신 jdk 다운로드 해서 설치하고 설정하는 것이 좋음. )
-   - NDK 위치 : C:\Users\Administrator\AppData\Local\Android\sdk\ndk-bundle ( 하위의 "321..."처럼 번호가 적힌 폴더를 선택해 줘야 하는 경우도 있었음. )
+   - NDK 위치 : C:\Users\[사용자계정]\AppData\Local\Android\sdk\ndk-bundle ( 하위의 "321..."처럼 번호가 적힌 폴더를 선택해 줘야 하는 경우도 있었음. )
  
 
 [ Windows 환경 설정 ]
 
 1. ANDROID_HOME 
-    ->  C:\Users\Administrator\AppData\Local\Android\sdk\
+    ->  C:\Users\[사용자계정]\AppData\Local\Android\sdk\
 
 2. JAVA_HOME 
     ->  C:\Program Files\Java\jdk1.8.0_144
