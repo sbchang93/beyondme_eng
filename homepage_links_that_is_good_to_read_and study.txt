@@ -39,10 +39,6 @@ https://blog.naver.com/ydot/221640628298
 https://recipes4dev.tistory.com/65  ( 약간 오랜 내용, 전체적인 흐름만 참조 )
 https://developer.android.com/training/basics/firstapp/creating-project?hl=ko
 
-
------------------------------------------------------
------------------------------------------------------  
-
   
 -----------------------------------------------------
 -----------------------------------------------------
@@ -87,6 +83,8 @@ https://kokohapps.tistory.com/entry/Android-Module-%EC%9D%B4%EC%9A%A9%ED%95%98%E
 
 . 라이브러리 추가 ( Android Studio, 외부 java library (.JAR, .AAR) 추가 )
 https://technote.kr/212
+https://www.charlezz.com/?p=43990
+
 
 . jar 화일 생성 (gradle에서 빌드하나 만들고 실행해서 jar 화일 생성함.)
 https://eunplay.tistory.com/54
@@ -99,7 +97,7 @@ https://github.com/jojoldu/blog-code/tree/master/gradle-multi-modules
 
 . 안드로이드 라이브러리 모듈 관련
 https://flowarc.tistory.com/entry/Android-Studio%EC%97%90%EC%84%9C-%EB%82%98%EB%A7%8C%EC%9D%98-Library-%EB%A7%8C%EB%93%A4%EC%96%B4%EB%B3%B4%EA%B8%B0
-(먼가 설명이 자세히 되어 있음.)
+(뭔가 설명이 자세히 되어 있음.)
 
 https://today-shot.tistory.com/entry/Gradle-%EB%B9%8C%EB%93%9C-%EA%B0%80%EB%8A%A5%ED%95%9C-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-%EB%AA%A8%EB%93%88-%EC%83%9D%EC%84%B1
 
@@ -163,6 +161,7 @@ https://docs.gradle.org/current/userguide/multi_project_builds.html
 . MVP 모델 관련
 https://thdev.tech/androiddev/2016/12/27/Android-MVP-Four-Two/
 
+
 . MVVM
 
 
@@ -173,7 +172,22 @@ https://thdev.tech/androiddev/2016/12/27/Android-MVP-Four-Two/
 
 
 . reflection
-https://www.charlezz.com/?p=756
+https://www.charlezz.com/?p=756 (쉽게 잘 설명되어 있음)
+( GitHub 소스 : https://github.com/Charlezz/ReflectionTest )
+http://engineering.vcnc.co.kr/2013/07/replacing-reflection-to-apt-in-android/ (2013.7월 내용, 개념 잡기 좋음)
+
+
+. annotations
+http://engineering.vcnc.co.kr/2013/07/replacing-reflection-to-apt-in-android/ (2013.7월 내용, 개념 잡기 좋음)
+http://androidannotations.org/ ( android annotations )
+http://jakewharton.github.io/butterknife/ ( butter knife - binding, setter, getter )
+
+
+. Dagger 
+http://square.github.io/dagger/
+https://www.charlezz.com/?p=44056 (책 소개 홈페이지, 내용 괜찮을 것 같음. )
+( GitHub 소스 : https://github.com/Charlezz/DaggerSample)
+
 
 
 -----------------------------------------------------
@@ -189,39 +203,28 @@ https://jhedde.tistory.com/entry/Unity-Android-Java-%ED%94%8C%EB%9F%AC%EA%B7%B8%
 
 -----------------------------------------------------
 
-. Activity Alias 사용 방법 관련 ( 정상동작되는지, 그리고 동작 방법을 잘 모르겠음. )
+. 플랫폼 관련
 
-http://blog.daum.net/kinpmanse/45 (activity-alias)
-https://pyeongho.github.io/change-icon (activity-alias, 정상동작됨)
+. 타다 플랫폼 (개발기 관련 내용, 2019.5월) - 모빌리티 플랫폼 타다, 국민 커플앱 비트윈 개발사 VCNC
+http://engineering.vcnc.co.kr/2019/05/tada-client-development/
 
 
------------------------------------------------------
+...
 
-. picasso 모듈 추가 (github에 소스만 있음.)
-https://dwfox.tistory.com/31
-https://github.com/square/picasso
-
-build.gradle 수정
-dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    compile files('libs/picasso-2.5.2.jar')
-}
-
-. 코드 사용법
-Picasso.with(this)
-        .load("http://square.github.io/picasso/static/sample.png")
-        .into((ImageView)findViewById(R.id.img_picasso));
 
 
 -----------------------------------------------------
 
 
-* 맥 OS 툴 관련
-https://macnews.tistory.com/2734  (맥 파인더)
+-----------------------------------------------------
+
 
 
 -----------------------------------------------------
+
+
+-----------------------------------------------------
+
+
 
 
