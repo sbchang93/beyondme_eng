@@ -38,25 +38,28 @@
        : Android 8.0 (O) 설치
 
 
-* NDK 설치    
+* NDK 설치  ( NDK 설치 안 되어도 컴파일 잘 됨, NDK는 C, C++ 등 외부 라이브러리를 가져와서 사용할 때 필요한 Lib )
    : File -> Project Structure -> SDK Location 
    : NDK 다운로드 링크 클릭해서 설치.
  
 
-* Instant Run을 Disble 함
+* Instant Run을 Disble 함 ( 최신 안드로이드 스튜디오에서는 안 보임. )
    : File -> Settings -> Instant Run   -> Disable 함
 
 * Gerrit, Git 설치 
      . File → Settings → Appearance & Behavior → System Settings → HTTP Proxy
-     . File → Settings → Plugins → Browse Repositories... → "Gerrit"
-     . File → Settings → Version Control → Gerrit (  http://65.77.222.10 /package )
+     . File → Settings → Plugins → Browse Repositories... → "Gerrit"   (Gerrit 플러그인 설치하고 안드로이드 스튜디오 재실행해야 함. )
+     . File → Settings → Version Control → Gerrit (  http://34.77.123.10 /package )
+     . Git도 찾아서 테스트 버튼을 눌러서 정상동작하는지 확인
+     
+     참고로 안드로이드 스튜디어에서 commit, push, amend를 수행하면 아주 편리하게 git에 머지할 수 있음.
 
 	 
 * Android SDK Manager 에서 Proxy 설정 필요함 ( Android 2.3.3 에서는 이 부분이 없어진 것 같음. )
    -> Android SDK Manager 창 띄움 -> Tools -> Options 클릭
            HTTP Proxby Server : 30.244.254.254
            HTTP Proxy Port : 8080
-           No proxy for : 65.77.222.10   ( gerrit 사용을 위해 설정 )
+           No proxy for : 65.77.222.10   ( gerrit 사용을 위해 설정, 설정 안해도 보통 동작함 )
 
 
 ---------------------------------------------------------------------------------------------------------------------------------------
@@ -70,11 +73,11 @@
 
 * 인증서 복사 및 등록 ( certi_key.crt ) - 아래의 화면 및 명령어 참조
    C:\Program Files\Java\jdk1.8.0_144\jre\lib\security :  "certi_key.crt"  화일 복사
-  실행 명령어 : keytool  -import -alias mykeystore -file certi_key.crt -keystore cacerts -storepass changeit
+  실행 명령어 : keytool  -import -alias mykeystore -file my_certi_key.crt -keystore cacerts -storepass changeit
   [리눅스 폴더] /usr/local/share/jdk1.8.0_144/jre/lib/security
 
  
-* Intstant Run 설정 끄기
+* Intstant Run 설정 끄기 ( 최신 안드로이드 스튜디오에서는 안 보임. )
    File -> Settings -> Build, Execution, Deployment -> Instant Run -> off
 
 
@@ -83,6 +86,7 @@
 [ Setup 확인용 컴파일 명령어 ] 
 * gradlew 실행   ( -rwxr-xr-x 1 Administrator 197121 4971 6월   6 17:10 gradlew*  ) 
    => $ chmod 777 gradlew
+   
  
 ---------------------------------------------------------------------------------------------------------------------------------------
  
@@ -95,3 +99,56 @@ $ unzip gradle-3.4.1-all.zip
 
 ---------------------------------------------------------------------------------------------------------------------------------------
  
+ 
+ 
+ 
+ 
+---------------------------------------------------------------------------------------------------------------------------------------
+ 
+
+
+
+ 
+-----------------------------------------------------------------------------------------
+
+. https://es1015.tistory.com/23
+
+C:\Program Files\Java\jdk1.8.0_171\bin\keytool
+. keytool 실행 - 환경 변수 path 설정한 경우
+. 커맨드 창에서 실행할 때 -> C:\"Program Files"\Java\jdk1.8.0_171\bin\keytool
+
+
+안드로이드 debug.keystore 위치
+C:\Users\[사용자계정]\.android\debug.keystore
+
+
+keytool위치에서 cmd창 열어서 api키 얻기
+Keytool -exportcert -alias androiddebugkey -keystore c:\User\[사용자이름]\.android\debug.keystore -list -v
+
+
+----------
+
+https://dwfox.tistory.com/40
+
+. Key Store 생성하기
+
+keytool -genkey -v -keystore [keystorefilename] -alias [alias] -keyalg RSA -keysize 2048 -validity 10000
+- validity  : 만료 일(day)
+
+C:\Users\DWFOX>keytool -genkey -v -keystore dwfox.keystore -alias dwfox -keyalg RSA -keysize 2048 -validity 10000
+
+
+----------
+
+https://oingbong.tistory.com/206
+
+keytool -genkey -v -keystore release_key.keystore -alias alias_name -keyalg RSA -keysize 2048 -validity 10000
+
+. 릴리즈 빌드 및 APK 생성
+안드로이드 스튜디오 - Build - Generate Signed APK… 
+
+.앱 업데이트 할 때 주의사항
+Project 보기 - app - build.gradle 
+
+
+-----------------------------------------------------------------------------------------
