@@ -32,6 +32,7 @@ public class MainActivity extends UiFlowerBaseActivity {
         Observable.just("RedApp")
                 .delay(1, TimeUnit.SECONDS)
                 .subscribe(s -> {
+					// Run RedMainActivity via the RedApp interface
                     RedApp redApp = Injector.provideRedApp(this);
                     redApp.startApp(this);
 
