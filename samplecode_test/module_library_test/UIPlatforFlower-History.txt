@@ -9,11 +9,21 @@ UIPlatformFlower001 (2020.04.15)
 
 --------------------------------------------
 UIPlatformFlower002-001 (2020.04.18)
+: Run MainActivity (Red, Blue) via interface
 : change Red App and Blue App to library 
   and then add them into Main Application Module 
   and run it together
 
 --------------------------------------------
+UIPlatformFlower002-002 (2020.04.19)
+: Run RedMainActivity via reflection
 
 --------------------------------------------
 
+
+--------------------------------------------
+
+
+--------------------------------------------
+
+--------------------------------------------
