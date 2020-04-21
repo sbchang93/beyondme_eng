@@ -1,0 +1,6 @@
+rootProject.name='UI Platform Flower 002'
+include ':app'
+include ':commonlibrary'
+include ':blueapp'
+include ':redapp'
+include ':tabscreen'
