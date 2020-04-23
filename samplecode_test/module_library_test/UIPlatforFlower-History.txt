@@ -23,6 +23,10 @@ UIPlatformFlower002-003 (2020.04.22)
 : Add TabScreen with toolbar, tabLayout and viewPager
 
 --------------------------------------------
+UIPlatformFlower002-004 (2020.04.23)
+: add UI platform package structure in tabscreen
+  and add listview in fragment 1 on tabscreen
+
 --------------------------------------------
 
 
