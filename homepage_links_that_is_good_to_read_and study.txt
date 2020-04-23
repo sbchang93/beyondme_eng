@@ -43,6 +43,10 @@ https://developer.android.com/training/basics/firstapp/creating-project?hl=ko
 -----------------------------------------------------
 -----------------------------------------------------
 
+* Listview
+https://webnautes.tistory.com/1020
+
+
 * Layout 관련
 
 . Relative Layout
@@ -67,8 +71,22 @@ https://medium.com/@jsuch2362/adapter-%EB%88%84%EA%B5%AC%EB%83%90-%EB%84%8C-data
 http://www.gisdeveloper.co.kr/?p=1268
 
 -----------------------------------------------------
+
+* Fragment
+https://m.blog.naver.com/it_sion/220799240481
+FragmentStatePagerAdapter (Android Developers)
+https://developer.android.com/reference/androidx/fragment/app/FragmentStatePagerAdapter
+
 -----------------------------------------------------
 
+* Fragment 라이브러리 ( androidx )
+https://developer.android.com/jetpack/androidx/releases/fragment?hl=ko
+
+
+* Android Support Libary
+https://developer.android.com/topic/libraries/support-library/packages?hl=ko
+com.android.support:design:28.0.0 
+https://developer.android.com/reference/android/support/design/package-summary
 
 
 
@@ -158,6 +176,11 @@ https://docs.gradle.org/current/userguide/multi_project_builds.html
 
 -----------------------------------------------------
 
+. Package structure (구조 관련)
+https://thdev.tech/androiddev/2017/02/20/Android-MVP-Package-Structure/
+( GitHub 예제 : https://github.com/android/architecture-samples/tree/todo-mvp )
+
+
 . MVP 모델 관련
 https://thdev.tech/androiddev/2016/12/27/Android-MVP-Four-Two/
 
@@ -176,6 +199,8 @@ https://www.charlezz.com/?p=756 (쉽게 잘 설명되어 있음)
 ( GitHub 소스 : https://github.com/Charlezz/ReflectionTest )
 http://engineering.vcnc.co.kr/2013/07/replacing-reflection-to-apt-in-android/ (2013.7월 내용, 개념 잡기 좋음)
 
+(구글 검색) https://www.google.com/search?q=%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C+reflection&oq=%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C+reflection+&aqs=chrome..69i57j0.10677j0j8&sourceid=chrome&ie=UTF-8
+
 
 . annotations
 http://engineering.vcnc.co.kr/2013/07/replacing-reflection-to-apt-in-android/ (2013.7월 내용, 개념 잡기 좋음)
@@ -188,6 +213,9 @@ http://square.github.io/dagger/
 https://www.charlezz.com/?p=44056 (책 소개 홈페이지, 내용 괜찮을 것 같음. )
 ( GitHub 소스 : https://github.com/Charlezz/DaggerSample)
 
+. Dagger Coffe 예제
+https://github.com/square/dagger/tree/master/examples/simple/src/main/java/coffee
+http://square.github.io/dagger/ (설명)
 
 
 -----------------------------------------------------
@@ -199,6 +227,26 @@ https://academy.realm.io/kr/posts/android-studio-plugin-development/
 https://jhedde.tistory.com/entry/Unity-Android-Java-%ED%94%8C%EB%9F%AC%EA%B7%B8%EC%9D%B8-%EB%B6%99%EC%9D%B4%EA%B8%B0-1
 
 
+https://www.google.com/search?q=plugin+architecture&rlz=1C1GCEU_koKR878KR879&oq=plugin+architecture&aqs=chrome..69i57j0l7.7676j1j7&sourceid=chrome&ie=UTF-8
+
+https://www.google.com/search?rlz=1C1GCEU_koKR878KR879&ei=IO-XXo2_M5ONr7wP0paLgA8&q=plugin+architecture+android&oq=plugin+architecture&gs_lcp=CgZwc3ktYWIQAxgBMgQIABBDMgIIADICCAAyAggAMgIIADICCAAyAggAMgIIADIECAAQHjIECAAQHjoGCAAQBxAeSgoIFxIGMTEtMTQ5SggIGBIEMTEtMlAAWABgia4EaANwAHgAgAGXAYgBnQKSAQMwLjKYAQCqAQdnd3Mtd2l6&sclient=psy-ab
+
+https://www.google.com/search?q=plugin+architecture+android&rlz=1C1GCEU_koKR878KR879&source=lnms&tbm=isch&sa=X&ved=2ahUKEwieyf7GnezoAhWfw4sBHf29CE8Q_AUoAnoECAsQBA&biw=1514&bih=632&dpr=1.25
+
+
+-----------------------------------------------------
+
+[ 안드로이드 다양한 기능들 ]
+
+* chooser 관련
+https://developer.android.com/training/basics/intents/sending
+
+
+-----------------------------------------------------
+
+
+C:\Program Files\Android\Android Studio\jre\jre\lib\security
+keytool -import -alias company -file my_cer.crt -keystore cacerts -storepass changeit
 
 
 -----------------------------------------------------
