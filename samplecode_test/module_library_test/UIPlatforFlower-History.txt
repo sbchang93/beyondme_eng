@@ -32,7 +32,8 @@ UIPlatformFlower002-005 (2020.04.26)
 : add title in TabScreen with Toolbar, actionbar.
 
 --------------------------------------------
-
+UIPlatformFlower002-006 (2020.04.26)
+: add webview
 
 --------------------------------------------
 

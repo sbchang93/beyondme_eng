@@ -49,6 +49,9 @@ https://webnautes.tistory.com/1020
 
 * Layout 관련
 
+. Linear Layout
+https://webnautes.tistory.com/1007
+
 . Relative Layout
 https://kairo96.gitbooks.io/android/content/ch3.33.html
 
@@ -77,6 +80,24 @@ https://m.blog.naver.com/it_sion/220799240481
 FragmentStatePagerAdapter (Android Developers)
 https://developer.android.com/reference/androidx/fragment/app/FragmentStatePagerAdapter
 
+* tab 메뉴
+https://m.blog.naver.com/it_sion/220799240481
+<com.google.android.material.tabs.TabLayout <= 2020년 
+<android.support.design.widget.TabLayout <= 예전
+ 
+
+* Titlebar, actionbar
+https://commin.tistory.com/63
+https://freehoon.tistory.com/25
+ android:theme="@style/Theme.AppCompat.NoActionBar" ( 수정후 )
+ android:theme="@style/AppTheme.NoActionBar" ( 수정전 )
+https://codeomni.tistory.com/216
+
+* webview
+https://duckssi.tistory.com/9 (activity 경우)
+https://gun0912.tistory.com/23 (fragment 경우)
+
+ 
 -----------------------------------------------------
 
 * Fragment 라이브러리 ( androidx )
