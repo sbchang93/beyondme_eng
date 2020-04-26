@@ -18,12 +18,13 @@ import com.happybom.tabscreen.R;
 
 // Reference Homepage : https://duckssi.tistory.com/9 (activity)
 // Reference Homepage : https://gun0912.tistory.com/23 (fragment)
-// Reference Homepage : http://zeany.net/5 (screen rolation)
+// Reference Homepage : http://zeany.net/5 (screen rolation) - http://zeany.net/4 , 5, 9, 10
 public class TabFragment2 extends Fragment {
     private static final String TAG = "TabFragment2";
     private WebView webView;
     private String url = "https://google.com";
     //private String url = "https://www.naver.com";
+    private static final String ENTRY_URL = "file:///android_asset/www/index.html";
 
     public TabFragment2 newInstance(int index) {
         TabFragment2 f = new TabFragment2();
@@ -39,7 +40,6 @@ public class TabFragment2 extends Fragment {
 
         webView = (WebView) view.findViewById(R.id.tab2_webview);
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl(url);
         webView.setWebChromeClient(new WebChromeClient());
         webView.setWebViewClient(new Tab2WebViewClient());
 
@@ -61,6 +61,8 @@ public class TabFragment2 extends Fragment {
             }
         });
 
+        webView.loadUrl(url);
+        //webView.loadUrl(ENTRY_URL); //http://zeany.net/9
         return view;
     }
 
@@ -69,6 +71,24 @@ public class TabFragment2 extends Fragment {
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             view.loadUrl(url);
             return true;
+        }
+
+        //Reference Homepage : http://zeany.net/10?category=666373
+        @Override
+        public void onPageFinished(WebView view, String url) {
+
+            // Manage something with data that webView provides.
+
+            if (url.equals(ENTRY_URL)) { // please use this code " webView.loadUrl(ENTRY_URL); " in onCreateView for testing.
+                String keyword = "tistory";
+
+                String script = "javascript:function afterLoad() {"
+                        + "document.getElementById('keyword').value = '" + keyword + "';"
+                        + "};"
+                        + "afterLoad();";
+
+                view.loadUrl(script);
+            }
         }
     }
 
