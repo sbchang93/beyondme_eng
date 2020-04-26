@@ -4,6 +4,8 @@ https://git-scm.com/book/ko/v2/Git%EB%A7%9E%EC%B6%A4-Git-%EC%84%A4%EC%A0%95%ED%9
 
 
 -------------------------------------------------------
+
+
 [유용한 명령어들]
 
 - Commit 취소
@@ -97,6 +99,7 @@ $ git config --global diff.external bc2
 $ git config --global -l
 $ git config --list
 
+
 .gitconfig ( C:\Users\HOME )
 [user]
 	name = superman
@@ -114,7 +117,7 @@ echo "# beyond_eng" >> README.md
 git init
 git add README.md
 git commit -m "first commit"
-git remote add origin https://github.com/sbchang93/beyond_eng.git
+git remote add origin https://github.com/google/googletest.git
 git push -u origin master
 
 ----------------
@@ -126,12 +129,11 @@ ssh-keygen -t rsa
 
 
 * git hub
-git clone https://github.com/sbchang93/beyondme
-git clone https://github.com/tonychacon/blink
+git clone https://github.com/google/googletest
 
 $ git remote -v
-origin  https://github.com/sbchang93/beyondme_eng.git (fetch)
-origin  https://github.com/sbchang93/beyondme_eng.git (push)
+origin  https://github.com/google/googletest.git (fetch)
+origin  https://github.com/google/googletest.git (push)
 
 . git 서버의 "3f69743"번 내용까지 로컬 소스를 강제로 일치시킴. 
 $ git checkout 3f69743  
