@@ -13,6 +13,8 @@ import androidx.fragment.app.Fragment;
 
 import com.happybom.tabscreen.R;
 
+// Reference Homepage : https://duckssi.tistory.com/9 (activity)
+// Reference Homepage : https://gun0912.tistory.com/23 (fragment)
 public class TabFragment2 extends Fragment {
     private static final String TAG = "TabFragment2";
     private WebView webView;
@@ -66,7 +68,7 @@ public class TabFragment2 extends Fragment {
     }
 
     /*
-    // Activity의 경우에는 onKeyDown(...)함수를 override가능하기 때문에 아래의 함수에서 backkey를 처리해 줄 수 있음.
+    // Activity??경우?�는 onKeyDown(...)?�수�?override가?�하�??�문???�래???�수?�서 backkey�?처리??�????�음.
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if ((keyCode == KeyEvent.KEYCODE_BACK) && webView.canGoBack()) {
