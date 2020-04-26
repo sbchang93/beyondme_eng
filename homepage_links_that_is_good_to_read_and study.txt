@@ -73,6 +73,16 @@ https://medium.com/@jsuch2362/adapter-%EB%88%84%EA%B5%AC%EB%83%90-%EB%84%8C-data
 
 http://www.gisdeveloper.co.kr/?p=1268
 
+
+* recycler view
+https://webnautes.tistory.com/1214 ( recyclerview, Dictionary : generate getter/setter )
+https://developer.android.com/jetpack/androidx/releases/recyclerview  (android 사이트)
+( androidx.recyclerview:recyclerview:1.2.0-alpha01 )
+...
+
+
+
+
 -----------------------------------------------------
 
 * Fragment
@@ -96,6 +106,11 @@ https://codeomni.tistory.com/216
 * webview
 https://duckssi.tistory.com/9 (activity 경우)
 https://gun0912.tistory.com/23 (fragment 경우)
+http://zeany.net/4  ( https://github.com/zeany/webview/blob/master/app/src/main/java/zeany/net/webview/MainActivity.java )
+http://zeany.net/5
+http://zeany.net/9 (html 관련, asset 저장, file:///android_asset/www/index.html)
+http://zeany.net/10?category=666373 (Native와 WebView 사이에 데이터를 주고 받는 방법)
+https://developer.android.com/guide/webapps/webview (안드로이드 사이트)
 
  
 -----------------------------------------------------
