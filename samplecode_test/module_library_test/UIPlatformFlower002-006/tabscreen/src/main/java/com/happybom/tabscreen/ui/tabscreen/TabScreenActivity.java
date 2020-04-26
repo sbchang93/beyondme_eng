@@ -2,6 +2,7 @@ package com.happybom.tabscreen.ui.tabscreen;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -28,6 +29,7 @@ public class TabScreenActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setVisibility(View.GONE);
 
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         tabLayout.addTab(tabLayout.newTab().setText("Tab 1"));
