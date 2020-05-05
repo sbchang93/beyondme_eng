@@ -1,7 +1,14 @@
 -----------------------------------------------------
-. wikihow (다양한 자료들을 같이 정리하는 사이트)  
+. wikihow (영어 읽기 공부용, 다양한 자료들을 같이 정리하는 사이트)  
 https://www.wikihow.com/Main-Page
 https://ko.wikihow.com/%EB%8C%80%EB%AC%B8
+
+-----------------------------------------------------
+
+* 다양한 Code 샘플들 보여줌 ( Android, Java 등 )
+https://www.codota.com/code/java/classes/android.view.View
+https://www.codota.com/code/query/android.view@View+android.view@LayoutInflater
+https://www.codota.com/code/java/methods/android.view.View/setPadding
 
 
 -----------------------------------------------------
@@ -61,8 +68,16 @@ https://kairo96.gitbooks.io/android/content/ch3.33.html
 * ImageView 관련 설명
 https://recipes4dev.tistory.com/136
 
-* Android Code 샘플들 보여줌
-https://www.codota.com/code/java/methods/android.view.View/setPadding
+* EditBox
+https://itpangpang.xyz/191 (addTextChangedListener, TextWatcher)
+https://recipes4dev.tistory.com/61
+https://lktprogrammer.tistory.com/138
+
+
+
+
+* View (줄 라인, 구분선)
+https://blog.cracker9.io/2018/03/16/android_line/
 
 
 
@@ -81,8 +96,16 @@ https://developer.android.com/jetpack/androidx/releases/recyclerview  (android �
 ...
 
 
+* shared preference 관련
+https://bottlecok.tistory.com/26
+(불러오기, 저장, 삭제 예제) https://arabiannight.tistory.com/entry/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9CAndroid-SharedPreferences-%EC%82%AC%EC%9A%A9-%EC%98%88%EC%A0%9C 
+https://r-son.tistory.com/22 ( 자세한 설명 )
+http://blog.naver.com/PostView.nhn?blogId=inajjang97&logNo=221322256789
+https://bitsoul.tistory.com/120
 
-
+=> 폰에 shared preference 저장된 곳 확인 
+   : /data/data/com.mycompany.app => shared_prefs 폴더 확인 ( 디버깅용 앱에서 확인 )
+   
 -----------------------------------------------------
 
 * Fragment
@@ -112,7 +135,30 @@ http://zeany.net/9 (html 관련, asset 저장, file:///android_asset/www/index.h
 http://zeany.net/10?category=666373 (Native와 WebView 사이에 데이터를 주고 받는 방법)
 https://developer.android.com/guide/webapps/webview (안드로이드 사이트)
 
+-----------------------------------------------------
+
+* Json, Gson 변환
+https://emflant.tistory.com/47
+https://re-build.tistory.com/41
+
+Gson gson = new Gson();
+String tempString = gson.toJson(transactionItem);
+			
+Gson gson = new Gson();
+TransactionItem transationItem = gson.fromJson(myString, TransactionItem.class);
  
+ 
+-----------------------------------------------------
+
+* String - Byte[] 변환
+
+String plainText;
+byte[] input = plainText.getBytes("UTF-8");
+byte[] encryptedBytes = cipher.doFinal(plainText.getBytes("UTF-8"));
+ 
+byte[] decryptedBytes = cipher.doFinal(base64encryptedBytes);
+return new String(decryptedBytes); 
+
 -----------------------------------------------------
 
 * Fragment 라이브러리 ( androidx )
@@ -224,6 +270,13 @@ https://thdev.tech/androiddev/2016/12/27/Android-MVP-Four-Two/
 . MVVM
 
 
+. ROOM 관련 ( DB, SQLite 연동 )
+https://developer.android.com/topic/libraries/architecture/room
+
+
+. SQLite 관련
+https://bitsoul.tistory.com/118?category=623707
+
 
 -----------------------------------------------------
 
@@ -287,6 +340,90 @@ keytool -import -alias company -file my_cer.crt -keystore cacerts -storep
 
 -----------------------------------------------------
 
+* 암호화 관련 ( AES 등 )
+
+. AES 예제 코드 ( Native AES )
+https://stackoverrun.com/ko/q/12660507
+
+. Shared Preference 암호화 방법 관련
+https://g-y-e-o-m.tistory.com/141
+
+http://jo.centis1504.net/?p=141
+KeyGenerator generator = KeyGenerator.getInstance("AES");
+SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
+generator.init(128, random);
+Key secureKey = generator.generateKey();
+
+
+. 좀 더 자세한 설명 ( Native AES, Shared Preference, Android Store )
+https://hyperconnect.github.io/2018/06/03/android-secure-sharedpref-howto.html
+. AndroidRsaCipherHelper : https://gist.github.com/FrancescoJo/b8280cff14f1254f2185a9c2e927565e
+. SecureSharedPreferences : https://gist.github.com/FrancescoJo/8753a63e1c6888c5d07ceb552c98104c
+
+. Android Security Library ( EncryptedSharedPreferences )
+https://thdev.tech/android/2019/12/21/Android-Security-Library/
+
+. EncryptedSharedPreferences 클래스
+EncryptedSharedPreference.create(
+	"my_secret_prefs",
+	advancedKeyAlias,
+	applicationContext,
+	PrefKeyEncryptionScheme.AES256_SIV,
+	PrefValueEncryptionScheme.AES256_GCM
+).edit {
+	// Update secret values
+}
+
+* Encrypted Shared Preference 구현 방향 관련 #1 
+=> Shared Preference + Android KeyStore + AES 알고리즘 이용
+   1. Android Keystore를 이용해서 AES 알고리즘에 사용할 Secret Key 값 하나를 받아옮
+   2. Shared Preference에 저장할 때 AES Encryption, 불러올 때 AES Decryption 수행
+   * 참고로 RSA 알고리즘은 속도가 좀 느려서 사용성에 안 좋아 보임. 
+ 
+https://bakyeono.net/post/2013-09-29-clojure-aes.html
+public static byte[] generateRawKey(String seed_string) throws Exception {
+  SecureRandom secure_random = SecureRandom.getInstance("SHA1PRNG");
+  secure_random.setSeed(seed_string.getBytes("UTF-8"));
+  KeyGenerator key_generator = KeyGenerator.getInstance("AES");
+  key_generator.init(128, secure_random);
+  return (key_generator.generateKey()).getEncoded();
+}
+ 
+----------------------------------------------------- 
+
+. Keystore redesign 관련 ( AES 예제 등 있음 )
+https://nelenkov.blogspot.com/2015/06/keystore-redesign-in-android-m.html
+
+// key generation
+KeyGenParameterSpec.Builder builder = new KeyGenParameterSpec.Builder("key1",
+                    KeyProperties.PURPOSE_ENCRYPT | KeyProperties.PURPOSE_DECRYPT);
+KeyGenParameterSpec keySpec = builder
+                    .setKeySize(256)
+                    .setBlockModes("CBC")
+                    .setEncryptionPaddings("PKCS7Padding")
+                    .setRandomizedEncryptionRequired(true)
+                    .setUserAuthenticationRequired(true)
+                    .setUserAuthenticationValidityDurationSeconds(5 * 60)
+                    .build();
+KeyGenerator kg = KeyGenerator.getInstance("AES", "AndroidKeyStore");
+kg.init(keySpec);
+SecretKey key = kg.generateKey();
+
+// key retrieval
+KeyStore ks = KeyStore.getInstance("AndroidKeyStore");
+ks.load(null);
+
+KeyStore.SecretKeyEntry entry = (KeyStore.SecretKeyEntry)ks.getEntry("key1", null);
+key = entry.getSecretKey();
+
+---------
+Key blobs (???)
+
+$ java -jar ksdecryptor-all.jar .masterkey 10092_USRPKEY_ec_key4 1234
+master key: d6c70396df7bfdd8b47913485dc0a885
+
+-----------------------------------------------------
+
 . 플랫폼 관련
 
 . 타다 플랫폼 (개발기 관련 내용, 2019.5월) - 모빌리티 플랫폼 타다, 국민 커플앱 비트윈 개발사 VCNC
@@ -297,7 +434,6 @@ http://engineering.vcnc.co.kr/2019/05/tada-client-development/
 
 
 
------------------------------------------------------
 
 
 -----------------------------------------------------
@@ -306,7 +442,37 @@ http://engineering.vcnc.co.kr/2019/05/tada-client-development/
 
 -----------------------------------------------------
 
+* 이상하게 잘 안 되는 것 같음.
 
+   void initKeySetup() {
+        try {
+            KeyStore keyStore = KeyStore.getInstance(ANDROID_KEY_STORE);
+            keyStore.load(null);
+            boolean containsAlias = keyStore.containsAlias(ALIAS_AES);
+
+            if (!containsAlias) {
+                final KeyGenerator keyGenerator = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, ANDROID_KEY_STORE);
+                final KeyGenParameterSpec keyGenParameterSpec = new KeyGenParameterSpec.Builder(ALIAS_AES,
+                        KeyProperties.PURPOSE_ENCRYPT | KeyProperties.PURPOSE_DECRYPT)
+                        .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
+                        .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
+                        .build();
+                SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
+                random.setSeed("1234567890123456".getBytes("UTF-8"));
+                keyGenerator.init(keyGenParameterSpec, random);
+                secretKeyAes = keyGenerator.generateKey();
+            } else {
+                final KeyStore.SecretKeyEntry secretKeyEntry = (KeyStore.SecretKeyEntry) keyStore.getEntry(ALIAS_AES, null);
+                secretKeyAes = secretKeyEntry.getSecretKey();
+            }
+            secretKeyAes = secretKeyAes;
+        } catch ( NoSuchProviderException | KeyStoreException | CertificateException | IOException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException | InvalidAlgorithmParameterException | UnrecoverableEntryException e) {
+            e.printStackTrace();
+        }
+    }
+	
 -----------------------------------------------------
 
 
