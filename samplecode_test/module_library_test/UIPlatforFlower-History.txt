@@ -40,6 +40,14 @@ UIPlatformFlower002-007 (2020.04.27)
 : add recyclerview
 
 --------------------------------------------
+UIPlatformFlower002-007 (2020.05.05)
+: add edit box, shared Preference
+  add encrypted shared preference
+  add AES encryption/decryption for encrypted shared preference
+  ( I want to use android keystore for AES Secret Key but I can't. 
+    So I use the RSA Certification Key for temporary code. )
+
+--------------------------------------------
 
 --------------------------------------------
 
