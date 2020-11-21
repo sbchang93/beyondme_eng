@@ -33,7 +33,7 @@ public class MemoAdapter extends BaseAdapter {
 			viewHolder = new ViewHolder();
 			
 			// 뷰를 새로 만들 때
-			ConvertView = LayoutInflater.from(parent.getContext())
+			convertView = LayoutInflater.from(parent.getContext())
 				.inflate(R.layout.item_memo, parent, false);
 				
 			// 레이아웃 들고 오기
@@ -44,7 +44,8 @@ public class MemoAdapter extends BaseAdapter {
 			viewHolder.titleTextView = titleTextView;
 			viewHolder.contentTextView = contentTextView;
 			
-			covertView.setTag(viewHolder);
+			// Tag를 이용해서 ViewHolder를 ConvertView와 엮는다.
+			convertView.setTag(viewHolder);
 		} else {
 			// 재사용 할 때
 			viewHolder = (ViewHolder) convertView.getTag();
