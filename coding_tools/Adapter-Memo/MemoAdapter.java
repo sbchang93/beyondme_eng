@@ -6,21 +6,25 @@ public class MemoAdapter extends BaseAdapter {
 			mData = memoList;
 	}
 	
+	// 아이템 갯수	
 	@Override
 	public int getCount() {
 		return mData.size();
 	}
 	
+	// position번째 아이템	
 	@Override
 	public Object getItem(int position) {
 		return mData.get(position);
 	}
 	
+	// position번째 id ( id는 DB를 사용하지 않는 이상 position과 동일함.)	
 	@Override
 	public long getItemId(int position) {
 		return position;
 	}
 	
+	// position번째의 레이아웃을 정의	
 	@Override
 	public View getView(int position, View converView, ViewGroup parent) {
 		ViewHolder viewHolder;
