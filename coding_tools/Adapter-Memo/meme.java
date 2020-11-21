@@ -30,7 +30,7 @@ public class Memo {
 	public String toString() {
 		final StringBuilder sb = new StringBuffer("Moemo{");
 		sb.append("content='").append(content).append('\'');
-		sb.append("title='").append(title).append('\'');
+		sb.append(", title='").append(title).append('\'');
 		sb.append('}');
 		return sb.toString();
 	}
