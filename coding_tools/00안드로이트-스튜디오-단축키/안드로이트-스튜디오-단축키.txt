@@ -4,7 +4,7 @@ Ctrl + Shift + F : 프로젝트에서 전체 검색
 
 Ctrl + N : 클래스(class) 이름을 검색
 
-Ctrl + "변수 또는 항목"에 마우수 왼쪽 클릭 : 해당 항목의 선언 및 구현부로 이동
+Ctrl + "변수 또는 항목"에 마우스 왼쪽 클릭 : 해당 항목의 선언 및 구현부로 이동
 
 -------------------------------------------------------------------------------------------------------------
 
@@ -14,7 +14,13 @@ https://m.blog.naver.com/PostView.nhn?blogId=ljpark6&logNo=221212384668&proxyRef
 
 Ctrl + Alt + L : Reformat code , 코드 자동정렬
 
-Extract constant(Control + Alt + C) : 외부에 선언된 상수를 내부에 별도의 변수로 재정의 하는등의 작업을 처리하는 단축키.
+Extract constant(Control + Alt + C) : 코드에서 사용되는 숫자를 내부에 별도의 변수로 재정의 하는등의 작업을 처리하는 단축키.
 
+(ex)
+startActivityForResult(intent, 1000);
+
+=> public static final int REQUEST_CODE = 1000;
+   startActivityForResult(intent, REQUEST_CODE);
+   
 -------------------------------------------------------------------------------------------------------------
 
