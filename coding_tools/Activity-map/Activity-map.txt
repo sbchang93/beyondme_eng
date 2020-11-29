@@ -1,0 +1,63 @@
+
+* MainActicity 클래스
+
+private ListView mListView;
+private ArrayList<Map<String, Object>> mDataList;
+
+
+. onCreate (..) 함수 
+
+setContentView(R.layout.activity_list_view);
+
+//뷰
+mListView = (ListView) findViewById(R.id.list_view);
+
+// 데이터
+mDataList = new ArrayList<>(); 
+
+// addItem (title, desc, cls) 함수 호출해서 항목을 mDataList에 추가함
+addItem("농구 점수판", "Button, OnClickListener 연습", BasketballActivity.class);
+addItem("커피앱", "CheckBox", MainAcitvity.class);
+addItem("날씨앱", "모델클래스를 활용하여 BaseAdapter 연습", WeatherAcitvity.class);
+
+
+MyAdapter adapter = new MyAdapter(mDataList);
+
+mListView.setAdapter(adpater);
+
+// 이벤트
+mListView.setOnItemClickListener((parent, view, position ... 
+	Map<String, Object> map = (Map<String, Object>) p...  // listView에서 눌러진 position의 itemd의 map 데이타를 넘겨줌.
+	Item intent = (Intent) map.get("intent");
+	startActivity(intent); // ListView의 선택된 item의 해당 클래스가 실행됨 ( WeatherAcitvity.class 등등 )
+});
+
+mListView.setOnItemLongClickListener((parent, view, position ... 
+	Toast.make( ... );
+	return true;
+});
+
+
+-----------------------
+
+private void addItem(String title, String desc, Class cls) {
+	Map<String, Object> map = new HashMap<>();
+	map.put("title", title);
+	map.put("desc", desc);
+	map.put("intent", new Intent(this, cls));
+	mDataList.add(map);
+}
+
+
+-----------------------
+
+private static MyAdapter extends BaseAdapter {
+	private final List<Map<String, Object>> mData;
+	public MayAdapter(List<Map<String, Object>> data) { mData = data;}
+	
+	@Override
+	public int getCount() { return mData.size(); }
+	
+	...
+	
+}
