@@ -1,12 +1,68 @@
 -------------------------------------------------------------------------------------------------------------
 
+
 Ctrl + Shift + F : 프로젝트에서 전체 검색
 
 Ctrl + N : 클래스(class) 이름을 검색
 
 Ctrl + "변수 또는 항목"에 마우스 왼쪽 클릭 : 해당 항목의 선언 및 구현부로 이동
 
+Ctrl + Alt + M : 코드들을 멤버 함수로 이동해 줌
+
+Ctrl + Alt + C : 코드에서 사용되는 숫자를 별도의 변수로 재정의 해줌  ( 형태 >> public static final int REQUEST_CODE = 1000; )
+
+Ctrl + / : 코드 라인들을 주석처리 해줌 ( 형태 >> // int test = 0; )
+
+Alt + insert : 코드 생성 ( constructor, getter/setter, override method 등등)
+
+Alt + Enter : 코드에 문제가 있으면, 경고 확인하고 바로 수정 가능
+
+Ctrl + B : 선언 부분 보기 
+
+Ctrl + U : 부모 클래스 보기
+
+Ctrl + H : 클래스 상속 관계 보기
+
+/** + Enter : Method 주석 넣기
+
+
+-------------
+
+화일 생성시 코멘트 달기 : File -> Settings -> Editor -> File and Code Templates -> include -> FileHeader
+
+#set($USER = "홍길동")
+/**
+ * Created by ${USER} on ${DATE}.
+ */
+ 
 -------------------------------------------------------------------------------------------------------------
+
+----------------------------
+
+https://googry.tistory.com/17
+
+/** + Enter : Method 주석 넣기
+
+
+----------------------------
+
+https://chelsea-kbj.tistory.com/6
+
+. File -> Settings -> Editor -> File and Code Templates -> include -> FileHeader
+
+#set($USER = "홍길동")
+/**
+ * Created by ${USER} on ${DATE}.
+ */
+
+
+----------------------------
+
+. 단축키 설명 ( 내용 괜찮음 )
+https://nittaku.tistory.com/60
+
+----------------------------
+
 
 
 https://m.blog.naver.com/PostView.nhn?blogId=ljpark6&logNo=221212384668&proxyReferer=https:%2F%2Fwww.google.com%2F
