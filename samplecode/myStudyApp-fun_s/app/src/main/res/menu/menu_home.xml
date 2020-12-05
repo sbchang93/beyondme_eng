@@ -1,0 +1,24 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+tools:context="com.example.toronto.mystudyapp.view,ListViewActivity">
+
+<item
+    android:id="@+id/action_menu1"
+    android:orderInCategory="100"
+    android:title="menu1"
+    app:showAsAction="never" />
+
+<item
+    android:id="@+id/action_menu2"
+    android:orderInCategory="101"
+    android:title="menu1"
+    app:showAsAction="never" />
+
+<item
+    android:id="@+id/action_settings"
+    android:orderInCategory="110"
+    android:title="settings"
+    app:showAsAction="never" />
+
+</menu>

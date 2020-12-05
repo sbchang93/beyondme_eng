@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/absolute_menu_item"
+        android:title="Absolute Layout"
+        android:orderInCategory="1"/>
+    <item
+        android:id="@+id/linear_menu_item"
+        android:title="Linear Layout"
+        android:orderInCategory="2"/>
+    <item
+        android:id="@+id/table_menu_item"
+        android:title="Table Layout"
+        android:orderInCategory="3"/>
+    <item
+        android:id="@+id/frame_menu_item"
+        android:title="Frame Layout"
+        android:orderInCategory="4"/>
+    <item
+        android:id="@+id/relative_menu_item"
+        android:title="Relative Layout"
+        android:orderInCategory="5"/>
+    <item
+        android:id="@+id/multi_menu_item"
+        android:title="Multiple Layouts"
+        android:orderInCategory="6"/>
+    <item
+        android:id="@+id/hello_string_item"
+        android:title="Hello String"
+        android:orderInCategory="7"/>
+    <item
+        android:id="@+id/grocery_list_item"
+        android:title="Grocery List"
+        android:orderInCategory="8"/>
+    <item
+        android:id="@+id/layout_item"
+        android:title="Layouts"
+        android:orderInCategory="9"/>
+</menu>
