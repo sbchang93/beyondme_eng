@@ -266,10 +266,208 @@ public class MyFirstAdapter 클래스
 -------------------------------------------------------------------------------------------------------------
 #
 
+* MainActicity 클래스
+
+private ListView mListView;
+private ArrayList<Map<String, Object>> mDataList;
+
+
+. onCreate (..) 함수 
+
+setContentView(R.layout.activity_list_view);
+
+//뷰
+mListView = (ListView) findViewById(R.id.list_view);
+
+// 데이터
+mDataList = new ArrayList<>(); 
+
+// addItem (title, desc, cls) 함수 호출해서 항목을 mDataList에 추가함
+addItem("농구 점수판", "Button, OnClickListener 연습", BasketballActivity.class);
+addItem("커피앱", "CheckBox", MainAcitvity.class);
+addItem("날씨앱", "모델클래스를 활용하여 BaseAdapter 연습", WeatherAcitvity.class);
+
+
+MyAdapter adapter = new MyAdapter(mDataList);
+
+mListView.setAdapter(adpater);
+
+// 이벤트
+mListView.setOnItemClickListener((parent, view, position, id) -> {
+	Map<String, Object> map = (Map<String, Object>) parent.getAdapter().getItem(position);
+	Intent intent = (Intent) map.get("intent");
+	startActivity(intent);
+});
+
+mListView.setOnItemLongClickListener((parent, view, position ... 
+	Toast.make( ... );
+	return true;
+});
+
+
+-----------------------
+
+private void addItem(String title, String desc, Class cls) {
+	Map<String, Object> map = new HashMap<>();
+	map.put("title", title);
+	map.put("desc", desc);
+	map.put("intent", new Intent(this, cls));
+	mDataList.add(map);
+}
+
+
+-----------------------
+
+private static MyAdapter extends BaseAdapter {
+	private final List<Map<String, Object>> mData;
+	public MayAdapter(List<Map<String, Object>> data) { mData = data;}
+	
+	@Override
+	public int getCount() { return mData.size(); }
+	
+	...
+	
+}
 
 -------------------------------------------------------------------------------------------------------------
-#
+# MainActivity에서 ListView에 나오는 해당 Activity를 누르면 실행되는 예제
 
+public class MainActivity extends AppCompatActivity {
+
+    private ListView mListView;
+    private ArrayList<Map<String, Object>> mDataList;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        //뷰
+        mListView = (ListView) findViewById(R.id.list_view);
+
+        // 데이터
+        mDataList = new ArrayList<>();
+
+        // addItem (title, description, class) 함수 호출해서 항목을 mDataList에 추가함
+        addItem("CallOtherActivity 실행", "연습(설명내용)", CallOtherActivity.class);
+        addItem("HashMapActivity 실행", "연습(설명내용)", HashMapActivity.class);
+        addItem("ViewActivity 실행", "연습(설명내용)", ViewActivity.class);
+        addItem("HandlerActivity 실행", "연습(설명내용)", HandlerActivity.class);
+        addItem("LocationManagerActivity 실행", "연습(설명내용)", LocationManagerActivity.class);
+
+        MyAdapter adapter = new MyAdapter(mDataList);
+
+        mListView.setAdapter(adapter);
+
+        mListView.setOnItemClickListener((parent, view, position, id) -> {
+            Map<String, Object> map = (Map<String, Object>) parent.getAdapter().getItem(position);
+            Intent intent = (Intent) map.get("intent");
+            startActivity(intent);
+        });
+
+    }
+
+    private void addItem(String title, String desc, Class cls) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("title", title);
+        map.put("desc", desc);
+        map.put("intent", new Intent(this, cls));
+        mDataList.add(map);
+    }
+
+    private static class MyAdapter extends BaseAdapter {
+        private final List<Map<String, Object>> mData;
+
+        public MyAdapter(ArrayList<Map<String, Object>> mDataList) {
+            mData = mDataList;
+        }
+
+        @Override
+        public int getCount() {
+            return mData.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return mData.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            ViewHolder holder;
+
+            if (convertView == null) {
+                 holder = new ViewHolder();
+                convertView = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.item_main_listview, parent, false);
+
+                holder.titleText = (TextView) convertView.findViewById(R.id.title_text);
+                holder.descriptionText = (TextView) convertView.findViewById(R.id.description_text);
+
+                convertView.setTag(holder);
+            } else {
+                holder = (ViewHolder) convertView.getTag();
+            }
+
+            Map<String, Object> data = mData.get(position);
+
+            holder.titleText.setText(data.get("title").toString());
+            holder.descriptionText.setText(data.get("desc").toString());
+
+            return convertView;
+        }
+
+        static class ViewHolder {
+            TextView titleText;
+            TextView descriptionText;
+        }
+    }
+
+-------------------------------
+
+. item_main_listview.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="제목"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/description_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="end"
+        android:text="설명" />
+</LinearLayout>
+
+-------------------------------
+
+. activity_main.xml 
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+    <ListView
+        android:id="@+id/list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>
 
 -------------------------------------------------------------------------------------------------------------
 #

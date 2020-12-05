@@ -26,10 +26,10 @@ MyAdapter adapter = new MyAdapter(mDataList);
 mListView.setAdapter(adpater);
 
 // 이벤트
-mListView.setOnItemClickListener((parent, view, position ... 
-	Map<String, Object> map = (Map<String, Object>) p...  // listView에서 눌러진 position의 itemd의 map 데이타를 넘겨줌.
-	Item intent = (Intent) map.get("intent");
-	startActivity(intent); // ListView의 선택된 item의 해당 클래스가 실행됨 ( WeatherAcitvity.class 등등 )
+mListView.setOnItemClickListener((parent, view, position, id) -> {
+	Map<String, Object> map = (Map<String, Object>) parent.getAdapter().getItem(position);
+	Intent intent = (Intent) map.get("intent");
+	startActivity(intent);
 });
 
 mListView.setOnItemLongClickListener((parent, view, position ... 
