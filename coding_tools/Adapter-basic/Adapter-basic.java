@@ -264,7 +264,7 @@ public class MyFirstAdapter 클래스
 
 
 -------------------------------------------------------------------------------------------------------------
-#
+#3
 
 * MainActicity 클래스
 
@@ -330,7 +330,9 @@ private static MyAdapter extends BaseAdapter {
 }
 
 -------------------------------------------------------------------------------------------------------------
-# MainActivity에서 ListView에 나오는 해당 Activity를 누르면 실행되는 예제
+#4
+
+MainActivity에서 ListView에 나오는 해당 Activity를 누르면 실행되는 예제
 
 public class MainActivity extends AppCompatActivity {
 
@@ -470,7 +472,85 @@ public class MainActivity extends AppCompatActivity {
 </LinearLayout>
 
 -------------------------------------------------------------------------------------------------------------
+#5
+https://github.com/junsuk5/android-first-book/blob/master/CursorAdapterExam/src/main/java/com/example/cursoradapterexam/MainActivity.java
+
+
+// Cursor는 Media화일들의 정보를 가지고 오기도 하고, 
+// DB의 정보를 가져오기도하고, 다양한 정보들을 가져올 수 있음. 
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // 뷰
+        GridView photoListView = (GridView) findViewById(R.id.photo_list);
+
+        // 사진 데이터
+        Cursor cursor = getContentResolver().query
+                (MediaStore.Images.Media.EXTERNAL_CONTENT_URI,    // From
+                        null,   // Select 절
+                        null,   // Where 절
+                        null,   // Where 절
+                        MediaStore.Images.ImageColumns.DATE_TAKEN + " DESC");// Order By
+
+        // 어댑터
+        MyCursorAdapter adapter = new MyCursorAdapter(this, cursor);
+        photoListView.setAdapter(adapter);
+
+        // 클릭 이벤트 처리
+        photoListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // 클릭한 부분의 cursor 데이타
+                Cursor cursor = (Cursor) parent.getAdapter().getItem(position);
+                String path = cursor.getString
+                        (cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA));
+
+                Toast.makeText(MainActivity.this, "사진 경로 : " + path,
+                        Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
+    }
+}
+
+
+-------------------------------------------------------------------------------------------------------------
+#6
+
+
+
+-------------------------------------------------------------------------------------------------------------
+#7
+
+
+-------------------------------------------------------------------------------------------------------------
+#8
+
+
+
+-------------------------------------------------------------------------------------------------------------
 #
+
+
+-------------------------------------------------------------------------------------------------------------
+#
+
+-------------------------------------------------------------------------------------------------------------
+#
+
+-------------------------------------------------------------------------------------------------------------
+#
+
+-------------------------------
+
+-------------------------------
 
 
 -------------------------------------------------------------------------------------------------------------
@@ -478,9 +558,4 @@ public class MainActivity extends AppCompatActivity {
 
 
 
--------------------------------------------------------------------------------------------------------------
-#
 
-
--------------------------------------------------------------------------------------------------------------
-#
