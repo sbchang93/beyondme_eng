@@ -1,7 +1,23 @@
 Android
 
+--------------------------------------------------------------------------------------
+
+. 설치 ( Windows용 )
+
+설치된 곳 : C:\Program Files\Android\Android Studio
+
+. 환경 변수 추가
+ANDROID_HOME  : C:\Users\sbcha\AppData\Local\Android\Sdk
+JAVA_HOME   : C:\Program Files\Java\jdk1.8.0_171
+
+. Path에 경로 추가
+C:\Program Files\Android\Android Studio\jre\bin
+%ANDROID_HOME%\platform-tools
+%ANDROID_HOME%\tools
+%JAVA_HOME%\bin
 
 ---------------------------------------
+. 리눅스용 관련
 
 * install_down_all_options.cmd 화일
 
