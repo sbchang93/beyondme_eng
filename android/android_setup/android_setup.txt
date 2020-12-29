@@ -15,11 +15,27 @@ https://developer.android.com/studio?hl=ko
 ---------------------------------------------------------------------------------------------------------------------------------------
 
 
+---------------------------------------------------------------------------------------------------------------------------------------
+
+. 설치 ( Windows용 )
+
+설치된 곳 : C:\Program Files\Android\Android Studio
+
+. 환경 변수 추가
+ANDROID_HOME  : C:\Users\sbcha\AppData\Local\Android\Sdk
+JAVA_HOME   : C:\Program Files\Android\Android Studio\jre
+( 예전 방식 : JAVA_HOME   : C:\Program Files\Java\jdk1.8.0_171 )
+
+. Path에 경로 추가
+C:\Program Files\Android\Android Studio\jre\bin
+%ANDROID_HOME%\platform-tools
+%ANDROID_HOME%\tools
+%JAVA_HOME%\bin
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
 
 [빠른 설치 방법] Quick Setup for Android Studio 
-
-
-
 ---------------------------------------------------------------------------------------------------------------------------------------
 
 . SDK 설치되는 위치
