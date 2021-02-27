@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Be yourself!, Make yourself for you!, \n   For the Nice World!"/>
+
+    <Button
+        android:id="@+id/view_page_samples"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Page Example"/>
+
+    <Button
+    android:id="@+id/book_fragment_samples"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Book Fragment Example"/>
+
+    <Button
+        android:id="@+id/layout_view_samples"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="layout and view Example"/>
+
+    <Button
+        android:id="@+id/normal_samples"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Normal Samples"/>
+    o
+    <Button
+        android:id="@+id/db_samples"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Room, DB"/>
+
+    <Button
+        android:id="@+id/observalbe_samples"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Observable"/>
+
+    <Button
+        android:id="@+id/list_menu_samples"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="List Menus"/>
+
+    <Button
+        android:id="@+id/draw_samples"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Draw Samples, Image Samples"/>
+
+</LinearLayout>
