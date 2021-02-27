@@ -15,6 +15,7 @@ import com.example.fragmentexample.model.listmenu.TwoLineMenu;
 import com.example.fragmentexample.view.DetailsActivity;
 import com.example.fragmentexample.view.FragmentLayout;
 import com.example.fragmentexample.view.ViewPagerActivity;
+import com.example.fragmentexample.view.cardmatchgame.CardGameActivity;
 import com.example.fragmentexample.view.image_example.ImageExample;
 
 import java.util.ArrayList;
@@ -47,6 +48,10 @@ public class MainActivity extends AppCompatActivity {
         addItem("ViewPagerActivity", "ViewPagerActivity 설명", ViewPagerActivity.class);
         addItem("FragmentLayout", "FragmentLayout 설명", FragmentLayout.class);
         addItem("DetailsActivity", "DetailsActivity 설명", DetailsActivity.class);
+        addItem("ImageExample", "ImageExample 설명", ImageExample.class);
+        addItem("CardGameActivity", "CardGameActivity 설명", CardGameActivity.class);
+        addItem("ImageExample", "ImageExample 설명", ImageExample.class);
+        addItem("ImageExample", "ImageExample 설명", ImageExample.class);
         addItem("ImageExample", "ImageExample 설명", ImageExample.class);
         addItem("ImageExample", "ImageExample 설명", ImageExample.class);
         addItem("ImageExample", "ImageExample 설명", ImageExample.class);
