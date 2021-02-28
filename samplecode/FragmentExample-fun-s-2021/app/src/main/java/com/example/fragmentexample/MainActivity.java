@@ -17,6 +17,8 @@ import com.example.fragmentexample.view.FragmentLayout;
 import com.example.fragmentexample.view.ViewPagerActivity;
 import com.example.fragmentexample.view.cardmatchgame.CardGameActivity;
 import com.example.fragmentexample.view.image_example.ImageExample;
+import com.example.fragmentexample.view.keydown_example.KeyDownActivity;
+import com.example.fragmentexample.view.touchevent_example.TouchEventActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -50,6 +52,10 @@ public class MainActivity extends AppCompatActivity {
         addItem("DetailsActivity", "DetailsActivity 설명", DetailsActivity.class);
         addItem("ImageExample", "ImageExample 설명", ImageExample.class);
         addItem("CardGameActivity", "CardGameActivity 설명", CardGameActivity.class);
+        addItem("KeyDownActivity", "KeyDownActivity 설명", KeyDownActivity.class);
+        addItem("TouchEventActivity", "TouchEventActivity 설명", TouchEventActivity.class);
+        addItem("ImageExample", "ImageExample 설명", ImageExample.class);
+        addItem("ImageExample", "ImageExample 설명", ImageExample.class);
         addItem("ImageExample", "ImageExample 설명", ImageExample.class);
         addItem("ImageExample", "ImageExample 설명", ImageExample.class);
         addItem("ImageExample", "ImageExample 설명", ImageExample.class);

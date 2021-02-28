@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.cardmatchgame.CardGameActivity"></activity>
+        <activity android:name=".view.touchevent_example.TouchEventActivity"></activity>
+        <activity android:name=".view.keydown_example.KeyDownActivity" />
+        <activity android:name=".view.cardmatchgame.CardGameActivity" />
         <activity android:name=".view.image_example.ImageExample" />
         <activity android:name=".view.ViewPagerActivity" />
         <activity android:name=".view.DetailsActivity" />
