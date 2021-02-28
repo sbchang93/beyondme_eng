@@ -10,11 +10,10 @@ import android.view.View;
 import com.example.fragmentexample.utils.DisplayUtil;
 
 public class KeyDownView extends View {
-    public String mDirection = "없음";
+    public String mDirection = "None";
 
-    float x_0dp = DisplayUtil.convertDpToPixel(getContext(), 0);
-    float y_20dp = DisplayUtil.convertDpToPixel(getContext(), 20);
-    float TextSize_20dp = DisplayUtil.convertDpToPixel(getContext(), 20);
+    float _0dp = DisplayUtil.convertDpToPixel(getContext(), 0);
+    float _20dp = DisplayUtil.convertDpToPixel(getContext(), 20);
 
     public KeyDownView(Context context) {
         super(context);
@@ -24,13 +23,13 @@ public class KeyDownView extends View {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT)
-            mDirection = "왼쪽";
+            mDirection = "Left";
         else if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT)
-            mDirection = "오른쪽";
+            mDirection = "Right";
         else if (keyCode == KeyEvent.KEYCODE_DPAD_UP)
-            mDirection = "위쪽";
+            mDirection = "Up";
         else if (keyCode == KeyEvent.KEYCODE_DPAD_DOWN)
-            mDirection = "아랫쪽";
+            mDirection = "Down";
 
         invalidate();
         return super.onKeyDown(keyCode, event);
@@ -39,9 +38,9 @@ public class KeyDownView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         Paint p = new Paint();
-        p.setTextSize(TextSize_20dp);
+        p.setTextSize(_20dp);
         p.setColor(Color.BLUE);
-        canvas.drawText("입력된 방향 키 : " + mDirection, x_0dp, y_20dp, p);
+        canvas.drawText("Input Direction : " + mDirection, _0dp, _20dp, p);
     }
 
 }

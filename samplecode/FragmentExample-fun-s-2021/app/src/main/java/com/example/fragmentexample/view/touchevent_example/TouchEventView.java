@@ -15,12 +15,11 @@ public class TouchEventView extends View {
 
     private int mX;
     private int mY;
-    private String mActionName ="없음";
+    private String mActionName ="None";
 
-    float x_0dp = DisplayUtil.convertDpToPixel(getContext(), 0);
-    float y_20dp = DisplayUtil.convertDpToPixel(getContext(), 20);
-    float y_40dp = DisplayUtil.convertDpToPixel(getContext(), 40);
-    float TextSize_20dp = DisplayUtil.convertDpToPixel(getContext(), 20);
+    float _0dp = DisplayUtil.convertDpToPixel(getContext(), 0);
+    float _20dp = DisplayUtil.convertDpToPixel(getContext(), 20);
+    float _40dp = DisplayUtil.convertDpToPixel(getContext(), 40);
 
     public TouchEventView(Context context) {
         super(context);
@@ -58,10 +57,10 @@ public class TouchEventView extends View {
         canvas.drawBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon), mX, mY, null);
 
         Paint p = new Paint();
-        p.setTextSize(TextSize_20dp);
+        p.setTextSize(_20dp);
         p.setColor(Color.BLUE);
-        canvas.drawText("이벤트 좌표 X:" + mX + ", Y:" + mY, x_0dp, y_20dp, p);
-        canvas.drawText("이벤트 액션 : " + mActionName, x_0dp, y_40dp, p);
+        canvas.drawText("Event Position X:" + mX + ", Y:" + mY, _0dp, _20dp, p);
+        canvas.drawText("Action Name : " + mActionName, _0dp, _40dp, p);
     }
 
 }

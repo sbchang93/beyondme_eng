@@ -100,7 +100,7 @@ public class CardGameView extends View {
         Paint p = new Paint();
         p.setTextSize(_20dp);
         p.setColor(Color.BLUE);
-        canvas.drawText("이벤트 좌표 X:" + mX + ", Y:" + mY, _0dp, _20dp, p);
+        canvas.drawText("Event Position X:" + mX + ", Y:" + mY, _0dp, _20dp, p);
 
         int x_dp = (int) DisplayUtil.convertPixelsToDp(getContext(), mX);
         int y_dp = (int) DisplayUtil.convertPixelsToDp(getContext(), mY);
