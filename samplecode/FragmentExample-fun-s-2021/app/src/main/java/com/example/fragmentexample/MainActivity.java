@@ -16,6 +16,7 @@ import com.example.fragmentexample.view.DetailsActivity;
 import com.example.fragmentexample.view.FragmentLayout;
 import com.example.fragmentexample.view.ViewPagerActivity;
 import com.example.fragmentexample.view.cardmatchgame.CardGameActivity;
+import com.example.fragmentexample.view.gesture_example.GestureActivity;
 import com.example.fragmentexample.view.image_example.ImageExample;
 import com.example.fragmentexample.view.keydown_example.KeyDownActivity;
 import com.example.fragmentexample.view.touchevent_example.TouchEventActivity;
@@ -46,22 +47,22 @@ public class MainActivity extends AppCompatActivity {
         MyAdapter adapter = new MyAdapter(mDataList);
         mListView.setAdapter(adapter);
 
-        // addItem (title, desc, cls) 함수 호출해서 항목을 mDataList에 추가함
-        addItem("ViewPagerActivity", "ViewPagerActivity 설명", ViewPagerActivity.class);
-        addItem("FragmentLayout", "FragmentLayout 설명", FragmentLayout.class);
-        addItem("DetailsActivity", "DetailsActivity 설명", DetailsActivity.class);
-        addItem("ImageExample", "ImageExample 설명", ImageExample.class);
-        addItem("CardGameActivity", "CardGameActivity 설명", CardGameActivity.class);
-        addItem("KeyDownActivity", "KeyDownActivity 설명", KeyDownActivity.class);
-        addItem("TouchEventActivity", "TouchEventActivity 설명", TouchEventActivity.class);
-        addItem("ImageExample", "ImageExample 설명", ImageExample.class);
-        addItem("ImageExample", "ImageExample 설명", ImageExample.class);
-        addItem("ImageExample", "ImageExample 설명", ImageExample.class);
-        addItem("ImageExample", "ImageExample 설명", ImageExample.class);
-        addItem("ImageExample", "ImageExample 설명", ImageExample.class);
-        addItem("ImageExample", "ImageExample 설명", ImageExample.class);
-        addItem("ImageExample", "ImageExample 설명", ImageExample.class);
-        addItem("ImageExample", "ImageExample 설명", ImageExample.class);
+        // addItem (title, desc, cls)
+        addItem("ViewPagerActivity", "ViewPagerActivity Description", ViewPagerActivity.class);
+        addItem("FragmentLayout", "FragmentLayout Description", FragmentLayout.class);
+        addItem("DetailsActivity", "DetailsActivity Description", DetailsActivity.class);
+        addItem("ImageExample", "ImageExample Description", ImageExample.class);
+        addItem("CardGameActivity", "CardGameActivity Description", CardGameActivity.class);
+        addItem("KeyDownActivity", "KeyDownActivity Description", KeyDownActivity.class);
+        addItem("TouchEventActivity", "TouchEventActivity Description", TouchEventActivity.class);
+        addItem("GestureActivity", "GestureActivity Description", GestureActivity.class);
+        addItem("ImageExample", "ImageExample Description", ImageExample.class);
+        addItem("ImageExample", "ImageExample Description", ImageExample.class);
+        addItem("ImageExample", "ImageExample Description", ImageExample.class);
+        addItem("ImageExample", "ImageExample Description", ImageExample.class);
+        addItem("ImageExample", "ImageExample Description", ImageExample.class);
+        addItem("ImageExample", "ImageExample Description", ImageExample.class);
+        addItem("ImageExample", "ImageExample Description", ImageExample.class);
     }
 
     private void addItem(String title, String desc, Class cls) {
