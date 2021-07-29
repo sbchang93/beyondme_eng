@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".view.popuup_window.PopupWindowActivity"></activity>        
         <activity android:name=".view.gesture_example.GestureActivity"></activity>
         <activity android:name=".view.touchevent_example.TouchEventActivity" />
         <activity android:name=".view.keydown_example.KeyDownActivity" />
