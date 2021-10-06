@@ -47,7 +47,13 @@ public class MainActivity extends AppCompatActivity {
         MyAdapter adapter = new MyAdapter(mDataList);
         mListView.setAdapter(adapter);
 
+        addItem("RoomDbActivity", "RoomDbActivity Description", RoomDbActivity.class);
+
         // addItem (title, desc, cls)
+        addItem("PopupWindowActivity", "PopupWindowActivity Description", PopupWindowActivity.class);
+
+        // Old Items
+        addItem("ShowTextActivity", "ShowTextActivity Description", ShowTextActivity.class);
         addItem("ViewPagerActivity", "ViewPagerActivity Description", ViewPagerActivity.class);
         addItem("FragmentLayout", "FragmentLayout Description", FragmentLayout.class);
         addItem("DetailsActivity", "DetailsActivity Description", DetailsActivity.class);
@@ -56,12 +62,8 @@ public class MainActivity extends AppCompatActivity {
         addItem("KeyDownActivity", "KeyDownActivity Description", KeyDownActivity.class);
         addItem("TouchEventActivity", "TouchEventActivity Description", TouchEventActivity.class);
         addItem("GestureActivity", "GestureActivity Description", GestureActivity.class);
-        addItem("ImageExample", "ImageExample Description", ImageExample.class);
-        addItem("ImageExample", "ImageExample Description", ImageExample.class);
-        addItem("ImageExample", "ImageExample Description", ImageExample.class);
-        addItem("ImageExample", "ImageExample Description", ImageExample.class);
-        addItem("ImageExample", "ImageExample Description", ImageExample.class);
-        addItem("ImageExample", "ImageExample Description", ImageExample.class);
+        addItem("SearchViewActivity", "SearchViewActivity Description", SearchViewActivity.class);
+        addItem("SwitchActivity", "SwitchActivity Description", SwitchActivity.class);
         addItem("ImageExample", "ImageExample Description", ImageExample.class);
     }
 
