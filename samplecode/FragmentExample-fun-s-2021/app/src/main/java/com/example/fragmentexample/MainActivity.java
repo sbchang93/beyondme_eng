@@ -46,6 +46,10 @@ public class MainActivity extends AppCompatActivity {
         });
         MyAdapter adapter = new MyAdapter(mDataList);
         mListView.setAdapter(adapter);
+        
+        addItem("SettingsActivity", "SettingsActivity Description", SettingsActivity.class);
+        addItem("PreferenceActivity", "PreferenceActivity Description", Preference01Activity.class);
+        addItem("PreferenceSampleActivity", "PreferenceSampleActivity Description", PreferenceSampleActivity.class);        
 
         addItem("RoomDbActivity", "RoomDbActivity Description", RoomDbActivity.class);
 
