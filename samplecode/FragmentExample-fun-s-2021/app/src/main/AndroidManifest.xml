@@ -10,8 +10,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".view.popuup_window.PopupWindowActivity"></activity>        
+        android:theme="@style/AppTheme"> 
+        <activity android:name=".view.roomdb.RoomDbActivity"></activity>
+        <activity android:name=".view.popuup_window.PopupWindowActivity" />
+        <activity android:name=".view.switch_example.SwitchActivity" />
+        <activity android:name=".view.searchview.SearchViewActivity" />
+        <activity android:name=".view.ShowTextActivity" />        
         <activity android:name=".view.gesture_example.GestureActivity"></activity>
         <activity android:name=".view.touchevent_example.TouchEventActivity" />
         <activity android:name=".view.keydown_example.KeyDownActivity" />
