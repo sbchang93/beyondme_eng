@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="setting_preference_key">
+
+    <PreferenceCategory
+        android:key="notifications_category"
+        android:title="Notifications (Title)">
+        <SwitchPreferenceCompat
+            android:key="notifications"
+            android:title="Enable message notifications"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="help_category"
+        android:title="Help (Title)">
+        <Preference
+            android:key="feedback"
+            android:title="Send feedback (Sub title)"
+            android:summary="(Summary) Report technical issues or suggest new features"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>
+
+<!--<PreferenceScreen-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto">-->
+
+<!--    <PreferenceCategory-->
+<!--        app:key="notifications_category"-->
+<!--        app:title="Notifications">-->
+<!--        <SwitchPreferenceCompat-->
+<!--            app:key="notifications"-->
+<!--            app:title="Enable message notifications"/>-->
+<!--    </PreferenceCategory>-->
+
+<!--    <PreferenceCategory-->
+<!--        app:key="help_category"-->
+<!--        app:title="Help">-->
+<!--        <Preference-->
+<!--            app:key="feedback"-->
+<!--            app:summary="Report technical issues or suggest new features"-->
+<!--            app:title="Send feedback"/>-->
+<!--    </PreferenceCategory>-->
+
+<!--</PreferenceScreen>-->
+
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<PreferenceScreen-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto">-->
+<!--    <SwitchPreferenceCompat-->
+<!--        app:key="notification"-->
+<!--        app:title="Enable message notification"/>-->
+
+<!--    <Preference-->
+<!--        app:key="feedback"-->
+<!--        app:title="Send feed back"-->
+<!--        app:summary="Report technical issues or suggest new features" />-->
+<!--</PreferenceScreen>-->
