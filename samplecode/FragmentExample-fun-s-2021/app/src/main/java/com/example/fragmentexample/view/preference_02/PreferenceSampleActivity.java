@@ -10,8 +10,10 @@ import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.fragmentexample.R;
+import com.example.fragmentexample.utils.PreferenceUtils;
 import com.example.fragmentexample.view.preference_screen.MySettingsFragment;
 
 // Reference Link
@@ -29,7 +31,19 @@ public class PreferenceSampleActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.listContainer_preference_sample, demoFragment).commit();
 
+        PreferenceUtils.getInstance().setFirstKeyString(this,"First String");
+        String firstKeyStirng = PreferenceUtils.getInstance().getFristKeyString(this);
+
+        PreferenceUtils.getInstance().setStringWithKey(this, "key_basic_preference","Second String");
+        String secondKeyStirng = PreferenceUtils.getInstance().getStringWithKey(this, "key_basic_preference");
+
+//        int temp = 9;
+//        Toast.makeText(this, "" + temp, Toast.LENGTH_LONG).show();
     }
+
+//        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+//        String basicPreferenceStirng = pref.getString("key_basic_preference", "");
+
 
 //    public static class MySettingsFragment extends PreferenceFragmentCompat {
 //        @Override
