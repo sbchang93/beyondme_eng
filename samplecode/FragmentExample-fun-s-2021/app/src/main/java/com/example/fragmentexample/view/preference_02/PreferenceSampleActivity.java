@@ -15,6 +15,7 @@ import com.example.fragmentexample.R;
 import com.example.fragmentexample.view.preference_screen.MySettingsFragment;
 
 // Reference Link
+// https://codechacha.com/ko/android-preference/
 
 public class PreferenceSampleActivity extends AppCompatActivity {
 
