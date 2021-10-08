@@ -1,33 +1,27 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-android:layout_width="match_parent"
-android:layout_height="match_parent">
-
-<FrameLayout
-    android:id="@+id/listContainer_preference_sample"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    />
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/listContainer_preference_sample"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
+    <!--    https://codechacha.com/ko/android-preference/-->
 
+    <!--fragment layout과 android:name="com.example.fragmentexample.view.preference_02.DemoFragment"를 사용해서 -->
+    <!--xml에서 바로 실행할 수도 있음-->
+    <!--<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent">-->
 
-
-
-<!--    https://codechacha.com/ko/android-preference/-->
-
-<!--fragment layout과 android:name="com.example.fragmentexample.view.preference_02.DemoFragment"를 사용해서 -->
-<!--xml에서 바로 실행할 수도 있음-->
-<!--<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-<!--android:layout_width="match_parent"-->
-<!--android:layout_height="match_parent">-->
-
-<!--<fragment-->
-<!--    android:id="@+id/listContainer_preference_sample"-->
-<!--    android:name="com.example.fragmentexample.view.preference_02.DemoFragment"-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="match_parent"-->
-<!--    />-->
-<!--</androidx.coordinatorlayout.widget.CoordinatorLayout>-->
+    <!--<fragment-->
+    <!--    android:id="@+id/listContainer_preference_sample"-->
+    <!--    android:name="com.example.fragmentexample.view.preference_02.DemoFragment"-->
+    <!--    android:layout_width="match_parent"-->
+    <!--    android:layout_height="match_parent"-->
+    <!--    />-->
+    <!--</androidx.coordinatorlayout.widget.CoordinatorLayout>-->
