@@ -11,14 +11,21 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.fragmentexample.model.listmenu.TwoLineMenu;
 import com.example.fragmentexample.view.DetailsActivity;
 import com.example.fragmentexample.view.FragmentLayout;
+import com.example.fragmentexample.view.ShowTextActivity;
 import com.example.fragmentexample.view.ViewPagerActivity;
 import com.example.fragmentexample.view.cardmatchgame.CardGameActivity;
 import com.example.fragmentexample.view.gesture_example.GestureActivity;
 import com.example.fragmentexample.view.image_example.ImageExample;
 import com.example.fragmentexample.view.keydown_example.KeyDownActivity;
+import com.example.fragmentexample.view.popuup_window.PopupWindowActivity;
+import com.example.fragmentexample.view.preference_02.PreferenceSampleActivity;
+import com.example.fragmentexample.view.preference_screen.Preference01Activity;
+import com.example.fragmentexample.view.roomdb.RoomDbActivity;
+import com.example.fragmentexample.view.searchview.SearchViewActivity;
+import com.example.fragmentexample.view.settings_example.SettingsActivity;
+import com.example.fragmentexample.view.switch_example.SwitchActivity;
 import com.example.fragmentexample.view.touchevent_example.TouchEventActivity;
 
 import java.util.ArrayList;
@@ -46,17 +53,16 @@ public class MainActivity extends AppCompatActivity {
         });
         MyAdapter adapter = new MyAdapter(mDataList);
         mListView.setAdapter(adapter);
-        
+
+        // addItem (title, desc, cls)
+
         addItem("SettingsActivity", "SettingsActivity Description", SettingsActivity.class);
         addItem("PreferenceActivity", "PreferenceActivity Description", Preference01Activity.class);
-        addItem("PreferenceSampleActivity", "PreferenceSampleActivity Description", PreferenceSampleActivity.class);        
+        addItem("PreferenceSampleActivity", "PreferenceSampleActivity Description", PreferenceSampleActivity.class);
 
         addItem("RoomDbActivity", "RoomDbActivity Description", RoomDbActivity.class);
 
-        // addItem (title, desc, cls)
         addItem("PopupWindowActivity", "PopupWindowActivity Description", PopupWindowActivity.class);
-
-        // Old Items
         addItem("ShowTextActivity", "ShowTextActivity Description", ShowTextActivity.class);
         addItem("ViewPagerActivity", "ViewPagerActivity Description", ViewPagerActivity.class);
         addItem("FragmentLayout", "FragmentLayout Description", FragmentLayout.class);
@@ -122,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
             return convertView;
         }
 
-        // 뷰 홀더 패턴
+
         static class ViewHolder {
             TextView title;
             TextView description;
