@@ -28,8 +28,8 @@ public class DemoFragment extends PreferenceFragmentCompat implements Preference
     private PreferenceCategory mOptionsPrefenceCategory = null;
 
     Preference basicPreference = null;
-    Preference addShortCutPreference = null;
-    Preference switchPreference = null;
+    CheckBoxPreference addShortCutPreference = null;
+    SwitchPreference switchPreference = null;
     Preference editPreference = null;
     Preference actionPreference = null;
     Preference goToUrlPreference = null;
@@ -52,10 +52,10 @@ public class DemoFragment extends PreferenceFragmentCompat implements Preference
         basicPreference = findPreference(basicPreferenceKey);
         basicPreference.setOnPreferenceChangeListener(this);
 
-        addShortCutPreference = (CheckBoxPreference) findPreference(addShortcutKey);
+        addShortCutPreference = findPreference(addShortcutKey);
         addShortCutPreference.setOnPreferenceChangeListener(this);
 
-        switchPreference = (SwitchPreference) findPreference(switchOnKey);
+        switchPreference = findPreference(switchOnKey);
         switchPreference.setOnPreferenceChangeListener(this);
 
     }
@@ -69,11 +69,11 @@ public class DemoFragment extends PreferenceFragmentCompat implements Preference
 
         // Switch Preference is set by User setting action.
         boolean bSwitchPreference = PreferenceUtils.getInstance().getBooleanWithKey(mContext, switchOnKey);
-        ((SwitchPreference)switchPreference).setChecked(bSwitchPreference);
+        switchPreference.setChecked(bSwitchPreference);
 
 //        // Set false in Switch Preference whenever it is run. ( Initiation for Test. )
 //        PreferenceUtils.getInstance().setBooleanWithKey(mContext, switchOnKey, false);
-//        ((SwitchPreference)switchPreference).setChecked(false);
+//        switchPreference.setChecked(false);
 
     }
 
