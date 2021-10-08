@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="setting_preference_key">
+
+    <PreferenceCategory
+        android:key="display_settings_category"
+        android:title="Display Settings">
+        <SwitchPreferenceCompat
+            android:key="key_name"
+            android:title="Name"/>
+        <SwitchPreferenceCompat
+            android:key="key_phone"
+            android:title="Phone"/>
+        <SwitchPreferenceCompat
+            android:key="key_email"
+            android:title="Eamil"/>
+        <SwitchPreferenceCompat
+            android:key="key_memo"
+            android:title="Memo"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>
