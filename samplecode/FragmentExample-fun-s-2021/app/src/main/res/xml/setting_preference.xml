@@ -1,22 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    android:key="setting_preference_key">
+    android:key="key_setting_preference">
 
     <PreferenceCategory
-        android:key="display_settings_category"
+        android:key="key_display_settings_preference_category"
         android:title="Display Settings">
-        <SwitchPreferenceCompat
-            android:key="key_name"
+        <SwitchPreference
+            android:key="key_switch_preference_name"
             android:title="Name"/>
-        <SwitchPreferenceCompat
-            android:key="key_phone"
+        <SwitchPreference
+            android:key="key_switch_preference_phone"
             android:title="Phone"/>
-        <SwitchPreferenceCompat
-            android:key="key_email"
+        <SwitchPreference
+            android:key="key_switch_preference_email"
             android:title="Eamil"/>
-        <SwitchPreferenceCompat
-            android:key="key_memo"
+        <SwitchPreference
+            android:key="key_switch_preference_memo"
             android:title="Memo"/>
     </PreferenceCategory>
 
 </PreferenceScreen>
+
+
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--android:key="key_setting_preference">-->
+
+<!--<PreferenceCategory-->
+<!--    android:key="key_display_settings_preference_category"-->
+<!--    android:title="Display Settings">-->
+<!--    <SwitchPreferenceCompat-->
+<!--        android:key="key_switch_preference_name"-->
+<!--        android:title="Name"/>-->
+<!--    <SwitchPreferenceCompat-->
+<!--        android:key="key_switch_preference_phone"-->
+<!--        android:title="Phone"/>-->
+<!--    <SwitchPreferenceCompat-->
+<!--        android:key="key_switch_preference_email"-->
+<!--        android:title="Eamil"/>-->
+<!--    <SwitchPreferenceCompat-->
+<!--        android:key="key_switch_preference_memo"-->
+<!--        android:title="Memo"/>-->
+<!--</PreferenceCategory>-->
+
+<!--</PreferenceScreen>-->
