@@ -1,21 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:key="key_setting_preference">
+
+    <com.example.fragmentexample.view.settings_example.CustomCardPreference
+        android:key="key_update_card"
+        android:layout="@layout/settings_update_card" />
 
     <PreferenceCategory
         android:key="key_display_settings_preference_category"
+        app:iconSpaceReserved="false"
         android:title="Display Settings">
         <SwitchPreference
             android:key="key_switch_preference_name"
+            app:iconSpaceReserved="false"
             android:title="Name"/>
         <SwitchPreference
             android:key="key_switch_preference_phone"
+            app:iconSpaceReserved="false"
             android:title="Phone"/>
         <SwitchPreference
             android:key="key_switch_preference_email"
+            app:iconSpaceReserved="false"
             android:title="Eamil"/>
         <SwitchPreference
             android:key="key_switch_preference_memo"
+            app:iconSpaceReserved="false"
             android:title="Memo"/>
     </PreferenceCategory>
 
