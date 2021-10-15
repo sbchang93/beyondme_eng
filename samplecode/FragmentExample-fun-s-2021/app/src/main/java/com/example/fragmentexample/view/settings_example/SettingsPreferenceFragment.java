@@ -26,6 +26,8 @@ public class SettingsPreferenceFragment extends PreferenceFragmentCompat impleme
     SwitchPreference spEmail = null;
     SwitchPreference spMemo = null;
 
+    CustomCardPreference mUpdateCard;
+
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         mContext = getContext();
