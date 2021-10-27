@@ -9,6 +9,13 @@
         android:layout_height="wrap_content"
         android:text="What's good things for you!, \n   For a good day!"/>
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
     <ListView
         android:id="@+id/listview"
         android:layout_width="match_parent"
