@@ -80,8 +80,8 @@ public class MainActivity extends AppCompatActivity {
         addItem("SwitchActivity", "SwitchActivity Description", SwitchActivity.class);
         addItem("ImageExample", "ImageExample Description", ImageExample.class);
 
-        text1 = findViewById(R.id.textView1);
-        checkPermission();
+//         text1 = findViewById(R.id.textView1);
+//         checkPermission();
     }
 
     private void addItem(String title, String desc, Class cls) {
