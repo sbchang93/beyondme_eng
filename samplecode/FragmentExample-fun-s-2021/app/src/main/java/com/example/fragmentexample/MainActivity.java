@@ -1,6 +1,9 @@
 package com.example.fragmentexample;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.fragmentexample.view.DetailsActivity;
@@ -75,6 +79,9 @@ public class MainActivity extends AppCompatActivity {
         addItem("SearchViewActivity", "SearchViewActivity Description", SearchViewActivity.class);
         addItem("SwitchActivity", "SwitchActivity Description", SwitchActivity.class);
         addItem("ImageExample", "ImageExample Description", ImageExample.class);
+
+        text1 = findViewById(R.id.textView1);
+        checkPermission();
     }
 
     private void addItem(String title, String desc, Class cls) {
@@ -135,6 +142,44 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    TextView text1;
+    String [] permission_list = {
+            Manifest.permission.INTERNET,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.READ_CONTACTS,
+            Manifest.permission.WRITE_CONTACTS,
+            Manifest.permission.SEND_SMS,
+            Manifest.permission.RECEIVE_SMS
+    };
+
+    public void checkPermission() {
+        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            return;
+        }
+
+        for(String permission : permission_list) {
+            int checked = checkCallingOrSelfPermission(permission);
+            if(checked == PackageManager.PERMISSION_DENIED) {
+                requestPermissions(permission_list, 0);
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        text1.setText("");
+
+        for(int i=0; i<grantResults.length; i++) {
+            if(grantResults[i] == PackageManager.PERMISSION_GRANTED) {
+                text1.append(permissions[i] + " : Allowed\n");
+            } else {
+                text1.append(permissions[i] + " : Denied\n");
+            }
+        }
+    }
 }
 
 //public class MainActivity extends AppCompatActivity {
