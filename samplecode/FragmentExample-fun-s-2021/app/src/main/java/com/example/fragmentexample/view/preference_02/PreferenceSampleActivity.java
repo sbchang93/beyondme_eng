@@ -31,11 +31,11 @@ public class PreferenceSampleActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.listContainer_preference_sample, demoFragment).commit();
 
-        PreferenceUtils.getInstance().setFirstKeyString(this,"First String");
-        String firstKeyStirng = PreferenceUtils.getInstance().getFristKeyString(this);
+        PreferenceUtils.getInstance().setString(this,"key_basic_preference", "Value 1");
+        String firstKeyStirng = PreferenceUtils.getInstance().getString(this,"key_basic_preference");
 
-        PreferenceUtils.getInstance().setStringWithKey(this, "key_basic_preference","Second String");
-        String secondKeyStirng = PreferenceUtils.getInstance().getStringWithKey(this, "key_basic_preference");
+        PreferenceUtils.getInstance().setString(this, "key_basic_preference","Value 2");
+        String secondKeyStirng = PreferenceUtils.getInstance().getString(this, "key_basic_preference");
 
 //        int temp = 9;
 //        Toast.makeText(this, "" + temp, Toast.LENGTH_LONG).show();

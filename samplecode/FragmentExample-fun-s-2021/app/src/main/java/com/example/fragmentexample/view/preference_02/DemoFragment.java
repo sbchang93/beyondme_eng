@@ -64,15 +64,15 @@ public class DemoFragment extends PreferenceFragmentCompat implements Preference
     public void onResume() {
         super.onResume();
 
-        String basicPreferenceStirng = PreferenceUtils.getInstance().getStringWithKey(mContext, basicPreferenceKey, "");
+        String basicPreferenceStirng = PreferenceUtils.getInstance().getString(mContext, basicPreferenceKey);
         basicPreference.setTitle(basicPreferenceStirng);
 
         // Switch Preference is set by User setting action.
-        boolean bSwitchPreference = PreferenceUtils.getInstance().getBooleanWithKey(mContext, switchOnKey);
+        boolean bSwitchPreference = PreferenceUtils.getInstance().getBoolean(mContext, switchOnKey);
         switchPreference.setChecked(bSwitchPreference);
 
 //        // Set false in Switch Preference whenever it is run. ( Initiation for Test. )
-//        PreferenceUtils.getInstance().setBooleanWithKey(mContext, switchOnKey, false);
+//        PreferenceUtils.getInstance().setBoolean(mContext, switchOnKey, false);
 //        switchPreference.setChecked(false);
 
     }
@@ -88,7 +88,7 @@ public class DemoFragment extends PreferenceFragmentCompat implements Preference
             return true;
         } else if (key.equals(switchOnKey)) {
             mSwitchOnChecked = Boolean.valueOf(newValue.toString());
-            PreferenceUtils.getInstance().setBooleanWithKey(mContext, switchOnKey, mSwitchOnChecked);
+            PreferenceUtils.getInstance().setBoolean(mContext, switchOnKey, mSwitchOnChecked);
             return true;
         }
         return false;
