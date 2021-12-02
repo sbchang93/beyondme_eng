@@ -1,6 +1,9 @@
 package com.example.fragmentexample.view.settings_example;
 
+import static com.example.fragmentexample.constants.Constants.updateCardKey;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
@@ -9,6 +12,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.fragmentexample.R;
+import com.example.fragmentexample.utils.PreferenceUtils;
 import com.example.fragmentexample.view.preference_screen.MySettingsFragment;
 
 import java.util.ArrayList;
@@ -49,6 +53,12 @@ public class SettingsPreferenceActivity extends AppCompatActivity {
 
     public void clickClose(View v) {
         Log.e(TAG, "Close Update Card");
+        PreferenceUtils.getInstance().setBoolean(this, updateCardKey, false);
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        mSettingsPreferenceFragment.removeUpdateCard();
+        ft.detach(mSettingsPreferenceFragment)
+                .attach(mSettingsPreferenceFragment)
+                .commit();
         Toast.makeText(this, "Close Update Card", Toast.LENGTH_SHORT).show();
     }
 
