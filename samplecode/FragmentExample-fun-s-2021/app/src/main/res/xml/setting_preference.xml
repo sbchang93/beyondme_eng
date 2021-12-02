@@ -22,11 +22,15 @@
         <SwitchPreference
             android:key="key_switch_preference_email"
             app:iconSpaceReserved="false"
-            android:title="Eamil"/>
+            android:title="Email"/>
         <SwitchPreference
             android:key="key_switch_preference_memo"
             app:iconSpaceReserved="false"
             android:title="Memo"/>
+        <SwitchPreference
+            android:key="key_switch_preference_update_card"
+            app:iconSpaceReserved="false"
+            android:title="Update Card"/>
     </PreferenceCategory>
 
 </PreferenceScreen>
