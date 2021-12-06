@@ -1,6 +1,7 @@
 package com.example.fragmentexample.view.settings_example;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.preference.Preference;
@@ -12,6 +13,7 @@ import androidx.preference.SwitchPreference;
 import com.example.fragmentexample.R;
 import com.example.fragmentexample.utils.PreferenceUtils;
 
+import static com.example.fragmentexample.constants.Constants.cpAboutLayoutKey;
 import static com.example.fragmentexample.constants.Constants.cpUpdateCardKey;
 import static com.example.fragmentexample.constants.Constants.emailKey;
 import static com.example.fragmentexample.constants.Constants.memoKey;
@@ -34,7 +36,7 @@ public class SettingsPreferenceFragment extends PreferenceFragmentCompat impleme
     SwitchPreference spMemo = null;
     SwitchPreference spUpdateCard = null;
 
-    CustomCardPreference mUpdateCard;
+    CustomCardPreference cpAboutLayout = null;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -56,6 +58,18 @@ public class SettingsPreferenceFragment extends PreferenceFragmentCompat impleme
         spMemo.setOnPreferenceChangeListener(this);
         spUpdateCard = findPreference(updateCardKey);
         spUpdateCard.setOnPreferenceChangeListener(this);
+
+        cpAboutLayout = findPreference(cpAboutLayoutKey);
+        cpAboutLayout.setTitle("About FragmentExample - Changed by java code");
+        cpAboutLayout.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                Intent intent = new Intent(mContext, AboutActivity.class);
+                startActivity(intent);
+                return false;
+            }
+        });
+
 
         //init();
 
