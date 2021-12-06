@@ -3,14 +3,13 @@
     package="com.example.fragmentexample">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.READ_CONTACTS"/>
-    <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
-    <uses-permission android:name="android.permission.SEND_SMS"/>
-    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
 
     <application
         android:allowBackup="true"
@@ -19,7 +18,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.settings_example.SettingsPreferenceActivity"></activity>
+        <activity
+            android:name=".view.settings_example.OpenSourceLicenseActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.settings_example.AboutActivity"
+            android:exported="true" />
+        <activity android:name=".view.settings_example.SettingsPreferenceActivity" />
         <activity android:name=".view.preference_02.PreferenceSampleActivity" />
         <activity android:name=".view.preference_screen.Preference01Activity" />
         <activity android:name=".view.settings_example.SettingsActivity" />
