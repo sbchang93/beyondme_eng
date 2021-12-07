@@ -13,4 +13,7 @@ public class Constants {
     public static final String emailKey = "key_switch_preference_email";
     public static final String memoKey = "key_switch_preference_memo";
     public static final String updateCardKey = "key_switch_preference_update_card";
+
+    public static final String cpAboutLayoutKey = "key_about_layout";
+
 }
