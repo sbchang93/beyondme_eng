@@ -33,6 +33,16 @@
             android:title="Update Card"/>
     </PreferenceCategory>
 
+    <PreferenceCategory
+        android:key="non_display_category"
+        app:iconSpaceReserved="false"
+        android:title="No Display Category(Will be removed)">
+
+        <com.example.fragmentexample.view.settings_example.CustomCardPreference
+            android:key="key_about_layout"
+            android:layout="@layout/settings_about_layout" />
+    </PreferenceCategory>
+
 </PreferenceScreen>
 
 
