@@ -1,6 +1,7 @@
 package com.example.fragmentexample.view.settings_example;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 
@@ -56,6 +57,13 @@ public class SettingsActivity extends AppCompatActivity {
                 this, android.R.layout.simple_expandable_list_item_1, data_list);
         list1.setAdapter(adapter1);
         list1.setTextFilterEnabled(true);
+
+        //ActionBar
+        ActionBar action = getSupportActionBar();
+        action.setHomeButtonEnabled(true);
+        action.setDisplayHomeAsUpEnabled(true);
+        action.setHomeAsUpIndicator(R.drawable.leftarrow);
+        //action.setHomeAsUpIndicator(R.mipmap.ic_launcher);
     }
 
     @Override
@@ -179,6 +187,10 @@ public class SettingsActivity extends AppCompatActivity {
                 break;
             case R.id.item4 :
                 tvText1.setText("Menu 4 is selected.");
+                break;
+
+            case android.R.id.home :
+                finish();
                 break;
         }
         return false;
