@@ -19,6 +19,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".view.settings_example.PrivacyNoticeActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.commonActivity.BaseUIActivity"
+            android:exported="true" />
+        <activity
             android:name=".view.settings_example.OpenSourceLicenseActivity"
             android:exported="true" />
         <activity
