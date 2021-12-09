@@ -16,12 +16,15 @@ import com.example.fragmentexample.view.commonActivity.BaseUIActivity;
 public class AboutActivity extends BaseUIActivity {
 
     TextView tvAppVersionName;
+    TextView tvPrivacyNoticeText;
     TextView tvOpenSourceLicensesText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
+
+        setTitle("About Fragment Example");
 
         tvAppVersionName = findViewById(R.id.app_version_text);
         try {
@@ -35,6 +38,16 @@ public class AboutActivity extends BaseUIActivity {
         } catch(PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
+
+        //privacy_notice_text
+        tvPrivacyNoticeText = findViewById(R.id.privacy_notice_text);
+        tvPrivacyNoticeText.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), PrivacyNoticeActivity.class);
+                startActivity(intent);
+            }
+        });
 
         tvOpenSourceLicensesText = findViewById(R.id.open_source_licenses_text);
         tvOpenSourceLicensesText.setOnClickListener(new View.OnClickListener(){

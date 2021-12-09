@@ -28,6 +28,9 @@ public class SettingsPreferenceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings_preference);
+
+        setTitle("Settings");
+
         mSettingsPreferenceFragment = new SettingsPreferenceFragment();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.listContainer, mSettingsPreferenceFragment).commit();

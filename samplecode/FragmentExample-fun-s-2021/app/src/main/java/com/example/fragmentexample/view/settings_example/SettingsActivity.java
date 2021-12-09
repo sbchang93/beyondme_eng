@@ -42,12 +42,15 @@ public class SettingsActivity extends AppCompatActivity {
     SearchView searchView1;
 
     ListView list1;
-    String[] data_list = {"aaaa", "bbbb", "cccc", "aabb", "ccdd"};
+    //String[] data_list = {"aaaa", "bbbb", "cccc", "aabb", "ccdd"};
+    String[] data_list = {"aaaa", "bbbb", "cccc", "aabb"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+        setTitle("Main Screen ...");
 
         tvText1 = findViewById(R.id.textView1);
         tvText2 = findViewById(R.id.textView2);
