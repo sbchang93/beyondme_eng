@@ -10,8 +10,10 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.fragmentexample.R;
+import com.example.fragmentexample.view.commonActivity.BaseUIActivity;
 
-public class AboutActivity extends AppCompatActivity {
+//public class AboutActivity extends AppCompatActivity {
+public class AboutActivity extends BaseUIActivity {
 
     TextView tvAppVersionName;
     TextView tvOpenSourceLicensesText;

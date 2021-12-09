@@ -2,12 +2,14 @@ package com.example.fragmentexample.view.settings_example;
 
 import static com.example.fragmentexample.constants.Constants.updateCardKey;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -29,6 +31,10 @@ public class SettingsPreferenceActivity extends AppCompatActivity {
         mSettingsPreferenceFragment = new SettingsPreferenceFragment();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.listContainer, mSettingsPreferenceFragment).commit();
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     public void clickUpdate(View v) {
@@ -62,4 +68,15 @@ public class SettingsPreferenceActivity extends AppCompatActivity {
         Toast.makeText(this, "Close Update Card", Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        switch(id) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }

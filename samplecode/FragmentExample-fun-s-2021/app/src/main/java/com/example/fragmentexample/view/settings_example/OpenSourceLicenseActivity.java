@@ -8,13 +8,14 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.example.fragmentexample.R;
+import com.example.fragmentexample.view.commonActivity.BaseUIActivity;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public class OpenSourceLicenseActivity extends AppCompatActivity {
+public class OpenSourceLicenseActivity extends BaseUIActivity {
     private static final String TAG = "OpenSourceLicenseActivity";
 
     TextView tvOpenSource;
