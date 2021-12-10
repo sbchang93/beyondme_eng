@@ -19,6 +19,7 @@ import com.example.fragmentexample.view.DetailsActivity;
 import com.example.fragmentexample.view.FragmentLayout;
 import com.example.fragmentexample.view.ShowTextActivity;
 import com.example.fragmentexample.view.ViewPagerActivity;
+import com.example.fragmentexample.view.actionbar_example.ActionBarActivity;
 import com.example.fragmentexample.view.cardmatchgame.CardGameActivity;
 import com.example.fragmentexample.view.gesture_example.GestureActivity;
 import com.example.fragmentexample.view.image_example.ImageExample;
@@ -61,6 +62,9 @@ public class MainActivity extends AppCompatActivity {
         // addItem (title, desc, cls)
 
         addItem("SettingsActivity", "SettingsActivity Description", SettingsActivity.class);
+
+        addItem("ActionBarActivity", "ActionBarActivity Description", ActionBarActivity.class);
+
         addItem("PreferenceActivity", "PreferenceActivity Description", Preference01Activity.class);
         addItem("PreferenceSampleActivity", "PreferenceSampleActivity Description", PreferenceSampleActivity.class);
 
