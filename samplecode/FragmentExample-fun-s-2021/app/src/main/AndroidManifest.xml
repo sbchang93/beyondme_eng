@@ -19,6 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".view.actionbar_example.ActionBarActivity"
+            android:exported="true" />
+        <activity
             android:name=".view.settings_example.PrivacyNoticeActivity"
             android:exported="true" />
         <activity
