@@ -48,7 +48,7 @@
         <TextView
             android:id="@+id/textview_name"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="60dp"
             android:text="Name"
             android:layout_marginTop="10dp"
             android:padding="5dp"
@@ -59,7 +59,7 @@
         <TextView
             android:id="@+id/textview_phone"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="60dp"
             android:text="Phone"
             android:layout_marginTop="10dp"
             android:padding="5dp"
@@ -70,7 +70,7 @@
         <TextView
             android:id="@+id/textview_email"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="60dp"
             android:text="Email"
             android:layout_marginTop="10dp"
             android:padding="5dp"
@@ -81,7 +81,7 @@
         <TextView
             android:id="@+id/textview_memo"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="60dp"
             android:text="Memo"
             android:layout_marginTop="10dp"
             android:padding="5dp"
@@ -92,7 +92,7 @@
         <TextView
             android:id="@+id/textview_update_card"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="60dp"
             android:text="Update Card"
             android:layout_marginTop="10dp"
             android:padding="5dp"
