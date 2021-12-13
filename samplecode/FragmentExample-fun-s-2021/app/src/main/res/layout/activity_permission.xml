@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/camera"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Camera : permission"
+            android:textSize="16dp"
+            android:padding="18dp"
+            android:textColor="@color/colorPrimary"/>
+
+        <TextView
+            android:id="@+id/storage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="storage : permission"
+            android:textSize="16dp"
+            android:padding="18dp"
+            android:textColor="@color/colorPrimary"/>
+
+        <TextView
+            android:id="@+id/internet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="internet : permission"
+            android:textSize="16dp"
+            android:padding="18dp"
+            android:textColor="@color/colorPrimary"/>
+
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="location : permission"
+            android:textSize="16dp"
+            android:padding="18dp"
+            android:textColor="@color/colorPrimary"/>
+
+        <TextView
+            android:id="@+id/contact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="contact : permission"
+            android:textSize="16dp"
+            android:padding="18dp"
+            android:textColor="@color/colorPrimary"/>
+
+        <TextView
+            android:id="@+id/call"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="call : permission"
+            android:textSize="16dp"
+            android:padding="18dp"
+            android:textColor="@color/colorPrimary"/>
+
+        <TextView
+            android:id="@+id/sms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="sms : permission"
+            android:textSize="16dp"
+            android:padding="18dp"
+            android:textColor="@color/colorPrimary"/>
+
+        <TextView
+            android:id="@+id/permission_11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="permission_11 : permission"
+            android:textSize="16dp"
+            android:padding="18dp"
+            android:textColor="@color/colorPrimary"/>
+
+        <TextView
+            android:id="@+id/permission_12"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:text="permission_12 : permission"
+            android:textSize="16dp"
+            android:padding="18dp"
+            android:textColor="@color/colorPrimary"/>
+
+        <TextView
+            android:id="@+id/permission_13"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:text="permission_13 : permission"
+            android:textSize="16dp"
+            android:padding="18dp"
+            android:textColor="@color/colorPrimary"/>
+
+        <TextView
+            android:id="@+id/permission_14"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:text="permission_14 : permission"
+            android:textSize="16dp"
+            android:padding="18dp"
+            android:textColor="@color/colorPrimary"/>
+
+        <TextView
+            android:id="@+id/permission_15"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:text="permission_15 : permission"
+            android:textSize="16dp"
+            android:padding="18dp"
+            android:textColor="@color/colorPrimary"/>
+
+        <TextView
+            android:id="@+id/permission_16"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:text="permission_16 : permission"
+            android:textSize="16dp"
+            android:padding="18dp"
+            android:textColor="@color/colorPrimary"/>
+
+        <TextView
+            android:id="@+id/permission_17"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:text="permission_17 : permission"
+            android:textSize="16dp"
+            android:padding="18dp"
+            android:textColor="@color/colorPrimary"/>
+
+        <TextView
+            android:id="@+id/permission_18"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:text="permission_18 : permission"
+            android:textSize="16dp"
+            android:padding="18dp"
+            android:textColor="@color/colorPrimary"/>
+
+        <TextView
+            android:id="@+id/permission_19"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:text="permission_19 : permission"
+            android:textSize="16dp"
+            android:padding="18dp"
+            android:textColor="@color/colorPrimary"/>
+
+
+    </LinearLayout>
+</ScrollView>
+
