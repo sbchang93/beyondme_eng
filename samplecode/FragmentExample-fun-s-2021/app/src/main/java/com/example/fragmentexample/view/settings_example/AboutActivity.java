@@ -23,6 +23,7 @@ public class AboutActivity extends BaseUIActivity {
 
     TextView tvAppVersionName;
     TextView tvPrivacyNoticeText;
+    TextView tvPermissionText;
     TextView tvOpenSourceLicensesText;
 
     @Override
@@ -31,6 +32,9 @@ public class AboutActivity extends BaseUIActivity {
         setContentView(R.layout.activity_about);
 
         setTitle("About Fragment Example");
+
+        // ActionBar's Back Press key
+        // Inherited from BaseUIActivity class    <===  Supporting ActionBar's Back Press key.
 
         tvAppVersionName = findViewById(R.id.app_version_text);
         try {
@@ -51,6 +55,15 @@ public class AboutActivity extends BaseUIActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), PrivacyNoticeActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        tvPermissionText = findViewById(R.id.permission_text);
+        tvPermissionText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), PermissionActivity.class);
                 startActivity(intent);
             }
         });

@@ -28,6 +28,9 @@ public class PrivacyNoticeActivity  extends BaseUIActivity {
 
         setTitle("Privacy Noitce");
 
+        // ActionBar's Back Press key
+        // Inherited from BaseUIActivity class    <===  Supporting ActionBar's Back Press key.
+
         privacyNoticeContentLayout = findViewById(R.id.privacy_notice_content_layout);
 
         String fileName = getFileName("Test_page_01.html");

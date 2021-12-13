@@ -27,6 +27,9 @@ public class OpenSourceLicenseActivity extends BaseUIActivity {
 
         setTitle("Open Source Licenses");
 
+        // ActionBar's Back Press key
+        // Inherited from BaseUIActivity class    <===  Supporting ActionBar's Back Press key.
+
         tvOpenSource = findViewById(R.id.open_source_text);
 
         AssetManager assetManager = getResources().getAssets();
