@@ -30,6 +30,7 @@ import com.example.fragmentexample.view.preference_screen.Preference01Activity;
 import com.example.fragmentexample.view.roomdb.RoomDbActivity;
 import com.example.fragmentexample.view.searchview.SearchViewActivity;
 import com.example.fragmentexample.view.settings_example.SettingsActivity;
+import com.example.fragmentexample.view.sliding_up_pannel.DemoActivity;
 import com.example.fragmentexample.view.switch_example.SwitchActivity;
 import com.example.fragmentexample.view.touchevent_example.TouchEventActivity;
 
@@ -62,6 +63,9 @@ public class MainActivity extends AppCompatActivity {
         // addItem (title, desc, cls)
 
         addItem("SettingsActivity", "SettingsActivity Description", SettingsActivity.class);
+
+
+        addItem("SlidingUpPanel DemoActivity", "SlidingUpPanel DemoActivity Description", DemoActivity.class);
 
         addItem("ActionBarActivity", "ActionBarActivity Description", ActionBarActivity.class);
 
