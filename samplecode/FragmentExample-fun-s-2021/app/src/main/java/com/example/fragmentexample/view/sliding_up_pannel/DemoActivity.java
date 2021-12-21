@@ -21,13 +21,14 @@ import android.widget.Toast;
 import com.example.fragmentexample.R;
 import com.example.fragmentexample.slidinguppanel.SlidingUpPanelLayout;
 import com.example.fragmentexample.slidinguppanel.SlidingUpPanelLayout.PanelState;
+import com.example.fragmentexample.view.commonActivity.BaseUIActivity;
 
 import java.util.Arrays;
 import java.util.List;
 
 // Git Hub Source => https://github.com/umano/AndroidSlidingUpPanel
 
-public class DemoActivity extends AppCompatActivity {
+public class DemoActivity  extends BaseUIActivity {
     private static final String TAG = "DemoActivity";
 
     private SlidingUpPanelLayout mLayout;
@@ -38,13 +39,15 @@ public class DemoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_demo);
         //setContentView(R.layout.activity_main);
 
+        setTitle("SlidingUpPanelLayout");
+
 //        setSupportActionBar(findViewById(R.id.main_toolbar));
 
         ListView lv = (ListView) findViewById(R.id.list);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(DemoActivity.this, "onItemClick", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DemoActivity.this, "onItemClick - Item is clicked!!!", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -81,7 +84,7 @@ public class DemoActivity extends AppCompatActivity {
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 this,
                 android.R.layout.simple_list_item_1,
-                your_array_list );
+                your_array_list);
 
         lv.setAdapter(arrayAdapter);
 
@@ -105,9 +108,9 @@ public class DemoActivity extends AppCompatActivity {
         });
 
         TextView t = (TextView) findViewById(R.id.name);
-        t.setText(Html.fromHtml(getString(R.string.hello)));
+        t.setText(Html.fromHtml(getString(R.string.hello), Html.FROM_HTML_MODE_LEGACY));
         Button f = (Button) findViewById(R.id.follow);
-        f.setText(Html.fromHtml(getString(R.string.follow)));
+        f.setText(Html.fromHtml(getString(R.string.follow), Html.FROM_HTML_MODE_LEGACY));
         f.setMovementMethod(LinkMovementMethod.getInstance());
         f.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,7 +144,7 @@ public class DemoActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.action_toggle: {
                 if (mLayout != null) {
                     if (mLayout.getPanelState() != PanelState.HIDDEN) {
