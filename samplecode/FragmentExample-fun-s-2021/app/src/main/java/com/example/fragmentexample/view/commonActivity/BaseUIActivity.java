@@ -18,7 +18,7 @@ public class BaseUIActivity extends AppCompatActivity {
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_launcher_background));
+            getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_launcher_background, null));
         }
     }
 
