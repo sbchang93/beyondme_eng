@@ -18,6 +18,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/snow"
         android:orientation="vertical">
         <TextView
             android:id="@+id/main"
@@ -33,10 +34,11 @@
     </FrameLayout>
 
     <!-- SLIDING LAYOUT -->
+    <!--         android:background="#ffffff"   -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#ffffff"
+        android:background="@drawable/sunny"
         android:orientation="vertical"
         android:clickable="true"
         android:focusable="false"
