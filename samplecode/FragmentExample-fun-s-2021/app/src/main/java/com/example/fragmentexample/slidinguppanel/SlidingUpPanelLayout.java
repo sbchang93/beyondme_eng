@@ -570,7 +570,6 @@ public class SlidingUpPanelLayout extends ViewGroup {
                     }
                 }
             });
-            ;
         }
     }
 
@@ -905,7 +904,7 @@ public class SlidingUpPanelLayout extends ViewGroup {
             return false;
         }
 
-        final int action = MotionEventCompat.getActionMasked(ev);
+        final int action = ev.getAction() ;
         final float x = ev.getX();
         final float y = ev.getY();
         final float adx = Math.abs(x - mInitialMotionX);
@@ -973,7 +972,7 @@ public class SlidingUpPanelLayout extends ViewGroup {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        final int action = MotionEventCompat.getActionMasked(ev);
+        final int action = ev.getAction();
 
         if (!isEnabled() || !isTouchEnabled() || (mIsUnableToDrag && action != MotionEvent.ACTION_DOWN)) {
             mDragHelper.abort();
@@ -1168,7 +1167,8 @@ public class SlidingUpPanelLayout extends ViewGroup {
     private void applyParallaxForCurrentSlideOffset() {
         if (mParallaxOffset > 0) {
             int mainViewOffset = getCurrentParallaxOffset();
-            ViewCompat.setTranslationY(mMainView, mainViewOffset);
+            //ViewCompat.setTranslationY(mMainView, mainViewOffset);
+            mMainView.setTranslationY(mainViewOffset);
         }
     }
 
