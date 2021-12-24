@@ -31,6 +31,7 @@ import com.example.fragmentexample.view.roomdb.RoomDbActivity;
 import com.example.fragmentexample.view.searchview.SearchViewActivity;
 import com.example.fragmentexample.view.settings_example.SettingsActivity;
 import com.example.fragmentexample.view.sliding_up_pannel.DemoActivity;
+import com.example.fragmentexample.view.swipe_up_panel.SwipeUpActivity;
 import com.example.fragmentexample.view.switch_example.SwitchActivity;
 import com.example.fragmentexample.view.touchevent_example.TouchEventActivity;
 
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
         addItem("SettingsActivity", "SettingsActivity Description", SettingsActivity.class);
 
+        addItem("SwipeUpActivity", "SwipeUpActivity Description", SwipeUpActivity.class);
 
         addItem("SlidingUpPanel DemoActivity", "SlidingUpPanel DemoActivity Description", DemoActivity.class);
 
