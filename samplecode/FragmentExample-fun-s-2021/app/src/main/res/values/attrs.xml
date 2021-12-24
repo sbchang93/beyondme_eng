@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <declare-styleable name="SlidingUpPanelLayout">
         <attr name="umanoPanelHeight" format="dimension" />
         <attr name="umanoShadowHeight" format="dimension" />
@@ -19,6 +18,28 @@
             <enum name="hidden" value="3" />
         </attr>
         <attr name="umanoScrollInterpolator" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="SwipeUpPanelLayout">
+        <attr name="swipePanelHeight" format="dimension" />
+        <attr name="swipeShadowHeight" format="dimension" />
+        <attr name="swipeParallaxOffset" format="dimension" />
+        <attr name="swipeDragView" format="reference" />
+        <attr name="swipeOverlay" format="boolean"/>
+        <attr name="swipeScrollableView" format="reference" />
+
+        <attr name="swipeFlingVelocity" format="integer" />
+        <attr name="swipeFadeColor" format="color" />
+        <attr name="swipeClipPanel" format="boolean"/>
+        <attr name="swipeAnchorPoint" format="float" />
+        <attr name="swipeInitialState" format="enum">
+            <enum name="expanded" value="0" />
+            <enum name="collapsed" value="1" />
+            <enum name="anchored" value="2" />
+            <enum name="hidden" value="3" />
+        </attr>
+        <attr name="swipeScrollInterpolator" format="reference" />
+
     </declare-styleable>
 
 </resources>
