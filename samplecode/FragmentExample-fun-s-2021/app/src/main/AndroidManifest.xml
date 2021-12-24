@@ -22,6 +22,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".view.swipe_up_panel.SwipeUpActivity"
+            android:exported="true" />
+        <activity
             android:name=".view.sliding_up_pannel.DemoActivity"
             android:exported="true" />
         <activity
