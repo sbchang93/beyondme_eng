@@ -21,8 +21,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-<!--        android:theme="@style/Theme.SwipeUp">-->
-
+        <activity
+            android:name=".view.custom_view.VolumeControlActivity"
+            android:exported="true" />
+        <!-- android:theme="@style/Theme.SwipeUp"> -->
         <activity
             android:name=".view.swipe_up_panel.SwipeUpActivity"
             android:exported="true" />

@@ -1,7 +1,5 @@
 package com.example.swipeup.view.swipe_up_panel;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,8 +9,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.swipeup.R;
-import com.example.swipeup.slidinguppanel.SlidingUpPanelLayout;
-import com.example.swipeup.view.commonActivity.BaseUIActivity;
+import com.example.swipeup.view.common_activity.BaseUIActivity;
 import com.example.swipeup.view_utils.swipeuppanel.SwipeUpPanelLayout;
 import com.example.swipeup.view_utils.swipeuppanel.SwipeUpPanelLayout.SwipePanelState;
 import java.util.Arrays;

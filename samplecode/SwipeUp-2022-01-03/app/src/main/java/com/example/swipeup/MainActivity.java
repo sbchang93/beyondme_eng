@@ -11,6 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.swipeup.view.custom_view.VolumeControlActivity;
 import com.example.swipeup.view.sliding_up_pannel.DemoActivity;
 import com.example.swipeup.view.swipe_up_panel.SwipeUpActivity;
 
@@ -43,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
         // addItem (title, desc, cls)
         addItem("SwipeUpActivity", "SwipeUpActivity Description", SwipeUpActivity.class);
         addItem("SlidingUpPanel DemoActivity", "SlidingUpPanel DemoActivity Description", DemoActivity.class);
+
+        addItem("VolumeControlActivity", "VolumeControlActivity Description", VolumeControlActivity.class);
 
 
 
