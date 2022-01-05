@@ -11,9 +11,12 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.swipeup.view.custom_view.CustomLoginButtonActivity;
+import com.example.swipeup.view.custom_view.LinedEditTextActivity;
 import com.example.swipeup.view.custom_view.VolumeControlActivity;
 import com.example.swipeup.view.sliding_up_pannel.DemoActivity;
 import com.example.swipeup.view.swipe_up_panel.SwipeUpActivity;
+import com.example.swipeup.view.view_example.PaintActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,7 +50,9 @@ public class MainActivity extends AppCompatActivity {
 
         addItem("VolumeControlActivity", "VolumeControlActivity Description", VolumeControlActivity.class);
 
-
+        addItem("LinedEditTextActivity", "LinedEditTextActivity Description", LinedEditTextActivity.class);
+        addItem("PaintActivity", "PaintActivity Description", PaintActivity.class);
+        addItem("CustomLoginButtonActivity", "CustomLoginButtonActivity Description", CustomLoginButtonActivity.class);
 
 //         text1 = findViewById(R.id.textView1);
 //         checkPermission();

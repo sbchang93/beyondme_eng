@@ -22,9 +22,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".view.custom_view.VolumeControlActivity"
+            android:name=".view.custom_view.CustomLoginButtonActivity"
             android:exported="true" />
-        <!-- android:theme="@style/Theme.SwipeUp"> -->
+        <activity
+            android:name=".view.view_example.PaintActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.custom_view.LinedEditTextActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.custom_view.VolumeControlActivity"
+            android:exported="true" /> <!-- android:theme="@style/Theme.SwipeUp"> -->
         <activity
             android:name=".view.swipe_up_panel.SwipeUpActivity"
             android:exported="true" />

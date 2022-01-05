@@ -8,8 +8,8 @@
         <attr name="umanoFlingVelocity" format="integer" />
         <attr name="umanoDragView" format="reference" />
         <attr name="umanoScrollableView" format="reference" />
-        <attr name="umanoOverlay" format="boolean"/>
-        <attr name="umanoClipPanel" format="boolean"/>
+        <attr name="umanoOverlay" format="boolean" />
+        <attr name="umanoClipPanel" format="boolean" />
         <attr name="umanoAnchorPoint" format="float" />
         <attr name="umanoInitialState" format="enum">
             <enum name="expanded" value="0" />
@@ -25,12 +25,12 @@
         <attr name="swipeShadowHeight" format="dimension" />
         <attr name="swipeParallaxOffset" format="dimension" />
         <attr name="swipeDragView" format="reference" />
-        <attr name="swipeOverlay" format="boolean"/>
+        <attr name="swipeOverlay" format="boolean" />
         <attr name="swipeScrollableView" format="reference" />
 
         <attr name="swipeFlingVelocity" format="integer" />
         <attr name="swipeFadeColor" format="color" />
-        <attr name="swipeClipPanel" format="boolean"/>
+        <attr name="swipeClipPanel" format="boolean" />
         <attr name="swipeAnchorPoint" format="float" />
         <attr name="swipeInitialState" format="enum">
             <enum name="expanded" value="0" />
@@ -39,7 +39,21 @@
             <enum name="hidden" value="3" />
         </attr>
         <attr name="swipeScrollInterpolator" format="reference" />
+    </declare-styleable>
 
+    <declare-styleable name="PieChart">
+        <attr name="showText" format="boolean" />
+        <attr name="labelPosition" format="enum">
+            <enum name="left" value="0" />
+            <enum name="right" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="LoginButton">
+        <attr name="bg" format="reference|integer"/>
+        <attr name="symbol" format="reference|integer"/>
+        <attr name="text" format="reference|string"/>
+        <attr name="textColor" format="reference|integer"/>
     </declare-styleable>
 
 </resources>
