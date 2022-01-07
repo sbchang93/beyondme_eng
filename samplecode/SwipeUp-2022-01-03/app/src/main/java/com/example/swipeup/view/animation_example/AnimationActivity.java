@@ -94,6 +94,14 @@ public class AnimationActivity extends AppCompatActivity {
         });
 
 
+        // Reference Homepage URL : https://brightwon.tistory.com/2
+        ImageView playView = findViewById(R.id.anim_demo_play_vector_image);
+        AnimatedVectorDrawable animatedVector = (AnimatedVectorDrawable) ContextCompat.getDrawable(this, R.drawable.play_animation);
+        playView.setImageDrawable(animatedVector);
+        animatedVector.start();
+
+
+
         // Not Working - need to analyze this problem.
         int ALPHA_NONE = 0;
         int BACKGROUND_ALPHA_ENABLE = 128;
