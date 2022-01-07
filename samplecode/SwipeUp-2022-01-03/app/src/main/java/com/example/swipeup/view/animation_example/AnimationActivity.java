@@ -1,10 +1,13 @@
 package com.example.swipeup.view.animation_example;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.animation.ObjectAnimator;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.drawable.AnimatedVectorDrawable;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -20,10 +23,16 @@ import com.example.swipeup.R;
 // Reference YouTube URL : http://youtube.com/watch?v=CPxkoe2MraA
 // Reference Homepage URL : https://nextus.tistory.com/1
 
+// Reference Homepage URL : https://brightwon.tistory.com/2
+
 public class AnimationActivity extends AppCompatActivity {
     LinearLayout linearLayout1;
     TextView textView1;
     ImageView imageView1;
+    ImageView vertorImageView;
+
+    AnimatedVectorDrawable vectorAnimation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,15 +69,29 @@ public class AnimationActivity extends AppCompatActivity {
                         //.setInterpolator(new DecelerateInterpolator());
                         //.setInterpolator(new AccelerateDecelerateInterpolator());
                         .setInterpolator(new AccelerateInterpolator());
+
+                //imageView1.setInterpolator(new LinearInterpolator());
+                //imageView1.setInterpolator(new AccelerateInterpolator())
+                //imageView1.setInterpolator(new DecelerateInterpolator());
+                //imageView1.setInterpolator(new AccelerateDecelerateInterpolator());
+                //imageView1.setInterpolator(new SineInOut60());
+                //imageView1.setInterpolator(new SineInOut33());
             }
         });
 
-        //imageView1.setInterpolator(new LinearInterpolator());
-        //imageView1.setInterpolator(new AccelerateInterpolator())
-        //imageView1.setInterpolator(new DecelerateInterpolator());
-        //imageView1.setInterpolator(new AccelerateDecelerateInterpolator());
-        //imageView1.setInterpolator(new SineInOut60());
-        //imageView1.setInterpolator(new SineInOut33());
+
+        /// Reference Homepage URL : https://brightwon.tistory.com/2
+        vertorImageView = findViewById(R.id.anim_demo_vector_image);
+        vectorAnimation = (AnimatedVectorDrawable) ContextCompat.getDrawable(this, R.drawable.animatorvectordrawable);
+        vertorImageView.setImageDrawable(vectorAnimation);
+        vectorAnimation.start();
+
+        vertorImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                vectorAnimation.start();
+            }
+        });
 
 
         // Not Working - need to analyze this problem.
@@ -85,5 +108,11 @@ public class AnimationActivity extends AppCompatActivity {
         ObjectAnimator bgAnimation = ObjectAnimator.ofInt(Paint_Black, "Alpha", 0, 255);
         bgAnimation.setDuration(duration);
         bgAnimation.start();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        vectorAnimation.start();
     }
 }
