@@ -32,6 +32,8 @@ public class AnimationActivity extends AppCompatActivity {
     ImageView vertorImageView;
 
     AnimatedVectorDrawable vectorAnimation;
+    ObjectAnimator objectAnimation1;
+    boolean toggle = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,22 +102,30 @@ public class AnimationActivity extends AppCompatActivity {
         playView.setImageDrawable(animatedVector);
         animatedVector.start();
 
+        // Reference Homepage URL : https://ddolcat.tistory.com/485
+        TextView textView2 = findViewById(R.id.anim_demo_text2);
+        objectAnimation1 = ObjectAnimator.ofFloat(textView2, "translationX", 100f);
+        objectAnimation1.setDuration(1000);
+        objectAnimation1.start();
+        textView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(toggle)
+                    objectAnimation1 = ObjectAnimator.ofFloat(textView2, "translationX", 0.0f);
+                else
+                    objectAnimation1 = ObjectAnimator.ofFloat(textView2, "translationX", 100f);
+                toggle = !toggle;
+
+                objectAnimation1.start();
+            }
+        });
 
 
-        // Not Working - need to analyze this problem.
-        int ALPHA_NONE = 0;
-        int BACKGROUND_ALPHA_ENABLE = 128;
-        int BACKGROUND_ALPHA_DISABLE = 153;
-        int mBackGroundAlpha = ALPHA_NONE;
-        Paint Paint_Black = new Paint();
-        Paint_Black.setColor(Color.BLACK);
-        Paint_Black.setStyle(Paint.Style.FILL_AND_STROKE);
-        Paint_Black.setAlpha(mBackGroundAlpha);
-
-        //ObjectAnimator bgAnimation = ObjectAnimator.ofInt(Paint_Black, "Alpha", Paint_Black.getAlpha(), BACKGROUND_ALPHA_DISABLE);
-        ObjectAnimator bgAnimation = ObjectAnimator.ofInt(Paint_Black, "Alpha", 0, 255);
-        bgAnimation.setDuration(duration);
+        // background.
+        ObjectAnimator bgAnimation = ObjectAnimator.ofInt(linearLayout1.getBackground(), "Alpha", 255, 30);
+        bgAnimation.setDuration(1500);
         bgAnimation.start();
+
     }
 
     @Override

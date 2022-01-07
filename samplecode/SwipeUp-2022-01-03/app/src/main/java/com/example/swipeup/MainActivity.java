@@ -2,6 +2,7 @@ package com.example.swipeup;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.ObjectAnimator;
 import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
@@ -119,6 +120,9 @@ public class MainActivity extends AppCompatActivity {
             Map<String, Object> twoLineMenu = (Map<String, Object>) getItem(position);
             holder.title.setText((String)twoLineMenu.get("title"));
             holder.description.setText((String)twoLineMenu.get("desc"));
+
+            //Animation Effect : I can not see the animation effect
+            ObjectAnimator.ofFloat(convertView, "alpha", 0.0f, 1f).start();
 
             return convertView;
         }
