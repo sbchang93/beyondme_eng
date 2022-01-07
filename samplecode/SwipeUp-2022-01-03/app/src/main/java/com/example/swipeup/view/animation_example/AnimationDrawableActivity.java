@@ -23,7 +23,7 @@ public class AnimationDrawableActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_animation_drawable);
 
-        weatherImage = findViewById(R.id.imageView1);
+        weatherImage = findViewById(R.id.anim_drawable_image);
         weatherImage.setBackgroundResource(R.drawable.weather_change);
         weatherAnimation = (AnimationDrawable) weatherImage.getBackground();
 
@@ -35,7 +35,7 @@ public class AnimationDrawableActivity extends AppCompatActivity {
             }
         });
 
-        LinearLayout mainLinearLayout =  findViewById(R.id.linear_layout_animation);
+        LinearLayout mainLinearLayout =  findViewById(R.id.anim_drawable_root_layout);
         mainLinearLayout.setBackgroundResource(R.drawable.background_change);
         mainBgAnimation = (AnimationDrawable) mainLinearLayout.getBackground();
 

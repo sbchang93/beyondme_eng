@@ -29,9 +29,9 @@ public class AnimationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_animation);
 
-        linearLayout1 = findViewById(R.id.linear_layout);
-        textView1 = findViewById(R.id.textView1);
-        imageView1 = findViewById(R.id.imageView1);
+        linearLayout1 = findViewById(R.id.anim_demo_root_layout);
+        textView1 = findViewById(R.id.anim_demo_text);
+        imageView1 = findViewById(R.id.anim_demo_image);
 
         int duration = 300;
         imageView1.setTranslationY(-20.0f);
