@@ -2,8 +2,10 @@ package com.example.swipeup;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,17 +13,26 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.swipeup.model.DemoModel;
+import com.example.swipeup.view.animation_example.AnimationActivity;
+import com.example.swipeup.view.animation_example.AnimationDrawableActivity;
 import com.example.swipeup.view.custom_view.CustomLoginButtonActivity;
 import com.example.swipeup.view.custom_view.LinedEditTextActivity;
 import com.example.swipeup.view.custom_view.VolumeControlActivity;
 import com.example.swipeup.view.sliding_up_pannel.DemoActivity;
 import com.example.swipeup.view.swipe_up_panel.SwipeUpActivity;
+import com.example.swipeup.view.view_example.CardViewDemoActivity;
 import com.example.swipeup.view.view_example.PaintActivity;
+
+import net.danlew.android.joda.JodaTimeAndroid;
+
+import org.joda.time.DateTime;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,14 +56,17 @@ public class MainActivity extends AppCompatActivity {
         mListView.setAdapter(adapter);
 
         // addItem (title, desc, cls)
-        addItem("SwipeUpActivity", "SwipeUpActivity Description", SwipeUpActivity.class);
         addItem("SlidingUpPanel DemoActivity", "SlidingUpPanel DemoActivity Description", DemoActivity.class);
+        addItem("SwipeUpActivity", "SwipeUpActivity Description", SwipeUpActivity.class);
 
         addItem("VolumeControlActivity", "VolumeControlActivity Description", VolumeControlActivity.class);
-
         addItem("LinedEditTextActivity", "LinedEditTextActivity Description", LinedEditTextActivity.class);
         addItem("PaintActivity", "PaintActivity Description", PaintActivity.class);
         addItem("CustomLoginButtonActivity", "CustomLoginButtonActivity Description", CustomLoginButtonActivity.class);
+        addItem("CardViewDemoActivity", "CardViewDemoActivity Description", CardViewDemoActivity.class);
+        addItem("AnimationActivity", "AnimationActivity Description", AnimationActivity.class);
+        addItem("AnimationDrawableActivity", "AnimationDrawableActivity Description", AnimationDrawableActivity.class);
+
 
 //         text1 = findViewById(R.id.textView1);
 //         checkPermission();

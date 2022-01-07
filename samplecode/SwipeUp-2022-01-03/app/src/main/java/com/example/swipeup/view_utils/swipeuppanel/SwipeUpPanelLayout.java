@@ -35,14 +35,6 @@ public class SwipeUpPanelLayout extends ViewGroup {
 
     private static final String TAG = "SwipeUpPanelLayout";
 
-    public enum SwipePanelState {
-        EXPANDED,
-        COLLAPSED,
-        ANCHORED,
-        HIDDEN,
-        DRAGGING
-    }
-
     private static final int DEFAULT_PANEL_HEIGHT = 68; // dp;
     private static final float DEFAULT_ANCHOR_POINT = 1.0f; // In relative %
     private static final int DEFAULT_SHADOW_HEIGHT = 4; // dp;
@@ -56,12 +48,30 @@ public class SwipeUpPanelLayout extends ViewGroup {
     private static final int DEFAULT_MIN_FLING_VELOCITY = 400; // dips per second
     private static final int DEFAULT_FADE_COLOR = 0x99000000;
 
+    public enum SwipePanelState {
+        EXPANDED,
+        COLLAPSED,
+        ANCHORED,
+        HIDDEN,
+        DRAGGING
+    }
+
+    private static SwipePanelState DEFAULT_SLIDE_STATE = SwipePanelState.COLLAPSED;
+
     private static final int[] DEFAULT_ATTRS = new int[]{
             android.R.attr.gravity
     };
 
-    private static SwipePanelState DEFAULT_SLIDE_STATE = SwipePanelState.COLLAPSED;
+    //private int mParallaxOffset = -1;
+    private View mSwipeMainView;
+    private View mDragView;
+    private View mScrollableView;
+    private ScrollableViewHelper mScrollableViewHelper = new ScrollableViewHelper();
+    private final SwipeViewDragHelper mSwipeViewDragHelper;
+    private final Drawable mSwipeShadowDrawable;
+    private final List<SwipePanelSlideListener> mSwipePanelSlideListeners = new CopyOnWriteArrayList<>();
 
+    // Read information from "activity_swipe_up.xml"
     private int mSwipePanelHeight = -1;
     private int mSwipeShadowHeight = -1;
     private int mSwipeParallaxOffset = -1;
@@ -71,38 +81,20 @@ public class SwipeUpPanelLayout extends ViewGroup {
     private boolean mSwipeClipPanel = DEFAULT_CLIP_PANEL_FLAG;
     private float mSwipeAnchorPoint = 1.f;
     private SwipePanelState mSwipeSlideState = DEFAULT_SLIDE_STATE;
-
     private int mSwipeMinFlingVelocity = DEFAULT_MIN_FLING_VELOCITY;
     private int mSwipeCoveredFadeColor = DEFAULT_FADE_COLOR;
 
     private boolean mIsSlidingUp;
     private boolean mFirstLayout = true;
     private boolean mIsTouchEnabled;
-
     private float mAnchorPoint = 1.f;
-
     private int mSlideRange;
-
-
-    //private int mParallaxOffset = -1;
-    private View mSwipeMainView;
-    private View mDragView;
-
-    private final SwipeViewDragHelper mSwipeViewDragHelper;
-
-    private final Drawable mSwipeShadowDrawable;
-
-    private final List<SwipePanelSlideListener> mSwipePanelSlideListeners = new CopyOnWriteArrayList<>();
-
 
     private boolean mIsScrollableViewHandlingTouch = false;
     private float mPrevMotionX;
     private float mPrevMotionY;
     private float mInitialMotionX;
     private float mInitialMotionY;
-
-    private ScrollableViewHelper mScrollableViewHelper = new ScrollableViewHelper();
-    private View mScrollableView;
 
     public SwipeUpPanelLayout(Context context) {
         this(context, null);

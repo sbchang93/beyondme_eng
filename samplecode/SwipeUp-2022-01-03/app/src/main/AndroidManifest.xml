@@ -15,12 +15,22 @@
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
 
     <application
+        android:name=".SwipeUpApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".view.animation_example.AnimationDrawableActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.animation_example.AnimationActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.view_example.CardViewDemoActivity"
+            android:exported="true" />
         <activity
             android:name=".view.custom_view.CustomLoginButtonActivity"
             android:exported="true" />
