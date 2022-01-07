@@ -26,6 +26,8 @@ import com.example.swipeup.R;
 // Reference Homepage URL : https://brightwon.tistory.com/2
 
 public class AnimationActivity extends AppCompatActivity {
+    private static final String TAG = "AnimationActivity";
+
     LinearLayout linearLayout1;
     TextView textView1;
     ImageView imageView1;

@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.example.swipeup.model.DemoModel;
 import com.example.swipeup.view.animation_example.AnimationActivity;
 import com.example.swipeup.view.animation_example.AnimationDrawableActivity;
+import com.example.swipeup.view.animation_example.ViewPropertyAnimatorActivity;
 import com.example.swipeup.view.custom_view.CustomLoginButtonActivity;
 import com.example.swipeup.view.custom_view.LinedEditTextActivity;
 import com.example.swipeup.view.custom_view.VolumeControlActivity;
@@ -67,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
         addItem("CardViewDemoActivity", "CardViewDemoActivity Description", CardViewDemoActivity.class);
         addItem("AnimationActivity", "AnimationActivity Description", AnimationActivity.class);
         addItem("AnimationDrawableActivity", "AnimationDrawableActivity Description", AnimationDrawableActivity.class);
+        addItem("ViewPropertyAnimatorActivity", "ViewPropertyAnimatorActivity Description", ViewPropertyAnimatorActivity.class);
+
 
 
 //         text1 = findViewById(R.id.textView1);

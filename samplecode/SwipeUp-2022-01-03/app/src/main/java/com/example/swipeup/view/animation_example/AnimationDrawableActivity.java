@@ -16,6 +16,7 @@ import com.example.swipeup.R;
 // Reference Homepage URL :  http://www.gisdeveloper.co.kr/?p=10261
 
 public class AnimationDrawableActivity extends AppCompatActivity {
+    private static final String TAG = "AnimationDrawableActivity";
 
     AnimationDrawable weatherAnimation;
     AnimationDrawable mainBgAnimation;
