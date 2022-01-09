@@ -9,8 +9,16 @@ Android Gradle Plugin Version : 4.2.1
 Gradle Version : 6.8.3
 
 ----------------
-
 ...
+
+----------------
+Android Gradle Plugin Version : 3.5.0
+Gradle Version : 5.4.1
+
+----------------
+
+----------------
+
 
 ----------------
 
