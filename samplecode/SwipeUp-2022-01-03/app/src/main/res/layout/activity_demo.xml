@@ -8,11 +8,12 @@
     android:layout_height="match_parent"
     android:gravity="bottom"
     sothree:umanoPanelHeight="68dp"
-    sothree:umanoShadowHeight="4dp"
+    sothree:umanoShadowHeight="50dp"
     sothree:umanoParallaxOffset="100dp"
     sothree:umanoDragView="@+id/dragView"
     sothree:umanoOverlay="true"
-    sothree:umanoScrollableView="@+id/list">
+    sothree:umanoScrollableView="@+id/list"
+    sothree:umanoInitialState="collapsed">
 
     <!-- MAIN CONTENT -->
     <FrameLayout
