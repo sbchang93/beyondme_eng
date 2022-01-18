@@ -23,6 +23,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".view.view_example.TextViewActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.view_example.CanvasActivity"
+            android:exported="true" />
+        <activity
             android:name=".view.animation_example.ViewPropertyAnimatorActivity"
             android:exported="true" />
         <activity
