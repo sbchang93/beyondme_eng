@@ -58,10 +58,10 @@ public class SwipeUpActivity  extends BaseUIActivity {
         listView.setAdapter(arrayAdapter);
 
         mSwipeUpPanelLayout = (SwipeUpPanelLayout) findViewById(R.id.swipe_up_layout);
-        mSwipeUpPanelLayout.addPanelSlideListener(new SwipeUpPanelLayout.SwipePanelSlideListener() {
+        mSwipeUpPanelLayout.addPanelSwipeListener(new SwipeUpPanelLayout.SwipePanelListener() {
             @Override
-            public void onPanelSlide(View panel, float slideOffset) {
-                Log.i(TAG, "onPanelSlide, offset " + slideOffset);
+            public void onPanelSwipe(View panel, float swipeOffset) {
+                Log.i(TAG, "onPanelSwipe, offset " + swipeOffset);
             }
 
             @Override

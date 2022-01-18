@@ -51,22 +51,14 @@ public class SwipeViewDragHelper {
         return new SwipeViewDragHelper(forParent.getContext(), forParent, interpolator, cb);
     }
 
+    // Instantiation function for other Activities
     public static SwipeViewDragHelper create(ViewGroup forParent, float sensitivity, Interpolator interpolator, Callback cb) {
         final SwipeViewDragHelper helper = create(forParent, interpolator, cb);
         helper.mSwipeTouchSlop = (int) (helper.mSwipeTouchSlop * (1 / sensitivity));
         return helper;
     }
 
-    /**
-     * Apps should use ViewDragHelper.create() to get a new instance.
-     * This will allow VDH to use internal compatibility implementations for different
-     * platform versions.
-     * If the interpolator is null, the default interpolator will be used.
-     *
-     * @param context      Context to initialize config-dependent params from
-     * @param forParent    Parent view to monitor
-     * @param interpolator interpolator for scroller
-     */
+    // constructor
     private SwipeViewDragHelper(Context context, ViewGroup forParent, Interpolator interpolator, Callback cb) {
         if (forParent == null) {
             throw new IllegalArgumentException("Parent view may not be null");
@@ -262,7 +254,7 @@ public class SwipeViewDragHelper {
         return (float) Math.sin(f);
     }
 
-    public boolean smoothSlideViewTo(View child, int finalLeft, int finalTop) {
+    public boolean smoothSwipeViewTo(View child, int finalLeft, int finalTop) {
         mCapturedView = child;
         mActivePointerId = INVALID_POINTER;
 
