@@ -23,8 +23,10 @@ import com.example.swipeup.view.custom_view.LinedEditTextActivity;
 import com.example.swipeup.view.custom_view.VolumeControlActivity;
 import com.example.swipeup.view.sliding_up_pannel.DemoActivity;
 import com.example.swipeup.view.swipe_up_panel.SwipeUpActivity;
+import com.example.swipeup.view.view_example.CanvasActivity;
 import com.example.swipeup.view.view_example.CardViewDemoActivity;
 import com.example.swipeup.view.view_example.PaintActivity;
+import com.example.swipeup.view.view_example.TextViewActivity;
 
 import net.danlew.android.joda.JodaTimeAndroid;
 
@@ -69,6 +71,10 @@ public class MainActivity extends AppCompatActivity {
         addItem("AnimationActivity", "AnimationActivity Description", AnimationActivity.class);
         addItem("AnimationDrawableActivity", "AnimationDrawableActivity Description", AnimationDrawableActivity.class);
         addItem("ViewPropertyAnimatorActivity", "ViewPropertyAnimatorActivity Description", ViewPropertyAnimatorActivity.class);
+
+        addItem("CanvasActivity", "CanvasActivity Description", CanvasActivity.class);
+        addItem("TextViewActivity", "TextViewActivity Description", TextViewActivity.class);
+
 
 
 
