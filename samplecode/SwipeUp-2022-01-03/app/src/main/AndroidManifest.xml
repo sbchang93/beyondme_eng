@@ -23,6 +23,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".view.touch_example.TouchInterceptActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.touch_example.MultitouchActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.touch_example.TwoDimensionGestureScrollActivity"
+            android:exported="true" />
+        <activity
             android:name=".view.touch_example.TwoDimensionScrollActivity"
             android:exported="true" />
         <activity
