@@ -694,14 +694,14 @@ public class SwipeUpPanelLayout extends ViewGroup {
                 : getPaddingTop() - slidingViewHeight + mSwipePanelHeight + swipePixelOffset;
     }
 
-    private void setPanelStateInternal(SwipeUpPanelLayout.SwipePanelState state) {
+    private void setPanelStateInternal(SwipePanelState state) {
         if (mSwipeState == state) return;
         SwipeUpPanelLayout.SwipePanelState oldState = mSwipeState;
         mSwipeState = state;
         dispatchOnPanelStateChanged(this, oldState, state);
     }
 
-    void dispatchOnPanelStateChanged(View panel, SwipeUpPanelLayout.SwipePanelState previousState, SwipeUpPanelLayout.SwipePanelState newState) {
+    void dispatchOnPanelStateChanged(View panel, SwipePanelState previousState, SwipePanelState newState) {
         synchronized (mSwipePanelListeners) {
             for (SwipePanelListener l : mSwipePanelListeners) {
                 l.onPanelStateChanged(panel, previousState, newState);
@@ -857,14 +857,14 @@ public class SwipeUpPanelLayout extends ViewGroup {
                 return super.dispatchTouchEvent(ev);
             }
 
-            // If the scroll view isn't under the touch, pass the
-            // event along to the dragView.
+            // If the scroll view isn't under the touch, pass the event along to the dragView.
             if (!isViewUnder(mScrollableView, (int) mInitialMotionX, (int) mInitialMotionY)) {
                 return super.dispatchTouchEvent(ev);
             }
 
             // Which direction (up or down) is the drag moving?
-            if (dy * (mIsSwipingUp ? 1 : -1) > 0) { // Collapsing
+            //if (dy * (mIsSwipingUp ? 1 : -1) > 0) { // Collapsing
+            if (dy > 0) { // Collapsing (접히는 방향)
                 // Is the child less than fully scrolled?
                 // Then let the child handle it.
                 if (mScrollableViewHelper.getScrollableViewScrollPosition(mScrollableView, mIsSwipingUp) > 0) {
@@ -889,17 +889,16 @@ public class SwipeUpPanelLayout extends ViewGroup {
 
                 mIsScrollableViewHandlingTouch = false;
                 return this.onTouchEvent(ev);
-            } else if (dy * (mIsSwipingUp ? 1 : -1) < 0) { // Expanding
-                // Is the panel less than fully expanded?
-                // Then we'll handle the drag here.
+            //} else if (dy * (mIsSwipingUp ? 1 : -1) < 0) { // Expanding
+            } else if (dy < 0) { // Expanding (펼쳐지는 방향)
+                // Is the panel less than fully expanded? , Then we'll handle the drag here.
                 if (mSwipeOffset < 1.0f) {
                     mIsScrollableViewHandlingTouch = false;
                     return this.onTouchEvent(ev);
                 }
 
                 // Was the panel handling the touch previously?
-                // Then we need to rejigger things so that the
-                // child gets a proper down event.
+                // Then we need to rejigger things so that the child gets a proper down event.
                 if (!mIsScrollableViewHandlingTouch && mSwipeViewDragHelper.isDragging()) {
                     mSwipeViewDragHelper.cancel();
                     ev.setAction(MotionEvent.ACTION_DOWN);

@@ -23,6 +23,11 @@ import com.example.swipeup.view.custom_view.LinedEditTextActivity;
 import com.example.swipeup.view.custom_view.VolumeControlActivity;
 import com.example.swipeup.view.sliding_up_pannel.DemoActivity;
 import com.example.swipeup.view.swipe_up_panel.SwipeUpActivity;
+import com.example.swipeup.view.touch_example.MoveLoggerActivity;
+import com.example.swipeup.view.touch_example.TouchDelegateActivity;
+import com.example.swipeup.view.touch_example.TouchForwardActivity;
+import com.example.swipeup.view.touch_example.TouchListenerActivity;
+import com.example.swipeup.view.touch_example.TwoDimensionScrollActivity;
 import com.example.swipeup.view.view_example.CanvasActivity;
 import com.example.swipeup.view.view_example.CardViewDemoActivity;
 import com.example.swipeup.view.view_example.PaintActivity;
@@ -75,7 +80,11 @@ public class MainActivity extends AppCompatActivity {
         addItem("CanvasActivity", "CanvasActivity Description", CanvasActivity.class);
         addItem("TextViewActivity", "TextViewActivity Description", TextViewActivity.class);
 
-
+        addItem("MoveLoggerActivity", "MoveLoggerActivity Description", MoveLoggerActivity.class);
+        addItem("TouchListenerActivity", "TouchListenerActivity Description", TouchListenerActivity.class);
+        addItem("TouchDelegateActivity", "TouchDelegateActivity Description", TouchDelegateActivity.class);
+        addItem("TouchForwardActivity", "TouchForwardActivity Description", TouchForwardActivity.class);
+        addItem("TwoDimensionScrollActivity", "TwoDimensionScrollActivity Description", TwoDimensionScrollActivity.class);
 
 
 //         text1 = findViewById(R.id.textView1);
