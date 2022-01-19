@@ -23,6 +23,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".view.touch_example.TwoDimensionScrollActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.touch_example.TouchForwardActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.touch_example.TouchDelegateActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.touch_example.TouchListenerActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.touch_example.MoveLoggerActivity"
+            android:exported="true" />
+        <activity
             android:name=".view.view_example.TextViewActivity"
             android:exported="true" />
         <activity
