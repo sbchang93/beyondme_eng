@@ -66,7 +66,7 @@ public class SwipeUpPanelLayout extends ViewGroup {
     private View mSwipeMainView;
     private View mDragView;
     private View mScrollableView;
-    private ScrollableViewHelper mScrollableViewHelper = new ScrollableViewHelper();
+    private SwipeScrollableViewHelper mSwipeScrollableViewHelper = new SwipeScrollableViewHelper();
     private final SwipeViewDragHelper mSwipeViewDragHelper;
     private final Drawable mSwipeShadowDrawable;
     private final List<SwipePanelListener> mSwipePanelListeners = new CopyOnWriteArrayList<>();
@@ -74,7 +74,7 @@ public class SwipeUpPanelLayout extends ViewGroup {
     // Read information from "activity_swipe_up.xml"
     private int mSwipePanelHeight = -1;
     private int mSwipeShadowHeight = -1;
-    //private int mSwipeParallaxOffset = -1;
+    private int mSwipeParallaxOffset = -1;
     private int mSwipeDragViewResId = -1;
     private int mSwipeScrollableViewResId;
     private boolean mSwipeOverlayContent = DEFAULT_OVERLAY_FLAG;
@@ -137,7 +137,7 @@ public class SwipeUpPanelLayout extends ViewGroup {
             if (customTypedArray != null) {
                 mSwipePanelHeight = customTypedArray.getDimensionPixelSize(R.styleable.SwipeUpPanelLayout_swipePanelHeight, -1);
                 mSwipeShadowHeight = customTypedArray.getDimensionPixelSize(R.styleable.SwipeUpPanelLayout_swipeShadowHeight, -1);
-                //mSwipeParallaxOffset = customTypedArray.getDimensionPixelSize(R.styleable.SwipeUpPanelLayout_swipeParallaxOffset, -1);
+                mSwipeParallaxOffset = customTypedArray.getDimensionPixelSize(R.styleable.SwipeUpPanelLayout_swipeParallaxOffset, -1);
 
                 mSwipeDragViewResId = customTypedArray.getResourceId(R.styleable.SwipeUpPanelLayout_swipeDragView, -1);
                 mSwipeScrollableViewResId = customTypedArray.getResourceId(R.styleable.SwipeUpPanelLayout_swipeScrollableView, -1);
@@ -168,9 +168,9 @@ public class SwipeUpPanelLayout extends ViewGroup {
         if (mSwipeShadowHeight == -1) {
             mSwipeShadowHeight = (int) (DEFAULT_SHADOW_HEIGHT * density + 0.5f); // default : 4dp
         }
-//        if (mSwipeParallaxOffset == -1) {
-//            mSwipeParallaxOffset = (int) (DEFAULT_PARALLAX_OFFSET * density); // default : 0dp
-//        }
+        if (mSwipeParallaxOffset == -1) {
+            mSwipeParallaxOffset = (int) (DEFAULT_PARALLAX_OFFSET * density); // default : 0dp
+        }
         // If the shadow height is zero, don't show the shadow
         if (mSwipeShadowHeight > 0) {
             if (mIsSwipingUp) {
@@ -686,12 +686,13 @@ public class SwipeUpPanelLayout extends ViewGroup {
     }
 
     private int computePanelTopPosition(float swipeOffset) {
-        int slidingViewHeight = mSwipeableView != null ? mSwipeableView.getMeasuredHeight() : 0;
+        //int slidingViewHeight = mSwipeableView != null ? mSwipeableView.getMeasuredHeight() : 0;
         int swipePixelOffset = (int) (swipeOffset * mSwipeRange);
         // Compute the top of the panel if its collapsed
-        return mIsSwipingUp
-                ? getMeasuredHeight() - getPaddingBottom() - mSwipePanelHeight - swipePixelOffset
-                : getPaddingTop() - slidingViewHeight + mSwipePanelHeight + swipePixelOffset;
+        return getMeasuredHeight() - getPaddingBottom() - mSwipePanelHeight - swipePixelOffset;
+//        return mIsSwipingUp
+//                ? getMeasuredHeight() - getPaddingBottom() - mSwipePanelHeight - swipePixelOffset
+//                : getPaddingTop() - slidingViewHeight + mSwipePanelHeight + swipePixelOffset;
     }
 
     private void setPanelStateInternal(SwipePanelState state) {
@@ -710,20 +711,20 @@ public class SwipeUpPanelLayout extends ViewGroup {
         sendAccessibilityEvent(AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED);
     }
 
-//    @SuppressLint("NewApi")
-//    private void applyParallaxForCurrentSwipeOffset() {
-//        if (mSwipeParallaxOffset > 0) {
-//            int mainViewOffset = getCurrentParallaxOffset();
-//            //ViewCompat.setTranslationY(mMainView, mainViewOffset);
-//            mSwipeMainView.setTranslationY(mainViewOffset);
-//        }
-//    }
+    @SuppressLint("NewApi")
+    private void applyParallaxForCurrentSwipeOffset() {
+        if (mSwipeParallaxOffset > 0) {
+            int mainViewOffset = getCurrentParallaxOffset();
+            //ViewCompat.setTranslationY(mMainView, mainViewOffset);
+            mSwipeMainView.setTranslationY(mainViewOffset);
+        }
+    }
 
-//    public int getCurrentParallaxOffset() {
-//        // Clamp swipe offset at zero for parallax computation;
-//        int offset = (int) (mSwipeParallaxOffset * Math.max(mSwipeOffset, 0));
-//        return mIsSwipingUp ? -offset : offset;
-//    }
+    public int getCurrentParallaxOffset() {
+        // Clamp swipe offset at zero for parallax computation;
+        int offset = (int) (mSwipeParallaxOffset * Math.max(mSwipeOffset, 0));
+        return mIsSwipingUp ? -offset : offset;
+    }
 
 
     void updateObscuredViewVisibility() {
@@ -862,50 +863,39 @@ public class SwipeUpPanelLayout extends ViewGroup {
                 return super.dispatchTouchEvent(ev);
             }
 
-            // Which direction (up or down) is the drag moving?
-            //if (dy * (mIsSwipingUp ? 1 : -1) > 0) { // Collapsing
-            if (dy > 0) { // Collapsing (접히는 방향)
-                // Is the child less than fully scrolled?
-                // Then let the child handle it.
-                if (mScrollableViewHelper.getScrollableViewScrollPosition(mScrollableView, mIsSwipingUp) > 0) {
+            // dy > 0 : 아랫방향 드래그    ***    dy < 0 : 윗방향 드래그
+            if (dy > 0) { // Collapsing (접히는 방향) - 아랫쪽 방향으로 DragView 화면을 내리면서 Drag함
+                if (mSwipeScrollableViewHelper.getScrollableViewScrollPosition(mScrollableView, mIsSwipingUp) > 0) {
                     mIsScrollableViewHandlingTouch = true;
-                    return super.dispatchTouchEvent(ev);
+                    return super.dispatchTouchEvent(ev);  // ListView 등의 Scroll을 위해 부모에게 Touch Event를 전달해 줌.
                 }
 
-                // Was the child handling the touch previously?
-                // Then we need to rejigger things so that the
-                // drag panel gets a proper down event.
                 if (mIsScrollableViewHandlingTouch) {
-                    // Send an 'UP' event to the child.
+
                     MotionEvent up = MotionEvent.obtain(ev);
                     up.setAction(MotionEvent.ACTION_CANCEL);
-                    super.dispatchTouchEvent(up);
+                    super.dispatchTouchEvent(up); // UP 이벤트(ACTION_CANCEL)를 ListView 등에 보내 줌
                     up.recycle();
 
-                    // Send a 'DOWN' event to the panel. (We'll cheat
-                    // and hijack this one)
                     ev.setAction(MotionEvent.ACTION_DOWN);
                 }
 
                 mIsScrollableViewHandlingTouch = false;
                 return this.onTouchEvent(ev);
-            //} else if (dy * (mIsSwipingUp ? 1 : -1) < 0) { // Expanding
-            } else if (dy < 0) { // Expanding (펼쳐지는 방향)
-                // Is the panel less than fully expanded? , Then we'll handle the drag here.
-                if (mSwipeOffset < 1.0f) {
+            } else if (dy < 0) { // Expanding (펼쳐지는 방향) - 윗쪽 방향으로 DragView 화면을 올리면서 Drag함
+
+                if (mSwipeOffset < 1.0f) {  // 중간 단계  -  DragView가 전체, 끝까지 펼쳐지기 전까지 수행되는 코드
                     mIsScrollableViewHandlingTouch = false;
                     return this.onTouchEvent(ev);
                 }
 
-                // Was the panel handling the touch previously?
-                // Then we need to rejigger things so that the child gets a proper down event.
-                if (!mIsScrollableViewHandlingTouch && mSwipeViewDragHelper.isDragging()) {
+                if (!mIsScrollableViewHandlingTouch && mSwipeViewDragHelper.isDragging()) {  // Expanding 완전이 되고 나서, 최초에 한번만 들어옮.
                     mSwipeViewDragHelper.cancel();
                     ev.setAction(MotionEvent.ACTION_DOWN);
                 }
 
                 mIsScrollableViewHandlingTouch = true;
-                return super.dispatchTouchEvent(ev);
+                return super.dispatchTouchEvent(ev); // ListView 등의 Scroll을 위해 부모에게 Touch Event를 전달해 줌.
             }
         } else if (action == MotionEvent.ACTION_UP) {
             // If the scrollable view was handling the touch and we receive an up

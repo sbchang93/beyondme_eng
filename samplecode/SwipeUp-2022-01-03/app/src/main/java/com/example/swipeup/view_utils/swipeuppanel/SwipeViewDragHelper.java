@@ -97,6 +97,7 @@ public class SwipeViewDragHelper {
     private int[] mEdgeDragsInProgress;
     private int[] mEdgeDragsLocked;
     private int mPointersDown;
+
     private int mDragState;
     private View mCapturedView;
 
@@ -266,15 +267,14 @@ public class SwipeViewDragHelper {
     }
 
 
-    private int mTrackingEdges;
+//    private int mTrackingEdges;
 
     public void processTouchEvent(MotionEvent ev) {
         final int action = ev.getAction();
         final int actionIndex = ev.getActionIndex();
 
         if (action == MotionEvent.ACTION_DOWN) {
-            // Reset things for a new event stream, just in case we didn't get
-            // the whole previous stream.
+            // Reset things for a new event stream, just in case we didn't get the whole previous stream.
             cancel();
         }
 
@@ -292,15 +292,12 @@ public class SwipeViewDragHelper {
 
                 saveInitialMotion(x, y, pointerId);
 
-                // Since the parent is already directly processing this touch event,
-                // there is no reason to delay for a slop before dragging.
-                // Start immediately if possible.
                 tryCaptureViewForDrag(toCapture, pointerId);
 
-                final int edgesTouched = mInitialEdgesTouched[pointerId];
-                if ((edgesTouched & mTrackingEdges) != 0) {
-                    mCallback.onEdgeTouched(edgesTouched & mTrackingEdges, pointerId);
-                }
+//                final int edgesTouched = mInitialEdgesTouched[pointerId];
+//                if ((edgesTouched & mTrackingEdges) != 0) {
+//                    mCallback.onEdgeTouched(edgesTouched & mTrackingEdges, pointerId);
+//                }
                 break;
             }
 
@@ -316,7 +313,8 @@ public class SwipeViewDragHelper {
 
                     saveLastMotion(ev);
                 } else {
-                    // Check to see if any pointer is now over a draggable view.
+                    // mDragState : idle 상태에서 동작됨. ( Settling 상태와는 상관 없어 보임. )
+                    // 완전히 확장(Expand)된 상태와 ListView등의 첫번째 항목이 제일 상단에 있을 때, 아랫방향으로 Drag하면 동작되는 코드
                     final int pointerCount = ev.getPointerCount();
                     for (int i = 0; i < pointerCount; i++) {
                         final int pointerId = ev.getPointerId(i);
@@ -363,7 +361,8 @@ public class SwipeViewDragHelper {
     public View findTopChildUnder(int x, int y) {
         final int childCount = mParentView.getChildCount();
         for (int i = childCount - 1; i >= 0; i--) {
-            final View child = mParentView.getChildAt(mCallback.getOrderedChildIndex(i));
+            //final View child = mParentView.getChildAt(mCallback.getOrderedChildIndex(i));
+            final View child = mParentView.getChildAt(i);
             if (x >= child.getLeft() && x < child.getRight() &&
                     y >= child.getTop() && y < child.getBottom()) {
                 return child;
@@ -511,7 +510,7 @@ public class SwipeViewDragHelper {
         final float absDelta = Math.abs(delta);
         final float absODelta = Math.abs(odelta);
 
-        if ((mInitialEdgesTouched[pointerId] & edge) != edge  || (mTrackingEdges & edge) == 0 ||
+        if ((mInitialEdgesTouched[pointerId] & edge) != edge  || /* (mTrackingEdges & edge) == 0 ||*/
                 (mEdgeDragsLocked[pointerId] & edge) == edge ||
                 (mEdgeDragsInProgress[pointerId] & edge) == edge ||
                 (absDelta <= mSwipeTouchSlop && absODelta <= mSwipeTouchSlop)) {
@@ -596,10 +595,10 @@ public class SwipeViewDragHelper {
                     tryCaptureViewForDrag(toCapture, pointerId);
                 }
 
-                final int edgesTouched = mInitialEdgesTouched[pointerId];
-                if ((edgesTouched & mTrackingEdges) != 0) {
-                    mCallback.onEdgeTouched(edgesTouched & mTrackingEdges, pointerId);
-                }
+//                final int edgesTouched = mInitialEdgesTouched[pointerId];
+//                if ((edgesTouched & mTrackingEdges) != 0) {
+//                    mCallback.onEdgeTouched(edgesTouched & mTrackingEdges, pointerId);
+//                }
                 break;
             }
 
