@@ -919,6 +919,7 @@ public class SwipeUpPanelLayout extends ViewGroup {
         return super.dispatchTouchEvent(ev);
     }
 
+    // 터치한 (x,y)좌표가 view 안에 있는지 체크함. (  DrawView(:swipe_dragView),   ScrollableView(:swipe_list view) )
     private boolean isViewUnder(View view, int x, int y) {
         if (view == null) return false;
         int[] viewLocation = new int[2];
