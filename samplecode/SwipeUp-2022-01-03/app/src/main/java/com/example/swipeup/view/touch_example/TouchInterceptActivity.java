@@ -29,8 +29,7 @@ public class TouchInterceptActivity extends AppCompatActivity implements ViewPag
         setContentView(R.layout.activity_touch_intercept);
 
         mViewPager = new ViewPager(this);
-        mViewPager.setLayoutParams(new ListView.LayoutParams(ListView.LayoutParams.MATCH_PARENT,
-                getResources().getDimensionPixelSize(R.dimen.header_height)));
+        mViewPager.setLayoutParams(new ListView.LayoutParams(ListView.LayoutParams.MATCH_PARENT, getResources().getDimensionPixelSize(R.dimen.header_height)));
         mListView = (ListView) findViewById(R.id.list);
 
         mListView.addHeaderView(mViewPager);
@@ -41,28 +40,29 @@ public class TouchInterceptActivity extends AppCompatActivity implements ViewPag
     }
 
     @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) { }
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+    }
 
     @Override
-    public void onPageSelected(int position) { }
+    public void onPageSelected(int position) {
+    }
 
     @Override
     public void onPageScrollStateChanged(int state) {
-        //While the ViewPager is scrolling, disable the ScrollView touch intercept
+        // While the ViewPager is scrolling, disable the ScrollView touch intercept
         // so it cannot take over and try to vertical scroll
         boolean isScrolling = state != ViewPager.SCROLL_STATE_IDLE;
-        mListView.requestDisallowInterceptTouchEvent(isScrolling);
+        mListView.requestDisallowInterceptTouchEvent(isScrolling);   // <===  Pager가 옆으로 스크롤되고 있을 때는, List뷰의 상.하 스크롤이 안 되도록 만듬.
     }
 
     /*
      * Simple ListAdapter that draws a series of row items
      */
     private static class ItemsAdapter extends BaseAdapter {
-
-        private LayoutInflater mInflater;
+        //private LayoutInflater mInflater;
 
         public ItemsAdapter(Context context) {
-            mInflater = LayoutInflater.from(context);
+            //mInflater = LayoutInflater.from(context);
         }
 
         @Override
@@ -83,7 +83,8 @@ public class TouchInterceptActivity extends AppCompatActivity implements ViewPag
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             if (convertView == null) {
-                convertView = mInflater.inflate(R.layout.intercept_row, parent, false);
+                convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.intercept_row, parent, false);
+                //convertView = mInflater.inflate(R.layout.intercept_row, parent, false);
             }
 
             TextView v = (TextView) convertView.findViewById(R.id.text);
@@ -112,7 +113,6 @@ public class TouchInterceptActivity extends AppCompatActivity implements ViewPag
             v.setText(String.format("Header Card %d", position + 1));
             v.setGravity(Gravity.CENTER);
             container.addView(v);
-
             return v;
         }
 

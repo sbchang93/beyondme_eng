@@ -61,8 +61,7 @@ public class RotateZoomImageView extends ImageView {
     private ScaleGestureDetector.SimpleOnScaleGestureListener mScaleListener = new ScaleGestureDetector.SimpleOnScaleGestureListener() {
         @Override
         public boolean onScale(ScaleGestureDetector detector) {
-            // ScaleGestureDetector calculates a scale factor based on whether
-            // the fingers are moving apart or together
+            // ScaleGestureDetector calculates a scale factor based on whether the fingers are moving apart or together
             float scaleFactor = detector.getScaleFactor();
             //Pass that factor to a scale for the image
             mImageMatrix.postScale(scaleFactor, scaleFactor, mPivotX, mPivotY);
@@ -103,13 +102,14 @@ public class RotateZoomImageView extends ImageView {
                 // which creates a point when two fingers are vertical where the
                 // angle flips sign.  We handle this case by rotating a small amount
                 // (5 degrees) in the direction we were traveling
-                if ((degrees - mLastAngle) > 45) {
+                if ((degrees - mLastAngle) > 45) {  // <= 갑자기 ATAN 값의 차이가 큰 값이 넘어온 경우에 처리하기 위한 예외 처리 코드
                     //Going CCW across the boundary
                     mImageMatrix.postRotate(-5, mPivotX, mPivotY);
-                } else if ((degrees - mLastAngle) < -45) {
+                } else if ((degrees - mLastAngle) < -45) {  // <= 갑자기 ATAN 값의 차이가 큰 값이 넘어온 경우에 처리하기 위한 예외 처리 코드
                     //Going CW across the boundary
                     mImageMatrix.postRotate(5, mPivotX, mPivotY);
                 } else {
+                    // 일반적인 경우에 실행되는 Rotation 회전 코드
                     //Normal rotation, rotate the difference
                     mImageMatrix.postRotate(degrees - mLastAngle, mPivotX, mPivotY);
                 }
@@ -126,20 +126,16 @@ public class RotateZoomImageView extends ImageView {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            // We don't care about this event directly, but we declare
-            // interest so we can get later multi-touch events.
+            // We don't care about this event directly, but we declare interest so we can get later multi-touch events.
             return true;
         }
 
-
         switch (event.getPointerCount()) {
             case 3:
-                // With three fingers down, zoom the image
-                // using the ScaleGestureDetector
+                // With three fingers down, zoom the image using the ScaleGestureDetector
                 return mScaleDetector.onTouchEvent(event);
             case 2:
-                // With two fingers down, rotate the image
-                // following the fingers
+                // With two fingers down, rotate the image following the fingers
                 return doRotationEvent(event);
             default:
                 //Ignore this event
