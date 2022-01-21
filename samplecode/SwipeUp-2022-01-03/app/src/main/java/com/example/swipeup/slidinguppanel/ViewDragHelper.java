@@ -17,6 +17,7 @@
 package com.example.swipeup.slidinguppanel;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
@@ -887,6 +888,7 @@ public class ViewDragHelper {
 
     private void saveLastMotion(MotionEvent ev) {
         final int pointerCount = ev.getPointerCount();
+        Log.i(TAG, "(Slide) ########### saveLastMotion : PointerCount = " + pointerCount);
         for (int i = 0; i < pointerCount; i++) {
             final int pointerId = ev.getPointerId(i);
             final float x = ev.getX(i);
@@ -1139,6 +1141,7 @@ public class ViewDragHelper {
             }
 
             case MotionEvent.ACTION_MOVE: {
+                Log.i(TAG, "(Slide) processTouchEvent: MotionEvent.ACTION_MOVE ");
                 if (mDragState == STATE_DRAGGING) {
                     final int index = ev.findPointerIndex(mActivePointerId);
                     final float x = ev.getX(index);
@@ -1440,6 +1443,8 @@ public class ViewDragHelper {
             clampedY = mCallback.clampViewPositionVertical(mCapturedView, top, dy);
             mCapturedView.offsetTopAndBottom(clampedY - oldTop);
         }
+
+        Log.i(TAG, "(Slide) dragTo : dx = " + dx + " , dy = " + dy);
 
         if (dx != 0 || dy != 0) {
             final int clampedDx = clampedX - oldLeft;

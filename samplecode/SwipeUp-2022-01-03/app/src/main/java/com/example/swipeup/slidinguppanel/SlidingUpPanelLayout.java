@@ -234,6 +234,8 @@ public class SlidingUpPanelLayout extends ViewGroup {
     private final CanvasSaveProxyFactory mCanvasSaveProxyFactory;
     private CanvasSaveProxy mCanvasSaveProxy;
 
+    private int log_SlideMoveEventCounts;
+
     /**
      * Stores whether or not the pane was expanded the last time it was slideable.
      * If expand/collapse operations are invoked this state is modified. Used by
@@ -898,6 +900,7 @@ public class SlidingUpPanelLayout extends ViewGroup {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
+        Log.i(TAG, "(Slide) onInterceptTouchEvent:");
         // If the scrollable view is handling touch, neonMeasurever intercept
         if (mIsScrollableViewHandlingTouch || !isTouchEnabled()) {
             mDragHelper.abort();
@@ -958,6 +961,7 @@ public class SlidingUpPanelLayout extends ViewGroup {
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
+        Log.i(TAG, "(Slide) onTouchEvent:");
         if (!isEnabled() || !isTouchEnabled()) {
             return super.onTouchEvent(ev);
         }
@@ -972,9 +976,11 @@ public class SlidingUpPanelLayout extends ViewGroup {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
+        Log.i(TAG, "(Slide) dispatchTouchEvent:");
         final int action = ev.getAction();
 
         if (!isEnabled() || !isTouchEnabled() || (mIsUnableToDrag && action != MotionEvent.ACTION_DOWN)) {
+            Log.i(TAG, "(Slide) dispatchTouchEvent: !isEnabled() || !isTouchEnabled() || (mIsUnableToDrag && action != MotionEvent.ACTION_DOWN)");
             mDragHelper.abort();
             return super.dispatchTouchEvent(ev);
         }
@@ -983,10 +989,15 @@ public class SlidingUpPanelLayout extends ViewGroup {
         final float y = ev.getY();
 
         if (action == MotionEvent.ACTION_DOWN) {
+            log_SlideMoveEventCounts = 0;
+
             mIsScrollableViewHandlingTouch = false;
             mPrevMotionX = x;
             mPrevMotionY = y;
         } else if (action == MotionEvent.ACTION_MOVE) {
+            Log.i(TAG, "(Slide) dispatchTouchEvent: log_SwipeMoveEventCounts = " + log_SlideMoveEventCounts);
+            log_SlideMoveEventCounts++;
+
             float dx = x - mPrevMotionX;
             float dy = y - mPrevMotionY;
             mPrevMotionX = x;
@@ -1028,12 +1039,14 @@ public class SlidingUpPanelLayout extends ViewGroup {
                 }
 
                 mIsScrollableViewHandlingTouch = false;
+                //Log.i(TAG, "(Slide) dispatchTouchEvent: Down (dy > 0)");
                 return this.onTouchEvent(ev);
             } else if (dy * (mIsSlidingUp ? 1 : -1) < 0) { // Expanding
                 // Is the panel less than fully expanded?
                 // Then we'll handle the drag here.
                 if (mSlideOffset < 1.0f) {
                     mIsScrollableViewHandlingTouch = false;
+                    //Log.i(TAG, "(Slide) dispatchTouchEvent: Up (dy < 0)");
                     return this.onTouchEvent(ev);
                 }
 

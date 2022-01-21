@@ -1,6 +1,7 @@
 package com.example.swipeup.view_utils.swipeuppanel;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
@@ -74,7 +75,9 @@ public class SwipeViewDragHelper {
         mEdgeSize = (int) (EDGE_SIZE * density + 0.5f);
 
         final ViewConfiguration vc = ViewConfiguration.get(context);
-        mSwipeTouchSlop = vc.getScaledTouchSlop();
+
+        //mSwipeTouchSlop = 10; //ToDO : Test
+        mSwipeTouchSlop = vc.getScaledTouchSlop();  //ToDO : Test
         mMaxVelocity = vc.getScaledMaximumFlingVelocity();
         mMinVelocity = vc.getScaledMinimumFlingVelocity();
 
@@ -302,6 +305,7 @@ public class SwipeViewDragHelper {
             }
 
             case MotionEvent.ACTION_MOVE: {
+                Log.i(TAG, "(Swipe) processTouchEvent: MotionEvent.ACTION_MOVE ");
                 if (mDragState == STATE_DRAGGING) {
                     final int index = ev.findPointerIndex(mActivePointerId);
                     final float x = ev.getX(index);
@@ -461,6 +465,8 @@ public class SwipeViewDragHelper {
             mCapturedView.offsetTopAndBottom(clampedY - oldTop);
         }
 
+        Log.i(TAG, "(Swipe) dragTo : dx = " + dx + " , dy = " + dy);
+
         if (dx != 0 || dy != 0) {
             final int clampedDx = clampedX - oldLeft;
             final int clampedDy = clampedY - oldTop;
@@ -471,6 +477,7 @@ public class SwipeViewDragHelper {
 
     private void saveLastMotion(MotionEvent ev) {
         final int pointerCount = ev.getPointerCount();
+        Log.i(TAG, "(Swipe) ########### saveLastMotion : PointerCount = " + pointerCount);
         for (int i = 0; i < pointerCount; i++) {
             final int pointerId = ev.getPointerId(i);
             final float x = ev.getX(i);

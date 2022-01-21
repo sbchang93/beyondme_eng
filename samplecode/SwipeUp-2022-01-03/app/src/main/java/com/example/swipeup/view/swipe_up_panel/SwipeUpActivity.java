@@ -2,6 +2,8 @@ package com.example.swipeup.view.swipe_up_panel;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -9,6 +11,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.swipeup.R;
+import com.example.swipeup.slidinguppanel.SlidingUpPanelLayout;
 import com.example.swipeup.view.common_activity.BaseUIActivity;
 import com.example.swipeup.view_utils.swipeuppanel.SwipeUpPanelLayout;
 import com.example.swipeup.view_utils.swipeuppanel.SwipeUpPanelLayout.SwipePanelState;
@@ -82,13 +85,77 @@ public class SwipeUpActivity  extends BaseUIActivity {
 
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//    }
+//
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//    }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
+
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.demo, menu);
+//        MenuItem item = menu.findItem(R.id.action_toggle);
+//        if (mLayout != null) {
+//            if (mLayout.getPanelState() == SlidingUpPanelLayout.PanelState.HIDDEN) {
+//                item.setTitle(R.string.action_show);
+//            } else {
+//                item.setTitle(R.string.action_hide);
+//            }
+//        }
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onPrepareOptionsMenu(Menu menu) {
+//        return super.onPrepareOptionsMenu(menu);
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.action_toggle: {
+//                if (mLayout != null) {
+//                    if (mLayout.getPanelState() != SlidingUpPanelLayout.PanelState.HIDDEN) {
+//                        mLayout.setPanelState(SlidingUpPanelLayout.PanelState.HIDDEN);
+//                        item.setTitle(R.string.action_show);
+//                    } else {
+//                        mLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+//                        item.setTitle(R.string.action_hide);
+//                    }
+//                }
+//                return true;
+//            }
+//            case R.id.action_anchor: {
+//                if (mLayout != null) {
+//                    if (mLayout.getAnchorPoint() == 1.0f) {
+//                        mLayout.setAnchorPoint(0.7f);
+//                        mLayout.setPanelState(SlidingUpPanelLayout.PanelState.ANCHORED);
+//                        item.setTitle(R.string.action_anchor_disable);
+//                    } else {
+//                        mLayout.setAnchorPoint(1.0f);
+//                        mLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+//                        item.setTitle(R.string.action_anchor_enable);
+//                    }
+//                }
+//                return true;
+//            }
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
+//
+//    @Override
+//    public void onBackPressed() {
+//        if (mLayout != null &&
+//                (mLayout.getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED || mLayout.getPanelState() == SlidingUpPanelLayout.PanelState.ANCHORED)) {
+//            mLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+//        } else {
+//            super.onBackPressed();
+//        }
+//    }
 }

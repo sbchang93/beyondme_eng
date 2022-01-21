@@ -25,6 +25,8 @@ import com.example.swipeup.R;
 import com.example.swipeup.slidinguppanel.ScrollableViewHelper;
 import com.example.swipeup.slidinguppanel.SlidingUpPanelLayout;
 import com.example.swipeup.slidinguppanel.ViewDragHelper;
+import com.example.swipeup.slidinguppanel.canvassaveproxy.CanvasSaveProxy;
+import com.example.swipeup.slidinguppanel.canvassaveproxy.CanvasSaveProxyFactory;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -104,6 +106,10 @@ public class SwipeUpPanelLayout extends ViewGroup {
     private boolean mIsUnableToDrag;
     private View mSwipeableView;
 
+    private final SwipeCanvasSaveProxyFactory mSwipeCanvasSaveProxyFactory;
+    private SwipeCanvasSaveProxy mSwipeCanvasSaveProxy;
+
+    private int log_SwipeMoveEventCounts;
 
     public SwipeUpPanelLayout(Context context) {
         this(context, null);
@@ -115,6 +121,8 @@ public class SwipeUpPanelLayout extends ViewGroup {
 
     public SwipeUpPanelLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+
+        mSwipeCanvasSaveProxyFactory = new SwipeCanvasSaveProxyFactory();
 
         if (isInEditMode()) {
             mSwipeShadowDrawable = null;
@@ -184,6 +192,7 @@ public class SwipeUpPanelLayout extends ViewGroup {
 
         setWillNotDraw(false);
 
+        //mSwipeViewDragHelper = SwipeViewDragHelper.create(this, 0.5f, scrollerInterpolator, new SwipeDragHelperCallback());
         mSwipeViewDragHelper = SwipeViewDragHelper.create(this, 0.5f, scrollerInterpolator, new SwipeDragHelperCallback());
         mSwipeViewDragHelper.setMinVelocity(mSwipeMinFlingVelocity * density);
 
@@ -515,7 +524,7 @@ public class SwipeUpPanelLayout extends ViewGroup {
         if (mFirstLayout) {
             updateObscuredViewVisibility();
         }
-        //applyParallaxForCurrentSwipeOffset();
+        applyParallaxForCurrentSwipeOffset();
 
         mFirstLayout = false;
     }
@@ -546,7 +555,13 @@ public class SwipeUpPanelLayout extends ViewGroup {
     @Override
     protected boolean drawChild(Canvas canvas, View child, long drawingTime) {
         boolean result;
-        final int save = canvas.save();
+        //final int save = canvas.save();  //  여기가 차이가 남. ...
+
+        if (mSwipeCanvasSaveProxy == null || !mSwipeCanvasSaveProxy.isFor(canvas)) {
+            mSwipeCanvasSaveProxy = mSwipeCanvasSaveProxyFactory.create(canvas);
+        }
+
+        final int save = mSwipeCanvasSaveProxy.save();
 
         if (mSwipeableView != null && mSwipeableView != child) { // if main view
             // Clip against the swiper; no sense drawing what will immediately be covered, Unless the panel is set to overlay content
@@ -592,7 +607,7 @@ public class SwipeUpPanelLayout extends ViewGroup {
         public void onViewDragStateChanged(int state) {
             if (mSwipeViewDragHelper != null && mSwipeViewDragHelper.getViewDragState() == SwipeViewDragHelper.STATE_IDLE) {
                 mSwipeOffset = computeSwipeOffset(mSwipeableView.getTop());
-                //applyParallaxForCurrentSwipeOffset();
+                applyParallaxForCurrentSwipeOffset();
 
                 if (mSwipeOffset == 1) {
                     updateObscuredViewVisibility();
@@ -796,7 +811,7 @@ public class SwipeUpPanelLayout extends ViewGroup {
         setPanelStateInternal(SwipeUpPanelLayout.SwipePanelState.DRAGGING);
         // Recompute the swipe offset based on the new top position
         mSwipeOffset = computeSwipeOffset(newTop);
-        //applyParallaxForCurrentSwipeOffset();
+        applyParallaxForCurrentSwipeOffset();
 
         // Dispatch the swipe event
         dispatchOnPanelSwipe(mSwipeableView);
@@ -833,9 +848,11 @@ public class SwipeUpPanelLayout extends ViewGroup {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
+        Log.i(TAG, "(Swipe) dispatchTouchEvent:");
         final int action = ev.getAction();
 
         if (!isEnabled() || !isTouchEnabled() || (mIsUnableToDrag && action != MotionEvent.ACTION_DOWN)) {
+            Log.i(TAG, "(Swipe) dispatchTouchEvent: !isEnabled() || !isTouchEnabled() || (mIsUnableToDrag && action != MotionEvent.ACTION_DOWN)");
             mSwipeViewDragHelper.abort();
             return super.dispatchTouchEvent(ev);
         }
@@ -844,10 +861,15 @@ public class SwipeUpPanelLayout extends ViewGroup {
         final float y = ev.getY();
 
         if (action == MotionEvent.ACTION_DOWN) {
+            log_SwipeMoveEventCounts = 0;
+
             mIsScrollableViewHandlingTouch = false;
             mPrevMotionX = x;
             mPrevMotionY = y;
         } else if (action == MotionEvent.ACTION_MOVE) {
+            Log.i(TAG, "(Swipe) dispatchTouchEvent: log_SwipeMoveEventCounts = " + log_SwipeMoveEventCounts);
+            log_SwipeMoveEventCounts++;
+
             float dx = x - mPrevMotionX;
             float dy = y - mPrevMotionY;
             mPrevMotionX = x;
@@ -881,11 +903,13 @@ public class SwipeUpPanelLayout extends ViewGroup {
                 }
 
                 mIsScrollableViewHandlingTouch = false;
+                //Log.i(TAG, "(Swipe) dispatchTouchEvent: Down (dy > 0)");
                 return this.onTouchEvent(ev);
             } else if (dy < 0) { // Expanding (펼쳐지는 방향) - 윗쪽 방향으로 DragView 화면을 올리면서 Drag함
 
                 if (mSwipeOffset < 1.0f) {  // 중간 단계  -  DragView가 전체, 끝까지 펼쳐지기 전까지 수행되는 코드
                     mIsScrollableViewHandlingTouch = false;
+                    //Log.i(TAG, "(Swipe) dispatchTouchEvent: Up (dy < 0)");
                     return this.onTouchEvent(ev);
                 }
 
@@ -924,6 +948,7 @@ public class SwipeUpPanelLayout extends ViewGroup {
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
+        Log.i(TAG, "(Swipe) onTouchEvent: ");
         if (!isEnabled() || !isTouchEnabled()) {
             return super.onTouchEvent(ev);
         }
@@ -939,6 +964,7 @@ public class SwipeUpPanelLayout extends ViewGroup {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
+        Log.i(TAG, "(Swipe) onInterceptTouchEvent: ");
         // If the scrollable view is handling touch, neonMeasurever intercept
         if (mIsScrollableViewHandlingTouch || !isTouchEnabled()) {
             mSwipeViewDragHelper.abort();
