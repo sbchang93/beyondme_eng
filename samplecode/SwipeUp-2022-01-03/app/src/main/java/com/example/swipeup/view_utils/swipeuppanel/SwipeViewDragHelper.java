@@ -12,8 +12,6 @@ import android.view.animation.Interpolator;
 import androidx.core.view.VelocityTrackerCompat;
 import androidx.core.widget.ScrollerCompat;
 
-import com.example.swipeup.slidinguppanel.ViewDragHelper;
-
 import java.util.Arrays;
 
 // Git Hub Source => https://github.com/umano/AndroidSlidingUpPanel

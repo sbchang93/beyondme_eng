@@ -242,6 +242,10 @@ public class SwipeUpPanelLayout extends ViewGroup {
         mFadeOnClickListener = listener;
     }
 
+    public SwipePanelState getPanelState() {
+        return mSwipeState;
+    }
+
     public void setPanelState(SwipePanelState state) {
 
         // Abort any running animation, to allow state change

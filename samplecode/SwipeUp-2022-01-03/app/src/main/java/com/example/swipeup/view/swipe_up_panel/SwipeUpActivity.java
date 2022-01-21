@@ -149,13 +149,13 @@ public class SwipeUpActivity  extends BaseUIActivity {
 //        return super.onOptionsItemSelected(item);
 //    }
 //
-//    @Override
-//    public void onBackPressed() {
-//        if (mLayout != null &&
-//                (mLayout.getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED || mLayout.getPanelState() == SlidingUpPanelLayout.PanelState.ANCHORED)) {
-//            mLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
-//        } else {
-//            super.onBackPressed();
-//        }
-//    }
+    @Override
+    public void onBackPressed() {
+        if (mSwipeUpPanelLayout != null &&
+                (mSwipeUpPanelLayout.getPanelState() == SwipeUpPanelLayout.SwipePanelState.EXPANDED || mSwipeUpPanelLayout.getPanelState() == SwipeUpPanelLayout.SwipePanelState.ANCHORED)) {
+            mSwipeUpPanelLayout.setPanelState(SwipeUpPanelLayout.SwipePanelState.COLLAPSED);
+        } else {
+            super.onBackPressed();
+        }
+    }
 }
