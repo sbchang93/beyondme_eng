@@ -1,0 +1,8 @@
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false">
+    <item android:drawable="@drawable/login_kakao_bg" android:duration="1000" />
+    <item android:drawable="@drawable/login_google_bg" android:duration="1000" />
+    <item android:drawable="@drawable/login_naver_bg" android:duration="1000" />
+</animation-list>
+
+<!--    https://developer.android.com/guide/topics/graphics/drawable-animation?hl=ko#java-->

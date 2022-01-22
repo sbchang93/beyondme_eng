@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/anim_demo_root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/sunny"
+    android:orientation="vertical"
+    android:gravity="center">
+    <TextView
+        android:id="@+id/anim_demo_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@android:color/holo_blue_dark"
+        android:padding="10dp"/>
+
+    <TextView
+        android:id="@+id/anim_demo_text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Text Animation Effect"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/red"
+        android:padding="10dp"/>
+
+    <ImageView
+        android:id="@+id/anim_demo_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/cloudy"/>
+
+    <ImageView
+        android:id="@+id/anim_demo_vector_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/vectordrawable"/>
+
+    <ImageView
+        android:id="@+id/anim_demo_play_vector_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/play_icon"/>
+</LinearLayout>
