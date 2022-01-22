@@ -13,7 +13,7 @@ import android.widget.Toast;
 import com.example.swipeupexampleonly.R;
 import com.example.swipeupexampleonly.view.common_activity.BaseUIActivity;
 import com.example.swipeupexampleonly.view_utils.swipeuppanel.SwipeUpPanelLayout;
-import com.example.swipeupexampleonly.view_utils.swipeuppanel.SwipeUpPanelLayout.PanelState;
+import com.example.swipeupexampleonly.view_utils.swipeuppanel.SwipeUpPanelLayout.SwipePanelState;
 
 import java.util.Arrays;
 import java.util.List;
@@ -64,22 +64,22 @@ public class SwipeUpActivity  extends BaseUIActivity {
         listView.setAdapter(arrayAdapter);
 
         mSwipeUpPanelLayout = (SwipeUpPanelLayout) findViewById(R.id.swipe_up_layout);
-        mSwipeUpPanelLayout.addPanelSlideListener(new SwipeUpPanelLayout.PanelSlideListener() {
+        mSwipeUpPanelLayout.addPanelSwipeListener(new SwipeUpPanelLayout.PanelSwipeListener() {
             @Override
-            public void onPanelSlide(View panel, float swipeOffset) {
+            public void onPanelSwipe(View panel, float swipeOffset) {
                 Log.i(TAG, "onPanelSwipe, offset " + swipeOffset);
             }
 
             @Override
-            public void onPanelStateChanged(View panel, PanelState previousState, PanelState newState) {
-                Log.i(TAG, "onPanelStateChanged " + newState);
+            public void onSwipePanelStateChanged(View panel, SwipePanelState previousState, SwipePanelState newState) {
+                Log.i(TAG, "onSwipePanelStateChanged " + newState);
             }
         });
 
         mSwipeUpPanelLayout.setFadeOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mSwipeUpPanelLayout.setPanelState(PanelState.COLLAPSED);
+                mSwipeUpPanelLayout.setSwipePanelState(SwipePanelState.COLLAPSED);
             }
         });
 
@@ -103,7 +103,7 @@ public class SwipeUpActivity  extends BaseUIActivity {
 //        getMenuInflater().inflate(R.menu.demo, menu);
 //        MenuItem item = menu.findItem(R.id.action_toggle);
 //        if (mLayout != null) {
-//            if (mLayout.getPanelState() == SlidingUpPanelLayout.PanelState.HIDDEN) {
+//            if (mLayout.getSwipePanelState() == SlidingUpPanelLayout.SwipePanelState.HIDDEN) {
 //                item.setTitle(R.string.action_show);
 //            } else {
 //                item.setTitle(R.string.action_hide);
@@ -122,11 +122,11 @@ public class SwipeUpActivity  extends BaseUIActivity {
 //        switch (item.getItemId()) {
 //            case R.id.action_toggle: {
 //                if (mLayout != null) {
-//                    if (mLayout.getPanelState() != SlidingUpPanelLayout.PanelState.HIDDEN) {
-//                        mLayout.setPanelState(SlidingUpPanelLayout.PanelState.HIDDEN);
+//                    if (mLayout.getSwipePanelState() != SlidingUpPanelLayout.SwipePanelState.HIDDEN) {
+//                        mLayout.setSwipePanelState(SlidingUpPanelLayout.SwipePanelState.HIDDEN);
 //                        item.setTitle(R.string.action_show);
 //                    } else {
-//                        mLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+//                        mLayout.setSwipePanelState(SlidingUpPanelLayout.SwipePanelState.COLLAPSED);
 //                        item.setTitle(R.string.action_hide);
 //                    }
 //                }
@@ -136,11 +136,11 @@ public class SwipeUpActivity  extends BaseUIActivity {
 //                if (mLayout != null) {
 //                    if (mLayout.getAnchorPoint() == 1.0f) {
 //                        mLayout.setAnchorPoint(0.7f);
-//                        mLayout.setPanelState(SlidingUpPanelLayout.PanelState.ANCHORED);
+//                        mLayout.setSwipePanelState(SlidingUpPanelLayout.SwipePanelState.ANCHORED);
 //                        item.setTitle(R.string.action_anchor_disable);
 //                    } else {
 //                        mLayout.setAnchorPoint(1.0f);
-//                        mLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+//                        mLayout.setSwipePanelState(SlidingUpPanelLayout.SwipePanelState.COLLAPSED);
 //                        item.setTitle(R.string.action_anchor_enable);
 //                    }
 //                }
@@ -153,8 +153,8 @@ public class SwipeUpActivity  extends BaseUIActivity {
     @Override
     public void onBackPressed() {
         if (mSwipeUpPanelLayout != null &&
-                (mSwipeUpPanelLayout.getPanelState() == PanelState.EXPANDED || mSwipeUpPanelLayout.getPanelState() == PanelState.ANCHORED)) {
-            mSwipeUpPanelLayout.setPanelState(PanelState.COLLAPSED);
+                (mSwipeUpPanelLayout.getSwipePanelState() == SwipePanelState.EXPANDED || mSwipeUpPanelLayout.getSwipePanelState() == SwipePanelState.ANCHORED)) {
+            mSwipeUpPanelLayout.setSwipePanelState(SwipePanelState.COLLAPSED);
         } else {
             super.onBackPressed();
         }

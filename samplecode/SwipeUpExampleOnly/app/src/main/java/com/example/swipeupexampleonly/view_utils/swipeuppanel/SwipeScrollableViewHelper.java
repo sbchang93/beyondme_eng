@@ -18,10 +18,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class SwipeScrollableViewHelper {
 
-    public int getScrollableViewScrollPosition(View scrollableView, boolean isSlidingUp) {
+    public int getScrollableViewScrollPosition(View scrollableView, boolean isSwipingUp) {
         if (scrollableView == null) return 0;
         if (scrollableView instanceof ScrollView) {
-            if (isSlidingUp) {
+            if (isSwipingUp) {
                 return scrollableView.getScrollY();
             } else {
                 ScrollView sv = ((ScrollView) scrollableView);
@@ -31,7 +31,7 @@ public class SwipeScrollableViewHelper {
         } else if (scrollableView instanceof ListView && ((ListView) scrollableView).getChildCount() > 0) {
             ListView lv = ((ListView) scrollableView);
             if (lv.getAdapter() == null) return 0;
-            if (isSlidingUp) {
+            if (isSwipingUp) {
                 View firstChild = lv.getChildAt(0);
                 // Approximate the scroll position based on the top child and the first visible item
                 return lv.getFirstVisiblePosition() * firstChild.getHeight() - firstChild.getTop();
@@ -44,7 +44,7 @@ public class SwipeScrollableViewHelper {
             RecyclerView rv = ((RecyclerView) scrollableView);
             RecyclerView.LayoutManager lm = rv.getLayoutManager();
             if (rv.getAdapter() == null) return 0;
-            if (isSlidingUp) {
+            if (isSwipingUp) {
                 View firstChild = rv.getChildAt(0);
                 // Approximate the scroll position based on the top child and the first visible item
                 return rv.getChildLayoutPosition(firstChild) * lm.getDecoratedMeasuredHeight(firstChild) - lm.getDecoratedTop(firstChild);
