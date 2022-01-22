@@ -63,14 +63,14 @@ public class SwipeUpActivity  extends BaseUIActivity {
         listView.setAdapter(arrayAdapter);
 
         mSwipeUpPanelLayout = (SwipeUpPanelLayout) findViewById(R.id.swipe_up_layout);
-        mSwipeUpPanelLayout.addPanelSwipeListener(new SwipeUpPanelLayout.SwipePanelListener() {
+        mSwipeUpPanelLayout.addPanelSwipeListener(new SwipeUpPanelLayout.PanelSwipeListener() {
             @Override
             public void onPanelSwipe(View panel, float swipeOffset) {
                 Log.i(TAG, "onPanelSwipe, offset " + swipeOffset);
             }
 
             @Override
-            public void onPanelStateChanged(View panel, SwipePanelState previousState, SwipePanelState newState) {
+            public void onSwipePanelStateChanged(View panel, SwipePanelState previousState, SwipePanelState newState) {
                 Log.i(TAG, "onPanelStateChanged " + newState);
             }
         });
@@ -78,7 +78,7 @@ public class SwipeUpActivity  extends BaseUIActivity {
         mSwipeUpPanelLayout.setFadeOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mSwipeUpPanelLayout.setPanelState(SwipePanelState.COLLAPSED);
+                mSwipeUpPanelLayout.setSwipePanelState(SwipePanelState.COLLAPSED);
             }
         });
 
@@ -152,8 +152,8 @@ public class SwipeUpActivity  extends BaseUIActivity {
     @Override
     public void onBackPressed() {
         if (mSwipeUpPanelLayout != null &&
-                (mSwipeUpPanelLayout.getPanelState() == SwipeUpPanelLayout.SwipePanelState.EXPANDED || mSwipeUpPanelLayout.getPanelState() == SwipeUpPanelLayout.SwipePanelState.ANCHORED)) {
-            mSwipeUpPanelLayout.setPanelState(SwipeUpPanelLayout.SwipePanelState.COLLAPSED);
+                (mSwipeUpPanelLayout.getSwipePanelState() == SwipeUpPanelLayout.SwipePanelState.EXPANDED || mSwipeUpPanelLayout.getSwipePanelState() == SwipeUpPanelLayout.SwipePanelState.ANCHORED)) {
+            mSwipeUpPanelLayout.setSwipePanelState(SwipeUpPanelLayout.SwipePanelState.COLLAPSED);
         } else {
             super.onBackPressed();
         }

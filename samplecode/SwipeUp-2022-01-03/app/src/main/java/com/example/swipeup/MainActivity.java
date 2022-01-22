@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.swipeup.model.DemoModel;
+import com.example.swipeup.view.AboutActivity;
 import com.example.swipeup.view.animation_example.AnimationActivity;
 import com.example.swipeup.view.animation_example.AnimationDrawableActivity;
 import com.example.swipeup.view.animation_example.ViewPropertyAnimatorActivity;
@@ -68,8 +69,11 @@ public class MainActivity extends AppCompatActivity {
         mListView.setAdapter(adapter);
 
         // addItem (title, desc, cls)
+
         addItem("SlidingUpPanel DemoActivity", "SlidingUpPanel DemoActivity Description", DemoActivity.class);
         addItem("SwipeUpActivity", "SwipeUpActivity Description", SwipeUpActivity.class);
+
+        addItem("AboutActivity", "AboutActivity Description", AboutActivity.class);
 
         addItem("VolumeControlActivity", "VolumeControlActivity Description", VolumeControlActivity.class);
         addItem("LinedEditTextActivity", "LinedEditTextActivity Description", LinedEditTextActivity.class);

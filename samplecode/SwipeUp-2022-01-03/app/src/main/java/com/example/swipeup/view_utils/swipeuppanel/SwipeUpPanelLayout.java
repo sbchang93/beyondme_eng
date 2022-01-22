@@ -8,6 +8,8 @@ import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
@@ -35,81 +37,88 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class SwipeUpPanelLayout extends ViewGroup {
 
-    private static final String TAG = "SwipeUpPanelLayout";
+    private static final String TAG = SwipeUpPanelLayout.class.getSimpleName();
 
     private static final int DEFAULT_PANEL_HEIGHT = 68; // dp;
     private static final float DEFAULT_ANCHOR_POINT = 1.0f; // In relative %
+    private static SwipePanelState DEFAULT_SWIPE_STATE = SwipePanelState.COLLAPSED;
     private static final int DEFAULT_SHADOW_HEIGHT = 4; // dp;
-
-    //Default parallax length of the main view
-    private static final int DEFAULT_PARALLAX_OFFSET = 0;
-
+    private static final int DEFAULT_FADE_COLOR = 0x99000000;
+    private static final int DEFAULT_MIN_FLING_VELOCITY = 400; // dips per second
     private static final boolean DEFAULT_OVERLAY_FLAG = false;
     private static final boolean DEFAULT_CLIP_PANEL_FLAG = true;
 
-    private static final int DEFAULT_MIN_FLING_VELOCITY = 400; // dips per second
-    private static final int DEFAULT_FADE_COLOR = 0x99000000;
-
-    public enum SwipePanelState {
-        EXPANDED,   //- 확장된
-        COLLAPSED,  //- 접힌, 접혀진
-        ANCHORED,   //- 고정된
-        HIDDEN,     //- 감춰진
-        DRAGGING    //- 질질끄는
-    }
-
-    private static SwipePanelState DEFAULT_SWIPE_STATE = SwipePanelState.COLLAPSED;
-
-    private static final int[] DEFAULT_ATTRIBUTES_FOR_XML = new int[]{
+    private static final int[] DEFAULT_ATTRS = new int[]{
             android.R.attr.gravity
     };
 
-    //private int mParallaxOffset = -1;
-    private View mSwipeMainView;
+    public static final String SWIPING_STATE = "Swiping_state";
+    private int mMinFlingVelocity = DEFAULT_MIN_FLING_VELOCITY;
+    private int mCoveredFadeColor = DEFAULT_FADE_COLOR;
+    private static final int DEFAULT_PARALLAX_OFFSET = 0;
+    private final Paint mCoveredFadePaint = new Paint();
+    private final Drawable mShadowDrawable;
+    private int mPanelHeight = -1;
+    private int mShadowHeight = -1;
+    private int mParallaxOffset = -1;
+    private boolean mIsSwipingUp;
+    private boolean mOverlayContent = DEFAULT_OVERLAY_FLAG;
+    private boolean mClipPanel = DEFAULT_CLIP_PANEL_FLAG;
     private View mDragView;
+    private int mDragViewResId = -1;
     private View mScrollableView;
-    private SwipeScrollableViewHelper mSwipeScrollableViewHelper = new SwipeScrollableViewHelper();
-    private final SwipeViewDragHelper mSwipeViewDragHelper;
-    private final Drawable mSwipeShadowDrawable;
-    private final List<SwipePanelListener> mSwipePanelListeners = new CopyOnWriteArrayList<>();
+    private int mScrollableViewResId;
+    private SwipeScrollableViewHelper mScrollableViewHelper = new SwipeScrollableViewHelper();
+    private View mSwipeableView;
+    private View mMainView;
 
-    // Read information from "activity_swipe_up.xml"
-    private int mSwipePanelHeight = -1;
-    private int mSwipeShadowHeight = -1;
-    private int mSwipeParallaxOffset = -1;
-    private int mSwipeDragViewResId = -1;
-    private int mSwipeScrollableViewResId;
-    private boolean mSwipeOverlayContent = DEFAULT_OVERLAY_FLAG;
-    private boolean mSwipeClipPanel = DEFAULT_CLIP_PANEL_FLAG;
-    private float mSwipeAnchorPoint = 1.f;
+    public enum SwipePanelState {
+        EXPANDED,
+        COLLAPSED,
+        ANCHORED,
+        HIDDEN,
+        DRAGGING
+    }
+
     private SwipePanelState mSwipeState = DEFAULT_SWIPE_STATE;
-    private int mSwipeMinFlingVelocity = DEFAULT_MIN_FLING_VELOCITY;
-    private int mSwipeCoveredFadeColor = DEFAULT_FADE_COLOR;
-
-    private boolean mIsSwipingUp;    // (gravity == Gravity.BOTTOM) => mSwipingUp is true
-    private boolean mFirstLayout = true;
-    private boolean mIsTouchEnabled;
-    private float mAnchorPoint = 1.f;
+    private SwipePanelState mLastNotDraggingSwipeState = DEFAULT_SWIPE_STATE;
+    private float mSwipeOffset;
     private int mSwipeRange;
+    private float mAnchorPoint = 1.f;
+    private boolean mIsUnableToDrag;
+    private boolean mIsTouchEnabled;
 
-    private boolean mIsScrollableViewHandlingTouch = false;
     private float mPrevMotionX;
     private float mPrevMotionY;
     private float mInitialMotionX;
     private float mInitialMotionY;
+    private boolean mIsScrollableViewHandlingTouch = false;
 
-    private final Rect mTmpRect = new Rect();
-    private boolean mOverlayContent = DEFAULT_OVERLAY_FLAG;  // default : false
-    private float mSwipeOffset;
-    private final Paint mCoveredFadePaint = new Paint();
+    private final List<PanelSwipeListener> mPanelSwipeListeners = new CopyOnWriteArrayList<>();
+    private View.OnClickListener mFadeOnClickListener;
 
-    private boolean mIsUnableToDrag;
-    private View mSwipeableView;
-
-    private final SwipeCanvasSaveProxyFactory mSwipeCanvasSaveProxyFactory;
-    private SwipeCanvasSaveProxy mSwipeCanvasSaveProxy;
+    private final SwipeViewDragHelper mDragHelper;
 
     private int log_SwipeMoveEventCounts;
+
+    private boolean mFirstLayout = true;
+
+    private final Rect mTmpRect = new Rect();
+
+    public interface PanelSwipeListener {
+        public void onPanelSwipe(View panel, float swipeOffset);
+        public void onSwipePanelStateChanged(View panel, SwipePanelState previousState, SwipePanelState newState);
+    }
+
+    public static class SimplePanelSwipeListener implements PanelSwipeListener {
+        @Override
+        public void onPanelSwipe(View panel, float swipeOffset) {
+        }
+
+        @Override
+        public void onSwipePanelStateChanged(View panel, SwipePanelState previousState, SwipePanelState newState) {
+        }
+    }
 
     public SwipeUpPanelLayout(Context context) {
         this(context, null);
@@ -122,79 +131,75 @@ public class SwipeUpPanelLayout extends ViewGroup {
     public SwipeUpPanelLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
 
-        mSwipeCanvasSaveProxyFactory = new SwipeCanvasSaveProxyFactory();
-
         if (isInEditMode()) {
-            mSwipeShadowDrawable = null;
-            mSwipeViewDragHelper = null;
+            mShadowDrawable = null;
+            mDragHelper = null;
             return;
         }
 
         Interpolator scrollerInterpolator = null;
         if (attrs != null) {
-            TypedArray defaultAttributes = context.obtainStyledAttributes(attrs, DEFAULT_ATTRIBUTES_FOR_XML);
+            TypedArray defAttrs = context.obtainStyledAttributes(attrs, DEFAULT_ATTRS);
 
-            if (defaultAttributes != null) {
-                int gravity = defaultAttributes.getInt(0, Gravity.NO_GRAVITY);
+            if (defAttrs != null) {
+                int gravity = defAttrs.getInt(0, Gravity.NO_GRAVITY);
                 setGravity(gravity);
-                defaultAttributes.recycle();
+                defAttrs.recycle();
             }
 
-            TypedArray customTypedArray = context.obtainStyledAttributes(attrs, R.styleable.SwipeUpPanelLayout);
+            TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.SwipeUpPanelLayout);
 
-            if (customTypedArray != null) {
-                mSwipePanelHeight = customTypedArray.getDimensionPixelSize(R.styleable.SwipeUpPanelLayout_swipePanelHeight, -1);
-                mSwipeShadowHeight = customTypedArray.getDimensionPixelSize(R.styleable.SwipeUpPanelLayout_swipeShadowHeight, -1);
-                mSwipeParallaxOffset = customTypedArray.getDimensionPixelSize(R.styleable.SwipeUpPanelLayout_swipeParallaxOffset, -1);
+            if (ta != null) {
+                mPanelHeight = ta.getDimensionPixelSize(R.styleable.SwipeUpPanelLayout_swipePanelHeight, -1);
+                mShadowHeight = ta.getDimensionPixelSize(R.styleable.SwipeUpPanelLayout_swipeShadowHeight, -1);
+                mParallaxOffset = ta.getDimensionPixelSize(R.styleable.SwipeUpPanelLayout_swipeParallaxOffset, -1);
 
-                mSwipeDragViewResId = customTypedArray.getResourceId(R.styleable.SwipeUpPanelLayout_swipeDragView, -1);
-                mSwipeScrollableViewResId = customTypedArray.getResourceId(R.styleable.SwipeUpPanelLayout_swipeScrollableView, -1);
+                mMinFlingVelocity = ta.getInt(R.styleable.SwipeUpPanelLayout_swipeFlingVelocity, DEFAULT_MIN_FLING_VELOCITY);
+                mCoveredFadeColor = ta.getColor(R.styleable.SwipeUpPanelLayout_swipeFadeColor, DEFAULT_FADE_COLOR);
 
-                mSwipeOverlayContent = customTypedArray.getBoolean(R.styleable.SwipeUpPanelLayout_swipeOverlay, DEFAULT_OVERLAY_FLAG);
-                mSwipeClipPanel = customTypedArray.getBoolean(R.styleable.SwipeUpPanelLayout_swipeClipPanel, DEFAULT_CLIP_PANEL_FLAG); // default : true
+                mDragViewResId = ta.getResourceId(R.styleable.SwipeUpPanelLayout_swipeDragView, -1);
+                mScrollableViewResId = ta.getResourceId(R.styleable.SwipeUpPanelLayout_swipeScrollableView, -1);
 
-                mSwipeAnchorPoint = customTypedArray.getFloat(R.styleable.SwipeUpPanelLayout_swipeAnchorPoint, DEFAULT_ANCHOR_POINT); // default : 1.0f
+                mOverlayContent = ta.getBoolean(R.styleable.SwipeUpPanelLayout_swipeOverlay, DEFAULT_OVERLAY_FLAG);
+                mClipPanel = ta.getBoolean(R.styleable.SwipeUpPanelLayout_swipeClipPanel, DEFAULT_CLIP_PANEL_FLAG);
 
-                // default : DEFAULT_SWIPE_STATE - COLLAPSED,  //- 접힌, 접혀진
-                mSwipeState = SwipePanelState.values()[customTypedArray.getInt(R.styleable.SwipeUpPanelLayout_swipeInitialState, DEFAULT_SWIPE_STATE.ordinal())];
+                mAnchorPoint = ta.getFloat(R.styleable.SwipeUpPanelLayout_swipeAnchorPoint, DEFAULT_ANCHOR_POINT);
 
-                mSwipeMinFlingVelocity = customTypedArray.getInt(R.styleable.SwipeUpPanelLayout_swipeFlingVelocity, DEFAULT_MIN_FLING_VELOCITY); // default : 400 dips per second
-                mSwipeCoveredFadeColor = customTypedArray.getColor(R.styleable.SwipeUpPanelLayout_swipeFadeColor, DEFAULT_FADE_COLOR); // default : 0x99000000
+                mSwipeState = SwipePanelState.values()[ta.getInt(R.styleable.SwipeUpPanelLayout_swipeInitialState, DEFAULT_SWIPE_STATE.ordinal())];
 
-                int interpolatorResId = customTypedArray.getResourceId(R.styleable.SwipeUpPanelLayout_swipeScrollInterpolator, -1);
+                int interpolatorResId = ta.getResourceId(R.styleable.SwipeUpPanelLayout_swipeScrollInterpolator, -1);
                 if (interpolatorResId != -1) {
                     scrollerInterpolator = AnimationUtils.loadInterpolator(context, interpolatorResId);
                 }
-                customTypedArray.recycle();
+                ta.recycle();
             }
         }
 
         final float density = context.getResources().getDisplayMetrics().density;
-        if (mSwipePanelHeight == -1) {
-            mSwipePanelHeight = (int) (DEFAULT_PANEL_HEIGHT * density + 0.5f); // default : 68dp
+        if (mPanelHeight == -1) {
+            mPanelHeight = (int) (DEFAULT_PANEL_HEIGHT * density + 0.5f);
         }
-        if (mSwipeShadowHeight == -1) {
-            mSwipeShadowHeight = (int) (DEFAULT_SHADOW_HEIGHT * density + 0.5f); // default : 4dp
+        if (mShadowHeight == -1) {
+            mShadowHeight = (int) (DEFAULT_SHADOW_HEIGHT * density + 0.5f);
         }
-        if (mSwipeParallaxOffset == -1) {
-            mSwipeParallaxOffset = (int) (DEFAULT_PARALLAX_OFFSET * density); // default : 0dp
+        if (mParallaxOffset == -1) {
+            mParallaxOffset = (int) (DEFAULT_PARALLAX_OFFSET * density);
         }
         // If the shadow height is zero, don't show the shadow
-        if (mSwipeShadowHeight > 0) {
+        if (mShadowHeight > 0) {
             if (mIsSwipingUp) {
-                mSwipeShadowDrawable = getResources().getDrawable(R.drawable.above_shadow, null);
+                mShadowDrawable = getResources().getDrawable(R.drawable.above_shadow, null);
             } else {
-                mSwipeShadowDrawable = getResources().getDrawable(R.drawable.below_shadow, null);
+                mShadowDrawable = getResources().getDrawable(R.drawable.below_shadow, null);
             }
         } else {
-            mSwipeShadowDrawable = null;
+            mShadowDrawable = null;
         }
 
         setWillNotDraw(false);
 
-        //mSwipeViewDragHelper = SwipeViewDragHelper.create(this, 0.5f, scrollerInterpolator, new SwipeDragHelperCallback());
-        mSwipeViewDragHelper = SwipeViewDragHelper.create(this, 0.5f, scrollerInterpolator, new SwipeDragHelperCallback());
-        mSwipeViewDragHelper.setMinVelocity(mSwipeMinFlingVelocity * density);
+        mDragHelper = SwipeViewDragHelper.create(this, 0.5f, scrollerInterpolator, new DragHelperCallback());
+        mDragHelper.setMinVelocity(mMinFlingVelocity * density);
 
         mIsTouchEnabled = true;
     }
@@ -202,244 +207,112 @@ public class SwipeUpPanelLayout extends ViewGroup {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        if (mSwipeDragViewResId != -1) {
-            setDragView(findViewById(mSwipeDragViewResId));
+        if (mDragViewResId != -1) {
+            setDragView(findViewById(mDragViewResId));
         }
-        if (mSwipeScrollableViewResId != -1) {
-            setScrollableView(findViewById(mSwipeScrollableViewResId));
+        if (mScrollableViewResId != -1) {
+            setScrollableView(findViewById(mScrollableViewResId));
         }
-    }
-
-    public void setScrollableView(View scrollableView) {
-        mScrollableView = scrollableView;
     }
 
     public void setGravity(int gravity) {
         if (gravity != Gravity.TOP && gravity != Gravity.BOTTOM) {
             throw new IllegalArgumentException("gravity must be set to either top or bottom");
         }
-        mIsSwipingUp = (gravity == Gravity.BOTTOM);
+        mIsSwipingUp = gravity == Gravity.BOTTOM;
         if (!mFirstLayout) {
             requestLayout();
         }
     }
 
-    public void addPanelSwipeListener(SwipePanelListener listener) {
-        synchronized (mSwipePanelListeners) {
-            mSwipePanelListeners.add(listener);
-        }
+    public void setCoveredFadeColor(int color) {
+        mCoveredFadeColor = color;
+        requestLayout();
     }
 
-    public interface SwipePanelListener {
-        public void onPanelSwipe(View panel, float swipeOffset);
-
-        public void onPanelStateChanged(View panel, SwipePanelState previousState, SwipePanelState newState);
+    public int getCoveredFadeColor() {
+        return mCoveredFadeColor;
     }
 
-    private View.OnClickListener mFadeOnClickListener;
-
-    public void setFadeOnClickListener(View.OnClickListener listener) {
-        mFadeOnClickListener = listener;
-    }
-
-    public SwipePanelState getPanelState() {
-        return mSwipeState;
-    }
-
-    public void setPanelState(SwipePanelState state) {
-
-        // Abort any running animation, to allow state change
-        if (mSwipeViewDragHelper.getViewDragState() == SwipeViewDragHelper.STATE_SETTLING) {
-            Log.d(TAG, "View is settling. Aborting animation.");
-            mSwipeViewDragHelper.abort();
-        }
-
-        if (state == null || state == SwipePanelState.DRAGGING) {
-            throw new IllegalArgumentException("Panel state cannot be null or DRAGGING.");
-        }
-        if (!isEnabled()
-                || (!mFirstLayout && mSwipeableView == null)
-                || state == mSwipeState
-                || mSwipeState == SwipePanelState.DRAGGING) return;
-
-        if (mFirstLayout) {
-            setPanelStateInternal(state);
-        } else {
-            if (mSwipeState == SwipePanelState.HIDDEN) {
-                mSwipeableView.setVisibility(View.VISIBLE);
-                requestLayout();
-            }
-            switch (state) {
-                case ANCHORED:
-                    smoothSwipeTo(mSwipeAnchorPoint, 0);
-                    break;
-                case COLLAPSED:
-                    smoothSwipeTo(0, 0);
-                    break;
-                case EXPANDED:
-                    smoothSwipeTo(1.0f, 0);
-                    break;
-                case HIDDEN:
-                    //int newTop = computePanelTopPosition(0.0f) + (mIsSwipingUp ? +mSwipePanelHeight : -mSwipePanelHeight);
-                    int newTop = computePanelTopPosition(0.0f) + mSwipePanelHeight; /* mIsSwipingUp */
-                    smoothSwipeTo(computeSwipeOffset(newTop), 0);
-                    break;
-            }
-        }
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        mFirstLayout = true;
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        mFirstLayout = true;
-    }
-
-    public static class LayoutParams extends ViewGroup.MarginLayoutParams {
-        private static final int[] ATTRS = new int[]{
-                android.R.attr.layout_weight
-        };
-
-        public float weight = 0;
-
-        public LayoutParams() {
-            super(MATCH_PARENT, MATCH_PARENT);
-        }
-
-        public LayoutParams(int width, int height) {
-            super(width, height);
-        }
-
-        public LayoutParams(int width, int height, float weight) {
-            super(width, height);
-            this.weight = weight;
-        }
-
-        public LayoutParams(android.view.ViewGroup.LayoutParams source) {
-            super(source);
-        }
-
-        public LayoutParams(MarginLayoutParams source) {
-            super(source);
-        }
-
-        public LayoutParams(SlidingUpPanelLayout.LayoutParams source) {
-            super(source);
-        }
-
-        public LayoutParams(Context c, AttributeSet attrs) {
-            super(c, attrs);
-
-            final TypedArray ta = c.obtainStyledAttributes(attrs, ATTRS);
-            if (ta != null) {
-                this.weight = ta.getFloat(0, 0);
-                ta.recycle();
-            }
-
-
-        }
-    }
-
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        final int widthMode = MeasureSpec.getMode(widthMeasureSpec);
-        final int widthSize = MeasureSpec.getSize(widthMeasureSpec);
-        final int heightMode = MeasureSpec.getMode(heightMeasureSpec);
-        final int heightSize = MeasureSpec.getSize(heightMeasureSpec);
-
-        if (widthMode != MeasureSpec.EXACTLY && widthMode != MeasureSpec.AT_MOST) {
-            throw new IllegalStateException("Width must have an exact value or MATCH_PARENT");
-        } else if (heightMode != MeasureSpec.EXACTLY && heightMode != MeasureSpec.AT_MOST) {
-            throw new IllegalStateException("Height must have an exact value or MATCH_PARENT");
-        }
-
-        final int childCount = getChildCount();
-
-        if (childCount != 2) {
-            throw new IllegalStateException("Sliding up panel layout must have exactly 2 children!");
-        }
-
-        mSwipeMainView = getChildAt(0);
-        mSwipeableView = getChildAt(1);
-        if (mSwipeMainView == null) {
-            setDragView(mSwipeableView);
-        }
-
-        // If the sliding panel is not visible, then put the whole view in the hidden state
-        if (mSwipeableView.getVisibility() != VISIBLE) {
-            mSwipeState = SwipePanelState.HIDDEN;
-        }
-
-        int layoutHeight = heightSize - getPaddingTop() - getPaddingBottom();
-        int layoutWidth = widthSize - getPaddingLeft() - getPaddingRight();
-
-        // First pass. Measure based on child LayoutParams width/height.
-        for (int i = 0; i < childCount; i++) {
-            final View child = getChildAt(i);
-// ToDo : Fix this later
-//            final LayoutParams lp = (LayoutParams) child.getLayoutParams();
-
-            // We always measure the sliding panel in order to know it's height (needed for show panel)
-            if (child.getVisibility() == GONE && i == 0) {
-                continue;
-            }
-
-// ToDo : Fix this later
-//            int height = layoutHeight;
-//            int width = layoutWidth;
-//            if (child == mSwipeMainView) {
-//                if (!mOverlayContent && mSwipeState != SwipePanelState.HIDDEN) {
-//                    height -= mSwipePanelHeight;
-//                }
-//
-//                width -= lp.leftMargin + lp.rightMargin;
-//            } else if (child == mSwipeableView) {
-//                // The swipeable view should be aware of its top margin.
-//                // See https://github.com/umano/AndroidSlidingUpPanel/issues/412.
-//                height -= lp.topMargin;
-//            }
-//
-//            int childWidthSpec;
-//            if (lp.width == LayoutParams.WRAP_CONTENT) {
-//                childWidthSpec = MeasureSpec.makeMeasureSpec(width, MeasureSpec.AT_MOST);
-//            } else if (lp.width == LayoutParams.MATCH_PARENT) {
-//                childWidthSpec = MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY);
-//            } else {
-//                childWidthSpec = MeasureSpec.makeMeasureSpec(lp.width, MeasureSpec.EXACTLY);
-//            }
-//
-//            int childHeightSpec;
-//            if (lp.height == LayoutParams.WRAP_CONTENT) {
-//                childHeightSpec = MeasureSpec.makeMeasureSpec(height, MeasureSpec.AT_MOST);
-//            } else {
-//                // Modify the height based on the weight.
-//                if (lp.weight > 0 && lp.weight < 1) {
-//                    height = (int) (height * lp.weight);
-//                } else if (lp.height != LayoutParams.MATCH_PARENT) {
-//                    height = lp.height;
-//                }
-//                childHeightSpec = MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY);
-//            }
-//
-//            child.measure(childWidthSpec, childHeightSpec);
-
-            child.measure(widthMeasureSpec, heightMeasureSpec);
-
-            if (child == mSwipeableView) {
-                mSwipeRange = mSwipeableView.getMeasuredHeight() - mSwipePanelHeight;
-            }
-        }
-
-        setMeasuredDimension(widthSize, heightSize);
+    public void setTouchEnabled(boolean enabled) {
+        mIsTouchEnabled = enabled;
     }
 
     public boolean isTouchEnabled() {
-        return mIsTouchEnabled && mSwipeableView != null && mSwipeState != SwipeUpPanelLayout.SwipePanelState.HIDDEN;
+        return mIsTouchEnabled && mSwipeableView != null && mSwipeState != SwipePanelState.HIDDEN;
+    }
+
+    public void setPanelHeight(int val) {
+        if (getPanelHeight() == val) {
+            return;
+        }
+
+        mPanelHeight = val;
+        if (!mFirstLayout) {
+            requestLayout();
+        }
+
+        if (getSwipePanelState() == SwipePanelState.COLLAPSED) {
+            smoothToBottom();
+            invalidate();
+            return;
+        }
+    }
+
+    protected void smoothToBottom() {
+        smoothSwipeTo(0, 0);
+    }
+
+    public int getShadowHeight() {
+        return mShadowHeight;
+    }
+
+    public void setShadowHeight(int val) {
+        mShadowHeight = val;
+        if (!mFirstLayout) {
+            invalidate();
+        }
+    }
+
+    public int getPanelHeight() {
+        return mPanelHeight;
+    }
+
+    public int getCurrentParallaxOffset() {
+        // Clamp swipe offset at zero for parallax computation;
+        int offset = (int) (mParallaxOffset * Math.max(mSwipeOffset, 0));
+        return mIsSwipingUp ? -offset : offset;
+    }
+
+    public void setParallaxOffset(int val) {
+        mParallaxOffset = val;
+        if (!mFirstLayout) {
+            requestLayout();
+        }
+    }
+
+    public int getMinFlingVelocity() {
+        return mMinFlingVelocity;
+    }
+
+    public void setMinFlingVelocity(int val) {
+        mMinFlingVelocity = val;
+    }
+
+    public void addPanelSwipeListener(PanelSwipeListener listener) {
+        synchronized (mPanelSwipeListeners) {
+            mPanelSwipeListeners.add(listener);
+        }
+    }
+
+    public void removePanelSwipeListener(PanelSwipeListener listener) {
+        synchronized (mPanelSwipeListeners) {
+            mPanelSwipeListeners.remove(listener);
+        }
+    }
+
+    public void setFadeOnClickListener(View.OnClickListener listener) {
+        mFadeOnClickListener = listener;
     }
 
     public void setDragView(View dragView) {
@@ -455,296 +328,79 @@ public class SwipeUpPanelLayout extends ViewGroup {
                 @Override
                 public void onClick(View v) {
                     if (!isEnabled() || !isTouchEnabled()) return;
-                    if (mSwipeState != SwipeUpPanelLayout.SwipePanelState.EXPANDED && mSwipeState != SwipeUpPanelLayout.SwipePanelState.ANCHORED) {
+                    if (mSwipeState != SwipePanelState.EXPANDED && mSwipeState != SwipePanelState.ANCHORED) {
                         if (mAnchorPoint < 1.0f) {
-                            setPanelState(SwipeUpPanelLayout.SwipePanelState.ANCHORED);
+                            setSwipePanelState(SwipePanelState.ANCHORED);
                         } else {
-                            setPanelState(SwipeUpPanelLayout.SwipePanelState.EXPANDED);
+                            setSwipePanelState(SwipePanelState.EXPANDED);
                         }
                     } else {
-                        setPanelState(SwipeUpPanelLayout.SwipePanelState.COLLAPSED);
+                        setSwipePanelState(SwipePanelState.COLLAPSED);
                     }
                 }
             });
         }
     }
 
-    @Override
-    protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        final int paddingLeft = getPaddingLeft();
-        final int paddingTop = getPaddingTop();
-
-        final int childCount = getChildCount();
-
-        if (mFirstLayout) {
-            switch (mSwipeState) {
-                case EXPANDED:
-                    mSwipeOffset = 1.0f;
-                    break;
-                case ANCHORED:
-                    mSwipeOffset = mAnchorPoint;
-                    break;
-                case HIDDEN:
-                    int newTop = computePanelTopPosition(0.0f) + (mIsSwipingUp ? +mSwipePanelHeight : -mSwipePanelHeight);
-                    mSwipeOffset = computeSwipeOffset(newTop);
-                    break;
-                default:
-                    mSwipeOffset = 0.f;
-                    break;
-            }
-        }
-
-        for (int i = 0; i < childCount; i++) {
-            final View child = getChildAt(i);
-// ToDo : Fix this later
-//            final LayoutParams lp = (LayoutParams) child.getLayoutParams();
-
-            // Always layout the sliding view on the first layout
-            if (child.getVisibility() == GONE && (i == 0 || mFirstLayout)) {
-                continue;
-            }
-
-            final int childHeight = child.getMeasuredHeight();
-            int childTop = paddingTop;
-
-            if (child == mSwipeableView) {
-                childTop = computePanelTopPosition(mSwipeOffset);
-            }
-
-            if (!mIsSwipingUp) {
-                if (child == mSwipeMainView && !mOverlayContent) {
-                    childTop = computePanelTopPosition(mSwipeOffset) + mSwipeableView.getMeasuredHeight();
-                }
-            }
-            final int childBottom = childTop + childHeight;
-// ToDo : Fix this later
-//            final int childLeft = paddingLeft + lp.leftMargin;
-            final int childLeft = paddingLeft + 20; /*lp.leftMargin*/
-            final int childRight = childLeft + child.getMeasuredWidth();
-
-            child.layout(childLeft, childTop, childRight, childBottom);
-        }
-
-        if (mFirstLayout) {
-            updateObscuredViewVisibility();
-        }
-        applyParallaxForCurrentSwipeOffset();
-
-        mFirstLayout = false;
+    public void setDragView(int dragViewResId) {
+        mDragViewResId = dragViewResId;
+        setDragView(findViewById(dragViewResId));
     }
 
+    public void setScrollableView(View scrollableView) {
+        mScrollableView = scrollableView;
+    }
 
-    @Override
-    public void draw(Canvas c) {
-        super.draw(c);
+    public void setScrollableViewHelper(SwipeScrollableViewHelper helper) {
+        mScrollableViewHelper = helper;
+    }
 
-        // draw the shadow
-        if (mSwipeShadowDrawable != null && mSwipeableView != null) {
-            final int right = mSwipeableView.getRight();
-            final int top;
-            final int bottom;
-            if (mIsSwipingUp) {
-                top = mSwipeableView.getTop() - mSwipeShadowHeight;
-                bottom = mSwipeableView.getTop();
-            } else {
-                top = mSwipeableView.getBottom();
-                bottom = mSwipeableView.getBottom() + mSwipeShadowHeight;
-            }
-            final int left = mSwipeableView.getLeft();
-            mSwipeShadowDrawable.setBounds(left, top, right, bottom);
-            mSwipeShadowDrawable.draw(c);
+    public void setAnchorPoint(float anchorPoint) {
+        if (anchorPoint > 0 && anchorPoint <= 1) {
+            mAnchorPoint = anchorPoint;
+            mFirstLayout = true;
+            requestLayout();
         }
     }
 
-    @Override
-    protected boolean drawChild(Canvas canvas, View child, long drawingTime) {
-        boolean result;
-        //final int save = canvas.save();  //  여기가 차이가 남. ...
-
-        if (mSwipeCanvasSaveProxy == null || !mSwipeCanvasSaveProxy.isFor(canvas)) {
-            mSwipeCanvasSaveProxy = mSwipeCanvasSaveProxyFactory.create(canvas);
-        }
-
-        final int save = mSwipeCanvasSaveProxy.save();
-
-        if (mSwipeableView != null && mSwipeableView != child) { // if main view
-            // Clip against the swiper; no sense drawing what will immediately be covered, Unless the panel is set to overlay content
-            canvas.getClipBounds(mTmpRect);
-            if (!mOverlayContent) {
-                if (mIsSwipingUp) {
-                    mTmpRect.bottom = Math.min(mTmpRect.bottom, mSwipeableView.getTop());
-                } else {
-                    //mTmpRect.top = Math.max(mTmpRect.top, mSwipeableView.getBottom());
-                }
-            }
-            if (mSwipeClipPanel) {
-                canvas.clipRect(mTmpRect);
-            }
-
-            result = super.drawChild(canvas, child, drawingTime);
-
-            if (mSwipeCoveredFadeColor != 0 && mSwipeOffset > 0) {
-                final int baseAlpha = (mSwipeCoveredFadeColor & 0xff000000) >>> 24;
-                final int imag = (int) (baseAlpha * mSwipeOffset);
-                final int color = imag << 24 | (mSwipeCoveredFadeColor & 0xffffff);
-                mCoveredFadePaint.setColor(color);
-                canvas.drawRect(mTmpRect, mCoveredFadePaint);
-            }
-        } else {
-            result = super.drawChild(canvas, child, drawingTime);
-        }
-
-        canvas.restoreToCount(save);
-
-        return result;
+    public float getAnchorPoint() {
+        return mAnchorPoint;
     }
 
-    private class SwipeDragHelperCallback extends SwipeViewDragHelper.Callback {
+    public void setOverlayed(boolean overlayed) {
+        mOverlayContent = overlayed;
+    }
 
-        @Override
-        public boolean tryCaptureView(View child, int pointerId) {
-            return !mIsUnableToDrag && child == mSwipeableView;
+    public boolean isOverlayed() {
+        return mOverlayContent;
+    }
 
-        }
+    public void setClipPanel(boolean clip) {
+        mClipPanel = clip;
+    }
 
-        @Override
-        public void onViewDragStateChanged(int state) {
-            if (mSwipeViewDragHelper != null && mSwipeViewDragHelper.getViewDragState() == SwipeViewDragHelper.STATE_IDLE) {
-                mSwipeOffset = computeSwipeOffset(mSwipeableView.getTop());
-                applyParallaxForCurrentSwipeOffset();
+    public boolean isClipPanel() {
+        return mClipPanel;
+    }
 
-                if (mSwipeOffset == 1) {
-                    updateObscuredViewVisibility();
-                    setPanelStateInternal(SwipeUpPanelLayout.SwipePanelState.EXPANDED);
-                } else if (mSwipeOffset == 0) {
-                    setPanelStateInternal(SwipeUpPanelLayout.SwipePanelState.COLLAPSED);
-                } else if (mSwipeOffset < 0) {
-                    setPanelStateInternal(SwipeUpPanelLayout.SwipePanelState.HIDDEN);
-                    mSwipeableView.setVisibility(View.INVISIBLE);
-                } else {
-                    updateObscuredViewVisibility();
-                    setPanelStateInternal(SwipeUpPanelLayout.SwipePanelState.ANCHORED);
-                }
-            }
-        }
 
-        @Override
-        public void onViewCaptured(View capturedChild, int activePointerId) {
-            setAllChildrenVisible();
-        }
-
-        @Override
-        public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
-            onPanelDragged(top);
-            invalidate();
-        }
-
-        @Override
-        public void onViewReleased(View releasedChild, float xvel, float yvel) {
-            int target = 0;
-
-            // direction is always positive if we are sliding in the expanded direction
-            float direction = mIsSwipingUp ? -yvel : yvel;
-
-            if (direction > 0 && mSwipeOffset <= mAnchorPoint) {
-                // swipe up -> expand and stop at anchor point
-                target = computePanelTopPosition(mAnchorPoint);
-            } else if (direction > 0 && mSwipeOffset > mAnchorPoint) {
-                // swipe up past anchor -> expand
-                target = computePanelTopPosition(1.0f);
-            } else if (direction < 0 && mSwipeOffset >= mAnchorPoint) {
-                // swipe down -> collapse and stop at anchor point
-                target = computePanelTopPosition(mAnchorPoint);
-            } else if (direction < 0 && mSwipeOffset < mAnchorPoint) {
-                // swipe down past anchor -> collapse
-                target = computePanelTopPosition(0.0f);
-            } else if (mSwipeOffset >= (1.f + mAnchorPoint) / 2) {
-                // zero velocity, and far enough from anchor point => expand to the top
-                target = computePanelTopPosition(1.0f);
-            } else if (mSwipeOffset >= mAnchorPoint / 2) {
-                // zero velocity, and close enough to anchor point => go to anchor
-                target = computePanelTopPosition(mAnchorPoint);
-            } else {
-                // settle at the bottom
-                target = computePanelTopPosition(0.0f);
-            }
-
-            if (mSwipeViewDragHelper != null) {
-                mSwipeViewDragHelper.settleCapturedViewAt(releasedChild.getLeft(), target);
-            }
-            invalidate();
-        }
-
-        @Override
-        public int getViewVerticalDragRange(View child) {
-            return mSwipeRange;
-        }
-
-        @Override
-        public int clampViewPositionVertical(View child, int top, int dy) {
-            final int collapsedTop = computePanelTopPosition(0.f);
-            final int expandedTop = computePanelTopPosition(1.0f);
-            if (mIsSwipingUp) {
-                return Math.min(Math.max(top, expandedTop), collapsedTop);
-            } else {
-                return Math.min(Math.max(top, collapsedTop), expandedTop);
+    void dispatchOnPanelSwipe(View panel) {
+        synchronized (mPanelSwipeListeners) {
+            for (PanelSwipeListener l : mPanelSwipeListeners) {
+                l.onPanelSwipe(panel, mSwipeOffset);
             }
         }
     }
 
-
-    private float computeSwipeOffset(int topPosition) {
-        // Compute the panel top position if the panel is collapsed (offset 0)
-        final int topBoundCollapsed = computePanelTopPosition(0);
-
-        // Determine the new swipe offset based on the collapsed top position and the new required
-        // top position
-        return (mIsSwipingUp
-                ? (float) (topBoundCollapsed - topPosition) / mSwipeRange
-                : (float) (topPosition - topBoundCollapsed) / mSwipeRange);
-    }
-
-    private int computePanelTopPosition(float swipeOffset) {
-        //int slidingViewHeight = mSwipeableView != null ? mSwipeableView.getMeasuredHeight() : 0;
-        int swipePixelOffset = (int) (swipeOffset * mSwipeRange);
-        // Compute the top of the panel if its collapsed
-        return getMeasuredHeight() - getPaddingBottom() - mSwipePanelHeight - swipePixelOffset;
-//        return mIsSwipingUp
-//                ? getMeasuredHeight() - getPaddingBottom() - mSwipePanelHeight - swipePixelOffset
-//                : getPaddingTop() - slidingViewHeight + mSwipePanelHeight + swipePixelOffset;
-    }
-
-    private void setPanelStateInternal(SwipePanelState state) {
-        if (mSwipeState == state) return;
-        SwipeUpPanelLayout.SwipePanelState oldState = mSwipeState;
-        mSwipeState = state;
-        dispatchOnPanelStateChanged(this, oldState, state);
-    }
 
     void dispatchOnPanelStateChanged(View panel, SwipePanelState previousState, SwipePanelState newState) {
-        synchronized (mSwipePanelListeners) {
-            for (SwipePanelListener l : mSwipePanelListeners) {
-                l.onPanelStateChanged(panel, previousState, newState);
+        synchronized (mPanelSwipeListeners) {
+            for (PanelSwipeListener l : mPanelSwipeListeners) {
+                l.onSwipePanelStateChanged(panel, previousState, newState);
             }
         }
         sendAccessibilityEvent(AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED);
     }
-
-    @SuppressLint("NewApi")
-    private void applyParallaxForCurrentSwipeOffset() {
-        if (mSwipeParallaxOffset > 0) {
-            int mainViewOffset = getCurrentParallaxOffset();
-            //ViewCompat.setTranslationY(mMainView, mainViewOffset);
-            mSwipeMainView.setTranslationY(mainViewOffset);
-        }
-    }
-
-    public int getCurrentParallaxOffset() {
-        // Clamp swipe offset at zero for parallax computation;
-        int offset = (int) (mSwipeParallaxOffset * Math.max(mSwipeOffset, 0));
-        return mIsSwipingUp ? -offset : offset;
-    }
-
 
     void updateObscuredViewVisibility() {
         if (getChildCount() == 0) {
@@ -781,22 +437,6 @@ public class SwipeUpPanelLayout extends ViewGroup {
         child.setVisibility(vis);
     }
 
-    boolean smoothSwipeTo(float swipeOffset, int velocity) {
-        if (!isEnabled() || mSwipeableView == null) {
-            // Nothing to do.
-            return false;
-        }
-
-        int panelTop = computePanelTopPosition(swipeOffset);
-
-        if (mSwipeViewDragHelper.smoothSwipeViewTo(mSwipeableView, mSwipeableView.getLeft(), panelTop)) {
-            setAllChildrenVisible();
-            ViewCompat.postInvalidateOnAnimation(this);
-            return true;
-        }
-        return false;
-    }
-
     void setAllChildrenVisible() {
         for (int i = 0, childCount = getChildCount(); i < childCount; i++) {
             final View child = getChildAt(i);
@@ -806,47 +446,255 @@ public class SwipeUpPanelLayout extends ViewGroup {
         }
     }
 
-    private SwipeUpPanelLayout.SwipePanelState mLastNotDraggingSwipeState = DEFAULT_SWIPE_STATE;
-
-    private void onPanelDragged(int newTop) {
-        if (mSwipeState != SwipeUpPanelLayout.SwipePanelState.DRAGGING) {
-            mLastNotDraggingSwipeState = mSwipeState;
-        }
-        setPanelStateInternal(SwipeUpPanelLayout.SwipePanelState.DRAGGING);
-        // Recompute the swipe offset based on the new top position
-        mSwipeOffset = computeSwipeOffset(newTop);
-        applyParallaxForCurrentSwipeOffset();
-
-        // Dispatch the swipe event
-        dispatchOnPanelSwipe(mSwipeableView);
-        // If the swipe offset is negative, and overlay is not on, we need to increase the
-        // height of the main content
-        SwipeUpPanelLayout.LayoutParams lp = (SwipeUpPanelLayout.LayoutParams) mSwipeMainView.getLayoutParams();
-        int defaultHeight = getHeight() - getPaddingBottom() - getPaddingTop() - mSwipePanelHeight;
-
-        if (mSwipeOffset <= 0 && !mOverlayContent) {
-            // expand the main view
-            lp.height = mIsSwipingUp ? (newTop - getPaddingBottom()) : (getHeight() - getPaddingBottom() - mSwipeableView.getMeasuredHeight() - newTop);
-            if (lp.height == defaultHeight) {
-                lp.height = SwipeUpPanelLayout.LayoutParams.MATCH_PARENT;
-            }
-            mSwipeMainView.requestLayout();
-        } else if (lp.height != SwipeUpPanelLayout.LayoutParams.MATCH_PARENT && !mOverlayContent) {
-            lp.height = SwipeUpPanelLayout.LayoutParams.MATCH_PARENT;
-            mSwipeMainView.requestLayout();
-        }
-    }
-
     private static boolean hasOpaqueBackground(View v) {
         final Drawable bg = v.getBackground();
         return bg != null && bg.getOpacity() == PixelFormat.OPAQUE;
     }
 
-    void dispatchOnPanelSwipe(View panel) {
-        synchronized (mSwipePanelListeners) {
-            for (SwipePanelListener l : mSwipePanelListeners) {
-                l.onPanelSwipe(panel, mSwipeOffset);
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        mFirstLayout = true;
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        mFirstLayout = true;
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        final int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+        final int widthSize = MeasureSpec.getSize(widthMeasureSpec);
+        final int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+        final int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+
+        if (widthMode != MeasureSpec.EXACTLY && widthMode != MeasureSpec.AT_MOST) {
+            throw new IllegalStateException("Width must have an exact value or MATCH_PARENT");
+        } else if (heightMode != MeasureSpec.EXACTLY && heightMode != MeasureSpec.AT_MOST) {
+            throw new IllegalStateException("Height must have an exact value or MATCH_PARENT");
+        }
+
+        final int childCount = getChildCount();
+
+        if (childCount != 2) {
+            throw new IllegalStateException("Swiping up panel layout must have exactly 2 children!");
+        }
+
+        mMainView = getChildAt(0);
+        mSwipeableView = getChildAt(1);
+        if (mDragView == null) {
+            setDragView(mSwipeableView);
+        }
+
+        // If the swiping panel is not visible, then put the whole view in the hidden state
+        if (mSwipeableView.getVisibility() != VISIBLE) {
+            mSwipeState = SwipePanelState.HIDDEN;
+        }
+
+        int layoutHeight = heightSize - getPaddingTop() - getPaddingBottom();
+        int layoutWidth = widthSize - getPaddingLeft() - getPaddingRight();
+
+        // First pass. Measure based on child LayoutParams width/height.
+        for (int i = 0; i < childCount; i++) {
+            final View child = getChildAt(i);
+            final LayoutParams lp = (LayoutParams) child.getLayoutParams();
+
+            // We always measure the swiping panel in order to know it's height (needed for show panel)
+            if (child.getVisibility() == GONE && i == 0) {
+                continue;
             }
+
+            int height = layoutHeight;
+            int width = layoutWidth;
+            if (child == mMainView) {
+                if (!mOverlayContent && mSwipeState != SwipePanelState.HIDDEN) {
+                    height -= mPanelHeight;
+                }
+
+                width -= lp.leftMargin + lp.rightMargin;
+            } else if (child == mSwipeableView) {
+                // The swipeable view should be aware of its top margin.
+                // See https://github.com/umano/AndroidSlidingUpPanel/issues/412.
+                height -= lp.topMargin;
+            }
+
+            int childWidthSpec;
+            if (lp.width == LayoutParams.WRAP_CONTENT) {
+                childWidthSpec = MeasureSpec.makeMeasureSpec(width, MeasureSpec.AT_MOST);
+            } else if (lp.width == LayoutParams.MATCH_PARENT) {
+                childWidthSpec = MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY);
+            } else {
+                childWidthSpec = MeasureSpec.makeMeasureSpec(lp.width, MeasureSpec.EXACTLY);
+            }
+
+            int childHeightSpec;
+            if (lp.height == LayoutParams.WRAP_CONTENT) {
+                childHeightSpec = MeasureSpec.makeMeasureSpec(height, MeasureSpec.AT_MOST);
+            } else {
+                // Modify the height based on the weight.
+                if (lp.weight > 0 && lp.weight < 1) {
+                    height = (int) (height * lp.weight);
+                } else if (lp.height != LayoutParams.MATCH_PARENT) {
+                    height = lp.height;
+                }
+                childHeightSpec = MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY);
+            }
+
+            child.measure(childWidthSpec, childHeightSpec);
+
+            if (child == mSwipeableView) {
+                mSwipeRange = mSwipeableView.getMeasuredHeight() - mPanelHeight;
+            }
+        }
+
+        setMeasuredDimension(widthSize, heightSize);
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        final int paddingLeft = getPaddingLeft();
+        final int paddingTop = getPaddingTop();
+
+        final int childCount = getChildCount();
+
+        if (mFirstLayout) {
+            switch (mSwipeState) {
+                case EXPANDED:
+                    mSwipeOffset = 1.0f;
+                    break;
+                case ANCHORED:
+                    mSwipeOffset = mAnchorPoint;
+                    break;
+                case HIDDEN:
+                    int newTop = computePanelTopPosition(0.0f) + (mIsSwipingUp ? +mPanelHeight : -mPanelHeight);
+                    mSwipeOffset = computeSwipeOffset(newTop);
+                    break;
+                default:
+                    mSwipeOffset = 0.f;
+                    break;
+            }
+        }
+
+        for (int i = 0; i < childCount; i++) {
+            final View child = getChildAt(i);
+            final LayoutParams lp = (LayoutParams) child.getLayoutParams();
+
+            // Always layout the swiping view on the first layout
+            if (child.getVisibility() == GONE && (i == 0 || mFirstLayout)) {
+                continue;
+            }
+
+            final int childHeight = child.getMeasuredHeight();
+            int childTop = paddingTop;
+
+            if (child == mSwipeableView) {
+                childTop = computePanelTopPosition(mSwipeOffset);
+            }
+
+            if (!mIsSwipingUp) {
+                if (child == mMainView && !mOverlayContent) {
+                    childTop = computePanelTopPosition(mSwipeOffset) + mSwipeableView.getMeasuredHeight();
+                }
+            }
+            final int childBottom = childTop + childHeight;
+            final int childLeft = paddingLeft + lp.leftMargin;
+            final int childRight = childLeft + child.getMeasuredWidth();
+
+            child.layout(childLeft, childTop, childRight, childBottom);
+        }
+
+        if (mFirstLayout) {
+            updateObscuredViewVisibility();
+        }
+        applyParallaxForCurrentSwipeOffset();
+
+        mFirstLayout = false;
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        // Recalculate swiping panes and their details
+        if (h != oldh) {
+            mFirstLayout = true;
+        }
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        Log.i(TAG, "(Swipe) onInterceptTouchEvent:");
+        // If the scrollable view is handling touch, neonMeasurever intercept
+        if (mIsScrollableViewHandlingTouch || !isTouchEnabled()) {
+            mDragHelper.abort();
+            return false;
+        }
+
+        final int action = ev.getAction() ;
+        final float x = ev.getX();
+        final float y = ev.getY();
+        final float adx = Math.abs(x - mInitialMotionX);
+        final float ady = Math.abs(y - mInitialMotionY);
+        final int dragSlop = mDragHelper.getTouchSlop();
+
+        switch (action) {
+            case MotionEvent.ACTION_DOWN: {
+                mIsUnableToDrag = false;
+                mInitialMotionX = x;
+                mInitialMotionY = y;
+                if (!isViewUnder(mDragView, (int) x, (int) y)) {
+                    mDragHelper.cancel();
+                    mIsUnableToDrag = true;
+                    return false;
+                }
+
+                break;
+            }
+
+            case MotionEvent.ACTION_MOVE: {
+                if (ady > dragSlop && adx > ady) {
+                    mDragHelper.cancel();
+                    mIsUnableToDrag = true;
+                    return false;
+                }
+                break;
+            }
+
+            case MotionEvent.ACTION_CANCEL:
+            case MotionEvent.ACTION_UP:
+                // If the dragView is still dragging when we get here, we need to call processTouchEvent
+                // so that the view is settled
+                // Added to make scrollable views work (tokudu)
+                if (mDragHelper.isDragging()) {
+                    mDragHelper.processTouchEvent(ev);
+                    return true;
+                }
+                // Check if this was a click on the faded part of the screen, and fire off the listener if there is one.
+                if (ady <= dragSlop
+                        && adx <= dragSlop
+                        && mSwipeOffset > 0 && !isViewUnder(mSwipeableView, (int) mInitialMotionX, (int) mInitialMotionY) && mFadeOnClickListener != null) {
+                    playSoundEffect(android.view.SoundEffectConstants.CLICK);
+                    mFadeOnClickListener.onClick(this);
+                    return true;
+                }
+                break;
+        }
+        return mDragHelper.shouldInterceptTouchEvent(ev);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent ev) {
+        Log.i(TAG, "(Swipe) onTouchEvent:");
+        if (!isEnabled() || !isTouchEnabled()) {
+            return super.onTouchEvent(ev);
+        }
+        try {
+            mDragHelper.processTouchEvent(ev);
+            return true;
+        } catch (Exception ex) {
+            // Ignore the pointer out of range exception
+            return false;
         }
     }
 
@@ -857,7 +705,7 @@ public class SwipeUpPanelLayout extends ViewGroup {
 
         if (!isEnabled() || !isTouchEnabled() || (mIsUnableToDrag && action != MotionEvent.ACTION_DOWN)) {
             Log.i(TAG, "(Swipe) dispatchTouchEvent: !isEnabled() || !isTouchEnabled() || (mIsUnableToDrag && action != MotionEvent.ACTION_DOWN)");
-            mSwipeViewDragHelper.abort();
+            mDragHelper.abort();
             return super.dispatchTouchEvent(ev);
         }
 
@@ -880,27 +728,25 @@ public class SwipeUpPanelLayout extends ViewGroup {
             mPrevMotionY = y;
 
             if (Math.abs(dx) > Math.abs(dy)) {
-                // Scrolling horizontally, so ignore
                 return super.dispatchTouchEvent(ev);
             }
 
-            // If the scroll view isn't under the touch, pass the event along to the dragView.
             if (!isViewUnder(mScrollableView, (int) mInitialMotionX, (int) mInitialMotionY)) {
                 return super.dispatchTouchEvent(ev);
             }
 
-            // dy > 0 : 아랫방향 드래그    ***    dy < 0 : 윗방향 드래그
-            if (dy > 0) { // Collapsing (접히는 방향) - 아랫쪽 방향으로 DragView 화면을 내리면서 Drag함
-                if (mSwipeScrollableViewHelper.getScrollableViewScrollPosition(mScrollableView, mIsSwipingUp) > 0) {
+            if (dy * (mIsSwipingUp ? 1 : -1) > 0) { // Collapsing
+
+                if (mScrollableViewHelper.getScrollableViewScrollPosition(mScrollableView, mIsSwipingUp) > 0) {
                     mIsScrollableViewHandlingTouch = true;
-                    return super.dispatchTouchEvent(ev);  // ListView 등의 Scroll을 위해 부모에게 Touch Event를 전달해 줌.
+                    return super.dispatchTouchEvent(ev);
                 }
 
-                if (mIsScrollableViewHandlingTouch) {
 
+                if (mIsScrollableViewHandlingTouch) {
                     MotionEvent up = MotionEvent.obtain(ev);
                     up.setAction(MotionEvent.ACTION_CANCEL);
-                    super.dispatchTouchEvent(up); // UP 이벤트(ACTION_CANCEL)를 ListView 등에 보내 줌
+                    super.dispatchTouchEvent(up);
                     up.recycle();
 
                     ev.setAction(MotionEvent.ACTION_DOWN);
@@ -909,35 +755,31 @@ public class SwipeUpPanelLayout extends ViewGroup {
                 mIsScrollableViewHandlingTouch = false;
                 //Log.i(TAG, "(Swipe) dispatchTouchEvent: Down (dy > 0)");
                 return this.onTouchEvent(ev);
-            } else if (dy < 0) { // Expanding (펼쳐지는 방향) - 윗쪽 방향으로 DragView 화면을 올리면서 Drag함
+            } else if (dy * (mIsSwipingUp ? 1 : -1) < 0) { // Expanding
 
-                if (mSwipeOffset < 1.0f) {  // 중간 단계  -  DragView가 전체, 끝까지 펼쳐지기 전까지 수행되는 코드
+                if (mSwipeOffset < 1.0f) {
                     mIsScrollableViewHandlingTouch = false;
                     //Log.i(TAG, "(Swipe) dispatchTouchEvent: Up (dy < 0)");
                     return this.onTouchEvent(ev);
                 }
 
-                if (!mIsScrollableViewHandlingTouch && mSwipeViewDragHelper.isDragging()) {  // Expanding 완전이 되고 나서, 최초에 한번만 들어옮.
-                    mSwipeViewDragHelper.cancel();
+                if (!mIsScrollableViewHandlingTouch && mDragHelper.isDragging()) {
+                    mDragHelper.cancel();
                     ev.setAction(MotionEvent.ACTION_DOWN);
                 }
 
                 mIsScrollableViewHandlingTouch = true;
-                return super.dispatchTouchEvent(ev); // ListView 등의 Scroll을 위해 부모에게 Touch Event를 전달해 줌.
+                return super.dispatchTouchEvent(ev);
             }
         } else if (action == MotionEvent.ACTION_UP) {
-            // If the scrollable view was handling the touch and we receive an up
-            // we want to clear any previous dragging state so we don't intercept a touch stream accidentally
             if (mIsScrollableViewHandlingTouch) {
-                mSwipeViewDragHelper.setDragState(ViewDragHelper.STATE_IDLE);
+                mDragHelper.setDragState(SwipeViewDragHelper.STATE_IDLE);
             }
         }
 
-        // In all other cases, just let the default behavior take over.
         return super.dispatchTouchEvent(ev);
     }
 
-    // 터치한 (x,y)좌표가 view 안에 있는지 체크함. (  DrawView(:swipe_dragView),   ScrollableView(:swipe_list view) )
     private boolean isViewUnder(View view, int x, int y) {
         if (view == null) return false;
         int[] viewLocation = new int[2];
@@ -950,81 +792,397 @@ public class SwipeUpPanelLayout extends ViewGroup {
                 screenY >= viewLocation[1] && screenY < viewLocation[1] + view.getHeight();
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent ev) {
-        Log.i(TAG, "(Swipe) onTouchEvent: ");
-        if (!isEnabled() || !isTouchEnabled()) {
-            return super.onTouchEvent(ev);
+    private int computePanelTopPosition(float swipeOffset) {
+        int swipingViewHeight = mSwipeableView != null ? mSwipeableView.getMeasuredHeight() : 0;
+        int swipePixelOffset = (int) (swipeOffset * mSwipeRange);
+        // Compute the top of the panel if its collapsed
+        return mIsSwipingUp
+                ? getMeasuredHeight() - getPaddingBottom() - mPanelHeight - swipePixelOffset
+                : getPaddingTop() - swipingViewHeight + mPanelHeight + swipePixelOffset;
+    }
+
+    private float computeSwipeOffset(int topPosition) {
+        final int topBoundCollapsed = computePanelTopPosition(0);
+
+        return (mIsSwipingUp
+                ? (float) (topBoundCollapsed - topPosition) / mSwipeRange
+                : (float) (topPosition - topBoundCollapsed) / mSwipeRange);
+    }
+
+    public SwipePanelState getSwipePanelState() {
+        return mSwipeState;
+    }
+
+    public void setSwipePanelState(SwipePanelState state) {
+
+        if(mDragHelper.getViewDragState() == SwipeViewDragHelper.STATE_SETTLING){
+            Log.d(TAG, "View is settling. Aborting animation.");
+            mDragHelper.abort();
         }
-        try {
-            mSwipeViewDragHelper.processTouchEvent(ev);
+
+        if (state == null || state == SwipePanelState.DRAGGING) {
+            throw new IllegalArgumentException("Panel state cannot be null or DRAGGING.");
+        }
+        if (!isEnabled()
+                || (!mFirstLayout && mSwipeableView == null)
+                || state == mSwipeState
+                || mSwipeState == SwipePanelState.DRAGGING) return;
+
+        if (mFirstLayout) {
+            setPanelStateInternal(state);
+        } else {
+            if (mSwipeState == SwipePanelState.HIDDEN) {
+                mSwipeableView.setVisibility(View.VISIBLE);
+                requestLayout();
+            }
+            switch (state) {
+                case ANCHORED:
+                    smoothSwipeTo(mAnchorPoint, 0);
+                    break;
+                case COLLAPSED:
+                    smoothSwipeTo(0, 0);
+                    break;
+                case EXPANDED:
+                    smoothSwipeTo(1.0f, 0);
+                    break;
+                case HIDDEN:
+                    int newTop = computePanelTopPosition(0.0f) + (mIsSwipingUp ? +mPanelHeight : -mPanelHeight);
+                    smoothSwipeTo(computeSwipeOffset(newTop), 0);
+                    break;
+            }
+        }
+    }
+
+    private void setPanelStateInternal(SwipePanelState state) {
+        if (mSwipeState == state) return;
+        SwipePanelState oldState = mSwipeState;
+        mSwipeState = state;
+        dispatchOnPanelStateChanged(this, oldState, state);
+    }
+
+    @SuppressLint("NewApi")
+    private void applyParallaxForCurrentSwipeOffset() {
+        if (mParallaxOffset > 0) {
+            int mainViewOffset = getCurrentParallaxOffset();
+            //ViewCompat.setTranslationY(mMainView, mainViewOffset);
+            mMainView.setTranslationY(mainViewOffset);
+        }
+    }
+
+    private void onPanelDragged(int newTop) {
+        if (mSwipeState != SwipePanelState.DRAGGING) {
+            mLastNotDraggingSwipeState = mSwipeState;
+        }
+        setPanelStateInternal(SwipePanelState.DRAGGING);
+        // Recompute the swipe offset based on the new top position
+        mSwipeOffset = computeSwipeOffset(newTop);
+        applyParallaxForCurrentSwipeOffset();
+        // Dispatch the swipe event
+        dispatchOnPanelSwipe(mSwipeableView);
+        // If the swipe offset is negative, and overlay is not on, we need to increase the
+        // height of the main content
+        LayoutParams lp = (LayoutParams) mMainView.getLayoutParams();
+        int defaultHeight = getHeight() - getPaddingBottom() - getPaddingTop() - mPanelHeight;
+
+        if (mSwipeOffset <= 0 && !mOverlayContent) {
+            // expand the main view
+            lp.height = mIsSwipingUp ? (newTop - getPaddingBottom()) : (getHeight() - getPaddingBottom() - mSwipeableView.getMeasuredHeight() - newTop);
+            if (lp.height == defaultHeight) {
+                lp.height = LayoutParams.MATCH_PARENT;
+            }
+            mMainView.requestLayout();
+        } else if (lp.height != LayoutParams.MATCH_PARENT && !mOverlayContent) {
+            lp.height = LayoutParams.MATCH_PARENT;
+            mMainView.requestLayout();
+        }
+    }
+
+    @Override
+    protected boolean drawChild(Canvas canvas, View child, long drawingTime) {
+        boolean result;
+
+        final int save = canvas.save();
+
+        if (mSwipeableView != null && mSwipeableView != child) { // if main view
+            // Clip against the swiper; no sense drawing what will immediately be covered,
+            // Unless the panel is set to overlay content
+            canvas.getClipBounds(mTmpRect);
+            if (!mOverlayContent) {
+                if (mIsSwipingUp) {
+                    mTmpRect.bottom = Math.min(mTmpRect.bottom, mSwipeableView.getTop());
+                } else {
+                    mTmpRect.top = Math.max(mTmpRect.top, mSwipeableView.getBottom());
+                }
+            }
+            if (mClipPanel) {
+                canvas.clipRect(mTmpRect);
+            }
+
+            result = super.drawChild(canvas, child, drawingTime);
+
+            if (mCoveredFadeColor != 0 && mSwipeOffset > 0) {
+                final int baseAlpha = (mCoveredFadeColor & 0xff000000) >>> 24;
+                final int imag = (int) (baseAlpha * mSwipeOffset);
+                final int color = imag << 24 | (mCoveredFadeColor & 0xffffff);
+                mCoveredFadePaint.setColor(color);
+                canvas.drawRect(mTmpRect, mCoveredFadePaint);
+            }
+        } else {
+            result = super.drawChild(canvas, child, drawingTime);
+        }
+
+        canvas.restoreToCount(save);
+
+        return result;
+    }
+
+    boolean smoothSwipeTo(float swipeOffset, int velocity) {
+        if (!isEnabled() || mSwipeableView == null) {
+            // Nothing to do.
+            return false;
+        }
+
+        int panelTop = computePanelTopPosition(swipeOffset);
+
+        if (mDragHelper.smoothSwipeViewTo(mSwipeableView, mSwipeableView.getLeft(), panelTop)) {
+            setAllChildrenVisible();
+            ViewCompat.postInvalidateOnAnimation(this);
             return true;
-        } catch (Exception ex) {
-            // Ignore the pointer out of range exception
-            return false;
         }
+        return false;
+    }
+
+    @Override
+    public void computeScroll() {
+        if (mDragHelper != null && mDragHelper.continueSettling(true)) {
+            if (!isEnabled()) {
+                mDragHelper.abort();
+                return;
+            }
+
+            ViewCompat.postInvalidateOnAnimation(this);
+        }
+    }
+
+    @Override
+    public void draw(Canvas c) {
+        super.draw(c);
+
+        // draw the shadow
+        if (mShadowDrawable != null && mSwipeableView != null) {
+            final int right = mSwipeableView.getRight();
+            final int top;
+            final int bottom;
+            if (mIsSwipingUp) {
+                top = mSwipeableView.getTop() - mShadowHeight;
+                bottom = mSwipeableView.getTop();
+            } else {
+                top = mSwipeableView.getBottom();
+                bottom = mSwipeableView.getBottom() + mShadowHeight;
+            }
+            final int left = mSwipeableView.getLeft();
+            mShadowDrawable.setBounds(left, top, right, bottom);
+            mShadowDrawable.draw(c);
+        }
+    }
+
+    protected boolean canScroll(View v, boolean checkV, int dx, int x, int y) {
+        if (v instanceof ViewGroup) {
+            final ViewGroup group = (ViewGroup) v;
+            final int scrollX = v.getScrollX();
+            final int scrollY = v.getScrollY();
+            final int count = group.getChildCount();
+            // Count backwards - let topmost views consume scroll distance first.
+            for (int i = count - 1; i >= 0; i--) {
+                final View child = group.getChildAt(i);
+                if (x + scrollX >= child.getLeft() && x + scrollX < child.getRight() &&
+                        y + scrollY >= child.getTop() && y + scrollY < child.getBottom() &&
+                        canScroll(child, true, dx, x + scrollX - child.getLeft(),
+                                y + scrollY - child.getTop())) {
+                    return true;
+                }
+            }
+        }
+        return checkV && ViewCompat.canScrollHorizontally(v, -dx);
     }
 
 
     @Override
-    public boolean onInterceptTouchEvent(MotionEvent ev) {
-        Log.i(TAG, "(Swipe) onInterceptTouchEvent: ");
-        // If the scrollable view is handling touch, neonMeasurever intercept
-        if (mIsScrollableViewHandlingTouch || !isTouchEnabled()) {
-            mSwipeViewDragHelper.abort();
-            return false;
-        }
-
-        final int action = ev.getAction();
-        final float x = ev.getX();
-        final float y = ev.getY();
-        final float adx = Math.abs(x - mInitialMotionX);
-        final float ady = Math.abs(y - mInitialMotionY);
-        final int dragSlop = mSwipeViewDragHelper.getTouchSlop();
-
-        switch (action) {
-            case MotionEvent.ACTION_DOWN: {
-                mIsUnableToDrag = false;
-                mInitialMotionX = x;
-                mInitialMotionY = y;
-                if (!isViewUnder(mDragView, (int) x, (int) y)) {
-                    mSwipeViewDragHelper.cancel();
-                    mIsUnableToDrag = true;
-                    return false;
-                }
-
-                break;
-            }
-
-            case MotionEvent.ACTION_MOVE: {
-                if (ady > dragSlop && adx > ady) {
-                    mSwipeViewDragHelper.cancel();
-                    mIsUnableToDrag = true;
-                    return false;
-                }
-                break;
-            }
-
-            case MotionEvent.ACTION_CANCEL:
-            case MotionEvent.ACTION_UP:
-                // If the dragView is still dragging when we get here, we need to call processTouchEvent
-                // so that the view is settled
-                // Added to make scrollable views work (tokudu)
-                if (mSwipeViewDragHelper.isDragging()) {
-                    mSwipeViewDragHelper.processTouchEvent(ev);
-                    return true;
-                }
-                // Check if this was a click on the faded part of the screen, and fire off the listener if there is one.
-                if (ady <= dragSlop
-                        && adx <= dragSlop
-                        && mSwipeOffset > 0 && !isViewUnder(mSwipeableView, (int) mInitialMotionX, (int) mInitialMotionY) && mFadeOnClickListener != null) {
-                    playSoundEffect(android.view.SoundEffectConstants.CLICK);
-                    mFadeOnClickListener.onClick(this);
-                    return true;
-                }
-                break;
-        }
-        return mSwipeViewDragHelper.shouldInterceptTouchEvent(ev);
+    protected ViewGroup.LayoutParams generateDefaultLayoutParams() {
+        return new LayoutParams();
     }
 
+    @Override
+    protected ViewGroup.LayoutParams generateLayoutParams(ViewGroup.LayoutParams p) {
+        return p instanceof MarginLayoutParams
+                ? new LayoutParams((MarginLayoutParams) p)
+                : new LayoutParams(p);
+    }
+
+    @Override
+    protected boolean checkLayoutParams(ViewGroup.LayoutParams p) {
+        return p instanceof LayoutParams && super.checkLayoutParams(p);
+    }
+
+    @Override
+    public ViewGroup.LayoutParams generateLayoutParams(AttributeSet attrs) {
+        return new LayoutParams(getContext(), attrs);
+    }
+
+    @Override
+    public Parcelable onSaveInstanceState() {
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("superState", super.onSaveInstanceState());
+        bundle.putSerializable(SWIPING_STATE, mSwipeState != SwipePanelState.DRAGGING ? mSwipeState : mLastNotDraggingSwipeState);
+        return bundle;
+    }
+
+    @Override
+    public void onRestoreInstanceState(Parcelable state) {
+        if (state instanceof Bundle) {
+            Bundle bundle = (Bundle) state;
+            mSwipeState = (SwipePanelState) bundle.getSerializable(SWIPING_STATE);
+            mSwipeState = mSwipeState == null ? DEFAULT_SWIPE_STATE : mSwipeState;
+            state = bundle.getParcelable("superState");
+        }
+        super.onRestoreInstanceState(state);
+    }
+
+    private class DragHelperCallback extends SwipeViewDragHelper.Callback {
+
+        @Override
+        public boolean tryCaptureView(View child, int pointerId) {
+            return !mIsUnableToDrag && child == mSwipeableView;
+
+        }
+
+        @Override
+        public void onViewDragStateChanged(int state) {
+            if (mDragHelper != null && mDragHelper.getViewDragState() == SwipeViewDragHelper.STATE_IDLE) {
+                mSwipeOffset = computeSwipeOffset(mSwipeableView.getTop());
+                applyParallaxForCurrentSwipeOffset();
+
+                if (mSwipeOffset == 1) {
+                    updateObscuredViewVisibility();
+                    setPanelStateInternal(SwipePanelState.EXPANDED);
+                } else if (mSwipeOffset == 0) {
+                    setPanelStateInternal(SwipePanelState.COLLAPSED);
+                } else if (mSwipeOffset < 0) {
+                    setPanelStateInternal(SwipePanelState.HIDDEN);
+                    mSwipeableView.setVisibility(View.INVISIBLE);
+                } else {
+                    updateObscuredViewVisibility();
+                    setPanelStateInternal(SwipePanelState.ANCHORED);
+                }
+            }
+        }
+
+        @Override
+        public void onViewCaptured(View capturedChild, int activePointerId) {
+            setAllChildrenVisible();
+        }
+
+        @Override
+        public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
+            onPanelDragged(top);
+            invalidate();
+        }
+
+        @Override
+        public void onViewReleased(View releasedChild, float xvel, float yvel) {
+            int target = 0;
+
+            // direction is always positive if we are swiping in the expanded direction
+            float direction = mIsSwipingUp ? -yvel : yvel;
+
+            if (direction > 0 && mSwipeOffset <= mAnchorPoint) {
+                // swipe up -> expand and stop at anchor point
+                target = computePanelTopPosition(mAnchorPoint);
+            } else if (direction > 0 && mSwipeOffset > mAnchorPoint) {
+                // swipe up past anchor -> expand
+                target = computePanelTopPosition(1.0f);
+            } else if (direction < 0 && mSwipeOffset >= mAnchorPoint) {
+                // swipe down -> collapse and stop at anchor point
+                target = computePanelTopPosition(mAnchorPoint);
+            } else if (direction < 0 && mSwipeOffset < mAnchorPoint) {
+                // swipe down past anchor -> collapse
+                target = computePanelTopPosition(0.0f);
+            } else if (mSwipeOffset >= (1.f + mAnchorPoint) / 2) {
+                // zero velocity, and far enough from anchor point => expand to the top
+                target = computePanelTopPosition(1.0f);
+            } else if (mSwipeOffset >= mAnchorPoint / 2) {
+                // zero velocity, and close enough to anchor point => go to anchor
+                target = computePanelTopPosition(mAnchorPoint);
+            } else {
+                // settle at the bottom
+                target = computePanelTopPosition(0.0f);
+            }
+
+            if (mDragHelper != null) {
+                mDragHelper.settleCapturedViewAt(releasedChild.getLeft(), target);
+            }
+            invalidate();
+        }
+
+        @Override
+        public int getViewVerticalDragRange(View child) {
+            return mSwipeRange;
+        }
+
+        @Override
+        public int clampViewPositionVertical(View child, int top, int dy) {
+            final int collapsedTop = computePanelTopPosition(0.f);
+            final int expandedTop = computePanelTopPosition(1.0f);
+            if (mIsSwipingUp) {
+                return Math.min(Math.max(top, expandedTop), collapsedTop);
+            } else {
+                return Math.min(Math.max(top, collapsedTop), expandedTop);
+            }
+        }
+    }
+
+    public static class LayoutParams extends ViewGroup.MarginLayoutParams {
+        private static final int[] ATTRS = new int[]{
+                android.R.attr.layout_weight
+        };
+
+        public float weight = 0;
+
+        public LayoutParams() {
+            super(MATCH_PARENT, MATCH_PARENT);
+        }
+
+        public LayoutParams(int width, int height) {
+            super(width, height);
+        }
+
+        public LayoutParams(int width, int height, float weight) {
+            super(width, height);
+            this.weight = weight;
+        }
+
+        public LayoutParams(android.view.ViewGroup.LayoutParams source) {
+            super(source);
+        }
+
+        public LayoutParams(MarginLayoutParams source) {
+            super(source);
+        }
+
+        public LayoutParams(LayoutParams source) {
+            super(source);
+        }
+
+        public LayoutParams(Context c, AttributeSet attrs) {
+            super(c, attrs);
+
+            final TypedArray ta = c.obtainStyledAttributes(attrs, ATTRS);
+            if (ta != null) {
+                this.weight = ta.getFloat(0, 0);
+                ta.recycle();
+            }
+
+
+        }
+    }
 }
