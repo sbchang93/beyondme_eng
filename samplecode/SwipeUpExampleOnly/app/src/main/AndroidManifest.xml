@@ -23,6 +23,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".view.SwipeUpActivity"
+            android:exported="true" />
+        <activity
             android:name=".view.AboutActivity"
             android:exported="true" />
         <activity
