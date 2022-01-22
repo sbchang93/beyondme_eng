@@ -24,12 +24,11 @@
         <attr name="swipePanelHeight" format="dimension" />
         <attr name="swipeShadowHeight" format="dimension" />
         <attr name="swipeParallaxOffset" format="dimension" />
-        <attr name="swipeDragView" format="reference" />
-        <attr name="swipeOverlay" format="boolean" />
-        <attr name="swipeScrollableView" format="reference" />
-
-        <attr name="swipeFlingVelocity" format="integer" />
         <attr name="swipeFadeColor" format="color" />
+        <attr name="swipeFlingVelocity" format="integer" />
+        <attr name="swipeDragView" format="reference" />
+        <attr name="swipeScrollableView" format="reference" />
+        <attr name="swipeOverlay" format="boolean" />
         <attr name="swipeClipPanel" format="boolean" />
         <attr name="swipeAnchorPoint" format="float" />
         <attr name="swipeInitialState" format="enum">
