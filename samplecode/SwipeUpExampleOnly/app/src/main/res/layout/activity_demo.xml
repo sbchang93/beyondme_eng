@@ -2,18 +2,18 @@
 <com.example.swipeupexampleonly.view_utils.swipeuppanel.SwipeUpPanelLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:swipeup="http://schemas.android.com/apk/res-auto"
     android:id="@+id/sliding_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="bottom"
-    app:swipePanelHeight="68dp"
-    app:swipeShadowHeight="50dp"
-    app:swipeParallaxOffset="100dp"
-    app:swipeDragView="@+id/dragView"
-    app:swipeOverlay="true"
-    app:swipeScrollableView="@+id/list"
-    app:swipeInitialState="collapsed">
+    swipeup:swipePanelHeight="68dp"
+    swipeup:swipeShadowHeight="50dp"
+    swipeup:swipeParallaxOffset="100dp"
+    swipeup:swipeDragView="@+id/dragView"
+    swipeup:swipeOverlay="true"
+    swipeup:swipeScrollableView="@+id/list"
+    swipeup:swipeInitialState="collapsed">
 
     <!-- MAIN CONTENT -->
     <FrameLayout
