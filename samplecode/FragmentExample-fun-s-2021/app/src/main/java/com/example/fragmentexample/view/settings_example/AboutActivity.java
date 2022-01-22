@@ -39,7 +39,10 @@ public class AboutActivity extends BaseUIActivity {
         tvAppVersionName = findViewById(R.id.app_version_text);
         try {
             PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-            tvAppVersionName.setText("Ver : " + packageInfo.versionName);
+            tvAppVersionName.setText("PackageName : " + packageInfo.packageName);
+            tvAppVersionName.append("\n");
+            tvAppVersionName.append("Ver : " + packageInfo.versionName);
+            tvAppVersionName.append("\n\n");
 
             //packageInfo = getPackageManager().getPackageInfo("com.android.settings", 0);
             packageInfo = getPackageManager().getPackageInfo("com.google.android.youtube", 0);
