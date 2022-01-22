@@ -100,8 +100,6 @@ public class SwipeUpPanelLayout extends ViewGroup {
     private View.OnClickListener mFadeOnClickListener;
 
     private final SwipeViewDragHelper mDragHelper;
-    private final SwipeCanvasSaveProxyFactory mCanvasSaveProxyFactory;
-    private SwipeCanvasSaveProxy mSwipeCanvasSaveProxy;
 
     private int log_SlideMoveEventCounts;
 
@@ -134,8 +132,6 @@ public class SwipeUpPanelLayout extends ViewGroup {
 
     public SwipeUpPanelLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-
-        mCanvasSaveProxyFactory = new SwipeCanvasSaveProxyFactory();
 
         if (isInEditMode()) {
             mShadowDrawable = null;
@@ -907,11 +903,7 @@ public class SwipeUpPanelLayout extends ViewGroup {
     protected boolean drawChild(Canvas canvas, View child, long drawingTime) {
         boolean result;
 
-        if (mSwipeCanvasSaveProxy == null || !mSwipeCanvasSaveProxy.isFor(canvas)) {
-            mSwipeCanvasSaveProxy = mCanvasSaveProxyFactory.create(canvas);
-        }
-
-        final int save = mSwipeCanvasSaveProxy.save();
+        final int save = canvas.save();
 
         if (mSlideableView != null && mSlideableView != child) { // if main view
             // Clip against the slider; no sense drawing what will immediately be covered,
