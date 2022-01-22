@@ -48,7 +48,7 @@ public class SwipeUpActivity  extends BaseUIActivity {
 
         setTitle("SwipeUpActivity");
 
-        ListView listView = findViewById(R.id.list);
+        ListView listView = findViewById(R.id.swipe_list);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -63,7 +63,7 @@ public class SwipeUpActivity  extends BaseUIActivity {
 
         listView.setAdapter(arrayAdapter);
 
-        mSwipeUpPanelLayout = (SwipeUpPanelLayout) findViewById(R.id.sliding_layout);
+        mSwipeUpPanelLayout = (SwipeUpPanelLayout) findViewById(R.id.swipe_up_layout);
         mSwipeUpPanelLayout.addPanelSlideListener(new SwipeUpPanelLayout.PanelSlideListener() {
             @Override
             public void onPanelSlide(View panel, float swipeOffset) {
