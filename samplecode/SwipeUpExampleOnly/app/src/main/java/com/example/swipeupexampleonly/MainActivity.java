@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.swipeupexampleonly.view.AboutActivity;
 import com.example.swipeupexampleonly.view.DemoActivity;
+import com.example.swipeupexampleonly.view.SwipeUpActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         mListView.setAdapter(adapter);
 
         // addItem (title, desc, cls)
+        addItem("SwipeUpActivity", "SwipeUpActivity Description", SwipeUpActivity.class);
         addItem("SlidingUpPanel DemoActivity", "SlidingUpPanel DemoActivity Description", DemoActivity.class);
         addItem("AboutActivity", "AboutActivity Description", AboutActivity.class);
 
