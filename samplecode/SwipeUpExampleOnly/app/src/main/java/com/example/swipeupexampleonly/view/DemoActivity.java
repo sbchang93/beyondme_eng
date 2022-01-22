@@ -72,7 +72,12 @@ public class DemoActivity  extends BaseUIActivity {
                 "A",
                 "Child",
                 "Of",
-                "SlidingUpPanelLayout"
+                "SlidingUpPanelLayout",
+                "Start Test data1", "data2 ...", "data3 ***", "data4 ###", "data5", "data6", "data7", "data8 EEEEEE", "data9", "data10",
+                "data11", "data12 GGGGG", "data13", "data14", "data15 AAA", "data16", "data17", "data18 BBB", "data19", "data20",
+                "data21 CCC", "data22", "data23 DDD", "data24", "data25", "data26", "data27", "data28", "data29", "data30 End ...",
+                "data31 CCC", "data32", "data33 DDD", "data34", "data35", "data36", "data37", "data38", "data39", "data40 End ...",
+                "data41 CCC", "data42", "data43 DDD", "data44", "data45", "data46", "data47", "data48", "data49", "data50 End ..."
         );
 
         // This is the array adapter, it takes the context of the activity as a

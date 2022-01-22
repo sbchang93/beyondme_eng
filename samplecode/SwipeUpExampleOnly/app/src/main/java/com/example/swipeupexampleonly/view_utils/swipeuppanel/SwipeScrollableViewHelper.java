@@ -16,22 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 //https://github.com/umano/AndroidSlidingUpPanel/blob/7af57e82bfdac401ea1a0b6a105442d427e9c5e7/library/src/main/java/com/sothree/slidinguppanel/canvassaveproxy/LegacyCanvasSaveProxy.java
 
 
-/**
- * Helper class for determining the current scroll positions for scrollable views. Currently works
- * for ListView, ScrollView and RecyclerView, but the library users can override it to add support
- * for other views.
- */
 public class SwipeScrollableViewHelper {
-    /**
-     * Returns the current scroll position of the scrollable view. If this method returns zero or
-     * less, it means at the scrollable view is in a position such as the panel should handle
-     * scrolling. If the method returns anything above zero, then the panel will let the scrollable
-     * view handle the scrolling
-     *
-     * @param scrollableView the scrollable view
-     * @param isSlidingUp whether or not the panel is sliding up or down
-     * @return the scroll position
-     */
+
     public int getScrollableViewScrollPosition(View scrollableView, boolean isSlidingUp) {
         if (scrollableView == null) return 0;
         if (scrollableView instanceof ScrollView) {
