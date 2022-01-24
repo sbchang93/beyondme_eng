@@ -22,6 +22,7 @@ import com.example.swipeup.view.animation_example.ViewPropertyAnimatorActivity;
 import com.example.swipeup.view.custom_view.CustomLoginButtonActivity;
 import com.example.swipeup.view.custom_view.LinedEditTextActivity;
 import com.example.swipeup.view.custom_view.VolumeControlActivity;
+import com.example.swipeup.view.scroller_example.ScrollerMainActivity;
 import com.example.swipeup.view.sliding_up_pannel.DemoActivity;
 import com.example.swipeup.view.swipe_up_panel.SwipeUpActivity;
 import com.example.swipeup.view.touch_example.MoveLoggerActivity;
@@ -96,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
         addItem("MultitouchActivity", "MultitouchActivity Description", MultitouchActivity.class);
         addItem("TouchInterceptActivity", "TouchInterceptActivity Description", TouchInterceptActivity.class);
 
+        addItem("ScrollerMainActivity", "ScrollerMainActivity Description", ScrollerMainActivity.class);
 
 
 //         text1 = findViewById(R.id.textView1);

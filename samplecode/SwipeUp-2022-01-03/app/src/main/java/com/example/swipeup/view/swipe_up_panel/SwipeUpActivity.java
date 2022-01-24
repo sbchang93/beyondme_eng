@@ -33,7 +33,6 @@ public class SwipeUpActivity  extends BaseUIActivity {
             "data41 CCC", "data42", "data43 DDD", "data44", "data45", "data46", "data47", "data48", "data49", "data50 End ..."
     );
 
-
     // id name in activity_swipe_up.xml
     // @+id/swipe_up_layout
     // @+id/main_textview1
