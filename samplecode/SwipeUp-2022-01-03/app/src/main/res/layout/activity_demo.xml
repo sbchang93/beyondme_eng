@@ -17,6 +17,7 @@
 
     <!-- MAIN CONTENT -->
     <FrameLayout
+        android:id="@+id/main_View"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/snow"
@@ -37,13 +38,13 @@
     <!-- SLIDING LAYOUT -->
     <!--         android:background="#ffffff"   -->
     <LinearLayout
+        android:id="@+id/dragView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/sunny"
         android:orientation="vertical"
         android:clickable="true"
-        android:focusable="false"
-        android:id="@+id/dragView">
+        android:focusable="false">
 
         <LinearLayout
             android:layout_width="match_parent"
