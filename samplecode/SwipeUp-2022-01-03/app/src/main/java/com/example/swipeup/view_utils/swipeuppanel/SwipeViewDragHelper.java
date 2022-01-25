@@ -79,7 +79,7 @@ public class SwipeViewDragHelper {
         public void onViewCaptured(View capturedChild, int activePointerId) {
         }
 
-        public void onViewReleased(View releasedChild, float xvel, float yvel) {
+        public void onViewReleased(View releasedChild, float xyvelocity, float yyvelocity) {
         }
 
         public void onEdgeTouched(int edgeFlags, int pointerId) {
@@ -251,7 +251,7 @@ public class SwipeViewDragHelper {
         return forceSettleCapturedViewAt(finalLeft, finalTop, (int) mVelocityTracker.getXVelocity(), (int) mVelocityTracker.getYVelocity());
     }
 
-    private boolean forceSettleCapturedViewAt(int finalLeft, int finalTop, int xvel, int yvel) {
+    private boolean forceSettleCapturedViewAt(int finalLeft, int finalTop, int xvelocity, int yvelocity) {
         final int startLeft = mCapturedView.getLeft();
         final int startTop = mCapturedView.getTop();
         final int dx = finalLeft - startLeft;
@@ -264,30 +264,28 @@ public class SwipeViewDragHelper {
             return false;
         }
 
-        final int duration = computeSettleDuration(mCapturedView, dx, dy, xvel, yvel);
+        final int duration = computeSettleDuration(mCapturedView, dx, dy, xvelocity, yvelocity);
         mScroller.startScroll(startLeft, startTop, dx, dy, duration);
 
         setDragState(STATE_SETTLING);
         return true;
     }
 
-    private int computeSettleDuration(View child, int dx, int dy, int xvel, int yvel) {
-        xvel = clampMag(xvel, (int) mMinVelocity, (int) mMaxVelocity);
-        yvel = clampMag(yvel, (int) mMinVelocity, (int) mMaxVelocity);
+    private int computeSettleDuration(View child, int dx, int dy, int xvelocity, int yvelocity) {
+        xvelocity = clampMag(xvelocity, (int) mMinVelocity, (int) mMaxVelocity);
+        yvelocity = clampMag(yvelocity, (int) mMinVelocity, (int) mMaxVelocity);
         final int absDx = Math.abs(dx);
         final int absDy = Math.abs(dy);
-        final int absXVel = Math.abs(xvel);
-        final int absYVel = Math.abs(yvel);
+        final int absXVel = Math.abs(xvelocity);
+        final int absYVel = Math.abs(yvelocity);
         final int addedVel = absXVel + absYVel;
         final int addedDistance = absDx + absDy;
 
-        final float xweight = xvel != 0 ? (float) absXVel / addedVel :
-                (float) absDx / addedDistance;
-        final float yweight = yvel != 0 ? (float) absYVel / addedVel :
-                (float) absDy / addedDistance;
+        final float xweight = xvelocity != 0 ? (float) absXVel / addedVel : (float) absDx / addedDistance;
+        final float yweight = yvelocity != 0 ? (float) absYVel / addedVel : (float) absDy / addedDistance;
 
-        int xduration = computeAxisDuration(dx, xvel, mCallback.getViewHorizontalDragRange(child));
-        int yduration = computeAxisDuration(dy, yvel, mCallback.getViewVerticalDragRange(child));
+        int xduration = computeAxisDuration(dx, xvelocity, mCallback.getViewHorizontalDragRange(child));
+        int yduration = computeAxisDuration(dy, yvelocity, mCallback.getViewVerticalDragRange(child));
 
         return (int) (xduration * xweight + yduration * yweight);
     }
@@ -300,8 +298,7 @@ public class SwipeViewDragHelper {
         final int width = mParentView.getWidth();
         final int halfWidth = width / 2;
         final float distanceRatio = Math.min(1f, (float) Math.abs(delta) / width);
-        final float distance = halfWidth + halfWidth *
-                distanceInfluenceForSnapDuration(distanceRatio);
+        final float distance = halfWidth + halfWidth * distanceInfluenceForSnapDuration(distanceRatio);
 
         int duration;
         velocity = Math.abs(velocity);
@@ -394,9 +391,9 @@ public class SwipeViewDragHelper {
         return mDragState == STATE_SETTLING;
     }
 
-    private void dispatchViewReleased(float xvel, float yvel) {
+    private void dispatchViewReleased(float xvelocity, float yvelocity) {
         mReleaseInProgress = true;
-        mCallback.onViewReleased(mCapturedView, xvel, yvel);
+        mCallback.onViewReleased(mCapturedView, xvelocity, yvelocity);
         mReleaseInProgress = false;
 
         if (mDragState == STATE_DRAGGING) {
@@ -901,9 +898,9 @@ public class SwipeViewDragHelper {
 
     private void releaseViewForPointerUp() {
         mVelocityTracker.computeCurrentVelocity(1000, mMaxVelocity);
-        final float xvel = clampMag(mVelocityTracker.getXVelocity(), mMinVelocity, mMaxVelocity);
-        final float yvel = clampMag(mVelocityTracker.getYVelocity(), mMinVelocity, mMaxVelocity);
-        dispatchViewReleased(xvel, yvel);
+        final float xvelocity = clampMag(mVelocityTracker.getXVelocity(), mMinVelocity, mMaxVelocity);
+        final float yvelocity = clampMag(mVelocityTracker.getYVelocity(), mMinVelocity, mMaxVelocity);
+        dispatchViewReleased(xvelocity, yvelocity);
     }
 
     private void dragTo(int left, int top, int dx, int dy) {

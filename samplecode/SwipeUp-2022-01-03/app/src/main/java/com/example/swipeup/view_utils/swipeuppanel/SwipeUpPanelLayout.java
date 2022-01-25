@@ -41,6 +41,7 @@ public class SwipeUpPanelLayout extends ViewGroup {
 
     private static final int DEFAULT_SWIPE_PANEL_HEIGHT = 68; // dp;
     private static final float DEFAULT_ANCHOR_POINT = 1.0f; // In relative %
+    //private static final float DEFAULT_ANCHOR_POINT = 0.5f; // In relative %
     private static SwipePanelState DEFAULT_SWIPE_STATE = SwipePanelState.COLLAPSED;
     private static final int DEFAULT_SHADOW_HEIGHT = 4; // dp;
     private static final int DEFAULT_FADE_COLOR = 0x99000000;
@@ -84,7 +85,7 @@ public class SwipeUpPanelLayout extends ViewGroup {
     private SwipePanelState mLastNotDraggingSwipeState = DEFAULT_SWIPE_STATE;
     private float mSwipeOffsetRate;
     private int mSwipeRange;
-    private float mAnchorPoint = 1.f;
+    private float mAnchorPoint;
     private boolean mIsUnableToDrag;
     private boolean mIsTouchEnabled;
 
@@ -1089,11 +1090,11 @@ public class SwipeUpPanelLayout extends ViewGroup {
         }
 
         @Override
-        public void onViewReleased(View releasedChild, float xvel, float yvel) {
+        public void onViewReleased(View releasedChild, float xvelocity, float yvelocity) {
             int target = 0;
 
             // direction is always positive if we are swiping in the expanded direction
-            float direction = mIsSwipingUp ? -yvel : yvel;
+            float direction = mIsSwipingUp ? -yvelocity : yvelocity;
 
             if (direction > 0 && mSwipeOffsetRate <= mAnchorPoint) {
                 // swipe up -> expand and stop at anchor point
