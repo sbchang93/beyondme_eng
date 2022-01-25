@@ -82,8 +82,9 @@ public class SlidingView extends ViewGroup {
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
-        canvas.drawBitmap(mWallpaper, 0, 0, mPaint);
+        canvas.drawBitmap(mWallpaper, 0, 0, mPaint);  // 첫페이지만 배경 이미지 보여줄 때 사용
         for (int i = 0; i < getChildCount(); i++) {
+            //canvas.drawBitmap(mWallpaper, i * getChildAt(i).getWidth(), 0, mPaint);  // 다른 페이지에도 배경 이미지를 보이게 하고 싶은 경우에 사용
             drawChild(canvas, getChildAt(i), 100);
         }
     }
@@ -140,8 +141,7 @@ public class SlidingView extends ViewGroup {
                 if (mToast != null) {
                     mToast.setText("page : " + nextPage);
                 } else {
-                    mToast = Toast.makeText(getContext(), "page : " + nextPage,
-                            Toast.LENGTH_SHORT);
+                    mToast = Toast.makeText(getContext(), "page : " + nextPage, Toast.LENGTH_SHORT);
                 }
                 mToast.show();
                 invalidate();
@@ -175,9 +175,8 @@ public class SlidingView extends ViewGroup {
 
         switch (action) {
             case MotionEvent.ACTION_DOWN:
-                mCurTouchState = mScroller.isFinished() ? TOUCH_STATE_NORMAL
-                        : TOUCH_STATE_SCROLLING;
-                mLastPoint.set(x, y); // 터치 지점 저장
+                mCurTouchState = mScroller.isFinished() ? TOUCH_STATE_NORMAL : TOUCH_STATE_SCROLLING;
+                mLastPoint.set(x, y);
                 break;
             case MotionEvent.ACTION_MOVE:
                 int move_x = Math.abs(x - (int) mLastPoint.x);
