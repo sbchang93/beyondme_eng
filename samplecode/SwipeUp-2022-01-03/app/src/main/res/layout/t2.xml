@@ -7,11 +7,11 @@
         android:id="@+id/textView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:text="T2.xml - Hello World!"
         android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
-    <ListView
-        android:id="@+id/listview"
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:src="@drawable/dog"/>
 </LinearLayout>
