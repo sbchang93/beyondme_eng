@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.animation.Interpolator;
+import android.widget.Scroller;
 
 import androidx.core.view.VelocityTrackerCompat;
 import androidx.core.view.ViewCompat;
@@ -57,7 +58,8 @@ public class SwipeViewDragHelper {
     private int mEdgeSize;
     private int mTrackingEdges;
 
-    private ScrollerCompat mScroller;
+    //private ScrollerCompat mScroller;
+    private Scroller mScroller;
 
     private final Callback mCallback;
 
@@ -68,21 +70,27 @@ public class SwipeViewDragHelper {
 
     public static abstract class Callback {
 
-        public void onViewDragStateChanged(int state) {}
+        public void onViewDragStateChanged(int state) {
+        }
 
-        public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {}
+        public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
+        }
 
-        public void onViewCaptured(View capturedChild, int activePointerId) {}
+        public void onViewCaptured(View capturedChild, int activePointerId) {
+        }
 
-        public void onViewReleased(View releasedChild, float xvel, float yvel) {}
+        public void onViewReleased(View releasedChild, float xvel, float yvel) {
+        }
 
-        public void onEdgeTouched(int edgeFlags, int pointerId) {}
+        public void onEdgeTouched(int edgeFlags, int pointerId) {
+        }
 
         public boolean onEdgeLock(int edgeFlags) {
             return false;
         }
 
-        public void onEdgeDragStarted(int edgeFlags, int pointerId) {}
+        public void onEdgeDragStarted(int edgeFlags, int pointerId) {
+        }
 
         public int getOrderedChildIndex(int index) {
             return index;
@@ -159,7 +167,8 @@ public class SwipeViewDragHelper {
         mMaxVelocity = vc.getScaledMaximumFlingVelocity();
         mMinVelocity = vc.getScaledMinimumFlingVelocity();
 
-        mScroller = ScrollerCompat.create(context, interpolator != null ? interpolator : sInterpolator);
+        //mScroller = ScrollerCompat.create(context, interpolator != null ? interpolator : sInterpolator);
+        mScroller = new Scroller(context, interpolator != null ? interpolator : sInterpolator);
     }
 
     public void setMinVelocity(float minVel) {
@@ -232,19 +241,14 @@ public class SwipeViewDragHelper {
     public boolean smoothSwipeViewTo(View child, int finalLeft, int finalTop) {
         mCapturedView = child;
         mActivePointerId = INVALID_POINTER;
-
         return forceSettleCapturedViewAt(finalLeft, finalTop, 0, 0);
     }
 
     public boolean settleCapturedViewAt(int finalLeft, int finalTop) {
         if (!mReleaseInProgress) {
-            throw new IllegalStateException("Cannot settleCapturedViewAt outside of a call to " +
-                    "Callback#onViewReleased");
+            throw new IllegalStateException("Cannot settleCapturedViewAt outside of a call to " + "Callback#onViewReleased");
         }
-
-        return forceSettleCapturedViewAt(finalLeft, finalTop,
-                (int) VelocityTrackerCompat.getXVelocity(mVelocityTracker, mActivePointerId),
-                (int) VelocityTrackerCompat.getYVelocity(mVelocityTracker, mActivePointerId));
+        return forceSettleCapturedViewAt(finalLeft, finalTop, (int) mVelocityTracker.getXVelocity(), (int) mVelocityTracker.getYVelocity());
     }
 
     private boolean forceSettleCapturedViewAt(int finalLeft, int finalTop, int xvel, int yvel) {
@@ -336,9 +340,7 @@ public class SwipeViewDragHelper {
                     "Callback#onViewReleased");
         }
 
-        mScroller.fling(mCapturedView.getLeft(), mCapturedView.getTop(),
-                (int) VelocityTrackerCompat.getXVelocity(mVelocityTracker, mActivePointerId),
-                (int) VelocityTrackerCompat.getYVelocity(mVelocityTracker, mActivePointerId),
+        mScroller.fling(mCapturedView.getLeft(), mCapturedView.getTop(), (int) mVelocityTracker.getXVelocity(), (int) mVelocityTracker.getYVelocity(),
                 minLeft, maxLeft, minTop, maxTop);
 
         setDragState(STATE_SETTLING);
@@ -356,7 +358,7 @@ public class SwipeViewDragHelper {
             final int dx = x - mCapturedView.getLeft();
             final int dy = y - mCapturedView.getTop();
 
-            if(!keepGoing && dy != 0) { //fix #525
+            if (!keepGoing && dy != 0) { //fix #525
                 //Invalid drag state
                 mCapturedView.setTop(0);
                 return true;
@@ -591,7 +593,7 @@ public class SwipeViewDragHelper {
                         break;
                     }
 
-                    final View toCapture = findTopChildUnder((int)mInitialMotionX[pointerId], (int)mInitialMotionY[pointerId]);
+                    final View toCapture = findTopChildUnder((int) mInitialMotionX[pointerId], (int) mInitialMotionY[pointerId]);
                     if (toCapture != null && checkTouchSlop(toCapture, dx, dy) &&
                             tryCaptureViewForDrag(toCapture, pointerId)) {
                         break;
@@ -818,7 +820,7 @@ public class SwipeViewDragHelper {
         final float absDelta = Math.abs(delta);
         final float absODelta = Math.abs(odelta);
 
-        if ((mInitialEdgesTouched[pointerId] & edge) != edge  || (mTrackingEdges & edge) == 0 ||
+        if ((mInitialEdgesTouched[pointerId] & edge) != edge || (mTrackingEdges & edge) == 0 ||
                 (mEdgeDragsLocked[pointerId] & edge) == edge ||
                 (mEdgeDragsInProgress[pointerId] & edge) == edge ||
                 (absDelta <= mTouchSlop && absODelta <= mTouchSlop)) {
@@ -899,12 +901,8 @@ public class SwipeViewDragHelper {
 
     private void releaseViewForPointerUp() {
         mVelocityTracker.computeCurrentVelocity(1000, mMaxVelocity);
-        final float xvel = clampMag(
-                VelocityTrackerCompat.getXVelocity(mVelocityTracker, mActivePointerId),
-                mMinVelocity, mMaxVelocity);
-        final float yvel = clampMag(
-                VelocityTrackerCompat.getYVelocity(mVelocityTracker, mActivePointerId),
-                mMinVelocity, mMaxVelocity);
+        final float xvel = clampMag(mVelocityTracker.getXVelocity(), mMinVelocity, mMaxVelocity);
+        final float yvel = clampMag(mVelocityTracker.getYVelocity(), mMinVelocity, mMaxVelocity);
         dispatchViewReleased(xvel, yvel);
     }
 
