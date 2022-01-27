@@ -23,6 +23,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".view.android_hero_samples.DragViewGroupTest"
+            android:exported="true" />
+        <activity
+            android:name=".view.android_hero_samples.DragViewTest"
+            android:exported="true" />
+        <activity
+            android:name=".view.android_hero_samples.CustomViewLayoutActivity"
+            android:exported="true" />
+        <activity
             android:name=".view.android_hero_samples.CustomViewGroupActivity"
             android:exported="true" />
         <activity
