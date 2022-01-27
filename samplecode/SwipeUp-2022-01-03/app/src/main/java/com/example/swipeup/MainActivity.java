@@ -13,8 +13,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.swipeup.view.android_hero_samples.CustomViewGroupActivity;
+import com.example.swipeup.view.android_hero_samples.CustomViewLayoutActivity;
 import com.example.swipeup.view.android_hero_samples.CustomViewSamples01Activity;
 import com.example.swipeup.view.AboutActivity;
+import com.example.swipeup.view.android_hero_samples.DragViewGroupTest;
+import com.example.swipeup.view.android_hero_samples.DragViewTest;
 import com.example.swipeup.view.animation_example.AnimationActivity;
 import com.example.swipeup.view.animation_example.AnimationDrawableActivity;
 import com.example.swipeup.view.animation_example.ViewPropertyAnimatorActivity;
@@ -96,7 +99,10 @@ public class MainActivity extends AppCompatActivity {
 
         // Andorid Hero Samples
         addItem("CustomViewSamples01Activity", "CustomViewSamples01Activity Description", CustomViewSamples01Activity.class);
-        addItem("CustomViewSamples01Activity", "CustomViewSamples01Activity Description", CustomViewGroupActivity.class);
+        addItem("CustomViewGroupActivity", "CustomViewGroupActivity Description", CustomViewGroupActivity.class);
+        addItem("CustomViewLayoutActivity", "CustomViewLayoutActivity Description", CustomViewLayoutActivity.class);
+        addItem("DragViewTest", "DragViewTest Description", DragViewTest.class);
+        addItem("DragViewGroupTest", "DragViewGroupTest Description", DragViewGroupTest.class);
 
 
 //         text1 = findViewById(R.id.textView1);
