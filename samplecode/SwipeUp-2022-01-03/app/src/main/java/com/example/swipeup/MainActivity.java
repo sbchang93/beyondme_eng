@@ -3,10 +3,8 @@ package com.example.swipeup;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.ObjectAnimator;
-import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.swipeup.android_hero_samples.CustomViewSamples01Activity;
-import com.example.swipeup.model.DemoModel;
+import com.example.swipeup.view.android_hero_samples.CustomViewSamples01Activity;
 import com.example.swipeup.view.AboutActivity;
 import com.example.swipeup.view.animation_example.AnimationActivity;
 import com.example.swipeup.view.animation_example.AnimationDrawableActivity;
@@ -39,15 +36,10 @@ import com.example.swipeup.view.view_example.CardViewDemoActivity;
 import com.example.swipeup.view.view_example.PaintActivity;
 import com.example.swipeup.view.view_example.TextViewActivity;
 
-import net.danlew.android.joda.JodaTimeAndroid;
-
-import org.joda.time.DateTime;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
