@@ -9,11 +9,11 @@ import com.example.swipeup.R;
 //Reference Home URL : https://github.com/GavinAndre/AndroidHeroSamples
 //Reference Home URL : https://programmer.help/blogs/android-scroll-analysis-3-the-ultimate-way-to-slide-viewdraghelper.html
 
-public class CustomViewGroupActivity extends AppCompatActivity {
+public class CustomViewLayoutActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_custom_view_group);
+        setContentView(R.layout.activity_custom_view_layout);
     }
 }

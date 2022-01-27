@@ -10,6 +10,9 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Scroller;
 
+//Reference Home URL : https://github.com/GavinAndre/AndroidHeroSamples
+//Reference Home URL : https://programmer.help/blogs/android-scroll-analysis-3-the-ultimate-way-to-slide-viewdraghelper.html
+
 public class MyScrollView extends ViewGroup {
     private static final String TAG = "MyScrollView";
 
