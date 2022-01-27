@@ -100,14 +100,26 @@ public class DragViewGroup extends FrameLayout {
                 @Override
                 public void onViewReleased(View releasedChild, float xvel, float yvel) {
                     super.onViewReleased(releasedChild, xvel, yvel);
-                    if (mMainView.getLeft() < 500) {
-                        mViewDragHelper.smoothSlideViewTo(mMainView, 0, 0);
+                    if (mMainView.getLeft() < 300) {
+                        mViewDragHelper.smoothSlideViewTo(mMainView, -200, 0);
                         ViewCompat.postInvalidateOnAnimation(DragViewGroup.this);
                     } else {
-                        mViewDragHelper.smoothSlideViewTo(mMainView, 300, 0);
+                        mViewDragHelper.smoothSlideViewTo(mMainView, 600, 0);
                         ViewCompat.postInvalidateOnAnimation(DragViewGroup.this);
                     }
                 }
+
+//                @Override
+//                public void onViewReleased(View releasedChild, float xvel, float yvel) {
+//                    super.onViewReleased(releasedChild, xvel, yvel);
+//                    if (mMainView.getLeft() < 500) {
+//                        mViewDragHelper.smoothSlideViewTo(mMainView, 0, 0);
+//                        ViewCompat.postInvalidateOnAnimation(DragViewGroup.this);
+//                    } else {
+//                        mViewDragHelper.smoothSlideViewTo(mMainView, 300, 0);
+//                        ViewCompat.postInvalidateOnAnimation(DragViewGroup.this);
+//                    }
+//                }
             };
 
     @Override
