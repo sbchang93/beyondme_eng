@@ -14,6 +14,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.swipeup.android_hero_samples.CustomViewSamples01Activity;
 import com.example.swipeup.model.DemoModel;
 import com.example.swipeup.view.AboutActivity;
 import com.example.swipeup.view.animation_example.AnimationActivity;
@@ -98,6 +99,10 @@ public class MainActivity extends AppCompatActivity {
         addItem("TouchInterceptActivity", "TouchInterceptActivity Description", TouchInterceptActivity.class);
 
         addItem("ScrollerMainActivity", "ScrollerMainActivity Description", ScrollerMainActivity.class);
+
+
+        // Andorid Hero Samples
+        addItem("CustomViewSamples01Activity", "CustomViewSamples01Activity Description", CustomViewSamples01Activity.class);
 
 
 //         text1 = findViewById(R.id.textView1);
