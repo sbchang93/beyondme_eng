@@ -12,6 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.swipeup.view.android_hero_samples.CustomViewGroupActivity;
 import com.example.swipeup.view.android_hero_samples.CustomViewSamples01Activity;
 import com.example.swipeup.view.AboutActivity;
 import com.example.swipeup.view.animation_example.AnimationActivity;
@@ -95,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Andorid Hero Samples
         addItem("CustomViewSamples01Activity", "CustomViewSamples01Activity Description", CustomViewSamples01Activity.class);
+        addItem("CustomViewSamples01Activity", "CustomViewSamples01Activity Description", CustomViewGroupActivity.class);
 
 
 //         text1 = findViewById(R.id.textView1);

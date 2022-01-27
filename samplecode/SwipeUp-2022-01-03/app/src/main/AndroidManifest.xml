@@ -23,6 +23,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".view.android_hero_samples.CustomViewGroupActivity"
+            android:exported="true" />
+        <activity
             android:name=".view.android_hero_samples.CustomViewSamples01Activity"
             android:exported="true" />
         <activity
