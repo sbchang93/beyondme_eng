@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/activity_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.example.swipeup.android_hero_samples.customview.TitleBar
+            android:id="@+id/title_bar"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@color/colorAccent"
+            custom:leftImageDrawable="@mipmap/return_white"
+            custom:rightImageDrawable="@mipmap/my_friend"
+            custom:title="Video List"
+            custom:titleTextColor="#ffffff"
+            custom:titleTextSize="7dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+
+        <com.example.swipeup.android_hero_samples.customview.MyView
+            android:id="@+id/my_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:background="#00ff00"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+        <com.example.swipeup.android_hero_samples.customview.MyTextView
+            android:id="@+id/my_text_view"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="@string/android"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+        <com.example.swipeup.android_hero_samples.customview.ShineTextView
+            android:id="@+id/shine_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:text="@string/my_android_textview"/>
+
+        <com.example.swipeup.android_hero_samples.customview.CircleProgressView
+            android:layout_width="match_parent"
+            android:layout_height="400dp"/>
+
+        <com.example.swipeup.android_hero_samples.customview.VolumeView
+            android:layout_width="match_parent"
+            android:layout_height="400dp"/>
+    </LinearLayout>
+</ScrollView>
