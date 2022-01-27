@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <com.example.swipeup.android_hero_samples.customview.TitleBar
+        <com.example.swipeup.view.android_hero_samples.customview.TitleBar
             android:id="@+id/title_bar"
             android:layout_width="match_parent"
             android:layout_height="48dp"
@@ -27,35 +27,39 @@
             android:layout_width="match_parent"
             android:layout_height="30dp" />
 
-        <com.example.swipeup.android_hero_samples.customview.MyView
+        <com.example.swipeup.view.android_hero_samples.customview.MyView
             android:id="@+id/my_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:background="#00ff00"/>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="30dp" />
-        <com.example.swipeup.android_hero_samples.customview.MyTextView
+
+        <com.example.swipeup.view.android_hero_samples.customview.MyTextView
             android:id="@+id/my_text_view"
-            android:layout_width="100dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
             android:gravity="center"
             android:text="@string/android"/>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="30dp" />
-        <com.example.swipeup.android_hero_samples.customview.ShineTextView
+
+        <com.example.swipeup.view.android_hero_samples.customview.ShineTextView
             android:id="@+id/shine_text_view"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:text="@string/my_android_textview"/>
 
-        <com.example.swipeup.android_hero_samples.customview.CircleProgressView
+        <com.example.swipeup.view.android_hero_samples.customview.CircleProgressView
             android:layout_width="match_parent"
             android:layout_height="400dp"/>
 
-        <com.example.swipeup.android_hero_samples.customview.VolumeView
+        <com.example.swipeup.view.android_hero_samples.customview.VolumeView
             android:layout_width="match_parent"
             android:layout_height="400dp"/>
     </LinearLayout>
