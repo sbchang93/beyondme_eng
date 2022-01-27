@@ -67,7 +67,6 @@ public class DragViewGroup extends FrameLayout {
 
                 @Override
                 public boolean tryCaptureView(View child, int pointerId) {
-                    //如果当前触摸的child是mMainView时开始检测
                     return mMainView == child;
                 }
 
