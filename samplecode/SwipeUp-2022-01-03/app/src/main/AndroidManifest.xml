@@ -23,7 +23,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".android_hero_samples.CustomViewSamples01Activity"
+            android:name=".view.android_hero_samples.CustomViewSamples01Activity"
             android:exported="true" />
         <activity
             android:name=".view.scroller_example.ScrollerMainActivity"
