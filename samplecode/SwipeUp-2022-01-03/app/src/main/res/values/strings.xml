@@ -16,4 +16,11 @@
     <string name="hello"><![CDATA[<b>The Awesome Sliding Up Panel</b><br/> Brought to you by<br/><a href="http://umanoapp.com">http://umanoapp.com</a>]]></string>
     <string name="follow"><![CDATA[Follow us<br/>on <a href="http://twitter.com/umanoapp">Twitter</a>]]></string>
 
+    <string name="android">Android</string>
+    <string name="my_android_textview">my_android_textview</string>
+    <string-array name="recycler_list">
+        <item>LinearLayoutManager</item>
+        <item>GridLayoutManager</item>
+    </string-array>
+
 </resources>
