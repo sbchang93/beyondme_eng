@@ -1,5 +1,6 @@
 package com.example.bottomsheetbehaviorexample.view;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.view.View;
 
@@ -15,14 +16,13 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 public class TutsPlusBottomSheetDialogFragment extends BottomSheetDialogFragment {
 
+    private CoordinatorLayout.Behavior mBehavior;
     private BottomSheetBehavior.BottomSheetCallback mBottomSheetBehaviorCallback = new BottomSheetBehavior.BottomSheetCallback() {
-
         @Override
         public void onStateChanged(@NonNull View bottomSheet, int newState) {
             if (newState == BottomSheetBehavior.STATE_HIDDEN) {
                 dismiss();
             }
-
         }
 
         @Override
@@ -30,6 +30,7 @@ public class TutsPlusBottomSheetDialogFragment extends BottomSheetDialogFragment
         }
     };
 
+    @SuppressLint("RestrictedApi")
     @Override
     public void setupDialog(Dialog dialog, int style) {
         super.setupDialog(dialog, style);
@@ -37,11 +38,23 @@ public class TutsPlusBottomSheetDialogFragment extends BottomSheetDialogFragment
         dialog.setContentView(contentView);
 
         CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) ((View) contentView.getParent()).getLayoutParams();
-        CoordinatorLayout.Behavior behavior = params.getBehavior();
 
-        if( behavior != null && behavior instanceof BottomSheetBehavior ) {
-            ((BottomSheetBehavior) behavior).setBottomSheetCallback(mBottomSheetBehaviorCallback);
+//        CoordinatorLayout.Behavior behavior = params.getBehavior();
+//        if (behavior != null && behavior instanceof BottomSheetBehavior) {
+//            ((BottomSheetBehavior) behavior).setBottomSheetCallback(mBottomSheetBehaviorCallback);
+//        }
+
+        // 여기서 Parent의 Bottom Sheet Behaviro 정보를 얻어옮.
+        mBehavior = params.getBehavior();
+        if (mBehavior != null && mBehavior instanceof BottomSheetBehavior) {
+            ((BottomSheetBehavior) mBehavior).addBottomSheetCallback(mBottomSheetBehaviorCallback);
         }
+
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        ((BottomSheetBehavior) mBehavior).removeBottomSheetCallback(mBottomSheetBehaviorCallback);
+    }
 }
