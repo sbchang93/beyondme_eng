@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:drawable="@drawable/play_icon">
+    <target
+        android:name="first_1"
+        android:animation="@animator/path_morph_first"/>
+
+    <target
+        android:name="second_two"
+        android:animation="@animator/path_morph_second"/>
+
+    <target
+        android:name="third"
+        android:animation="@animator/path_morph_third"/>
+
+    <target
+        android:name="fourth"
+        android:animation="@animator/path_morph_fourth"/>
+</animated-vector>
+
+    <!--Reference Homepage URL : https://brightwon.tistory.com/2-->
