@@ -48,6 +48,20 @@ public class BottomSheetBehaviorActivity extends AppCompatActivity implements Vi
         mBottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
 
         mBottomSheetBehavior.addBottomSheetCallback(mBottomSheetCallback);
+
+//deprecated.
+//        mBottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+//            @Override
+//            public void onStateChanged(View bottomSheet, int newState) {
+//                if (newState == BottomSheetBehavior.STATE_COLLAPSED) {
+//                    mBottomSheetBehavior.setPeekHeight(0);
+//                }
+//            }
+//
+//            @Override
+//            public void onSlide(View bottomSheet, float slideOffset) {
+//            }
+//        });
     }
 
     @Override

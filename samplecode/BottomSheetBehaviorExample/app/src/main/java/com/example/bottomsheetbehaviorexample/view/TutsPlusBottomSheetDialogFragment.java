@@ -41,7 +41,7 @@ public class TutsPlusBottomSheetDialogFragment extends BottomSheetDialogFragment
 
 //        CoordinatorLayout.Behavior behavior = params.getBehavior();
 //        if (behavior != null && behavior instanceof BottomSheetBehavior) {
-//            ((BottomSheetBehavior) behavior).setBottomSheetCallback(mBottomSheetBehaviorCallback);
+//            ((BottomSheetBehavior) behavior).setBottomSheetCallback(mBottomSheetBehaviorCallback);  //deprecated.
 //        }
 
         // 여기서 Parent의 Bottom Sheet Behaviro 정보를 얻어옮.
