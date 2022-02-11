@@ -12,12 +12,15 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.swipeup.view.android_hero_samples.CanvasPaintActivity;
+import com.example.swipeup.view.android_hero_samples.ClockActivity;
 import com.example.swipeup.view.android_hero_samples.CustomViewGroupActivity;
 import com.example.swipeup.view.android_hero_samples.CustomViewLayoutActivity;
 import com.example.swipeup.view.android_hero_samples.CustomViewSamples01Activity;
 import com.example.swipeup.view.AboutActivity;
 import com.example.swipeup.view.android_hero_samples.DragViewGroupTest;
 import com.example.swipeup.view.android_hero_samples.DragViewTest;
+import com.example.swipeup.view.android_hero_samples.LayerActivity;
 import com.example.swipeup.view.animation_example.AnimationActivity;
 import com.example.swipeup.view.animation_example.AnimationDrawableActivity;
 import com.example.swipeup.view.animation_example.ViewPropertyAnimatorActivity;
@@ -103,6 +106,11 @@ public class MainActivity extends AppCompatActivity {
         addItem("CustomViewLayoutActivity", "CustomViewLayoutActivity Description", CustomViewLayoutActivity.class);
         addItem("DragViewTest", "DragViewTest Description", DragViewTest.class);
         addItem("DragViewGroupTest", "DragViewGroupTest Description", DragViewGroupTest.class);
+
+        addItem("CanvasPaintActivity", "CanvasPaintActivity Description", CanvasPaintActivity.class);
+        addItem("ClockActivity", "ClockActivity Description", ClockActivity.class);
+        addItem("LayerActivity", "LayerActivity Description", LayerActivity.class);
+
 
 
 //         text1 = findViewById(R.id.textView1);
