@@ -68,6 +68,7 @@ public class DragViewGroup extends FrameLayout {
                 @Override
                 public boolean tryCaptureView(View child, int pointerId) {
                     return mMainView == child;
+                    // return mMainView == child || mMenuView == child ;
                 }
 
                 @Override
@@ -109,6 +110,7 @@ public class DragViewGroup extends FrameLayout {
                     }
                 }
 
+//                Original Code ...
 //                @Override
 //                public void onViewReleased(View releasedChild, float xvel, float yvel) {
 //                    super.onViewReleased(releasedChild, xvel, yvel);
