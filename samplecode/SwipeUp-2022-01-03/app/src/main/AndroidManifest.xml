@@ -23,6 +23,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".view.android_hero_samples.LayerActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.android_hero_samples.ClockActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.android_hero_samples.CanvasPaintActivity"
+            android:exported="true" />
+        <activity
             android:name=".view.android_hero_samples.DragViewGroupTest"
             android:exported="true" />
         <activity
