@@ -23,6 +23,27 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".view.android_hero_samples.XfermodeViewTestActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.android_hero_samples.ImageMatrixTestActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.android_hero_samples.PathEffectViewTestActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.android_hero_samples.ReflectViewTestActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.android_hero_samples.PixelsEffectActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.android_hero_samples.ColorMatrixActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.android_hero_samples.PrimaryColorActivity"
+            android:exported="true" />
+        <activity
             android:name=".view.android_hero_samples.LayerActivity"
             android:exported="true" />
         <activity
