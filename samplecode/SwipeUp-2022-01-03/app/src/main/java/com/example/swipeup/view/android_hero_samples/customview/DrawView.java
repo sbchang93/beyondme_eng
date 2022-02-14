@@ -32,7 +32,7 @@ public class DrawView extends View {
     private RectF oval3;
     private Path path;
     private Path path1;
-    private Bitmap bitmap;
+    private Bitmap mBitmap;
     private Shader mShader;
 
     public DrawView(Context context) {
@@ -57,7 +57,7 @@ public class DrawView extends View {
         oval3 = new RectF();
         path = new Path();
         path1 = new Path();
-        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.cat);
+        mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.cat);
         mShader = new LinearGradient(0, 0, 100 * dp, 100 * dp,
                 new int[]{Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW,
                         Color.LTGRAY}, null, Shader.TileMode.REPEAT);
@@ -226,6 +226,6 @@ public class DrawView extends View {
         mPaint.setTextSize(15 * sp);
         mPaint.setAntiAlias(true);
         canvas.drawText("Draw Picture:", 10 * dp, 500 * dp, mPaint);
-        canvas.drawBitmap(bitmap, 100 * dp, 470 * dp, mPaint);
+        canvas.drawBitmap(mBitmap, 100 * dp, 470 * dp, mPaint);
     }
 }
