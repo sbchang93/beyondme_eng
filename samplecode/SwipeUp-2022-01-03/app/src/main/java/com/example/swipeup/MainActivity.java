@@ -14,13 +14,20 @@ import android.widget.TextView;
 
 import com.example.swipeup.view.android_hero_samples.CanvasPaintActivity;
 import com.example.swipeup.view.android_hero_samples.ClockActivity;
+import com.example.swipeup.view.android_hero_samples.ColorMatrixActivity;
 import com.example.swipeup.view.android_hero_samples.CustomViewGroupActivity;
 import com.example.swipeup.view.android_hero_samples.CustomViewLayoutActivity;
 import com.example.swipeup.view.android_hero_samples.CustomViewSamples01Activity;
 import com.example.swipeup.view.AboutActivity;
 import com.example.swipeup.view.android_hero_samples.DragViewGroupTest;
 import com.example.swipeup.view.android_hero_samples.DragViewTest;
+import com.example.swipeup.view.android_hero_samples.ImageMatrixTestActivity;
 import com.example.swipeup.view.android_hero_samples.LayerActivity;
+import com.example.swipeup.view.android_hero_samples.PathEffectViewTestActivity;
+import com.example.swipeup.view.android_hero_samples.PixelsEffectActivity;
+import com.example.swipeup.view.android_hero_samples.PrimaryColorActivity;
+import com.example.swipeup.view.android_hero_samples.ReflectViewTestActivity;
+import com.example.swipeup.view.android_hero_samples.XfermodeViewTestActivity;
 import com.example.swipeup.view.animation_example.AnimationActivity;
 import com.example.swipeup.view.animation_example.AnimationDrawableActivity;
 import com.example.swipeup.view.animation_example.ViewPropertyAnimatorActivity;
@@ -110,6 +117,13 @@ public class MainActivity extends AppCompatActivity {
         addItem("CanvasPaintActivity", "CanvasPaintActivity Description", CanvasPaintActivity.class);
         addItem("ClockActivity", "ClockActivity Description", ClockActivity.class);
         addItem("LayerActivity", "LayerActivity Description", LayerActivity.class);
+        addItem("PrimaryColorActivity", "PrimaryColorActivity Description", PrimaryColorActivity.class);
+        addItem("ColorMatrixActivity", "ColorMatrixActivity Description", ColorMatrixActivity.class);
+        addItem("PixelsEffectActivity", "PixelsEffectActivity Description", PixelsEffectActivity.class);
+        addItem("ReflectViewTestActivity", "ReflectViewTestActivity Description", ReflectViewTestActivity.class);
+        addItem("PathEffectViewTestActivity", "PathEffectViewTestActivity Description", PathEffectViewTestActivity.class);
+        addItem("ImageMatrixTestActivity", "ImageMatrixTestActivity Description", ImageMatrixTestActivity.class);
+        addItem("XfermodeViewTestActivity", "XfermodeViewTestActivity Description", XfermodeViewTestActivity.class);
 
 
 
