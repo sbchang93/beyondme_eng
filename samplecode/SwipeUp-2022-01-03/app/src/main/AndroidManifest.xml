@@ -23,6 +23,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".view.zoom_image.ZoomImageActivity"
+            android:exported="true" />
+        <activity
             android:name=".view.android_hero_samples.XfermodeViewTestActivity"
             android:exported="true" />
         <activity
