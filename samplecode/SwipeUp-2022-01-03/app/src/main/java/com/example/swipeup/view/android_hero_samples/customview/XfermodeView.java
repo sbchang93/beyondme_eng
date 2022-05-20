@@ -44,16 +44,21 @@ public class XfermodeView  extends View {
     private void init() {
         mPaint = new Paint();
         mPaint.setAlpha(0);
+        //mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN)); // 뭔가 위에 있는 Gray, Red 등 색을 끍어서 없애 수 있도록 도와줌.
         mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeJoin(Paint.Join.ROUND);
         mPaint.setStrokeWidth(50);
         mPaint.setStrokeCap(Paint.Cap.ROUND);
+
         mPath = new Path();
+
         mBgBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.shape_test);
         mFgBitmap = Bitmap.createBitmap(mBgBitmap.getWidth(), mBgBitmap.getHeight(), Bitmap.Config.ARGB_8888);
+
         mCanvas = new Canvas(mFgBitmap);
-        mCanvas.drawColor(Color.GRAY);
+        //mCanvas.drawColor(Color.GRAY);
+        mCanvas.drawColor(Color.RED);
     }
 
     @Override
