@@ -49,6 +49,7 @@ import com.example.swipeup.view.view_example.CanvasActivity;
 import com.example.swipeup.view.view_example.CardViewDemoActivity;
 import com.example.swipeup.view.view_example.PaintActivity;
 import com.example.swipeup.view.view_example.TextViewActivity;
+import com.example.swipeup.view.zoom_image.ZoomImageActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -77,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
         mListView.setAdapter(adapter);
 
         // addItem (title, desc, cls)
+
+        addItem("ZoomImageActivity", "ZoomImageActivity Description", ZoomImageActivity.class);
 
         addItem("SlidingUpPanel DemoActivity", "SlidingUpPanel DemoActivity Description", DemoActivity.class);
         addItem("SwipeUpActivity", "SwipeUpActivity Description", SwipeUpActivity.class);
