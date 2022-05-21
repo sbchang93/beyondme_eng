@@ -1,11 +1,16 @@
 package com.example.swipeup;
 
+import androidx.annotation.IntRange;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 
 import android.Manifest;
 import android.animation.ObjectAnimator;
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -67,10 +72,6 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     private final static String TAG = "MainActivity";
-
-    private final int MY_PERMISSIONS_REQUEST_CAMERA = 1001;
-    private final int MY_PERMISSIONS_REQUEST_STORAGE = 1002;
-
     private ListView mListView;
     private ArrayList<Map<String, Object>> mDataList = new ArrayList<>();
 
@@ -216,39 +217,196 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private boolean needPermissions = true;
+
+
+    private static String[] mPermissions = {
+            Manifest.permission.CAMERA,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.READ_EXTERNAL_STORAGE
+    };
+
+    private final int PERMISSION_CAMERA = 9001;
+    private final int PERMISSION_STORAGE = 9002;
+    private final int PERMISSION_CONTACT = 9003;
+    private final int PERMISSION_READ_PHONE_STATE = 9004;
+
+    private final int MY_PERMISSIONS_REQUEST = 1000;
+    private final int MY_PERMISSIONS_REQUEST_CAMERA = 1001;
+    private final int MY_PERMISSIONS_REQUEST_STORAGE = 1002;
+
     @Override
     protected void onResume() {
         super.onResume();
+        checkAndRequestPermission(this, mPermissions, MY_PERMISSIONS_REQUEST);
+    }
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
-            } else {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, MY_PERMISSIONS_REQUEST_CAMERA);
-            }
-        }
-
-        if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
-                || checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            if (shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                Toast.makeText(this, "외부 저장소 사용을 위해 읽기/쓰기 필요", Toast.LENGTH_SHORT).show();
-            }
-            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_STORAGE);
+    //Reference Home URL : https://blog.dramancompany.com/2015/11/%EB%A6%AC%EB%A9%A4%EB%B2%84%EC%9D%98-%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-6-0-m%EB%B2%84%EC%A0%84-%EB%8C%80%EC%9D%91%EA%B8%B0/
+    public boolean checkAndRequestPermission(Activity activity, String[] permissions, int permissionRequestCode) {
+        String[] requiredPermissions = getRequiredPermissions(activity, permissions);
+        //if (requiredPermissions.length > 0 && !activity.isDestroyedCompat()) {
+        if (requiredPermissions.length > 0) {
+//            int currentRequestCode = changePermissionCode(requiredPermissions, permissionRequestCode);
+//            ActivityCompat.requestPermissions(activity, requiredPermissions, currentRequestCode);
+            ActivityCompat.requestPermissions(activity, requiredPermissions, permissionRequestCode);
+            return false;
+        } else {
+            return true;
         }
     }
+
+    public String[] getRequiredPermissions(Context context, String... permissions) {
+        List<String> requiredPermissions = new ArrayList<>();
+
+        if (context == null)
+            return requiredPermissions.toArray(new String[1]);
+
+        for (String permission : permissions) {
+            if (ContextCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+                requiredPermissions.add(permission);
+            }
+        }
+        return requiredPermissions.toArray(new String[requiredPermissions.size()]);
+    }
+
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_CAMERA:
-            case MY_PERMISSIONS_REQUEST_STORAGE: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(this, "승인이 허가되어 있습니다.", Toast.LENGTH_LONG).show();
+            case MY_PERMISSIONS_REQUEST:
+                if (verifyPermissions(grantResults)) {
+                    Toast.makeText(this, getString(R.string.permission_is_granted), Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(this, "아직 승인받지 않았습니다.", Toast.LENGTH_LONG).show();
+                    //String message = getRationalMessage(this, PERMISSION_CAMERA);
+                    Toast.makeText(this, getString(R.string.permission_is_not_granted), Toast.LENGTH_SHORT).show();
                 }
-                return;
-            }
+                break;
+
+//            case MY_PERMISSIONS_REQUEST_CAMERA:
+//                if (verifyPermissions(grantResults)) {
+//                    Toast.makeText(this, getString(R.string.permission_is_granted), Toast.LENGTH_SHORT).show();
+//                } else {
+//                    String message = getRationalMessage(this, PERMISSION_CAMERA);
+//                    Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+//                }
+//                break;
+//            case MY_PERMISSIONS_REQUEST_STORAGE:
+//                if (verifyPermissions(grantResults)) {
+//                    Toast.makeText(this, getString(R.string.permission_is_granted), Toast.LENGTH_SHORT).show();
+//                } else {
+//                    String message = getRationalMessage(this, PERMISSION_STORAGE);
+//                    Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+//                }
+//                break;
         }
     }
+
+    public boolean verifyPermissions(int[] grantResults) {
+        // At least one result must be checked.
+        if (grantResults.length < 1) return false;
+
+        // Verify that each required permission has been granted, otherwise return false.
+        for (int result : grantResults) {
+            if (result != PackageManager.PERMISSION_GRANTED) return false;
+        }
+        return true;
+    }
+
+//    int changePermissionCode(final @NonNull String[] permissions, final @IntRange(from = 0) int requestCode) {
+//        int currentRequestCode = requestCode;
+//        for (String permission : permissions) {
+//            if (permission == Manifest.permission.CAMERA) {
+//                currentRequestCode = MY_PERMISSIONS_REQUEST_CAMERA;
+//                break;
+//            } else if (permission == Manifest.permission.WRITE_EXTERNAL_STORAGE || permission == Manifest.permission.READ_EXTERNAL_STORAGE ) {
+//                currentRequestCode = MY_PERMISSIONS_REQUEST_STORAGE;
+//                break;
+//            }
+//        }
+//        return currentRequestCode;
+//    }
+
+
+//    public String getRationalMessage(Context context, int code) {
+//        switch (code) {
+//            case PERMISSION_CAMERA:
+//                return getRationalMessage(context, context.getString(R.string.permission_camera));
+//            case PERMISSION_STORAGE:
+//                return getRationalMessage(context, context.getString(R.string.permission_storage));
+//            case PERMISSION_CONTACT:
+//                return getRationalMessage(context, context.getString(R.string.permission_contact));
+//            case PERMISSION_READ_PHONE_STATE:
+//                return getRationalMessage(context, context.getString(R.string.permission_read_phone_state));
+//        }
+//        return "";
+//    }
+//
+//    public static String getRationalMessage(Context context, String permission) {
+//        return String.format(context.getString(R.string.request_permission), permission);
+//    }
+
+//    public boolean checkAndRequestPermission(Fragment fragment, int permissionRequestCode, String... permissions) {
+//        String[] requiredPermissions = getRequiredPermissions(fragment.getContext() != null ?
+//                fragment.getContext() : fragment.getActivity(), permissions);
+//
+//        if (requiredPermissions.length > 0 && fragment.isAdded()) {
+//            fragment.requestPermissions(requiredPermissions, permissionRequestCode);
+//            return false;
+//        } else {
+//            return true;
+//        }
+//    }
+
+
+
+//Reference Home URL : https://bottlecok.tistory.com/entry/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-%EA%B6%8C%ED%95%9C%EC%9A%94%EC%B2%AD-%EA%B6%8C%ED%95%9C%EC%84%A4%EC%A0%95-%ED%8D%BC%EB%AF%B8%EC%85%98%EC%B2%B4%ED%81%AC
+//    ######***#####
+//    ######***#####
+//    ######***##### Simple Codes for Get Permissions
+//
+//    private final int MY_PERMISSIONS_REQUEST_CAMERA = 1001;
+//    private final int MY_PERMISSIONS_REQUEST_STORAGE = 1002;
+//
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//
+//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+//            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
+//                Toast.makeText(this, "Need Camera Permission", Toast.LENGTH_SHORT).show();
+//            } else {
+//                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, MY_PERMISSIONS_REQUEST_CAMERA);
+//            }
+//        }
+//
+//        if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+//                || checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+//            if (shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+//                Toast.makeText(this, "외부 저장소 사용을 위해 읽기/쓰기 필요", Toast.LENGTH_SHORT).show();
+//            }
+//            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_STORAGE);
+//        }
+//    }
+//
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+//        String requestPermissionName = null;
+//        switch (requestCode) {
+//            case MY_PERMISSIONS_REQUEST_CAMERA:
+//                requestPermissionName = new String("Camera");
+//                break;
+//            case MY_PERMISSIONS_REQUEST_STORAGE:
+//                requestPermissionName = new String("Storage");
+//                break;
+//            default:
+//                break;
+//        }
+//
+//        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//            Toast.makeText(this, requestPermissionName + " is granted", Toast.LENGTH_SHORT).show();
+//        } else {
+//            Toast.makeText(this, requestPermissionName + " is not granted", Toast.LENGTH_SHORT).show();
+//        }
+//    }
+
 }
