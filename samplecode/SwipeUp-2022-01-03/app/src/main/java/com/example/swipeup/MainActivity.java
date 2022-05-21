@@ -68,7 +68,8 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
     private final static String TAG = "MainActivity";
 
-    private final int MY_PERMISSIONS_REQUEST_CAMERA=1001;
+    private final int MY_PERMISSIONS_REQUEST_CAMERA = 1001;
+    private final int MY_PERMISSIONS_REQUEST_STORAGE = 1002;
 
     private ListView mListView;
     private ArrayList<Map<String, Object>> mDataList = new ArrayList<>();
@@ -146,16 +147,9 @@ public class MainActivity extends AppCompatActivity {
         addItem("XfermodeViewTestActivity", "XfermodeViewTestActivity Description", XfermodeViewTestActivity.class);
 
 
-
 //         text1 = findViewById(R.id.textView1);
 //         checkPermission();
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
-            } else {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, MY_PERMISSIONS_REQUEST_CAMERA);
-            }
-        }
     }
 
     private void addItem(String title, String desc, Class cls) {
@@ -203,8 +197,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
             Map<String, Object> twoLineMenu = (Map<String, Object>) getItem(position);
-            holder.title.setText((String)twoLineMenu.get("title"));
-            holder.description.setText((String)twoLineMenu.get("desc"));
+            holder.title.setText((String) twoLineMenu.get("title"));
+            holder.description.setText((String) twoLineMenu.get("desc"));
 
             // Animation Effect
             // If I set duration, I can see the animation effect.
@@ -223,9 +217,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
+            } else {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, MY_PERMISSIONS_REQUEST_CAMERA);
+            }
+        }
+
+        if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+                || checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            if (shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                Toast.makeText(this, "외부 저장소 사용을 위해 읽기/쓰기 필요", Toast.LENGTH_SHORT).show();
+            }
+            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_STORAGE);
+        }
+    }
+
+    @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_CAMERA: {
+            case MY_PERMISSIONS_REQUEST_CAMERA:
+            case MY_PERMISSIONS_REQUEST_STORAGE: {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     Toast.makeText(this, "승인이 허가되어 있습니다.", Toast.LENGTH_LONG).show();
