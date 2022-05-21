@@ -8,10 +8,11 @@ import android.view.ScaleGestureDetector;
 import android.widget.ImageView;
 
 import com.example.swipeup.R;
+
 //Reference Home URL : https://elliot-kim.github.io/boostcourse/boostcourse-6-pinch_zoom/
 //Reference Home URL : https://medium.com/quick-code/pinch-to-zoom-with-multi-touch-gestures-in-android-d6392e4bf52d
 
-public class ZoomImageActivity extends AppCompatActivity {
+public class ZoomImageActivity02 extends AppCompatActivity {
 
     private ScaleGestureDetector mScaleGestureDetector;
     private float mScaleFactor = 1.0f;
@@ -20,9 +21,9 @@ public class ZoomImageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_zoom_image);
+        setContentView(R.layout.activity_zoom_image02);
 
-        mImageView=(ImageView)findViewById(R.id.imageView);
+        mImageView=(ImageView)findViewById(R.id.imageView02);
 
         mScaleGestureDetector = new ScaleGestureDetector(this, new ScaleListener());
     }

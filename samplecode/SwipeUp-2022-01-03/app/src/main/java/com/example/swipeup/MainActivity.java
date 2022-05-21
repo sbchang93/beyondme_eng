@@ -1,9 +1,13 @@
 package com.example.swipeup;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +15,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.swipeup.view.activity_example.registerForActivityResult_Activity;
 import com.example.swipeup.view.android_hero_samples.CanvasPaintActivity;
 import com.example.swipeup.view.android_hero_samples.ClockActivity;
 import com.example.swipeup.view.android_hero_samples.ColorMatrixActivity;
@@ -31,6 +37,7 @@ import com.example.swipeup.view.android_hero_samples.XfermodeViewTestActivity;
 import com.example.swipeup.view.animation_example.AnimationActivity;
 import com.example.swipeup.view.animation_example.AnimationDrawableActivity;
 import com.example.swipeup.view.animation_example.ViewPropertyAnimatorActivity;
+import com.example.swipeup.view.camera_example.TakePictureActivity;
 import com.example.swipeup.view.custom_view.CustomLoginButtonActivity;
 import com.example.swipeup.view.custom_view.LinedEditTextActivity;
 import com.example.swipeup.view.custom_view.VolumeControlActivity;
@@ -50,6 +57,8 @@ import com.example.swipeup.view.view_example.CardViewDemoActivity;
 import com.example.swipeup.view.view_example.PaintActivity;
 import com.example.swipeup.view.view_example.TextViewActivity;
 import com.example.swipeup.view.zoom_image.ZoomImageActivity;
+import com.example.swipeup.view.zoom_image.ZoomImageActivity02;
+import com.example.swipeup.view.zoom_image.ZoomImageActivity03;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -57,8 +66,10 @@ import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
+    private final static String TAG = "MainActivity";
 
-    private final String TAG = this.getClass().getSimpleName();
+    private final int MY_PERMISSIONS_REQUEST_CAMERA=1001;
+
     private ListView mListView;
     private ArrayList<Map<String, Object>> mDataList = new ArrayList<>();
 
@@ -80,6 +91,12 @@ public class MainActivity extends AppCompatActivity {
         // addItem (title, desc, cls)
 
         addItem("ZoomImageActivity", "ZoomImageActivity Description", ZoomImageActivity.class);
+        addItem("ZoomImageActivity02", "ZoomImageActivity02 Description", ZoomImageActivity02.class);
+        addItem("ZoomImageActivity03", "ZoomImageActivity03 Description", ZoomImageActivity03.class);
+
+        addItem("TakePictureActivity", "TakePictureActivity Description", TakePictureActivity.class);
+        addItem("registerForActivityResult_Activity", "registerForActivityResult_Activity Description", registerForActivityResult_Activity.class);
+
 
         addItem("SlidingUpPanel DemoActivity", "SlidingUpPanel DemoActivity Description", DemoActivity.class);
         addItem("SwipeUpActivity", "SwipeUpActivity Description", SwipeUpActivity.class);
@@ -132,6 +149,13 @@ public class MainActivity extends AppCompatActivity {
 
 //         text1 = findViewById(R.id.textView1);
 //         checkPermission();
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
+            } else {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, MY_PERMISSIONS_REQUEST_CAMERA);
+            }
+        }
     }
 
     private void addItem(String title, String desc, Class cls) {
@@ -182,8 +206,11 @@ public class MainActivity extends AppCompatActivity {
             holder.title.setText((String)twoLineMenu.get("title"));
             holder.description.setText((String)twoLineMenu.get("desc"));
 
-            //Animation Effect : I can not see the animation effect
-            ObjectAnimator.ofFloat(convertView, "alpha", 0.0f, 1f).start();
+            // Animation Effect
+            // If I set duration, I can see the animation effect.
+            ObjectAnimator.ofFloat(convertView, "alpha", 0.0f, 1f)
+                    .setDuration(1000)
+                    .start();
 
             return convertView;
         }
@@ -195,4 +222,18 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_CAMERA: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(this, "승인이 허가되어 있습니다.", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(this, "아직 승인받지 않았습니다.", Toast.LENGTH_LONG).show();
+                }
+                return;
+            }
+        }
+    }
 }
