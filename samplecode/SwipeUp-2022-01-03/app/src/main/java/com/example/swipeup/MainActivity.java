@@ -62,6 +62,7 @@ import com.example.swipeup.view.view_example.CanvasActivity;
 import com.example.swipeup.view.view_example.CardViewDemoActivity;
 import com.example.swipeup.view.view_example.PaintActivity;
 import com.example.swipeup.view.view_example.TextViewActivity;
+import com.example.swipeup.view.zoom_image.ZoomActivity;
 import com.example.swipeup.view.zoom_image.ZoomImageActivity;
 import com.example.swipeup.view.zoom_image.ZoomImageActivity02;
 import com.example.swipeup.view.zoom_image.ZoomImageActivity03;
@@ -96,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
         addItem("ZoomImageActivity", "ZoomImageActivity Description", ZoomImageActivity.class);
         addItem("ZoomImageActivity02", "ZoomImageActivity02 Description", ZoomImageActivity02.class);
         addItem("ZoomImageActivity03", "ZoomImageActivity03 Description", ZoomImageActivity03.class);
+        addItem("ZoomActivity", "ZoomActivity Description", ZoomActivity.class);
 
         addItem("TakePictureActivity", "TakePictureActivity Description", TakePictureActivity.class);
         addItem("TakePicture2Activity", "TakePicture2Activity Description", TakePicture2Activity.class);
