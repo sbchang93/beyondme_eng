@@ -4,5 +4,5 @@
     <external-path name="files_root" path="Android/data/com.your.package/"/>
     <external-path name="external_storage_root" path="."/>
     <external-path name="hidden" path="/Pictures/gyeom" />
-    <files-path name="my_images" path="/Pictures/images/"/>
+    <external-path name="my_images" path="/Pictures/images/"/>
 </paths>
