@@ -42,6 +42,7 @@ import com.example.swipeup.view.android_hero_samples.XfermodeViewTestActivity;
 import com.example.swipeup.view.animation_example.AnimationActivity;
 import com.example.swipeup.view.animation_example.AnimationDrawableActivity;
 import com.example.swipeup.view.animation_example.ViewPropertyAnimatorActivity;
+import com.example.swipeup.view.camera_example.TakePicture2Activity;
 import com.example.swipeup.view.camera_example.TakePictureActivity;
 import com.example.swipeup.view.custom_view.CustomLoginButtonActivity;
 import com.example.swipeup.view.custom_view.LinedEditTextActivity;
@@ -97,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
         addItem("ZoomImageActivity03", "ZoomImageActivity03 Description", ZoomImageActivity03.class);
 
         addItem("TakePictureActivity", "TakePictureActivity Description", TakePictureActivity.class);
+        addItem("TakePicture2Activity", "TakePicture2Activity Description", TakePicture2Activity.class);
         addItem("registerForActivityResult_Activity", "registerForActivityResult_Activity Description", registerForActivityResult_Activity.class);
 
 
