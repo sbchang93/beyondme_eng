@@ -4,7 +4,6 @@
     package="com.example.swipeup">
 
     <uses-permission android:name="android.permission.CAMERA" />
-
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -29,6 +28,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".view.zoom_image.ZoomActivity"
+            android:exported="true" />
         <activity
             android:name=".view.camera_example.TakePicture2Activity"
             android:exported="true" />
