@@ -14,6 +14,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -30,7 +31,7 @@ import java.io.File;
 // Caused by: android.os.FileUriExposedException: file:///storage/emulated/0/Download/image.jpg exposed beyond app through ClipData.Item.getUri(
 // => Trouble shooting => https://rlg1133.tistory.com/53
 //                     => https://mond-al.github.io/cachefile-share
-
+//Reference Home URL : https://kyome.tistory.com/9
 public class TakePictureActivity extends AppCompatActivity {
     private final static String TAG = "TakePictureActivity";
 
@@ -90,10 +91,16 @@ public class TakePictureActivity extends AppCompatActivity {
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             imageView2.setImageBitmap(imageBitmap);
         } else if (requestCode == REQUEST_IMAGE_CAPTURE_WITH_BOTTON_3) {
-            //File file = new File(ExternalDownloadsFolderPath + File.separator + "image.jpg");
-            File file = new File(Environment.getExternalStorageDirectory() + File.separator + "image.jpg");
-            Bitmap imageBitmap = decodeSampledBitmapFromFile(file.getAbsolutePath(), 1000, 700);
+            //todo: photoFileForBotton3 becomes null. why does it become null? Please find that cause next time.
+            File storageDir = new File(Environment.getExternalStorageDirectory() + "/Pictures", "images");
+            photoFileForBotton3 = new File(storageDir, "default_image.jpg");
+            Log.i(TAG, "REQUEST_IMAGE_CAPTURE_WITH_BOTTON_3 : photoFileForBotton3 = " + photoFileForBotton3);
+            Log.i(TAG, "REQUEST_IMAGE_CAPTURE_WITH_BOTTON_3 : photoFileForBotton3.getAbsolutePath() = " + photoFileForBotton3.getAbsolutePath());
+            Bitmap imageBitmap = decodeSampledBitmapFromFile(photoFileForBotton3.getAbsolutePath(), 1000, 700);
             imageView3.setImageBitmap(imageBitmap);
+
+            // photoFileForBotton3 = /storage/emulated/0/Pictures/images/default_image.jpg
+            // photoFileForBotton3.getAbsolutePath() = /storage/emulated/0/Pictures/images/default_image.jpg
         } else if (requestCode == REQUEST_IMAGE_CAPTURE_WITH_BOTTON_4) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
@@ -163,15 +170,41 @@ public class TakePictureActivity extends AppCompatActivity {
         startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE_WITH_BOTTON_2);
     }
 
+    File photoFileForBotton3;
+    //Reference Home URL : https://g-y-e-o-m.tistory.com/48
+    //Reference Home URL : https://stackoverflow.com/questions/38200282/android-os-fileuriexposedexception-file-storage-emulated-0-test-txt-exposed
+    //Reference Home URL : https://developer.android.com/reference/android/support/v4/content/FileProvider
     public void capture_btn3(View v) {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         //todo: (NeedToFix) When we receive image data from Camera, There is an problem in onActivityResult(..) function.
         // => Can not get the capture image infromation from "image.jpg" by saved by Camera App.
-        //File file = new File(ExternalDownloadsFolderPath + File.separator + "image.jpg");
-        File file = new File(Environment.getExternalStorageDirectory() + File.separator + "image.jpg");
-        Uri photoUri = FileProvider.getUriForFile(this, "com.example.swipeup.fileprovider", file);
+
+//        File imagePath = new File(this.getFilesDir(), "images");
+//        photoFileForBotton3 = new File(imagePath, "default_image.jpg");
+
+        // Create Directory
+        File storageDir = new File(Environment.getExternalStorageDirectory() + "/Pictures", "images");
+        if (!storageDir.exists()) {
+            Log.i(TAG, "!storageDir.exists() : " + storageDir.toString());
+            storageDir.mkdirs();
+        }
+
+        // Create Image
+        photoFileForBotton3 = new File(storageDir, "default_image.jpg");
+        Uri photoUri = FileProvider.getUriForFile(this, "com.example.swipeup.fileprovider", photoFileForBotton3);
         takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+        takePictureIntent.setFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        takePictureIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE_WITH_BOTTON_3);
+
+        Log.i(TAG, "capture_btn3 : photoFileForBotton3 = " + photoFileForBotton3);
+        Log.i(TAG, "capture_btn3 : photoFileForBotton3.getAbsolutePath() = " + photoFileForBotton3.getAbsolutePath());
+        Log.i(TAG, "capture_btn3 : photoUri= " + photoUri);
+
+        // photoFileForBotton3 = /storage/emulated/0/Pictures/images/default_image.jpg
+        // photoFileForBotton3.getAbsolutePath() = /storage/emulated/0/Pictures/images/default_image.jpg
+        // photoUri= content://com.example.swipeup.fileprovider/external_storage_root/Pictures/images/default_image.jpg
+        // file_paths.xml : <files-path name="my_images" path="/Pictures/images/"/>
     }
 
     public void capture_btn4(View v) {
