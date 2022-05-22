@@ -203,8 +203,11 @@ public class TakePictureActivity extends AppCompatActivity {
 
         // photoFileForBotton3 = /storage/emulated/0/Pictures/images/default_image.jpg
         // photoFileForBotton3.getAbsolutePath() = /storage/emulated/0/Pictures/images/default_image.jpg
+        // photoUri= content://com.example.swipeup.fileprovider/my_images/default_image.jpg
+        // file_paths.xml : <external-path name="my_images" path="/Pictures/images/"/>    <--- Use "external-path" keyword
+
         // photoUri= content://com.example.swipeup.fileprovider/external_storage_root/Pictures/images/default_image.jpg
-        // file_paths.xml : <files-path name="my_images" path="/Pictures/images/"/>
+        // file_paths.xml : <files-path name="my_images" path="/Pictures/images/"/>    <--- Use "files-path " keyword
     }
 
     public void capture_btn4(View v) {
