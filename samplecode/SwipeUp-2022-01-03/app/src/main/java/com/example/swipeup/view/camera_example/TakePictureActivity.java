@@ -90,7 +90,8 @@ public class TakePictureActivity extends AppCompatActivity {
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             imageView2.setImageBitmap(imageBitmap);
         } else if (requestCode == REQUEST_IMAGE_CAPTURE_WITH_BOTTON_3) {
-            File file = new File(ExternalDownloadsFolderPath + File.separator + "image.jpg");
+            //File file = new File(ExternalDownloadsFolderPath + File.separator + "image.jpg");
+            File file = new File(Environment.getExternalStorageDirectory() + File.separator + "image.jpg");
             Bitmap imageBitmap = decodeSampledBitmapFromFile(file.getAbsolutePath(), 1000, 700);
             imageView3.setImageBitmap(imageBitmap);
         } else if (requestCode == REQUEST_IMAGE_CAPTURE_WITH_BOTTON_4) {
@@ -166,7 +167,8 @@ public class TakePictureActivity extends AppCompatActivity {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         //todo: (NeedToFix) When we receive image data from Camera, There is an problem in onActivityResult(..) function.
         // => Can not get the capture image infromation from "image.jpg" by saved by Camera App.
-        File file = new File(ExternalDownloadsFolderPath + File.separator + "image.jpg");
+        //File file = new File(ExternalDownloadsFolderPath + File.separator + "image.jpg");
+        File file = new File(Environment.getExternalStorageDirectory() + File.separator + "image.jpg");
         Uri photoUri = FileProvider.getUriForFile(this, "com.example.swipeup.fileprovider", file);
         takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
         startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE_WITH_BOTTON_3);
