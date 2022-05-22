@@ -32,6 +32,9 @@ import java.io.File;
 // => Trouble shooting => https://rlg1133.tistory.com/53
 //                     => https://mond-al.github.io/cachefile-share
 //Reference Home URL : https://kyome.tistory.com/9
+
+//Reference Home URL : https://developer.android.com/training/camera/photobasics?hl=ko#java
+
 public class TakePictureActivity extends AppCompatActivity {
     private final static String TAG = "TakePictureActivity";
 
