@@ -1,11 +1,8 @@
 package com.example.swipeup;
 
-import androidx.annotation.IntRange;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
 
 import android.Manifest;
 import android.animation.ObjectAnimator;
@@ -58,6 +55,11 @@ import com.example.swipeup.view.touch_example.TouchInterceptActivity;
 import com.example.swipeup.view.touch_example.TouchListenerActivity;
 import com.example.swipeup.view.touch_example.TwoDimensionGestureScrollActivity;
 import com.example.swipeup.view.touch_example.TwoDimensionScrollActivity;
+import com.example.swipeup.view.touch_example.touch_basic.DrawCanvasOnViewActivity;
+import com.example.swipeup.view.touch_example.touch_basic.DrawLineOnCanvasActivity;
+import com.example.swipeup.view.touch_example.touch_basic.MoveRobotActivity;
+import com.example.swipeup.view.touch_example.touch_basic.MultiTouchActivity;
+import com.example.swipeup.view.touch_example.touch_basic.SingleTouchActivity;
 import com.example.swipeup.view.view_example.CanvasActivity;
 import com.example.swipeup.view.view_example.CardViewDemoActivity;
 import com.example.swipeup.view.view_example.PaintActivity;
@@ -93,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
         mListView.setAdapter(adapter);
 
         // addItem (title, desc, cls)
+        addItem("(Check) Touch Position (x, y)", "Touch Position (x, y) Description", SingleTouchActivity.class);
 
         addItem("ZoomImageActivity", "ZoomImageActivity Description", ZoomImageActivity.class);
         addItem("ZoomImageActivity02", "ZoomImageActivity02 Description", ZoomImageActivity02.class);
@@ -102,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
         addItem("TakePictureActivity", "TakePictureActivity Description", TakePictureActivity.class);
         addItem("TakePicture2Activity", "TakePicture2Activity Description", TakePicture2Activity.class);
         addItem("registerForActivityResult_Activity", "registerForActivityResult_Activity Description", registerForActivityResult_Activity.class);
+
 
 
         addItem("SlidingUpPanel DemoActivity", "SlidingUpPanel DemoActivity Description", DemoActivity.class);
@@ -120,6 +124,13 @@ public class MainActivity extends AppCompatActivity {
 
         addItem("CanvasActivity", "CanvasActivity Description", CanvasActivity.class);
         addItem("TextViewActivity", "TextViewActivity Description", TextViewActivity.class);
+
+
+        addItem("SingleTouchActivity", "SingleTouchActivity Description", SingleTouchActivity.class);
+        addItem("MultiTouchActivity", "MultiTouchActivity Description", MultiTouchActivity.class);
+        addItem("MoveRobotActivity", "MoveRobotActivity Description", MoveRobotActivity.class);
+        addItem("DrawCanvasOnViewActivity", "DrawCanvasOnViewActivity Description", DrawCanvasOnViewActivity.class);
+        addItem("DrawLineOnCanvasActivity", "DrawLineOnCanvasActivity Description", DrawLineOnCanvasActivity.class);
 
         addItem("MoveLoggerActivity", "MoveLoggerActivity Description", MoveLoggerActivity.class);
         addItem("TouchListenerActivity", "TouchListenerActivity Description", TouchListenerActivity.class);
