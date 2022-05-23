@@ -29,6 +29,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".view.touch_example.touch_basic.DrawLineOnCanvasActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.touch_example.touch_basic.DrawCanvasOnViewActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.touch_example.touch_basic.MoveRobotActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.touch_example.touch_basic.MultiTouchActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.touch_example.touch_basic.SingleTouchActivity"
+            android:exported="true" />
+        <activity
             android:name=".view.zoom_image.ZoomActivity"
             android:exported="true" />
         <activity
