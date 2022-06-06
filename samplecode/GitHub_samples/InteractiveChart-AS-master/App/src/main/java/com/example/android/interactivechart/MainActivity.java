@@ -23,7 +23,7 @@ import android.view.MenuItem;
 
 // Reference URL : https://github.com/hotpro/InteractiveChart-AS
 // Reference URL : https://android.googlesource.com/platform/development/+/master/samples/training/InteractiveChart/src/com/example/android/interactivechart/InteractiveLineGraphView.java
-
+// Reference URL : https://developer.android.com/training/gestures/scroll?hl=ko
 
 public class MainActivity extends Activity {
     private InteractiveLineGraphView mGraphView;
