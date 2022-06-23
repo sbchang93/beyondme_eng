@@ -35,6 +35,9 @@
             android:name=".view.winset_example.Dialog01Activity"
             android:exported="true" />
         <activity
+            android:name=".view.touch_example.touch_basic.MultiTouchDrawCircleActivity"
+            android:exported="true" />
+        <activity
             android:name=".view.touch_example.touch_basic.DrawLineOnCanvasActivity"
             android:exported="true" />
         <activity
