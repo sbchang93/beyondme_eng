@@ -3,6 +3,7 @@ call del /s /q .gitignore
 call del /q local.properties
 call del /s /q *.iml
 
+RD /S /Q ".galaxy"
 RD /S /Q ".gradle"
 RD /S /Q ".idea"
 RD /S /Q "app\build"
