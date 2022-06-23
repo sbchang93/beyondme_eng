@@ -31,8 +31,8 @@ public class LayerActivity extends AppCompatActivity {
 
         @Override
         protected void onDraw(Canvas canvas) {
-            //canvas.drawColor(Color.WHITE);
-            canvas.drawColor(Color.BLACK);
+            canvas.drawColor(Color.WHITE);
+            //canvas.drawColor(Color.BLACK);
             mPaint.setColor(Color.BLUE);
             canvas.drawCircle(150, 150, 100, mPaint);
             canvas.saveLayerAlpha(0, 0, 400, 400, 255);

@@ -46,6 +46,9 @@ public class MoveLoggerActivity extends AppCompatActivity  implements View.OnTou
                     Log.i(TAG, String.format("Top Move: %.1f,%.1f", event.getX(), event.getY()));
                     break;
                 case R.id.view_logslop:
+                    Log.i(TAG, "mTouchSlop : " + mTouchSlop);
+                    Log.i(TAG, "X distance : " + Math.abs(event.getX() - mInitialTouch.x));
+                    Log.i(TAG, "Y distance : " + Math.abs(event.getY() - mInitialTouch.y));
                     if ( Math.abs(event.getX() - mInitialTouch.x) > mTouchSlop
                             || Math.abs(event.getY() - mInitialTouch.y) > mTouchSlop ) {
                         Log.i(TAG, String.format("Bottom Move: %.1f,%.1f", event.getX(), event.getY()));

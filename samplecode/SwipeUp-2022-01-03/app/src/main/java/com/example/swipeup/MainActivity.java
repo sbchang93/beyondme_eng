@@ -39,6 +39,7 @@ import com.example.swipeup.view.android_hero_samples.XfermodeViewTestActivity;
 import com.example.swipeup.view.animation_example.AnimationActivity;
 import com.example.swipeup.view.animation_example.AnimationDrawableActivity;
 import com.example.swipeup.view.animation_example.ViewPropertyAnimatorActivity;
+import com.example.swipeup.view.basic_example.SapnnableActivity;
 import com.example.swipeup.view.camera_example.TakePicture2Activity;
 import com.example.swipeup.view.camera_example.TakePictureActivity;
 import com.example.swipeup.view.custom_view.CustomLoginButtonActivity;
@@ -60,11 +61,11 @@ import com.example.swipeup.view.touch_example.touch_basic.DrawLineOnCanvasActivi
 import com.example.swipeup.view.touch_example.touch_basic.MoveRobotActivity;
 import com.example.swipeup.view.touch_example.touch_basic.MultiTouchActivity;
 import com.example.swipeup.view.touch_example.touch_basic.SingleTouchActivity;
-import com.example.swipeup.view.touch_example.touch_basic.MultiTouchDrawCircleActivity;
 import com.example.swipeup.view.view_example.CanvasActivity;
 import com.example.swipeup.view.view_example.CardViewDemoActivity;
 import com.example.swipeup.view.view_example.PaintActivity;
 import com.example.swipeup.view.view_example.TextViewActivity;
+import com.example.swipeup.view.winset_example.Dialog01Activity;
 import com.example.swipeup.view.zoom_image.ZoomActivity;
 import com.example.swipeup.view.zoom_image.ZoomImageActivity;
 import com.example.swipeup.view.zoom_image.ZoomImageActivity02;
@@ -108,6 +109,8 @@ public class MainActivity extends AppCompatActivity {
         addItem("registerForActivityResult_Activity", "registerForActivityResult_Activity Description", registerForActivityResult_Activity.class);
 
 
+        addItem("Dialog01Activityy", "Dialog01Activity Description", Dialog01Activity.class);
+        addItem("SapnnableActivity", "SapnnableActivity Description", SapnnableActivity.class);
 
         addItem("SlidingUpPanel DemoActivity", "SlidingUpPanel DemoActivity Description", DemoActivity.class);
         addItem("SwipeUpActivity", "SwipeUpActivity Description", SwipeUpActivity.class);
@@ -132,8 +135,6 @@ public class MainActivity extends AppCompatActivity {
         addItem("MoveRobotActivity", "MoveRobotActivity Description", MoveRobotActivity.class);
         addItem("DrawCanvasOnViewActivity", "DrawCanvasOnViewActivity Description", DrawCanvasOnViewActivity.class);
         addItem("DrawLineOnCanvasActivity", "DrawLineOnCanvasActivity Description", DrawLineOnCanvasActivity.class);
-        addItem("MultiTouchDrawCircleActivity", "MultiTouchDrawCircleActivity Description", MultiTouchDrawCircleActivity.class);
-
 
         addItem("MoveLoggerActivity", "MoveLoggerActivity Description", MoveLoggerActivity.class);
         addItem("TouchListenerActivity", "TouchListenerActivity Description", TouchListenerActivity.class);
