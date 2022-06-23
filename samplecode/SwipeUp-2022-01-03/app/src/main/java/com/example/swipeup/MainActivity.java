@@ -60,6 +60,7 @@ import com.example.swipeup.view.touch_example.touch_basic.DrawCanvasOnViewActivi
 import com.example.swipeup.view.touch_example.touch_basic.DrawLineOnCanvasActivity;
 import com.example.swipeup.view.touch_example.touch_basic.MoveRobotActivity;
 import com.example.swipeup.view.touch_example.touch_basic.MultiTouchActivity;
+import com.example.swipeup.view.touch_example.touch_basic.MultiTouchDrawCircleActivity;
 import com.example.swipeup.view.touch_example.touch_basic.SingleTouchActivity;
 import com.example.swipeup.view.view_example.CanvasActivity;
 import com.example.swipeup.view.view_example.CardViewDemoActivity;
@@ -135,6 +136,7 @@ public class MainActivity extends AppCompatActivity {
         addItem("MoveRobotActivity", "MoveRobotActivity Description", MoveRobotActivity.class);
         addItem("DrawCanvasOnViewActivity", "DrawCanvasOnViewActivity Description", DrawCanvasOnViewActivity.class);
         addItem("DrawLineOnCanvasActivity", "DrawLineOnCanvasActivity Description", DrawLineOnCanvasActivity.class);
+        addItem("MultiTouchDrawCircleActivity", "MultiTouchDrawCircleActivity Description", MultiTouchDrawCircleActivity.class);
 
         addItem("MoveLoggerActivity", "MoveLoggerActivity Description", MoveLoggerActivity.class);
         addItem("TouchListenerActivity", "TouchListenerActivity Description", TouchListenerActivity.class);
