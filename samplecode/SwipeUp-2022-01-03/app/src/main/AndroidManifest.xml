@@ -29,7 +29,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".view.touch_example.touch_basic.MultiTouchDrawCircleActivity"
+            android:name=".view.basic_example.SapnnableActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.winset_example.Dialog01Activity"
             android:exported="true" />
         <activity
             android:name=".view.touch_example.touch_basic.DrawLineOnCanvasActivity"
