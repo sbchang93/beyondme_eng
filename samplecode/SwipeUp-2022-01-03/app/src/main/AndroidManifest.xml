@@ -29,6 +29,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".view.activity_example.Test02Activity"
+            android:exported="true" />
+        <activity
+            android:name=".view.activity_example.Test01Activity"
+            android:exported="true" />
+        <activity
+            android:name=".view.activity_example.TransitionEffectActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.basic_example.ButtonActivity"
+            android:exported="true" />
+        <activity
             android:name=".view.basic_example.SapnnableActivity"
             android:exported="true" />
         <activity
