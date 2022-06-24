@@ -7,11 +7,25 @@
         android:id="@+id/textView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="(T1) - Hello World!"
+        android:text="(T1) - Hello World! - Life is a box of chocolates"
+        android:layout_margin="20dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
-    <ListView
-        android:id="@+id/listview"
+
+    <TextView
+        android:id="@+id/textView2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text="(T1) - Life is a box of chocolates "
+        android:layout_margin="20dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="(T1) - You never know what you're gonna get."
+        android:layout_margin="20dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
 </LinearLayout>

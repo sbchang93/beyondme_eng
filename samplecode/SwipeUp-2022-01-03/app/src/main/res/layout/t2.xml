@@ -7,7 +7,7 @@
         android:id="@+id/textView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="T2.xml - Hello World!"
+        android:text="T2.xml - You're gonna have to figure that out for yourself."
         android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
     <ImageView
