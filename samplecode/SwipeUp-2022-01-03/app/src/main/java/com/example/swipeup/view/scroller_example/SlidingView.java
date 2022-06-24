@@ -75,8 +75,7 @@ public class SlidingView extends ViewGroup {
         Log.d(TAG, "onLayout");
         for (int i = 0; i < getChildCount(); i++) {
             int child_left = getChildAt(i).getMeasuredWidth() * i;
-            getChildAt(i).layout(child_left, t, child_left + getChildAt(i).getMeasuredWidth(),
-                    getChildAt(i).getMeasuredHeight());
+            getChildAt(i).layout(child_left, t, child_left + getChildAt(i).getMeasuredWidth(), getChildAt(i).getMeasuredHeight());
         }
     }
 
@@ -84,7 +83,7 @@ public class SlidingView extends ViewGroup {
     protected void dispatchDraw(Canvas canvas) {
         canvas.drawBitmap(mWallpaper, 0, 0, mPaint);  // 첫페이지만 배경 이미지 보여줄 때 사용
         for (int i = 0; i < getChildCount(); i++) {
-            //canvas.drawBitmap(mWallpaper, i * getChildAt(i).getWidth(), 0, mPaint);  // 다른 페이지에도 배경 이미지를 보이게 하고 싶은 경우에 사용
+            canvas.drawBitmap(mWallpaper, i * getChildAt(i).getWidth(), 0, mPaint);  // 다른 페이지에도 배경 이미지를 보이게 하고 싶은 경우에 사용
             drawChild(canvas, getChildAt(i), 100);
         }
     }
@@ -122,28 +121,32 @@ public class SlidingView extends ViewGroup {
                 Log.d(TAG, "mVelocityTracker : " + v);
                 int nextPage = mCurPage;
 
+                // 드래그 속도가 SNAP_VELOCITY 보다 높거니 화면 반이상 드래그 했으면
+                // 화면전환 할것이라고 nextPage 변수를 통해 저장.
                 if ((v > SNAP_VELOCITY || gap < -getWidth() / 2) && mCurPage > 0) {
                     nextPage--;
-                } else if ((v < -SNAP_VELOCITY || gap > getWidth() / 2)
-                        && mCurPage < getChildCount() - 1) {
+                } else if ((v < -SNAP_VELOCITY || gap > getWidth() / 2) && mCurPage < getChildCount() - 1) {
                     nextPage++;
                 }
 
                 int move = 0;
-                if (mCurPage != nextPage) {
+                if (mCurPage != nextPage) { // 화면 전환 스크롤 계산
+                    // 현재 스크롤 지점에서 화면전환을 위해 이동해야하는 지점과의 거리 계산
                     move = getChildAt(0).getWidth() * nextPage - getScrollX();
-                } else {
+                } else { // 원래 화면 복귀 스크롤 계산
+                    // 화면 전환 하지 않을것이며 원래 페이지로 돌아가기 위한 이동해야하는 거리 계산
                     move = getWidth() * mCurPage - getScrollX();
                 }
 
                 mScroller.startScroll(getScrollX(), 0, move, 0, Math.abs(move));
 
-                if (mToast != null) {
-                    mToast.setText("page : " + nextPage);
-                } else {
-                    mToast = Toast.makeText(getContext(), "page : " + nextPage, Toast.LENGTH_SHORT);
-                }
-                mToast.show();
+//                if (mToast != null) {
+//                    mToast.setText("page : " + nextPage);
+//                } else {
+//                    mToast = Toast.makeText(getContext(), "page : " + nextPage, Toast.LENGTH_SHORT);
+//                }
+//                mToast.show();
+                Toast.makeText(getContext(), "page : " + nextPage, Toast.LENGTH_SHORT).show();
                 invalidate();
                 mCurPage = nextPage;
 
