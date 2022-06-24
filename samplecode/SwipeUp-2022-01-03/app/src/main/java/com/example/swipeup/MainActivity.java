@@ -50,6 +50,7 @@ import com.example.swipeup.view.custom_view.VolumeControlActivity;
 import com.example.swipeup.view.scroller_example.ScrollerMainActivity;
 import com.example.swipeup.view.sliding_up_pannel.DemoActivity;
 import com.example.swipeup.view.swipe_up_panel.SwipeUpActivity;
+import com.example.swipeup.view.time_date_example.TimeActivity;
 import com.example.swipeup.view.touch_example.MoveLoggerActivity;
 import com.example.swipeup.view.touch_example.MultitouchActivity;
 import com.example.swipeup.view.touch_example.TouchDelegateActivity;
@@ -108,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
         addItem("ZoomActivity", "ZoomActivity Description", ZoomActivity.class);
 
 
-
+        addItem("TimeActivity", "TimeActivity Description", TimeActivity.class);
         addItem("TransitionEffectActivity", "TransitionEffectActivity Description", TransitionEffectActivity.class);
         addItem("ButtonActivity", "ButtonActivity Description", ButtonActivity.class);
         addItem("Dialog01Activityy", "Dialog01Activity Description", Dialog01Activity.class);
