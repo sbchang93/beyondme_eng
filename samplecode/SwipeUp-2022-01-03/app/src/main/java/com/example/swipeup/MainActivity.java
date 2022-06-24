@@ -19,6 +19,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.swipeup.view.activity_example.TransitionEffectActivity;
 import com.example.swipeup.view.activity_example.registerForActivityResult_Activity;
 import com.example.swipeup.view.android_hero_samples.CanvasPaintActivity;
 import com.example.swipeup.view.android_hero_samples.ClockActivity;
@@ -39,6 +40,7 @@ import com.example.swipeup.view.android_hero_samples.XfermodeViewTestActivity;
 import com.example.swipeup.view.animation_example.AnimationActivity;
 import com.example.swipeup.view.animation_example.AnimationDrawableActivity;
 import com.example.swipeup.view.animation_example.ViewPropertyAnimatorActivity;
+import com.example.swipeup.view.basic_example.ButtonActivity;
 import com.example.swipeup.view.basic_example.SapnnableActivity;
 import com.example.swipeup.view.camera_example.TakePicture2Activity;
 import com.example.swipeup.view.camera_example.TakePictureActivity;
@@ -105,13 +107,16 @@ public class MainActivity extends AppCompatActivity {
         addItem("ZoomImageActivity03", "ZoomImageActivity03 Description", ZoomImageActivity03.class);
         addItem("ZoomActivity", "ZoomActivity Description", ZoomActivity.class);
 
+
+
+        addItem("TransitionEffectActivity", "TransitionEffectActivity Description", TransitionEffectActivity.class);
+        addItem("ButtonActivity", "ButtonActivity Description", ButtonActivity.class);
+        addItem("Dialog01Activityy", "Dialog01Activity Description", Dialog01Activity.class);
+        addItem("SapnnableActivity", "SapnnableActivity Description", SapnnableActivity.class);
+
         addItem("TakePictureActivity", "TakePictureActivity Description", TakePictureActivity.class);
         addItem("TakePicture2Activity", "TakePicture2Activity Description", TakePicture2Activity.class);
         addItem("registerForActivityResult_Activity", "registerForActivityResult_Activity Description", registerForActivityResult_Activity.class);
-
-
-        addItem("Dialog01Activityy", "Dialog01Activity Description", Dialog01Activity.class);
-        addItem("SapnnableActivity", "SapnnableActivity Description", SapnnableActivity.class);
 
         addItem("SlidingUpPanel DemoActivity", "SlidingUpPanel DemoActivity Description", DemoActivity.class);
         addItem("SwipeUpActivity", "SwipeUpActivity Description", SwipeUpActivity.class);
