@@ -2,6 +2,17 @@ Application들 예제 및 제작 업체 등.txt
 
 ----------------------------------------------------------------------------------------------------------------------------------
 
+코딩팩토리
+https://coding-factory.tistory.com/209#h_7
+
+1. Android UI OpenSource
+.다양한 UI 구성들
+https://kmshack.github.io/AndroidUICollection/
+
+
+2. 깃허브 UI 오픈소스 모음집
+https://github.com/wasabeef/awesome-android-ui
+
 
 ----------------------------------------------------------------------------------------------------------------------------------
 https://www.awesome8.kr/
