@@ -19,6 +19,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.swipeup.view.HelloActivity;
+import com.example.swipeup.view.HelloJavaActivity;
 import com.example.swipeup.view.activity_example.TransitionEffectActivity;
 import com.example.swipeup.view.activity_example.registerForActivityResult_Activity;
 import com.example.swipeup.view.android_hero_samples.CanvasPaintActivity;
@@ -108,6 +110,10 @@ public class MainActivity extends AppCompatActivity {
         addItem("ZoomImageActivity03", "ZoomImageActivity03 Description", ZoomImageActivity03.class);
         addItem("ZoomActivity", "ZoomActivity Description", ZoomActivity.class);
 
+
+
+        addItem("HelloJavaActivity", "HelloJavaActivity Description", HelloJavaActivity.class);
+        addItem("HelloActivity", "HelloActivity Description", HelloActivity.class);
 
         addItem("TimeActivity", "TimeActivity Description", TimeActivity.class);
         addItem("TransitionEffectActivity", "TransitionEffectActivity Description", TransitionEffectActivity.class);
