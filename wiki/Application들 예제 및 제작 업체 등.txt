@@ -9,6 +9,10 @@ https://coding-factory.tistory.com/209#h_7
 .다양한 UI 구성들
 https://kmshack.github.io/AndroidUICollection/
 
+. 예제 샘플 설명 홈페이지 및 GitHub 소스 관련
+https://kmshack.github.io/AndroidUICollection/2019/02/07/transition-x/
+https://github.com/arunkumar9t2/transition-x
+
 
 2. 깃허브 UI 오픈소스 모음집
 https://github.com/wasabeef/awesome-android-ui
