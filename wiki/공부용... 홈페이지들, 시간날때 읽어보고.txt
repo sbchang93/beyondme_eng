@@ -1,0 +1,27 @@
+
+공부용... 홈페이지들, 시간날때 읽어보고.txt
+
+-----------------------------------------------------------------------------------------------
+( Tips : 강의 듣을 때 1.5 배속으로 듣으면 지루하지 않고 괜찮음. )
+
+오준석의 생존코딩
+https://www.youtube.com/watch?v=wMF6clcRKqw&list=PLxTmPHxRH3VWTd-8KB67Itegihkl4SVKe&index=2
+
+. Room DB 관련
+https://www.youtube.com/watch?v=pG6OkJ3rSjg&list=PLxTmPHxRH3VWTd-8KB67Itegihkl4SVKe&index=52
+
+
+-----------------------------------------------------------------------------------------------
+Activity 의 LaunchMode 설명 및 안드로이드 기본 설명 내용들
+https://m.blog.naver.com/manhdh/120162763951
+
+https://m.blog.naver.com/manhdh/120162798929
+https://m.blog.naver.com/manhdh/120159190814
+
+-----------------------------------------------------------------------------------------------
+https://blog.asamaru.net/category/android/
+https://blog.asamaru.net/2015/11/02/android-spans-a-powerful-concept/
+
+-----------------------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------------------
