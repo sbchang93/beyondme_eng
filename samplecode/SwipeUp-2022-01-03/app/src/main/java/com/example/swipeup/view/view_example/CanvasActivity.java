@@ -16,12 +16,12 @@ import com.example.swipeup.R;
 
 public class CanvasActivity extends AppCompatActivity {
 
-    MyView myView;
+    //MyView myView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        myView = new MyView(this);
+        MyView myView = new MyView(this);
         setContentView(myView);
     }
 }
