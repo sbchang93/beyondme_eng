@@ -46,6 +46,7 @@ import com.example.swipeup.view.basic_example.ButtonActivity;
 import com.example.swipeup.view.basic_example.SapnnableActivity;
 import com.example.swipeup.view.camera_example.TakePicture2Activity;
 import com.example.swipeup.view.camera_example.TakePictureActivity;
+import com.example.swipeup.view.canvas_example.PorterDiffActivity;
 import com.example.swipeup.view.custom_view.CustomLoginButtonActivity;
 import com.example.swipeup.view.custom_view.LinedEditTextActivity;
 import com.example.swipeup.view.custom_view.VolumeControlActivity;
@@ -111,6 +112,9 @@ public class MainActivity extends AppCompatActivity {
         addItem("ZoomActivity", "ZoomActivity Description", ZoomActivity.class);
 
 
+
+
+        addItem("PorterDiffActivity", "PorterDiffActivity Description", PorterDiffActivity.class);
 
         addItem("HelloJavaActivity", "HelloJavaActivity Description", HelloJavaActivity.class);
         addItem("HelloActivity", "HelloActivity Description", HelloActivity.class);
