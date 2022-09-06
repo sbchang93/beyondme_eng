@@ -1,0 +1,61 @@
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Memory Leak 관련.txt
+
+Memory Leak 관련.txt
+https://android.jlelse.eu/9-ways-to-avoid-memory-leaks-in-android-b6d81648e35e
+https://gift123.tistory.com/30
+https://fsd-jinss.tistory.com/144
+https://medium.com/@joongwon/android-memory-leak-%EC%82%AC%EB%A1%80-6565b817a8fe
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+. Profiler ( 안드로이드 스튜디오 ) 
+
+https://developer.android.com/studio/profile/memory-profiler?hl=ko
+
+
+
+. Dumpsys
+
+https://developer.android.com/studio/command-line/dumpsys?hl=ko
+
+adb shell dumpsys input > input.txt
+adb shell dumpsys -l > l.txt
+adb shell dumpsys gfxinfo com.google.android.gms> gms_gfxinfo.txt
+adb shell dumpsys gfxinfo com.google.android.gmsframestats  > gms_gfxinfo_framestats.txt
+
+
+
+adb shell dumpsys package com.google.android.gms| findstr /l userId
+( findstr /? 사용법,   =>  /l : 대소문자 구분 안 함. )
+( adb shell dumpsys package com.google.android.gms| grep userId  )
+adb shell dumpsys package com.google.android.gms> gms_package.txt
+=> gms_package.txt 화일에서 "userId=10207" 직접 찾기
+
+
+
+adb shell dumpsys procstats --hours 3 > procstats.txt
+. 용어 : PSS(Proportional Set Size),  USS(Unique Set Size),  RSS(Resident Set Size) 
+
+adb shell dumpsys meminfo com.google.android.gms> meminfo.txt
+
+
+
+. 아래와 같이 앱 실행 화면에 따라 meminfo를 구해서, 서로 비교해 보면서, 메모리 사용량 체크
+
+adb shell dumpsys meminfo com.google.android.gms> meminfo_run_01_viPreview_NoNetwork.txt
+adb shell dumpsys meminfo com.google.android.gms> meminfo_run_01_viPreview.txt
+adb shell dumpsys meminfo com.google.android.gms> meminfo_run_02_viImage.txt
+adb shell dumpsys meminfo com.google.android.gms> meminfo_app_not_run.txt
+
+
+PSS Total  : 50123          ( 사용 메모리 )
+ViewRootImpl:        1     ( 사용하고 있는 루트 수 )
+AppContexts:        5       ( 사용하고 있는 Context 수 )
+Activities:        1             ( 사용하고 있는 Activity 수 )
+
+.so mmap     1136         (네이티브 so 메모리 사용량)
+.dex mmap      180        (Dalvik 또는 ART 메모리 사용량)
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
