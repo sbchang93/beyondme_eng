@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="4dp"
+        android:layout_marginHorizontal="8dp">
+        <Button
+            android:id="@+id/btn_play"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:textSize="10sp"
+            android:layout_weight="1"
+            android:text="PLAY" />
+        <Button
+            android:id="@+id/btn_pause"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:textSize="10sp"
+            android:layout_weight="1"
+            android:text="WAIT" />
+        <Button
+            android:id="@+id/btn_stop"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:textSize="10sp"
+            android:layout_weight="1"
+            android:text="STOP" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="4dp"
+        android:layout_marginHorizontal="8dp">
+        <Button
+            android:id="@+id/btn_previous"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:textSize="10sp"
+            android:layout_weight="1"
+            android:text="Pre" />
+
+        <Button
+            android:id="@+id/btn_next"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:textSize="10sp"
+            android:layout_weight="1"
+            android:text="Nxt" />
+
+        <Button
+            android:id="@+id/btn_repeat"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:textSize="10sp"
+            android:layout_weight="1"
+            android:text="RPT" />
+        <Button
+            android:id="@+id/btn_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:textSize="10sp"
+            android:layout_weight="1"
+            android:text="CLR" />
+        <Button
+            android:id="@+id/btn_language"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:textSize="10sp"
+            android:layout_weight="1"
+            android:text="Eng" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/et_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="4dp"
+        android:layout_marginHorizontal="8dp"
+        android:text="Follow Your Dreams.
+It's never too late.
+Never look back.
+Fall seven times, stand up eight
+We need each other.
+Love truth, and pardon error
+Live Well, Love Much, Laugh Often.
+I think therefore I am.
+Live with passion.
+I think therefore I am.
+Love truth, and pardon error
+No pain, No gain.
+Be all you can be
+Seize the day.
+Reach for the stars.
+Every wall is a door.
+Actions speak louder than words.
+Practice makes perfect.
+Hard work always pays off.
+Time for us to shine.
+너의 꿈을 쫓아라.
+결코 늦지 않았습니다.
+절대 뒤돌아보지 말아라.
+7번넘어져도 8번일어나라.
+저희는 서로를 필요로 합니다.
+진실을 사랑하고 실수를 용서하라.
+잘 살고, 사랑하고, 자주 못자
+저는 생각합니다. 고로 존재합니다.
+일정으로 살아라.
+저는 생각합니다. 고로 존재합니다.
+진실을 사랑하고 실수를 용서하라.
+네가 될 수 있는 모든 것이 되어라.
+고통없이 얻는것은 없습니다.
+오늘을 잡아라. [현재를 즐겨라.]
+별을 향해 쏴라.
+모든 벽에도 문이 있습니다.
+실천이 숱한 말봅니다. 중요합니다.
+훈련이 완벽을 만듭니다.
+열심히 일하면 항상 결실이 있습니다.
+이제는 우리가 빛날 시간입니다.
+https://channelg.co.kr/entry/%EC%A7%A7%EC%9D%80-%EC%98%81%EC%96%B4-%EB%AA%85%EC%96%B8-%EB%AA%A8%EC%9D%8C%EC%A7%91-75%EA%B0%9C-%EB%A0%88%ED%84%B0%EB%A7%81-%EB%AC%B8%EA%B5%AC-%EC%B6%94%EC%B2%9C
+"
+        android:hint="재생할 텍스트 입력"
+        android:maxLines="3" />
+
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginHorizontal="8dp"
+        android:scrollbarStyle="outsideOverlay" >
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:scrollbars="vertical"
+            android:text="입력한 텍스트가 출력되는 영역입니다."
+
+            android:textSize="16sp" />
+    </ScrollView>
+
+</LinearLayout>
