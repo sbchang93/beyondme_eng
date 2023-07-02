@@ -85,13 +85,7 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="4dp"
         android:layout_marginHorizontal="8dp"
-        android:text="Follow Your Dreams.
-It's never too late.
-Never look back.
-너의 꿈을 쫓아라.
-결코 늦지 않았습니다.
-절대 뒤돌아보지 말아라.
-"
+        android:text="Follow Your Dreams., , ,It is never too late., , ,Never look back."
         android:hint="재생할 텍스트 입력"
         android:maxLines="3" />
 
