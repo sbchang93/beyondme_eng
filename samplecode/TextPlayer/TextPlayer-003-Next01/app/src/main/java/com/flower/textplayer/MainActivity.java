@@ -9,6 +9,7 @@ import android.speech.tts.UtteranceProgressListener;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.BackgroundColorSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -68,11 +69,15 @@ public class MainActivity extends AppCompatActivity implements TextPlayer, View.
     private int lastPlayIndex = 0;
     private boolean isLanguageToggle = false; // false => English Language
     private int mRepeatMode = PLAY_1_TIME;
+    private int mPreviousRepeatMode = PLAY_1_TIME;
     private boolean isRunningFor5Minutes = false;
     //private boolean isRepeatSentence = false;
+    private long mStartTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.i(TAG, "onCreate");
+//        Log.d(TAG, "onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initTTS();
@@ -127,6 +132,7 @@ public class MainActivity extends AppCompatActivity implements TextPlayer, View.
 
             @Override
             public void onDone(String s) {
+                Log.i(TAG, "setOnUtteranceProgressListener onDone(..) => mRepeatMode = " + mRepeatMode + ", isRunningFor5Minutes = " + isRunningFor5Minutes);
                 clearAll();
                 if((mRepeatMode == PLAY_N_TIME) || (mRepeatMode == PLAY_FOR_5_MINUTES && isRunningFor5Minutes == true)) {
                     runOnUiThread(new Runnable() {
@@ -220,12 +226,18 @@ public class MainActivity extends AppCompatActivity implements TextPlayer, View.
                 break;
 
             case R.id.btn_repeat:
+                mPreviousRepeatMode = mRepeatMode;
+                isRunningFor5Minutes = false;
                 if (mRepeatMode  == PLAY_1_TIME) {
                     repeatBtn.setText("N");
                     mRepeatMode = PLAY_N_TIME;
                 } else if (mRepeatMode  == PLAY_N_TIME) {
                     repeatBtn.setText("5M");
                     mRepeatMode = PLAY_FOR_5_MINUTES;
+
+                    Log.i(TAG, "Set => isRunningFor5Minutes : true");
+                    isRunningFor5Minutes = true;
+                    mStartTime = System.currentTimeMillis();
                 } else if (mRepeatMode  == PLAY_FOR_5_MINUTES) {
                     repeatBtn.setText("1");
                     mRepeatMode = PLAY_1_TIME;
@@ -233,6 +245,7 @@ public class MainActivity extends AppCompatActivity implements TextPlayer, View.
                     repeatBtn.setText("1");
                     mRepeatMode = PLAY_1_TIME;
                 }
+                Log.i(TAG, "Change RepeatMode => mRepeatMode = " + mRepeatMode + ", mPreviousRepeatMode = " + mPreviousRepeatMode + ", isRunningFor5Minutes = " + isRunningFor5Minutes);
                 break;
 
         }
@@ -240,6 +253,8 @@ public class MainActivity extends AppCompatActivity implements TextPlayer, View.
 
     @Override
     public void startPlay() {
+        Log.i(TAG, "startPlay() - start : playState = " + playState + ", mRepeatMode = " + mRepeatMode);
+
         String content = inputEditText.getText().toString();
         if (playState.isStopping() && !tts.isSpeaking()) {
             setContentFromEditText(content);
@@ -248,16 +263,40 @@ public class MainActivity extends AppCompatActivity implements TextPlayer, View.
             standbyIndex += lastPlayIndex;
             startSpeak(content.substring(standbyIndex));
         }
-        playState = PlayState.PLAY;
 
         if(mRepeatMode == PLAY_FOR_5_MINUTES) {
-            isRunningFor5Minutes = true;
-            Observable.timer(5, TimeUnit.MINUTES)
-                    //.observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(s -> {
-                        isRunningFor5Minutes = false;
-                    }, t -> t.getMessage());
+            if (isRunningFor5Minutes == false) {
+                Log.i(TAG, "Set => isRunningFor5Minutes : true");
+                isRunningFor5Minutes = true;
+                mStartTime = System.currentTimeMillis();
+            } else {
+                Log.i(TAG, "Running this for 5 minutes. --- isRunningFor5Minutes : true --- Running Time : " + (System.currentTimeMillis() - mStartTime));
+                // in case of " isRunningFor5Minutes == true "
+                if (System.currentTimeMillis() - mStartTime > 1000 * 60 * 5) {
+                    // Stop it !!! // more than 1000*60*5 ( more than 5 Minutes )
+                    Log.i(TAG, "Stop it !!!, Set => isRunningFor5Minutes : false");
+                    isRunningFor5Minutes = false;
+                    mStartTime = 0;
+                    playState = PlayState.STOP;
+                }
+            }
+        } else {
+            playState = PlayState.PLAY;
         }
+
+        Log.i(TAG, "startPlay() - End  : playState = " + playState + ", mRepeatMode = " + mRepeatMode);
+
+//        // There are some timing issue when using Observable Thread. Maybe we need to use protecting ways.
+//        if(mRepeatMode == PLAY_FOR_5_MINUTES) {
+//            if(isRunningFor5Minutes == false) {
+//                isRunningFor5Minutes = true;
+//                Observable.timer(5, TimeUnit.MINUTES)
+//                        //.observeOn(AndroidSchedulers.mainThread())
+//                        .subscribe(s -> {
+//                            isRunningFor5Minutes = false;
+//                        }, t -> t.getMessage());
+//            }
+//        }
     }
 
     @Override
