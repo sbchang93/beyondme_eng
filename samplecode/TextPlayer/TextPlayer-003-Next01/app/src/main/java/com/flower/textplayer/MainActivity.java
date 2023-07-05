@@ -1,7 +1,10 @@
 package com.flower.textplayer;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
@@ -74,6 +77,9 @@ public class MainActivity extends AppCompatActivity implements TextPlayer, View.
     //private boolean isRepeatSentence = false;
     private long mStartTime = 0;
 
+    public final static String APP_LOGIN_INFO_PREF = "APP_LOGIN_INFO_PREF";
+    public static final String INFO_LOGIN_STATUS = "INFO_LOGIN_STATUS";
+    private Context mContext =  null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.i(TAG, "onCreate");
@@ -82,6 +88,12 @@ public class MainActivity extends AppCompatActivity implements TextPlayer, View.
         setContentView(R.layout.activity_main);
         initTTS();
         initView();
+
+        mContext = getApplicationContext();
+        boolean bCheckLoginStatus = getLoginStatusInfo(MainActivity.this, APP_LOGIN_INFO_PREF, INFO_LOGIN_STATUS);
+        if (bCheckLoginStatus == false) {
+            showLoginDialog();
+        }
     }
 
     private void initView() {
@@ -160,6 +172,39 @@ public class MainActivity extends AppCompatActivity implements TextPlayer, View.
                 lastPlayIndex = start;
             }
         });
+    }
+
+    public void showLoginDialog() {
+        Log.i(TAG, "showLoginDialog");
+        final EditText etPassword = new EditText(mContext);
+
+        AlertDialog.Builder dlg = new AlertDialog.Builder(MainActivity.this);
+        dlg.setTitle("Login Dialog"); // Title
+        dlg.setMessage("Enter Login Password!"); // Message
+        dlg.setIcon(android.R.mipmap.sym_def_app_icon); // Icon
+        dlg.setView(etPassword);
+        dlg.setPositiveButton("Confirm",new DialogInterface.OnClickListener(){ // Button Click Operation
+            public void onClick(DialogInterface dialog, int which) {
+                Log.i(TAG, "showLoginDialog - Confirm‎");
+                String value = etPassword.getText().toString();
+                if("love12345".equals(value)) {
+                    setLoginStatusInfo(mContext, APP_LOGIN_INFO_PREF, INFO_LOGIN_STATUS, true);
+                    Toast.makeText(MainActivity.this,"Success !",Toast.LENGTH_SHORT).show();
+                } else {
+                    setLoginStatusInfo(mContext, APP_LOGIN_INFO_PREF, INFO_LOGIN_STATUS, false);
+                    finishAffinity();
+                }
+            }
+        });
+        dlg.show();
+    }
+
+    public boolean getLoginStatusInfo(Context context, String perference, String key){
+        return context.getSharedPreferences(perference, MODE_PRIVATE).getBoolean(key, false);
+    }
+
+    public void setLoginStatusInfo(Context context, String perference, String key, boolean value){
+        context.getSharedPreferences(perference, MODE_PRIVATE).edit().putBoolean(key, value).apply();
     }
 
     @Override
